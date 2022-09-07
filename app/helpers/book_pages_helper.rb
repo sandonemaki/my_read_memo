@@ -1,0 +1,2 @@
+module BookPagesHelper
+end
