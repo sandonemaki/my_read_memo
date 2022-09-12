@@ -1,0 +1,27 @@
+<h1>読む本とページ数を登録をする</h1>
+<%= form_tag('/book_pages', method: :post) do %>
+  <p>本のタイトル</p>
+  <input type="text" name="title" value="<%= book.title %>"><strong>必須</strong>
+  <p>著者名</p>
+  <input type="text" name="author_1" value="<%= book.author_1 %>"><strong>必須</strong>
+  <p>著者名</p>
+  <input type="text" name="author_2" value="<%= book.author_2 %>">
+  <p>出版社</p>
+  <input type="text" name="publisher" value="<%= book.publisher %>">
+  <p>総ページ</p><br>
+  <p>（乱読と精読の評価に使われる数字です。読書するページ数を入力してください）</p>
+  <input type="number" name="page_number" min="0" step="1" value="0"><strong>必須</strong>
+  <div class="error">整数のみ入力できます</div>
+  <p>読書状態</p>
+  <div class="toggle-button-container">
+    <div class="toggle-button-container">
+      <div id="platform-toggle-button-randoku">
+        <p>乱読</p>
+      </div><!--platform-toggle-button-randoku-->
+    </div><!--toggle-button-container-->
+    <div class="toggle-button-container">
+      <div id="platform-toggle-button-seidoku">
+        <p>乱読</p>
+      </div><!--platform-toggle-button-seidoku-->
+    </div><!--toggle-button-container-->
+  </div><!--toggle-button-container-->
