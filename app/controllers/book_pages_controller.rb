@@ -1,4 +1,6 @@
 class BookPagesController < ApplicationController
+  require_relative '../module/state'
+
   def new
     book = Book.new
   end
