@@ -1,16 +1,16 @@
 <h1>読む本とページ数を登録をする</h1>
 <%= form_tag("/book_pages") do %>
   <p>本のタイトル</p>
-  <input type="text" name="title" value="<%= book.title %>"><strong>必須</strong>
+  <input type="text" name="title" placeholder="タイトル" value="<%= book.title %>"><strong>必須</strong>
   <p>著者名</p>
-  <input type="text" name="author_1" value="<%= book.author_1 %>"><strong>必須</strong>
+  <input type="text" name="author_1" placeholder="著者" value="<%= book.author_1 %>"><strong>必須</strong>
   <p>著者名</p>
-  <input type="text" name="author_2" value="<%= book.author_2 %>">
+  <input type="text" name="author_2" placeholder="著者" value="<%= book.author_2 %>">
   <p>出版社</p>
-  <input type="text" name="publisher" value="<%= book.publisher %>">
-  <p>総ページ</p><br>
+  <input type="text" name="publisher" placeholder="出版社" value="<%= book.publisher %>">
+  <p>総ページ</p>
   <p>（乱読と精読の評価に使われる数字です。読書するページ数を入力してください）</p>
-  <input type="number" name="total_page" min="0" step="1" value="0"><strong>必須</strong>
+  <input type="number" name="total_page" min="0" step="1" placeholder="00" value="<%= book.total_page %>"><strong>必須</strong>
   <div class="error">整数のみ入力できます</div>
   <input type="submit" value="送信">
 <% end %>
