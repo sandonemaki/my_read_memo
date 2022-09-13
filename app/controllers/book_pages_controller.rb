@@ -8,6 +8,7 @@ class BookPagesController < ApplicationController
     book_author_2 = book.author_2
     book_publisher = book.publisher
     book_total_page = book.total_page
+    book_errors = book.errors
     create_book_view_model =
       BookViewModel::NewViewModel.new(
         title: book_title,
@@ -15,6 +16,7 @@ class BookPagesController < ApplicationController
         author_2: book_author_2,
         publisher: book_publisher,
         total_page: book_total_page,
+        errors: book_errors
       )
     render("new", locals:{book: create_book_view_model})
   end
@@ -27,14 +29,12 @@ class BookPagesController < ApplicationController
       publisher: params[:publisher],
       total_page: params[:total_page],
     )
-    if book.save
-      # redirect_to("/book_pages")
-    # else
       book_title = book.title
       book_author_1 = book.author_1
       book_author_2 = book.author_2
       book_publisher = book.publisher
       book_total_page = book.total_page
+      book_errors = book.errors
       create_book_view_model =
         BookViewModel::NewViewModel.new(
           title: book_title,
@@ -42,7 +42,11 @@ class BookPagesController < ApplicationController
           author_2: book_author_2,
           publisher: book_publisher,
           total_page: book_total_page,
+          errors: book_errors
         )
+    if book.save
+      render("new", locals:{book: create_book_view_model})
+    else
       render("new", locals:{book: create_book_view_model})
     end
   end
