@@ -52,5 +52,21 @@ class BookPagesController < ApplicationController
   end
 
   def show
+    book = Book.find_by(id: params[:id])
+    book_id = book.id
+    book_title = book.title
+    book_author_1 = book.author_1
+    book_author_2 = book.author_2
+    book_publisher = book.publisher
+    show_book_view_model =
+      BookViewModel::ShowViewModel.new(
+        id: book_id,
+        title: book_title,
+        author_1: book_author_1,
+        author_2: book_author_2,
+        publisher: book_publisher,
+        total_page: book_total_page,
+      )
+    render("show", locals: {book: show_book_view_model})
   end
 end
