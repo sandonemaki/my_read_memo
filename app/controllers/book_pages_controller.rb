@@ -29,6 +29,9 @@ class BookPagesController < ApplicationController
       publisher: params[:publisher],
       total_page: params[:total_page],
     )
+   if book.save
+     redirect_to action: :show
+    else
       book_title = book.title
       book_author_1 = book.author_1
       book_author_2 = book.author_2
@@ -44,11 +47,10 @@ class BookPagesController < ApplicationController
           total_page: book_total_page,
           errors: book_errors
         )
-    if book.save
-      render("new", locals:{book: create_book_view_model})
-    else
       render("new", locals:{book: create_book_view_model})
     end
   end
 
+  def show
+  end
 end
