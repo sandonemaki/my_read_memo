@@ -14,3 +14,15 @@
 <p>
 <%= book.total_page %>
 </p>
+
+<!--画像アップロードフォームを表示-->
+<%= form_tag("book_pages/#{book_id}/imgs"), {multipart: :true} do %>
+  <h2>気になったページはパシャパシャ撮ってアップロードするだけ。<br>
+  後で読み返せるメモにしましょう</h2>
+  <input name="page_imgs[]" type="file" multiple="true" accept=".jpg, .jpeg, .png, .heic, .pdf">
+  <div>
+    <input type="submit" value="ファイルを選択する">
+  </div>
+<% end %>
+
+
