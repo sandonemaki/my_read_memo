@@ -1,0 +1,16 @@
+<h1>登録した本の情報</h1>
+<p>
+<%= book.title %>
+</p>
+<p>
+<%= book.author_1 %>
+<% unless book.author_2 == "" %>
+  <%= ", #{book.author_2}" %>
+<% end %>
+</p>
+<p>
+<%= book.publisher %>
+</p>
+<p>
+<%= book.total_page %>
+</p>
