@@ -6,7 +6,7 @@ class BookPages::ImgsController < ApplicationController
     if params[:page_imgs]
       page_imgs = params[:page_imgs]
       book = Book.find_by(id: params[:book_id])
-      page_image_names = []
+      page_img_names = []
 
       # public下にbook_idで全てのディレクトリを作成
       FileUtils.mkdir_p("public/#{book.id}/")
@@ -15,6 +15,7 @@ class BookPages::ImgsController < ApplicationController
         if page_img_extname.match("\.HEIC$|\.heic$")
           jpg_imgname =
             "public/#{book.id}/#{page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg")}"
+          page_img_names << jpg_imgname
         end
       end
     end
