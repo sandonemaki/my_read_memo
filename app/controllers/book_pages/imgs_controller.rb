@@ -44,6 +44,21 @@ class BookPages::ImgsController < ApplicationController
         page_img_names_save << randoku_img.save
       end
 
+      if page_img_name_save.length == page_img_names.length
+        randoku_flag
+      else
+        render("")
+      end
+
+      def randoku_flag
+        randoku_img = randoku_img.find_by(id: 1)
+        randoku_img.first_post_flag = 1
+        if randoku_img.save?
+          redirect_to("")
+        else
+          render("")
+        end
+      end
     end
   end
 end
