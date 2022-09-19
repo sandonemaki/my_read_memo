@@ -47,15 +47,18 @@ class BookPages::ImgsController < ApplicationController
       if page_img_name_save.length == page_img_names.length
         randoku_flag
       else
+        flash.now[:danger] = "保存できませんでした"
         render("")
       end
 
       def randoku_flag
         randoku_img = randoku_img.find_by(id: 1)
-        randoku_img.first_post_flag = 1
+        randoku_img.first_post_flag = 1 if randoku_img.first_post_flag == 0
         if randoku_img.save?
+          flash[:notice] = "画像を保存しました"
           redirect_to("")
         else
+          flash.now[:danger] = "保存できませんでした"
           render("")
         end
       end
