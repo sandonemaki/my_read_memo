@@ -39,13 +39,10 @@ class BookPages::ImgsController < ApplicationController
       randoku_img = book.randoku_imgs.new
 
       page_img_names.each do |page_img_name|
-        unless randoku_img.exists?(1)
-          randoku_img.first_post_flag = 1 if page_img_names[0]
-        end
         randoku_img.name = page_img_name
+        randoku_img.path = "public/#{book.id}/page_img_name"
         page_img_names_save << randoku_img.save
       end
-
 
     end
   end
