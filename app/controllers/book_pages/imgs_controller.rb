@@ -34,10 +34,10 @@ class BookPages::ImgsController < ApplicationController
         end
       end
 
+      # DBに保存
+      page_img_names_save = []
+      randoku_img = book.randoku_imgs.new
 
-
-        end
-      end
     end
   end
 end
