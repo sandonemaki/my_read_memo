@@ -9,9 +9,9 @@ class BookPages::ImgsController < ApplicationController
       page_img_names = []
 
       FileUtils.mkdir_p("public/#{book.id}/")
-      # ファイル名の保存
       page_imgs.each_with_index do |page_img|
         page_img_extname = File.extname(page_img.original_filename)
+        # ファイル名の保存
         if page_img_extname.match("\.HEIC$|\.heic$")
           jpg_imgname =
             "public/#{book.id}/#{page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg")}"
@@ -23,6 +23,11 @@ class BookPages::ImgsController < ApplicationController
             system('magick modrify -format jpg '+tmpdir+'/*.HEIC')
             FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
           end
+          # ファイル名の保存
+        elsif page_img_extname.downcase.match.(/.jpg$|.jpeg$|.png$|.pdf$/)
+          page_img_names << "public/#{book.id}/#{page_files.original_filename}"
+          # 実体の保存
+
 
 
         end
