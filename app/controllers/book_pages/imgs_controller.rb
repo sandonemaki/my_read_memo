@@ -28,6 +28,11 @@ class BookPages::ImgsController < ApplicationController
           page_img_names << "public/#{book.id}/#{page_files.original_filename}"
           # 実体の保存
           File.binwrite("public/#{book.id}/#{page_file.original_filename}", page_img.read)
+        else
+          flash[:notice] = "指定の拡張子で画像を投稿してください"
+          redirect_to(controller: :book_pages, action: :show)
+        end
+      end
 
 
 
