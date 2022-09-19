@@ -27,6 +27,7 @@ class BookPages::ImgsController < ApplicationController
         elsif page_img_extname.downcase.match.(/.jpg$|.jpeg$|.png$|.pdf$/)
           page_img_names << "public/#{book.id}/#{page_files.original_filename}"
           # 実体の保存
+          File.binwrite("public/#{book.id}/#{page_file.original_filename}", page_img.read)
 
 
 
