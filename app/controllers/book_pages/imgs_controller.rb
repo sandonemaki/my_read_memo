@@ -6,10 +6,11 @@ class BookPages::ImgsController < ApplicationController
     if params[:page_imgs]
       page_imgs = params[:page_imgs]
       book = Book.find_by(id: params[:book_id])
+      randoku_img = book.randoku_imgs.new
       page_img_names = []
 
       FileUtils.mkdir_p("public/#{book.id}/")
-      page_imgs.each_with_index do |page_img|
+      page_imgs.each do |page_img|
         page_img_extname = File.extname(page_img.original_filename)
         # ファイル名の保存
         if page_img_extname.match("\.HEIC$|\.heic$")
@@ -35,33 +36,63 @@ class BookPages::ImgsController < ApplicationController
       end
 
       # DBに保存
-      page_img_names_save = []
-      randoku_img = book.randoku_imgs.new
+      each_randoku_imgs_save(randoku_img, page_img_names)
 
-      page_img_names.each do |page_img_name|
-        randoku_img.name = page_img_name
-        randoku_img.path = "public/#{book.id}/page_img_name"
-        page_img_names_save << randoku_img.save
-      end
-
-      if page_img_name_save.length == page_img_names.length
-        randoku_flag
       else
-        flash.now[:danger] = "保存できませんでした"
-        render("")
+        book_for_show_view_model(book)
       end
+    else
+      book_for_show_view_model(book)
+    end
+  end # def create
 
-      def randoku_flag
-        randoku_img = randoku_img.find_by(id: 1)
-        randoku_img.first_post_flag = 1 if randoku_img.first_post_flag == 0
-        if randoku_img.save?
-          flash[:notice] = "画像を保存しました"
-          redirect_to("")
-        else
-          flash.now[:danger] = "保存できませんでした"
-          render("")
-        end
-      end
+  def each_randoku_imgs_save(book, randoku_img, page_img_names: [])
+    page_img_names_save = []
+    page_img_names.each do |page_img_name|
+      randoku_img.name = page_img_name
+      randoku_img.path = "public/#{book.id}/page_img_name"
+      page_img_names_save << randoku_img.save
+    end
+    if page_img_name_save.length == page_img_names.length
+      randoku_img_id_1 = randoku_img.find_by(id: 1)
+      randoku_first_post_flag(book, randoku_img_id_1)
+    else
+      book_for_show_view_model(book)
     end
   end
+
+  def randoku_first_post_flag(book, randoku_img_id_1)
+    if randoku_img_id_1.first_post_flag == 0
+      randoku_img_id_1.first_post_flag = 1
+      if randoku_img_id_1.save
+        flash[:notice] = "画像を保存しました"
+        redirect_to("/book_pages/#{book.id}")
+      else
+        book_for_show_view_model(book)
+      end
+    else
+      flash[:notice] = "画像を保存しました"
+      redirect_to("/book_pages/#{book.id}")
+    end
+  end
+
+  def book_for_show_view_model(book)
+    flash.now[:danger] = "保存できませんでした"
+    book_id = book.id
+    book_title = book.title
+    book_author_1 = book.author_1
+    book_author_2 = book.author_2
+    book_publisher = book.publisher
+    show_book_view_model =
+      BookViewModel::ShowViewModel.new(
+        id: book_id,
+        title: book_title,
+        author_1: book_author_1,
+        author_2: book_author_2,
+        publisher: book_publisher,
+        total_page: book_total_page,
+    )
+    render("show", locals: {book: show_book_view_model})
+  end
+
 end
