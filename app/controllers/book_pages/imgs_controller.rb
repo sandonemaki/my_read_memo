@@ -10,73 +10,63 @@ class BookPages::ImgsController < ApplicationController
       page_img_names = []
 
       FileUtils.mkdir_p("public/#{book.id}/")
-      page_imgs.each do |page_img|
+      page_imgs.each { |page_img|
         page_img_extname = File.extname(page_img.original_filename)
-        # ファイル名の保存
+        # 用途
+        # -ファイル名の取得
         if page_img_extname.match("\.HEIC$|\.heic$")
           jpg_imgname =
-            "public/#{book.id}/#{page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg")}"
+            page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg")
           page_img_names << jpg_imgname
 
-          # 実体の保存
-          Dir.mktmpdir do |tmpdir|
+          # 用途
+          # -実体の保存
+          Dir.mktmpdir { |tmpdir|
             File.binwrite("#{tmpdir}/#{page_img.original_filename}", page_img.read)
             system('magick modrify -format jpg '+tmpdir+'/*.HEIC')
             FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
-          end
-          # ファイル名の保存
+          }
+          # 用途
+          # -ファイル名の取得
         elsif page_img_extname.downcase.match.(/.jpg$|.jpeg$|.png$|.pdf$/)
-          page_img_names << "public/#{book.id}/#{page_files.original_filename}"
-          # 実体の保存
+          page_img_names << page_img.original_filename
+          # 用途
+          # -実体の保存
           File.binwrite("public/#{book.id}/#{page_file.original_filename}", page_img.read)
         else
           flash[:notice] = "指定の拡張子で画像を投稿してください"
           redirect_to(controller: :book_pages, action: :show)
         end
-      end
-
-      # DBに保存
-      each_randoku_imgs_save(randoku_img, page_img_names)
-
-      else
-        book_for_show_view_model(book)
-      end
+      }
+      each_randoku_imgs_and_first_flag_save(book, randoku_img, page_img_names)
     else
-      book_for_show_view_model(book)
+      show_view_model_for_book(book)
     end
   end # def create
 
-  def each_randoku_imgs_save(book, randoku_img, page_img_names: [])
+  # 用途
+  # - 乱読画像名/パスの保存
+  # - 初登校画像flagの保存
+  def each_randoku_imgs_and_first_flag_save(book, randoku_img, page_img_names: [])
     page_img_names_save = []
-    page_img_names.each do |page_img_name|
+    page_img_names.each { |page_img_name|
       randoku_img.name = page_img_name
       randoku_img.path = "public/#{book.id}/page_img_name"
       page_img_names_save << randoku_img.save
-    end
-    if page_img_name_save.length == page_img_names.length
-      randoku_img_id_1 = randoku_img.find_by(id: 1)
-      randoku_first_post_flag(book, randoku_img_id_1)
+    }
+    randoku_img_id_1 = randoku_img.find_by(id: 1)
+    randoku_img_id_1.first_post_flag = 1 if randoku_img_id_1.first_post_flag == 0
+    if (page_img_names_save.length == page_img_names.length && randoku_img_id_1.save) || page_img_names_save.length == page_img_names.length
+      flash[:notice] = "画像を保存しました"
+      redirect_to("/book_pages/#{book.id}")
     else
       book_for_show_view_model(book)
     end
   end
 
-  def randoku_first_post_flag(book, randoku_img_id_1)
-    if randoku_img_id_1.first_post_flag == 0
-      randoku_img_id_1.first_post_flag = 1
-      if randoku_img_id_1.save
-        flash[:notice] = "画像を保存しました"
-        redirect_to("/book_pages/#{book.id}")
-      else
-        book_for_show_view_model(book)
-      end
-    else
-      flash[:notice] = "画像を保存しました"
-      redirect_to("/book_pages/#{book.id}")
-    end
-  end
-
-  def book_for_show_view_model(book)
+  # 用途
+  # - インスタンスをviewから参照できるようにする
+  def show_view_model_for_book(book)
     flash.now[:danger] = "保存できませんでした"
     book_id = book.id
     book_title = book.title

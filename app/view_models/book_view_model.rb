@@ -23,6 +23,7 @@ class BookViewModel
       @author_2 = author_2
       @publisher = publisher
       @total_page = total_page
+      @errors = errors
     end
   end
 end
