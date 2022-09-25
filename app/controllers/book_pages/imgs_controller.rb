@@ -84,6 +84,4 @@ class BookPages::ImgsController < ApplicationController
     )
     render("show", locals: {book: show_book_view_model})
   end
-
-
 end

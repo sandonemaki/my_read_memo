@@ -23,9 +23,17 @@
   <div>
     <input type="submit" value="ファイルを選択する">
   </div>
+  <p>投稿できる画像の拡張子はjpg/jpeg/png/heic/pdf(1ページ分)のみになります</p>
 <% end %>
 
 <!--画像メモ一覧を表示-->
 <h2>乱読メモ一覧</h2>
+<% if book.randoku_imgs.empty? %>
+  "画像がありません"
+<% else %>
+  <% book.randoku_imgs.each do |randoku_img| %>
+    <img src="<% "/#{book.id}/#{randoku_img}" %>?#{Time.now.to_i}"/>
+  <% end %>
+<% end %>
 
 
