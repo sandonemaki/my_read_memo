@@ -53,6 +53,25 @@ class BookPagesController < ApplicationController
 
   def show
     book = Book.find_by(id: params[:id])
+    # 用途
+    # viewで乱読画像を表示する
+    # - 更新順
+    # - 生成順_現在は使用しない
+    #
+    randoku_img_paths = Dir.glob("public/#{book.id}/*")
+      .sort_by { |randoku_img_path| File.mtime(randoku_img_path) }.reverse
+
+    # randoku_img_paths = Dir.glob("public/#{book.id}/*")
+    #   .sort_by { |randoku_img_path| File.birthtime(randoku_img_path) }.reverse
+
+    # ファイル名を取得
+    randoku_img_names = randoku_img_paths.map { |f| f.gsub(/public\/#{book.id}\//, '') }
+    show_view_model_for_book(book, randoku_img_names)
+  end
+
+  # 用途
+  # - インスタンスをviewから参照できるようにする
+  def show_view_model_for_book_and_randoku_imgs(book, randoku_img_names)
     book_id = book.id
     book_title = book.title
     book_author_1 = book.author_1
@@ -67,6 +86,10 @@ class BookPagesController < ApplicationController
         publisher: book_publisher,
         total_page: book_total_page,
       )
-    render("show", locals: {book: show_book_view_model})
+    show_randoku_imgs_view_model =
+      RandokuImgViewModel::ShowViewModel.new(
+        randoku_img_names: randoku_img_names,
+      )
+    render("show", locals: {book: show_book_view_model, randoku_imgs: show_randoku_imgs_view_model})
   end
 end
