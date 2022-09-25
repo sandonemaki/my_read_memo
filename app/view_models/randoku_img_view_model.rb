@@ -1,10 +1,10 @@
 class RandokuImgViewModel
 
   class ShowViewModel
-    attr_reader :randoku_img_names
+    attr_reader :files
 
-    def initialize(randoku_img_names: [])
-      @randoku_img_names = randoku_img_names
+    def initialize(files:)
+      @files = files
     end
   end
 end

@@ -16,9 +16,9 @@
 </p>
 
 <!--画像アップロードフォームを表示-->
-<%= form_tag("book_pages/#{book_id}/imgs"), {multipart: :true} do %>
-  <h2>気になったページはパシャパシャ撮ってアップロードするだけ。<br>
-  後で読み返せるメモにしましょう</h2>
+<%= form_tag("/book_pages/#{book.id}/imgs", {multipart: true}) do %>
+  <h4>気になったページはパシャパシャ撮ってアップロードするだけ。<br>
+  後で読み返せるメモにしましょう</h4>
   <input name="page_imgs[]" type="file" multiple="true" accept=".jpg, .jpeg, .png, .heic, .pdf">
   <div>
     <input type="submit" value="ファイルを選択する">
@@ -28,10 +28,10 @@
 
 <!--画像メモ一覧を表示-->
 <h2>乱読メモ一覧</h2>
-<% if book.randoku_imgs.empty? %>
+<% if randoku_img.files.empty? %>
   "画像がありません"
 <% else %>
-  <% book.randoku_imgs.each do |randoku_img| %>
+  <% randoku_img.files.each do |randoku_img| %>
     <img src="<% "/#{book.id}/#{randoku_img}" %>?#{Time.now.to_i}"/>
   <% end %>
 <% end %>

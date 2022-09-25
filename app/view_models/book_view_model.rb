@@ -14,9 +14,9 @@ class BookViewModel
   end
 
   class ShowViewModel
-    attr_reader :id, :title, :author_1, :author_2, :publisher, :total_page
+    attr_reader :id, :title, :author_1, :author_2, :publisher, :total_page, :errors
 
-    def initialize(id:, title:, author_1:, author_2:, publisher:, total_page:)
+    def initialize(id:, title:, author_1:, author_2:, publisher:, total_page:, errors:)
       @id = id
       @title = title
       @author_1 = author_1
