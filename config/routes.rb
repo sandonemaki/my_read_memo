@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "book_pages" => "book_pages#new"      # new_book_page_path
   post "book_pages" => "book_pages#create"  # book_pages_path
   get "book_pages/:id" => "book_pages#show" # book_page_path
-  post "book_pages/:book_id/imgs" => "imgs#create" # book_page_imgs_path
+  post "book_pages/:book_id/imgs" => "book_pages/imgs#create" # book_page_imgs_path
 
   root to: "books#index"
 end

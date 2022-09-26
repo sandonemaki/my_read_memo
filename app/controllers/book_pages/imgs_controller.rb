@@ -28,11 +28,11 @@ class BookPages::ImgsController < ApplicationController
           }
           # 用途
           # -ファイル名の取得
-        elsif page_img_extname.downcase.match.(/.jpg$|.jpeg$|.png$|.pdf$/)
+        elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
           page_img_names << page_img.original_filename
           # 用途
           # -実体の保存
-          File.binwrite("public/#{book.id}/#{page_file.original_filename}", page_img.read)
+          File.binwrite("public/#{book.id}/#{page_img.original_filename}", page_img.read)
         else
           flash[:notice] = "指定の拡張子で画像を投稿してください"
           redirect_to(controller: :book_pages, action: :show)
@@ -47,15 +47,18 @@ class BookPages::ImgsController < ApplicationController
   # 用途
   # - 乱読画像名/パスの保存
   # - 初登校画像flagの保存
-  def each_randoku_imgs_and_first_flag_save(book, randoku_img, page_img_names: [])
+  def each_randoku_imgs_and_first_flag_save(book, randoku_img, page_img_names)
     page_img_names_save = []
     page_img_names.each { |page_img_name|
       randoku_img.name = page_img_name
       randoku_img.path = "public/#{book.id}/page_img_name"
       page_img_names_save << randoku_img.save
     }
-    randoku_img_id_1 = randoku_img.find_by(id: 1)
-    randoku_img_id_1.first_post_flag = 1 if randoku_img_id_1.first_post_flag == 0
+    if book.randoku_imgs.exists?(id: 1)
+      randoku_img_id_1 = book.randoku_imgs.find_by(id:1)
+      randoku_img_id_1.first_post_flag = 1 if randoku_img_id_1.first_post_flag == 0
+    end
+
     if (page_img_names_save.length == page_img_names.length && randoku_img_id_1.save) || page_img_names_save.length == page_img_names.length
       flash[:notice] = "画像を保存しました"
       redirect_to("/book_pages/#{book.id}")
