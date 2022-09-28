@@ -10,29 +10,55 @@ class BookPages::ImgsController < ApplicationController
       page_img_names = []
 
       FileUtils.mkdir_p("public/#{book.id}/")
+      FileUtils.mkdir_p("public/#{book.id}/thumb/")
       page_imgs.each { |page_img|
         page_img_extname = File.extname(page_img.original_filename)
+
         # 用途
         # -ファイル名の取得
+
         if page_img_extname.match("\.HEIC$|\.heic$")
           jpg_imgname =
             page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg")
           page_img_names << jpg_imgname
 
           # 用途
-          # -実体の保存
+          # -本画像の実体を保存 temp/
+          # -Exif 情報の削除
+          # -heic->jpg に変換
+          # -thumb の実体を保存 public/book.id/thumb/
+          # -本画像を移動 temp/ -> public/book.id
+          # -temp/ 消去
+
           Dir.mktmpdir { |tmpdir|
             File.binwrite("#{tmpdir}/#{page_img.original_filename}", page_img.read)
-            system('magick modrify -format jpg '+tmpdir+'/*.HEIC')
+            system('mogrify -strip '+tmpdir+'/*')
+            system('magick mogrify -format jpg '+tmpdir+'/*.HEIC')
+            file_name = file.gsub(/#{tmpdir}\//, '')
+            system('convert '+tmpdir+'/*.jpg -thumbnail 220x150 -gravity North \
+              -extent 220x150 public/'+book.id+'/thumb/sm_'+file_name)
             FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
           }
+
           # 用途
           # -ファイル名の取得
         elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
           page_img_names << page_img.original_filename
+
           # 用途
-          # -実体の保存
-          File.binwrite("public/#{book.id}/#{page_img.original_filename}", page_img.read)
+          # -本画像の実体を保存 temp/
+          # -Exif 情報の削除
+          # -thumbの実体の保存 public/book.id/thumb/
+          # -本画像を移動 temp/ -> public/book.id
+          # -temp/ 消去
+
+          Dir.mktmpdir { |tmpdir|
+            File.binwrite("#{tmpdir}/#{page_img.original_filename}", page_img.read)
+            system('mogrify -strip '+tmpdir+'/*')
+            system('convert '+tmpdir+'/* -thumbnail 220x150 -gravity North \
+              -extent 220x150 public/'+book.id+'/thumb/sm_'+page_img.original_filenam)
+            FileUtils.mv(Dir.glob("#{tmpdir}/*"), "public/#{book.id}/")
+          }
         else
           flash[:notice] = "指定の拡張子で画像を投稿してください"
           redirect_to(controller: :book_pages, action: :show)
@@ -47,6 +73,7 @@ class BookPages::ImgsController < ApplicationController
   # 用途
   # - 乱読画像名/パスの保存
   # - 初登校画像flagの保存
+
   def each_randoku_imgs_and_first_flag_save(book, randoku_img, page_img_names)
     page_img_names_save = []
     page_img_names.each { |page_img_name|
@@ -69,6 +96,7 @@ class BookPages::ImgsController < ApplicationController
 
   # 用途
   # - インスタンスをviewから参照できるようにする
+
   def show_view_model_for_book(book)
     flash.now[:danger] = "保存できませんでした"
     book_id = book.id
