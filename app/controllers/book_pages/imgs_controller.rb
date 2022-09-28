@@ -78,7 +78,8 @@ class BookPages::ImgsController < ApplicationController
     page_img_names_save = []
     page_img_names.each { |page_img_name|
       randoku_img.name = page_img_name
-      randoku_img.path = "public/#{book.id}/page_img_name"
+      randoku_img.path = "public/#{book.id}/#{page_img_name}"
+      randoku_img.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
       page_img_names_save << randoku_img.save
     }
     if book.randoku_imgs.exists?(id: 1)
