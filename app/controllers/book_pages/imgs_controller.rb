@@ -82,12 +82,18 @@ class BookPages::ImgsController < ApplicationController
       randoku_img.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
       page_img_names_save << randoku_img.save
     }
+    # 用途
+    # 最初の投稿
+    # first_post_flag == 1
     if book.randoku_imgs.exists?(id: 1)
       randoku_img_id_1 = book.randoku_imgs.find_by(id:1)
       randoku_img_id_1.first_post_flag = 1 if randoku_img_id_1.first_post_flag == 0
+      unless randoku_img_id_1.save
+        book_for_show_view_model(book)
+      end
     end
 
-    if (page_img_names_save.length == page_img_names.length && randoku_img_id_1.save) || page_img_names_save.length == page_img_names.length
+    if page_img_names_save.length == page_img_names.length
       flash[:notice] = "画像を保存しました"
       redirect_to("/book_pages/#{book.id}")
     else
@@ -97,7 +103,6 @@ class BookPages::ImgsController < ApplicationController
 
   # 用途
   # - インスタンスをviewから参照できるようにする
-
   def show_view_model_for_book(book)
     flash.now[:danger] = "保存できませんでした"
     book_id = book.id
@@ -116,4 +121,4 @@ class BookPages::ImgsController < ApplicationController
     )
     render("show", locals: {book: show_book_view_model})
   end
-end
+enj
