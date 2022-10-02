@@ -14,6 +14,11 @@
 <p>
 <%= book.total_page %>
 </p>
+<p>乱読画像メモ</p>
+<p>
+未読：<%= randoku_img.read_again %>, 読了：<%= randoku_img.finish_read %>
+</p>
+
 
 <!--画像アップロードフォームを表示-->
 <%= form_tag("/book_pages/#{book.id}/imgs", {multipart: true}) do %>
@@ -21,7 +26,7 @@
   後で読み返せるメモにしましょう</h4>
   <input name="page_imgs[]" type="file" multiple="true" accept=".jpg, .jpeg, .png, .heic, .pdf">
   <div>
-    <input type="submit" value="ファイルを選択してアップロードする">
+    <input type="submit" value="アップロードする">
   </div>
   <p>投稿できる画像の拡張子はjpg/jpeg/png/heic/pdf(1ページ分)のみになります</p>
 <% end %>
@@ -32,7 +37,7 @@
   "画像がありません"
 <% else %>
   <% randoku_img.files.each do |randoku_img| %>
-    <img src="<%= "/#{book.id}/#{randoku_img}" %>?#{Time.now.to_i}"/>
+    <img src="<%= "/#{book.id}/thumb/#{randoku_img}" %>?#{Time.now.to_i}"/>
   <% end %>
 <% end %>
 
