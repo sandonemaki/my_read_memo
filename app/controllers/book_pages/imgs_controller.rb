@@ -77,11 +77,15 @@ class BookPages::ImgsController < ApplicationController
   def each_randoku_imgs_and_first_flag_save(book, page_img_names)
     page_img_names_save = []
     page_img_names.each { |page_img_name|
-      randoku_img = book.randoku_imgs.new
-      randoku_img.name = page_img_name
-      randoku_img.path =  "public/#{book.id}/#{page_img_name}"
-      randoku_img.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
-      page_img_names_save << randoku_img.save
+      if book.page_imgs.exists?(name: page_img_name)
+        book_for_show_view_model(book) unless book.page_imgs.update(name: page_img_name)
+      else
+        randoku_img = book.randoku_imgs.new
+        randoku_img.name = page_img_name
+        randoku_img.path =  "public/#{book.id}/#{page_img_name}"
+        randoku_img.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
+        book_for_show_view_model(book) unless randoku_img.save
+      end
     }
     # 用途
     # 最初の投稿
@@ -94,23 +98,25 @@ class BookPages::ImgsController < ApplicationController
       end
     end
 
-    if page_img_names_save.length == page_img_names.length
-      flash[:notice] = "画像を保存しました"
-      redirect_to("/book_pages/#{book.id}")
-    else
-      book_for_show_view_model(book)
-    end
+    flash[:notice] = "画像を保存しました"
+    redirect_to("/book_pages/#{book.id}")
   end
 
   # 用途
   # - インスタンスをviewから参照できるようにする
-  def show_view_model_for_book(book)
+  def show_view_model(book)
     flash.now[:danger] = "保存できませんでした"
     book_id = book.id
     book_title = book.title
     book_author_1 = book.author_1
     book_author_2 = book.author_2
     book_publisher = book.publisher
+    book_total_page = book.total_page
+    book_errors = book.errors
+    files = book.randoku_imgs.files(book)
+    count = book.randoku_imgs.reading_state_count(book)
+    read_again = count[:read_again]
+    finish_read = count[:finish_read]
     show_book_view_model =
       BookViewModel::ShowViewModel.new(
         id: book_id,
@@ -119,7 +125,14 @@ class BookPages::ImgsController < ApplicationController
         author_2: book_author_2,
         publisher: book_publisher,
         total_page: book_total_page,
+        errors: book_errors,
     )
-    render("show", locals: {book: show_book_view_model})
+    show_randoku_imgs_view_model =
+      RandokuImgViewModel::ShowViewModel.new(
+        files: files,
+        read_again: read_again,
+        finish_read: finish_read
+    )
+    render("show", locals: {book: show_book_view_model, randoku_img: show_randoku_imgs_view_model})
   end
 end
