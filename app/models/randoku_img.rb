@@ -9,7 +9,7 @@ class RandokuImg < ApplicationRecord
     end
     #read_again = (reading_state[0] ||= 0)
     #finish_read = (reading_state[1] ||= 0)
-    return { read_again: eding_state[0] ||= 0,
+    return { read_again: reading_state[0] ||= 0,
              finish_read: reading_state[1] ||= 0 }
   end
 

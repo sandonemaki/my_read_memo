@@ -6,7 +6,7 @@ class BookPages::ImgsController < ApplicationController
     if params[:page_imgs]
       page_imgs = params[:page_imgs]
       book = Book.find_by(id: params[:book_id])
-      # randoku_img = book.randoku_imgs.new
+      randoku_imgs = book.randoku_imgs.new
       page_img_names = []
 
       FileUtils.mkdir_p("public/#{book.id}/")
@@ -64,9 +64,9 @@ class BookPages::ImgsController < ApplicationController
           redirect_to(controller: :book_pages, action: :show)
         end
       }
-      each_randoku_imgs_and_first_flag_save(book, page_img_names)
+      each_randoku_imgs_and_first_flag_save(book, randoku_imgs, page_img_names)
     else
-      show_view_model_for_book(book)
+      show_view_model_for_book(book, randoku_imgs)
     end
   end # def create
 
@@ -74,17 +74,17 @@ class BookPages::ImgsController < ApplicationController
   # - 乱読画像名/パスの保存
   # - 初登校画像flagの保存
 
-  def each_randoku_imgs_and_first_flag_save(book, page_img_names)
+  def each_randoku_imgs_and_first_flag_save(book, randoku_imgs, page_img_names)
     page_img_names_save = []
     page_img_names.each { |page_img_name|
-      if book.page_imgs.exists?(name: page_img_name)
-        book_for_show_view_model(book) unless book.page_imgs.update(name: page_img_name)
+      if book.randoku_imgs.exists?(name: page_img_name)
+        randoku_img_record = book.randoku_imgs.find_by(name: page_img_name)
+        show_view_model_for_book(book, randoku_imgs) unless randoku_img_record.update(name: page_img_name)
       else
-        randoku_img = book.randoku_imgs.new
-        randoku_img.name = page_img_name
-        randoku_img.path =  "public/#{book.id}/#{page_img_name}"
-        randoku_img.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
-        book_for_show_view_model(book) unless randoku_img.save
+        randoku_imgs.name = page_img_name
+        randoku_imgs.path =  "public/#{book.id}/#{page_img_name}"
+        randoku_imgs.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
+        show_view_model_for_book(book, randoku_imgs) unless randoku_imgs.save
       end
     }
     # 用途
@@ -94,7 +94,7 @@ class BookPages::ImgsController < ApplicationController
       randoku_img_id_1 = book.randoku_imgs.find_by(id:1)
       randoku_img_id_1.first_post_flag = 1 if randoku_img_id_1.first_post_flag == 0
       unless randoku_img_id_1.save
-        book_for_show_view_model(book)
+        show_view_model_for_book(book, randoku_imgs)
       end
     end
 
@@ -104,7 +104,7 @@ class BookPages::ImgsController < ApplicationController
 
   # 用途
   # - インスタンスをviewから参照できるようにする
-  def show_view_model(book)
+  def show_view_model_for_book(book, randoku_imgs)
     flash.now[:danger] = "保存できませんでした"
     book_id = book.id
     book_title = book.title
@@ -113,8 +113,8 @@ class BookPages::ImgsController < ApplicationController
     book_publisher = book.publisher
     book_total_page = book.total_page
     book_errors = book.errors
-    files = book.randoku_imgs.files(book)
-    count = book.randoku_imgs.reading_state_count(book)
+    files = randoku_imgs.files(book)
+    count = randoku_imgs.reading_state_count(book)
     read_again = count[:read_again]
     finish_read = count[:finish_read]
     show_book_view_model =
