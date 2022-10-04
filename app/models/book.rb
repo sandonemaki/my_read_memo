@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   validates :author_1, presence: {message: "著者を入力してください"}
   validates :author_1, length: {maximum: 10, message: "10文字以内で入力してください"}
 
-  def show_book_view_model(book)
+  def show_for_book_view_model(book)
     book_id = book.id
     book_title = book.title
     book_author_1 = book.author_1

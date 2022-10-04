@@ -1,7 +1,7 @@
 class RandokuImg < ApplicationRecord
   belongs_to :book
 
-  def show_randoku_img_view_model(randoku_imgs)
+  def show_for_randoku_img_view_model(randoku_imgs)
     files = randoku_imgs.files(book)
     count = randoku_imgs.reading_state_count(book)
     read_again = count[:read_again]
