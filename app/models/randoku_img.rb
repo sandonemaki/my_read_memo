@@ -1,6 +1,19 @@
 class RandokuImg < ApplicationRecord
   belongs_to :book
 
+  def show_randoku_img_view_model(randoku_imgs)
+    files = randoku_imgs.files(book)
+    count = randoku_imgs.reading_state_count(book)
+    read_again = count[:read_again]
+    finish_read = count[:finish_read]
+    return RandokuImgViewModel::ShowViewModel.new(
+      files: files,
+      read_again: read_again,
+      finish_read: finish_read
+    )
+  end
+
+
   def reading_state_count(book)
     if book.randoku_imgs.loaded?
       reading_state = book.randoku_imgs.group('reading_state').size

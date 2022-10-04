@@ -67,7 +67,7 @@ class BookPages::ImgsController < ApplicationController
       each_randoku_imgs_and_first_flag_save(book, randoku_imgs, page_img_names)
     else
       flash.now[:danger] = "保存できませんでした"
-      show_view_model_for_book(book, randoku_imgs)
+      show_view_model_for_book_pages(book, randoku_imgs)
     end
   end # def create
 
@@ -82,7 +82,7 @@ class BookPages::ImgsController < ApplicationController
         randoku_img_record = book.randoku_imgs.find_by(name: page_img_name)
         unless randoku_img_record.update(name: page_img_name)
           flash.now[:danger] = "保存できませんでした"
-          show_view_model_for_book(book, randoku_imgs)
+          show_view_model_for_book_pages(book, randoku_imgs)
         end
       else
         randoku_imgs.name = page_img_name
@@ -90,7 +90,7 @@ class BookPages::ImgsController < ApplicationController
         randoku_imgs.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
         unless randoku_imgs.save
           flash.now[:danger] = "保存できませんでした"
-          show_view_model_for_book(book, randoku_imgs)
+          show_view_model_for_book_pages(book, randoku_imgs)
         end
       end
     }
@@ -102,7 +102,7 @@ class BookPages::ImgsController < ApplicationController
       randoku_img_id_1.first_post_flag = 1 if randoku_img_id_1.first_post_flag == 0
       unless randoku_img_id_1.save
         flash.now[:danger] = "保存できませんでした"
-        show_view_model_for_book(book, randoku_imgs)
+        show_view_model_for_book_pages(book, randoku_imgs)
       end
     end
 
@@ -112,19 +112,11 @@ class BookPages::ImgsController < ApplicationController
 
   # 用途
   # - インスタンスをviewから参照できるようにする
-  def show_view_model_for_book(book, randoku_imgs)
+  def show_view_model_for_book_pages(book, randoku_imgs)
     show_book_view_model =
       show_book_view_model(book)
-    files = randoku_imgs.files(book)
-    count = randoku_imgs.reading_state_count(book)
-    read_again = count[:read_again]
-    finish_read = count[:finish_read]
     show_randoku_imgs_view_model =
-      RandokuImgViewModel::ShowViewModel.new(
-        files: files,
-        read_again: read_again,
-        finish_read: finish_read
-    )
+      randoku_imgs.show_randoku_img_view_model(randoku_imgs)
     render("show", locals: {book: show_book_view_model, randoku_img: show_randoku_imgs_view_model})
   end
 end

@@ -73,24 +73,16 @@ class BookPagesController < ApplicationController
     #   .sort_by { |randoku_img_path| File.birthtime(randoku_img_path) }.reverse
     #puts files = randoku_imgs.files(book)
     #puts count = randoku_imgs.reading_state_count(book)
-    show_view_model_for_book(book, randoku_imgs)
+    show_view_model_for_book_pages(book, randoku_imgs)
   end
 
   # 用途
   # - インスタンスをviewから参照できるようにする
-  def show_view_model_for_book(book, randoku_imgs)
+  def show_view_model_for_book_pages(book, randoku_imgs)
     show_book_view_model =
       book.show_book_view_model(book)
-    files = randoku_imgs.files(book)
-    count = randoku_imgs.reading_state_count(book)
-    read_again = count[:read_again]
-    finish_read = count[:finish_read]
     show_randoku_imgs_view_model =
-      RandokuImgViewModel::ShowViewModel.new(
-        files: files,
-        read_again: read_again,
-        finish_read: finish_read
-    )
+      randoku_imgs.show_randoku_img_view_model(randoku_imgs)
     render("show", locals: {book: show_book_view_model, randoku_img: show_randoku_imgs_view_model})
   end
 end
