@@ -113,27 +113,12 @@ class BookPages::ImgsController < ApplicationController
   # 用途
   # - インスタンスをviewから参照できるようにする
   def show_view_model_for_book(book, randoku_imgs)
-    book_id = book.id
-    book_title = book.title
-    book_author_1 = book.author_1
-    book_author_2 = book.author_2
-    book_publisher = book.publisher
-    book_total_page = book.total_page
-    book_errors = book.errors
+    show_book_view_model =
+      show_book_view_model(book)
     files = randoku_imgs.files(book)
     count = randoku_imgs.reading_state_count(book)
     read_again = count[:read_again]
     finish_read = count[:finish_read]
-    show_book_view_model =
-      BookViewModel::ShowViewModel.new(
-        id: book_id,
-        title: book_title,
-        author_1: book_author_1,
-        author_2: book_author_2,
-        publisher: book_publisher,
-        total_page: book_total_page,
-        errors: book_errors,
-    )
     show_randoku_imgs_view_model =
       RandokuImgViewModel::ShowViewModel.new(
         files: files,
