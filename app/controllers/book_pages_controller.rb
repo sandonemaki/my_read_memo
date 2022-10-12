@@ -1,24 +1,40 @@
 class BookPagesController < ApplicationController
   require_relative '../modules/state'
 
+  def index
+    books = Book.all.order(created_at: :desc).pluck(
+      :id, :title, :author_1, :author_2, :total_page, :reading_state
+    )
+    index_for_books_view_model = books.map { |book|
+      BooksIndex.new(
+        id: book[0],
+        title: book[1],
+        author_1: book[2],
+        author_2: book[3],
+        total_page: book[4],
+        reading_state: book[5])
+    }
+    # 用途
+    # - 乱読画像の未読/読んだカウント
+    count = randoku_imgs.reading_state_count(book)
+    read_again_count = count[:read_again]
+    finish_read_count = count[:finish_read]
+
+    # 用途
+    # viesに表示するための乱読画像のカウントインスタンスを作成
+    index_for_randoku_img_view_model =
+      RandokuImgsIndex.new(
+        read_again_count: read_again_count
+        finish_read_count: finish_read_count
+    )
+    render("index", locals:{books: index_for_books_view_model, randoku_imgs: index_for_randoku_img_view_model})
+  end
+
   def new
     book = Book.new
-    book_title = book.title
-    book_author_1 = book.author_1
-    book_author_2 = book.author_2
-    book_publisher = book.publisher
-    book_total_page = book.total_page
-    book_errors = book.errors
-    create_book_view_model =
-      BookViewModel::NewViewModel.new(
-        title: book_title,
-        author_1: book_author_1,
-        author_2: book_author_2,
-        publisher: book_publisher,
-        total_page: book_total_page,
-        errors: book_errors
-      )
-    render("new", locals:{book: create_book_view_model})
+    new_book_view_model =
+      book.new_for_book_view_model(book)
+    render("new", locals:{book: new_book_view_model})
   end
 
   def create
@@ -29,24 +45,11 @@ class BookPagesController < ApplicationController
       publisher: params[:publisher],
       total_page: params[:total_page],
     )
-   if book.save
-     redirect_to("/book_pages/#{book.id}")
+    if book.save
+      redirect_to("/book_pages/#{book.id}")
     else
-      book_title = book.title
-      book_author_1 = book.author_1
-      book_author_2 = book.author_2
-      book_publisher = book.publisher
-      book_total_page = book.total_page
-      book_errors = book.errors
       create_book_view_model =
-        BookViewModel::NewViewModel.new(
-          title: book_title,
-          author_1: book_author_1,
-          author_2: book_author_2,
-          publisher: book_publisher,
-          total_page: book_total_page,
-          errors: book_errors
-        )
+        book.new_for_book_view_model(book)
       render("new", locals:{book: create_book_view_model})
     end
   end
@@ -54,17 +57,6 @@ class BookPagesController < ApplicationController
   # 用途
   # 乱読画像の状態を表示
   # - 状態：また読みたい、読了
-
-#  ToDo:消す
-#  def randoku_img_reading_state_count(book)
-#    if book.randoku_imgs.loaded?
-#      reading_state = book.randoku_imgs.group('reading_state').size
-#    else
-#      reading_state = book.randoku_imgs.group('reading_state').count
-#    end
-#    @read_again = (reading_state[0] ||= 0)
-#    @finish_read = (reading_state[1] ||= 0)
-#  end
 
   def show
     book = Book.find_by(id: params[:id])
