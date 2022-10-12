@@ -32,7 +32,7 @@ class BookPages::ImgsController < ApplicationController
 
           Dir.mktmpdir { |tmpdir|
             File.binwrite("#{tmpdir}/#{page_img.original_filename}", page_img.read)
-            system('mogrify -strip '+tmpdir+'/*')
+            system('mogrify -strip '+tmpdir+'/"*"')
             system('magick mogrify -format jpg '+tmpdir+'/*.HEIC')
             file_name = file.gsub(/#{tmpdir}\//, '')
             system('convert '+tmpdir+'/*.jpg -thumbnail 220x150 -gravity North \
@@ -54,9 +54,9 @@ class BookPages::ImgsController < ApplicationController
 
           Dir.mktmpdir { |tmpdir|
             File.binwrite("#{tmpdir}/#{page_img.original_filename}", page_img.read)
-            system('mogrify -strip '+tmpdir+'/*')
+            system('mogrify -strip '+tmpdir+'/"*"')
             size = "220x150"
-            system('convert '+tmpdir+'/* -thumbnail '+size+' -gravity North -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+page_img.original_filename)
+            system('convert '+tmpdir+'/"*" -thumbnail '+size+' -gravity North -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+page_img.original_filename)
             FileUtils.mv(Dir.glob("#{tmpdir}/*"), "public/#{book.id}/")
           }
         else
@@ -85,10 +85,12 @@ class BookPages::ImgsController < ApplicationController
           show_view_model_for_book_pages(book, randoku_imgs)
         end
       else
-        randoku_imgs.name = page_img_name
-        randoku_imgs.path =  "public/#{book.id}/#{page_img_name}"
-        randoku_imgs.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
-        unless randoku_imgs.save
+        new_randoku_img = book.randoku_imgs.new(
+          name: page_img_name,
+          path: "public/#{book.id}/#{page_img_name}",
+          thumbnail_path: "public/#{book.id}/thumb/sm_#{page_img_name}",
+        )
+        unless new_randoku_img.save
           flash.now[:danger] = "保存できませんでした"
           show_view_model_for_book_pages(book, randoku_imgs)
         end
