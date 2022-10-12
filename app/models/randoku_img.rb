@@ -4,16 +4,18 @@ class RandokuImg < ApplicationRecord
   def show_for_randoku_img_view_model(randoku_imgs)
     files = randoku_imgs.files(book)
     count = randoku_imgs.reading_state_count(book)
-    read_again = count[:read_again]
-    finish_read = count[:finish_read]
+    read_again_count = count[:read_again]
+    finish_read_count = count[:finish_read]
     return RandokuImgViewModel::ShowViewModel.new(
       files: files,
-      read_again: read_again,
-      finish_read: finish_read
+      read_again_count: read_again_count,
+      finish_read_count: finish_read_count,
     )
   end
 
-
+  # 用途
+  # - 乱読画像のstate数をDBからの呼び出す
+  # - loadedをしていたらDBに問い合わせをせずカウントする
   def reading_state_count(book)
     if book.randoku_imgs.loaded?
       reading_state = book.randoku_imgs.group('reading_state').size
