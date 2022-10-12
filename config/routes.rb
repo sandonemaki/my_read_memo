@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   get "book_pages/:id" => "book_pages#show" # book_page_path
   post "book_pages/:book_id/imgs" => "book_pages/imgs#create" # book_page_imgs_path
 
-  root to: "books#index"
+  root to: "books_pages#index"
 end
