@@ -24,4 +24,21 @@ class Book < ApplicationRecord
     )
   end
 
+  def new_for_book_view_model(book)
+    book_title = book.title
+    book_author_1 = book.author_1
+    book_author_2 = book.author_2
+    book_publisher = book.publisher
+    book_total_page = book.total_page
+    book_errors = book.errors
+    return BookViewModel::NewViewModel.new(
+      title: book_title,
+      author_1: book_author_1,
+      author_2: book_author_2,
+      publisher: book_publisher,
+      total_page: book_total_page,
+      errors: book_errors,
+    )
+  end
+
 end
