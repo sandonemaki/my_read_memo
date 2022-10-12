@@ -1,0 +1,20 @@
+<h1>本のリスト</h1>
+<button type="button">
+  <%= link_to("本を登録する", "/book_page") %>
+</button>
+
+<table>
+  <tr><!-- 行1（見出し）-->
+    <th>書名</th> <th>著者</th> <th>状態</th> <th>乱読メモ数</th> <th>入力メモ数</th>
+  </tr>
+  <!-- 繰り返し処理 -->
+  <tr><!-- 行2-->
+    <td><%= link_to(book.title, "/book_pages/#{book_pages.id}") %></td>
+    <td> <%= book.author_1 %> / <%= book.author_2 %></td>
+    <td>乱読or精読</td>
+    <td>乱読メモの数 / <%= book.total_page %></td>
+    <td>入力メモの数（乱読・精読）</td>
+  </tr>
+</table>
+<p>00/20</p>
+<p>ページネーション</p>
