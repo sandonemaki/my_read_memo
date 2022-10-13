@@ -3,13 +3,13 @@ class RandokuImg < ApplicationRecord
 
   def show_for_randoku_img_view_model(randoku_imgs)
     files = randoku_imgs.files(book)
-    count = randoku_imgs.reading_state_count(book)
-    read_again_count = count[:read_again]
-    finish_read_count = count[:finish_read]
+    counted = randoku_imgs.reading_state_count(book)
+    counted_read_again = counted[:read_again]
+    counted_finish_read = counted[:finish_read]
     return RandokuImgViewModel::ShowViewModel.new(
       files: files,
-      read_again_count: read_again_count,
-      finish_read_count: finish_read_count,
+      counted_read_again: counted_read_again
+      counted_finish_read: counted_finish_read
     )
   end
 
