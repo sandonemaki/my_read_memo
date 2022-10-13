@@ -5,16 +5,19 @@
 
 <table>
   <tr><!-- 行1（見出し）-->
-    <th>書名</th> <th>著者</th> <th>状態</th> <th>乱読メモ数</th> <th>入力メモ数</th>
+    <th>書名</th> <th>著者</th> <th>状態</th> <th>乱読メモ数（未読メモ数／総メモ数）</th> <th>読む予定のページ数</th> <th>入力メモ数</th>
   </tr>
   <!-- 繰り返し処理 -->
-  <tr><!-- 行2-->
-    <td><%= link_to(book.title, "/book_pages/#{book_pages.id}") %></td>
-    <td> <%= book.author_1 %> / <%= book.author_2 %></td>
-    <td>乱読or精読</td>
-    <td>乱読メモの数 / <%= book.total_page %></td>
-    <td>入力メモの数（乱読・精読）</td>
-  </tr>
+  <% books.each do |book|%>
+    <tr><!-- 行2-->
+      <td><%= link_to(book.title, "/book_pages/#{book.id}") %></td>
+      <td><%= book.author_1 %> / <%= book.author_2 %></td>
+      <td><%= book.reading_state %></td>
+      <td><%= randoku_imgs.counted_read_again %> / <%= randoku_imgs.couted_read_state %></td>
+      <td><%= book.total_page %></td>
+      <td>入力メモの数（乱読・精読）</td>
+    </tr>
+  <% end %>
 </table>
 <p>00/20</p>
 <p>ページネーション</p>

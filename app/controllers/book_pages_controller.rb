@@ -6,26 +6,29 @@ class BookPagesController < ApplicationController
       :id, :title, :author_1, :author_2, :total_page, :reading_state
     )
     index_for_books_view_model = books.map { |book|
-      BooksIndex.new(
+      BookViewModel::IndexViewModel.new(
         id: book[0],
         title: book[1],
         author_1: book[2],
         author_2: book[3],
         total_page: book[4],
-        reading_state: book[5])
+        reading_state: book[5]
+      )
     }
     # 用途
     # - 乱読画像の未読/読んだカウント
-    count = randoku_imgs.reading_state_count(book)
-    read_again_count = count[:read_again]
-    finish_read_count = count[:finish_read]
+    counted = randoku_imgs.reading_state_count(book)
+    counted_read_again = counted[:read_again]
+    counted_finish_read = counted[:finish_read]
+    counted_read_state = counted_read_again + counted_finish_read
 
     # 用途
     # viesに表示するための乱読画像のカウントインスタンスを作成
     index_for_randoku_img_view_model =
-      RandokuImgsIndex.new(
-        read_again_count: read_again_count
-        finish_read_count: finish_read_count
+      RandokuImgViewModel::IndexViewModel.new(
+        counted_read_again: counted_read_again
+        counted_finish_read: counted_finish_read
+        counted_read_state: counted_read_state
     )
     render("index", locals:{books: index_for_books_view_model, randoku_imgs: index_for_randoku_img_view_model})
   end
