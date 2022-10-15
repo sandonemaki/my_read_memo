@@ -16,7 +16,7 @@
 </p>
 <p>乱読画像メモ</p>
 <p>
-未読：<%= randoku_img.read_again %>, 読了：<%= randoku_img.finish_read %>
+未読：<%= book.randoku_img_read_again_count %>, 読了：<%= book.randoku_img_finish_read_count %>
 </p>
 
 
@@ -33,11 +33,11 @@
 
 <!--画像メモ一覧を表示-->
 <h2>乱読メモ一覧</h2>
-<% if randoku_img.files.empty? %>
+<% if book.randoku_img_file_names.empty? %>
   "画像がありません"
 <% else %>
-  <% randoku_img.files.each do |randoku_img| %>
-    <img src="<%= "/#{book.id}/thumb/#{randoku_img}" %>?#{Time.now.to_i}"/>
+  <% book.randoku_img_file_names.each do |file_name| %>
+    <img src="<%= "/#{book.id}/thumb/#{file_name}" %>?#{Time.now.to_i}"/>
   <% end %>
 <% end %>
 

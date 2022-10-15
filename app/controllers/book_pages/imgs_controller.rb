@@ -67,7 +67,9 @@ class BookPages::ImgsController < ApplicationController
       each_randoku_imgs_and_first_flag_save(book, randoku_imgs, page_img_names)
     else
       flash.now[:danger] = "保存できませんでした"
-      show_view_model_for_book_pages(book, randoku_imgs)
+      show_book_view_model = book.show_for_book_view_model(book)
+      show_randoku_imgs_view_model = randoku_imgs.show_for_randoku_img_view_model(randoku_imgs)
+      render("show", locals: {book: show_book_view_model, randoku_img: show_randoku_imgs_view_model})
     end
   end # def create
 

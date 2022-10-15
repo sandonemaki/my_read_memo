@@ -2,41 +2,14 @@ class BookPagesController < ApplicationController
   require_relative '../modules/state'
 
   def index
-    books = Book.all.order(created_at: :desc).pluck(
-      :id, :title, :author_1, :author_2, :total_page, :reading_state
-    )
-    index_for_books_view_model = books.map { |book|
-      BookViewModel::IndexViewModel.new(
-        id: book[0],
-        title: book[1],
-        author_1: book[2],
-        author_2: book[3],
-        total_page: book[4],
-        reading_state: book[5]
-      )
+    book_view_models = Book.all.order(created_at: :desc).to_a.map { |book|
+      ViewModel::BookViewModel.new(book: book)
     }
-    # 用途
-    # - 乱読画像の未読/読んだカウント
-    counted = randoku_imgs.reading_state_count(book)
-    counted_read_again = counted[:read_again]
-    counted_finish_read = counted[:finish_read]
-    counted_read_state = counted_read_again + counted_finish_read
-
-    # 用途
-    # viesに表示するための乱読画像のカウントインスタンスを作成
-    index_for_randoku_img_view_model =
-      RandokuImgViewModel::IndexViewModel.new(
-        counted_read_again: counted_read_again
-        counted_finish_read: counted_finish_read
-        counted_read_state: counted_read_state
-    )
-    render("index", locals:{books: index_for_books_view_model, randoku_imgs: index_for_randoku_img_view_model})
+    render("index", locals:{books: book_view_models})
   end
 
   def new
-    book = Book.new
-    new_book_view_model =
-      book.new_for_book_view_model(book)
+    new_book_view_model = BookViewModel::NewViewModel.new
     render("new", locals:{book: new_book_view_model})
   end
 
@@ -63,14 +36,9 @@ class BookPagesController < ApplicationController
 
   def show
     book = Book.find_by(id: params[:id])
-    randoku_imgs = book.randoku_imgs.new
-    # randoku_img_paths = Dir.glob("public/#{book.id}/*")
-    #   .sort_by { |randoku_img_path| File.birthtime(randoku_img_path) }.reverse
-    #puts files = randoku_imgs.files(book)
-    #puts count = randoku_imgs.reading_state_count(book)
-    show_view_model_for_book_pages(book, randoku_imgs)
+    book_view_model = ViewModel::BookViewModel.new(book: book)
+    render("show", locals: {book: book_view_model})
   end
-
   # 用途
   # - インスタンスをviewから参照できるようにする
   def show_view_model_for_book_pages(book, randoku_imgs)

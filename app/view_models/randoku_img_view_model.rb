@@ -1,5 +1,5 @@
 class RandokuImgViewModel
-
+  # viewsに表示するための乱読画像のカウント
   class IndexViewModel
     attr_reader :counted_read_again, :counted_finish_read, :counted_read_state
 

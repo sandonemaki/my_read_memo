@@ -1,6 +1,6 @@
 <h1>本のリスト</h1>
 <button type="button">
-  <%= link_to("本を登録する", "/book_page") %>
+  <%= link_to("本を登録する", "/book_page/new") %>
 </button>
 
 <table>
@@ -13,7 +13,7 @@
       <td><%= link_to(book.title, "/book_pages/#{book.id}") %></td>
       <td><%= book.author_1 %> / <%= book.author_2 %></td>
       <td><%= book.reading_state %></td>
-      <td><%= randoku_imgs.counted_read_again %> / <%= randoku_imgs.couted_read_state %></td>
+      <td><%= book.randoku_img_read_again_count %> / <%= book.randoku_img_read_again_count + book.randoku_img_finish_read_count %></td>
       <td><%= book.total_page %></td>
       <td>入力メモの数（乱読・精読）</td>
     </tr>

@@ -8,7 +8,7 @@ class RandokuImg < ApplicationRecord
     counted_finish_read = counted[:finish_read]
     return RandokuImgViewModel::ShowViewModel.new(
       files: files,
-      counted_read_again: counted_read_again
+      counted_read_again: counted_read_again,
       counted_finish_read: counted_finish_read
     )
   end
@@ -34,9 +34,9 @@ class RandokuImg < ApplicationRecord
   # - 生成順_現在は使用しない
   #
   def files(book)
-    randoku_img_paths = Dir.glob("public/#{book.id}/thumb/*")
-      .sort_by { |randoku_img_path| File.mtime(randoku_img_path) }.reverse
-    # ファイル名の取得
-    return randoku_img_files = randoku_img_paths.map { |f| f.gsub(/public\/#{book.id}\/thumb\//, '') }
+    Dir.glob("public/#{book.id}/thumb/*")
+      .sort_by { |randoku_img_path| File.mtime(randoku_img_path) }
+      .map { |f| f.split("/").last }
+      .reverse
   end
 end
