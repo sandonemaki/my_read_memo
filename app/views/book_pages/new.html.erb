@@ -1,12 +1,12 @@
 <h1>読む本とページ数を登録をする</h1>
-<%= form_tag("/book_pages") do %>
+<%= form_tag("/book_pages/create", method: :post) do %>
   <p>本のタイトル</p>
   <input type="text" name="title" placeholder="タイトル" value="<%= book.title %>"><strong>必須</strong>
-  <% book.errors[:title].flatten.each do |message| %><%= message %><% end %>
-  <p>著者名（1名まで）</p>
+  <% book.errors[:title].each do |message| %><%= message %><% end %>
+  <p>著者名</p>
   <input type="text" name="author_1" placeholder="著者" value="<%= book.author_1 %>"><strong>必須</strong>
-  <% book.errors[:author_1].flatten.each do |message| %><%= message %><% end %>
-  <p>翻訳者（1名まで）</p>
+  <% book.errors[:author_1].each do |message| %><%= message %><% end %>
+  <p>著者名</p>
   <input type="text" name="author_2" placeholder="著者" value="<%= book.author_2 %>">
   <p>出版社</p>
   <input type="text" name="publisher" placeholder="出版社" value="<%= book.publisher %>">

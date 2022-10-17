@@ -19,7 +19,7 @@ class BookPages::ImgsController < ApplicationController
 
         if page_img_extname.match("\.HEIC$|\.heic$")
           jpg_imgname =
-            page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg")
+            page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg").gsub(" ", "")
           page_img_names << jpg_imgname
 
           # 用途
@@ -31,19 +31,19 @@ class BookPages::ImgsController < ApplicationController
           # -temp/ 消去
 
           Dir.mktmpdir { |tmpdir|
-            File.binwrite("#{tmpdir}/#{page_img.original_filename}", page_img.read)
+            File.binwrite("#{tmpdir}/#{jpg_imgname}", page_img.read)
             system('mogrify -strip '+tmpdir+'/"*"')
             system('magick mogrify -format jpg '+tmpdir+'/*.HEIC')
-            file_name = file.gsub(/#{tmpdir}\//, '')
             system('convert '+tmpdir+'/*.jpg -thumbnail 220x150 -gravity North \
-              -extent 220x150 public/'+book.id+'/thumb/sm_'+file_name)
+                   -extent 220x150 public/'+book.id.to_s+'/thumb/sm_'+jpg_imgname)
             FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
           }
 
           # 用途
           # -ファイル名の取得
-        elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
-          page_img_names << page_img.original_filename
+        elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/).gsub(" ", "")
+          filename = "#{page_img.original_filename.gsub(" ", "")}"
+          page_img_names << filename
 
           # 用途
           # -本画像の実体を保存 temp/
@@ -52,11 +52,13 @@ class BookPages::ImgsController < ApplicationController
           # -本画像を移動 temp/ -> public/book.id
           # -temp/ 消去
 
+          size = "220x150"
           Dir.mktmpdir { |tmpdir|
-            File.binwrite("#{tmpdir}/#{page_img.original_filename}", page_img.read)
-            system('mogrify -strip '+tmpdir+'/"*"')
-            size = "220x150"
-            system('convert '+tmpdir+'/"*" -thumbnail '+size+' -gravity North -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+page_img.original_filename)
+            File.binwrite("#{tmpdir}/#{filename}", page_img.read)
+            system('mogrify -format jpg *.png')
+            system('mogrify -strip '+tmpdir+'/*')
+            system('convert '+tmpdir+'/* -thumbnail '+size+' -gravity North \
+                   -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+filename)
             FileUtils.mv(Dir.glob("#{tmpdir}/*"), "public/#{book.id}/")
           }
         else

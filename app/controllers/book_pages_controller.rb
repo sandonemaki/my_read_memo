@@ -9,8 +9,9 @@ class BookPagesController < ApplicationController
   end
 
   def new
-    new_book_view_model = BookViewModel::NewViewModel.new
-    render("new", locals:{book: new_book_view_model})
+    book = Book.new
+    book_view_model = ViewModel::BookViewModel.new(book: book)
+    render("new", locals:{book: book_view_model})
   end
 
   def create
@@ -24,9 +25,9 @@ class BookPagesController < ApplicationController
     if book.save
       redirect_to("/book_pages/#{book.id}")
     else
-      create_book_view_model =
-        book.new_for_book_view_model(book)
-      render("new", locals:{book: create_book_view_model})
+      book_view_model =
+        ViewModel::BookViewModel.new(book: book)
+      render("new", locals:{book: book_view_model})
     end
   end
 
@@ -41,11 +42,11 @@ class BookPagesController < ApplicationController
   end
   # 用途
   # - インスタンスをviewから参照できるようにする
-  def show_view_model_for_book_pages(book, randoku_imgs)
-    show_book_view_model =
-      book.show_for_book_view_model(book)
-    show_randoku_imgs_view_model =
-      randoku_imgs.show_for_randoku_img_view_model(randoku_imgs)
-    render("show", locals: {book: show_book_view_model, randoku_img: show_randoku_imgs_view_model})
-  end
+ # def show_view_model_for_book_pages(book, randoku_imgs)
+ #   show_book_view_model =
+ #     book.show_for_book_view_model(book)
+ #   show_randoku_imgs_view_model =
+ #     randoku_imgs.show_for_randoku_img_view_model(randoku_imgs)
+ #   render("show", locals: {book: show_book_view_model, randoku_img: show_randoku_imgs_view_model})
+ # end
 end
