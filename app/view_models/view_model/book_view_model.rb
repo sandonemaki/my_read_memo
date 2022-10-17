@@ -1,7 +1,7 @@
 module ViewModel
 
   class BookViewModel
-    attr_reader :id, :title, :author_1, :author_2, :total_page, :reading_state, :publisher, :randoku_img_read_again_count, :randoku_img_finish_read_count, :randoku_img_file_names
+    attr_reader :id, :title, :author_1, :author_2, :total_page, :reading_state, :publisher, :errors, :randoku_img_read_again_count, :randoku_img_finish_read_count, :randoku_img_file_names
 
     # @param book [Book] 本モデル
     def initialize(book:)
@@ -12,6 +12,7 @@ module ViewModel
       @total_page = book.total_page
       @reading_state = book.reading_state
       @publisher = book.publisher
+      @errors = book.errors
 
       reading_state = book.randoku_imgs.group('reading_state').size
       @randoku_img_read_again_count  = reading_state[0] ||= 0 # 未読の数(0)
