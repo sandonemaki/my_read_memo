@@ -10,3 +10,8 @@ th, td {
 th {
   background-color: #f0f2f7; /* 見出しの背景色 */
 }
+.gallery-list {
+  object-fit: cover; /* indexの画像 */
+  object-position: top;
+}
+
