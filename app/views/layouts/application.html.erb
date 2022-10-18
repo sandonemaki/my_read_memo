@@ -11,6 +11,14 @@
   </head>
 
   <body>
+    <header>
+      <ul class="header-menus">
+        <li>
+          <%= link_to("本の一覧", "/") %>
+        </li>
+      </ul>
+    </header>
+
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
