@@ -1,3 +1,3 @@
 module State
-  READING_STATE = { randoku: 0, seidoku: 1, through: 2 }.freeze
+  READING_STATE = { 0 => "乱読", 1 => "精読", 2 => "通読" }.freeze
 end
