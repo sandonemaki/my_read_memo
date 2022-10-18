@@ -4,20 +4,27 @@
 </button>
 
 <table>
-  <tr><!-- 行1（見出し）-->
-    <th>書名</th> <th>著者</th> <th>状態</th> <th>乱読メモ数（未読メモ数／総メモ数）</th> <th>読む予定のページ数</th> <th>入力メモ数</th>
-  </tr>
-  <!-- 繰り返し処理 -->
   <% books.each do |book|%>
-    <tr><!-- 行2-->
-      <td><%= link_to(book.title, "/book_pages/#{book.id}") %></td>
-      <td><%= book.author_1 %> / <%= book.author_2 %></td>
-      <td><%= book.reading_state %></td>
-      <td><%= book.randoku_img_read_again_count %> / <%= book.randoku_img_read_again_count + book.randoku_img_finish_read_count %></td>
-      <td><%= book.total_page %></td>
-      <td>入力メモの数（乱読・精読）</td>
+    <tr><!-- 行1（見出し）-->
+      <th colspan="4", align="left"><%= link_to(book.title, "/book_pages/#{book.id}") %>
+      <br><%= " 著_#{book.author_1}   訳_#{book.author_2}" %>
+      </th>
+    </tr>
+
+    <tr>
+      <td>
+        <p>読書の状態<br>
+        <%= book.reading_state %>
+        <p>乱読メモ数<br>
+        <%= book.randoku_img_read_again_count + book.randoku_img_finish_read_count %>枚</p>
+      </td>
+      <td>
+      <% book.randoku_img_file_names.each_with_index do |file_name, n| %>
+        <% if n <= 2 %>
+          <img src="<%= "/#{book.id}/thumb/#{file_name}" %>" width="250" height="150" class="gallery-list">
+        <% end %>
+      <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
-<p>00/20</p>
-<p>ページネーション</p>
