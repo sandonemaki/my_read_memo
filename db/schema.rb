@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_28_033802) do
+ActiveRecord::Schema.define(version: 2022_10_19_095050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,5 +39,13 @@ ActiveRecord::Schema.define(version: 2022_09_28_033802) do
     t.index ["book_id"], name: "index_randoku_imgs_on_book_id"
   end
 
+  create_table "randoku_memos", force: :cascade do |t|
+    t.text "content"
+    t.integer "book_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "randoku_imgs", "books"
+  add_foreign_key "randoku_memos", "books"
 end
