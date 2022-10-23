@@ -1,0 +1,2 @@
+module BookPages::RandokuMemosHelper
+end
