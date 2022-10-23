@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   post "book_pages/:book_id/imgs" => "book_pages/imgs#create" # book_page_imgs_path
 
   #memo
-  get "book_pages/:book_id/randoku_memo/index" => "book_pages/:book_id/randoku_memo#index"
+  get "book_pages/:book_id/randoku_memos/index" => "book_pages/randoku_memos#index"
   root to: "book_pages#index"
 end

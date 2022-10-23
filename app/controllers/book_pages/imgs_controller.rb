@@ -41,7 +41,7 @@ class BookPages::ImgsController < ApplicationController
 
           # 用途
           # -ファイル名の取得
-        elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/).gsub(" ", "")
+        elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
           filename = "#{page_img.original_filename.gsub(" ", "")}"
           page_img_names << filename
 
