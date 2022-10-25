@@ -1,2 +1,0 @@
-module BookPages::ReadingMemosHelper
-end
