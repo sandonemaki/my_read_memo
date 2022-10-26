@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_19_095050) do
+ActiveRecord::Schema.define(version: 2022_10_26_101851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_095050) do
     t.string "author_1", limit: 60, default: "", null: false
     t.string "author_2", limit: 60, default: ""
     t.string "publisher", limit: 60, default: ""
-    t.integer "total_page", null: false
+    t.integer "total_page", default: 0, null: false
     t.integer "reading_state", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_095050) do
 
   create_table "randoku_imgs", force: :cascade do |t|
     t.integer "first_post_flag", default: 0, null: false
-    t.integer "looked_flag", default: 0, null: false
+    t.integer "bookmark_flag", default: 0, null: false
     t.string "path", null: false
     t.string "name", null: false
     t.integer "reading_state", default: 0, null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_095050) do
   end
 
   create_table "randoku_memos", force: :cascade do |t|
-    t.text "content"
+    t.text "content", default: ""
     t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
