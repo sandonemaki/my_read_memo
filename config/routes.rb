@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   #memo
   get "book_pages/:book_id/randoku_memos/index" => "book_pages/randoku_memos#index"
+  get "book_pages/:book_id/randoku_memos/new" => "book_pages/randoku_memos#new"
+  post "book_pages/:book_id/randoku_memos/create" => "book_pages/randoku_memos#create"
   root to: "book_pages#index"
 end
