@@ -1,5 +1,4 @@
 <%= book.reading_state %>
-<button>乱読画像を見る</button>
 <h1>
 <%= book.title %>
 </h1>
@@ -9,24 +8,26 @@
 <p>
 <%= book.publisher %>
 </p>
-<p>乱読画像メモ</p>
-<p>
-未読：<%= book.randoku_img_read_again_count %>, 読了：<%= book.randoku_img_finish_read_count %>
-</p>
-<p>
+<p>乱読画像メモ
+（未読：<%= book.randoku_img_read_again_count %>, 読了：<%= book.randoku_img_finish_read_count %>）
 <% if book.randoku_img_first_post_filename != "" %>
   <%= link_to("初投稿乱読画像", "public/#{book.randoku_img_first_post_filename}")%>
 <% end %>
 </p>
 
 <h2>乱読メモ</h2>
-<% book.randoku_memos_all_count %>
-<%= link_to("add+", "/book_pages/#{book.id}/randoku_memos/new") %>
-<% if book.randoku_memos_all.empty? %>
-  "画像がありません"
-<% else %>
-  <% book.randoku_memos_all.each do |randoku_memo| %>
-    <%= randoku_memo %>
+<div>
+  <p>total <%= book.randoku_memos_all_count %></p>
+  <%= link_to("add+", "/book_pages/#{book.id}/randoku_memos/new") %>
+</div>
+<div>
+  <% if book.randoku_memos_all.empty? %>
+    "画像がありません"
+  <% else %>
+    <% book.randoku_memos_all.each do |randoku_memo| %>
+      <%= randoku_memo[:content] %></br>
+      <%= randoku_memo[:created_at] %></br>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 <%= link_to("add+", "/book_pages/#{book.id}/randoku_memos/new") %>

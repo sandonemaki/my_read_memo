@@ -25,9 +25,10 @@ module ViewModel
       @randoku_img_read_again_count  = reading_state[0] ||= 0 # 未読の数(0)
       @randoku_img_finish_read_count = reading_state[1] ||= 0 # 既読の数(0)
       @randoku_img_first_post_filename = randoku_img_first_post_filename
-
-      @randoku_memos_all = book.randoku_memos.all
-      @randoku_memos_all_count = @randoku_memos_all.size
+      @randoku_memos_all_count = book.randoku_memos.all.size
+      @randoku_memos_all = book.randoku_memos.all.order(created_at: :desc).to_a.map { |randoku_memo|
+        { content: randoku_memo.content, created_at: I18n.l(randoku_memo.created_at, format: :short) }
+      }
     end
   end
 end

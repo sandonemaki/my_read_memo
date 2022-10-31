@@ -40,13 +40,4 @@ class BookPagesController < ApplicationController
     book_view_model = ViewModel::BookViewModel.new(book: book)
     render("show", locals: {book: book_view_model})
   end
-  # 用途
-  # - インスタンスをviewから参照できるようにする
- # def show_view_model_for_book_pages(book, randoku_imgs)
- #   show_book_view_model =
- #     book.show_for_book_view_model(book)
- #   show_randoku_imgs_view_model =
- #     randoku_imgs.show_for_randoku_img_view_model(randoku_imgs)
- #   render("show", locals: {book: show_book_view_model, randoku_img: show_randoku_imgs_view_model})
- # end
 end
