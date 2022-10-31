@@ -1,11 +1,10 @@
-module ViewModel
+module ViewModelmemo
 
   class RandokuMemos
     attr_reader :id, :title, :author_1, :reading_state, :publisher,
       :randoku_img_read_again_count, :randoku_img_finish_read_count,
       :randoku_img_first_post_filename,
-      :randoku_memos_all, :randoku_memos_all_count
-
+      :randoku_memos_all, :randoku_memos_all_count,
 
     def initialize(book:, randoku_img_first_post_filename:)
       @id = book.id
@@ -29,7 +28,6 @@ module ViewModel
 
       @randoku_memos_all = book.randoku_memos.all
       @randoku_memos_all_count = @randoku_memos_all.size
-
     end
   end
 end
