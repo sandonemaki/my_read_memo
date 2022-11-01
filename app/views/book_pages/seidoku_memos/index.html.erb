@@ -1,0 +1,32 @@
+<%= book.reading_state %>
+<h1>
+  <%= book.title %>
+</h1>
+<p>
+<%= book.author_1 %>
+</p>
+<p>
+<%= book.publisher %>
+</p>
+
+<h2>精読メモ</h2>
+<div>
+  <p>精読メモ：著者の意見
+  <%= book.seidoku_memo_author_opinion %> 自分の意見<%= book.seidoku_memo_my_opinion %></p>
+</div>
+
+<div>
+  <p>total <%= book.seidoku_memos_all_count %></p>
+  <%= link_to("add+", "/book_pages/#{book.id}/seidoku_memos/new") %>
+</div>
+<div>
+  <% if book.seidoku_memos_all.empty? %>
+    "メモがありません"
+  <% else %>
+    <% book.seidoku_memos_all.each do |seidoku_memo| %>
+      <%= seidoku_memo[:content] %></br>
+      <%= seidoku_memo[:created_at] %></br>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to("add+", "/book_pages/#{book.id}/seidoku_memos/new") %>

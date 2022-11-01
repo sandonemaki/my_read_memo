@@ -22,7 +22,7 @@
 </div>
 <div>
   <% if book.randoku_memos_all.empty? %>
-    "画像がありません"
+    "メモがありません"
   <% else %>
     <% book.randoku_memos_all.each do |randoku_memo| %>
       <%= randoku_memo[:content] %></br>

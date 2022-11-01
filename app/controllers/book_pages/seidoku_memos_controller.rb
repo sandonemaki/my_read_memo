@@ -1,4 +1,10 @@
 class BookPages::SeidokuMemosController < ApplicationController
+  def index
+    book = Book.find_by(id: params[:book_id])
+    book_view_model = ViewModel::SeidokuMemos.new(book: book)
+    render("index", locals:{book: book_view_model})
+  end
+
   def new
     book = Book.find_by(id: params[:book_id])
     book_view_model = ViewModel::SeidokuMemoNew.new(
