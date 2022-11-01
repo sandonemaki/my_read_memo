@@ -1,0 +1,22 @@
+<div>
+  <%= book.title %>
+</div>
+<div>
+  <%= book.seidoku_memo_time_now %>
+</div>
+
+<%= form_tag("/book_pages/#{book.id}/seidoku_memos/create", method: :post) do %>
+  <div>
+    <select name="value"><option value="">メモの内容を選択する</option>
+      <% book.seidoku_memo_type.each.with_index do |(k, value), i| %>
+        <% if book.seidoku_memo_content_state == k %>
+          <option value="<%=i%>" selected><%= value %></option>
+        <% else %>
+          <option value="<%i%>"><%= value %></option>
+        <% end %>
+    </select>
+  </div>
+  <textarea name="content"><%= book.seidoku_memo_content %></textarea>
+  <input type="submit" value="保存">
+<% end %>
+

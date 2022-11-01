@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_28_081633) do
+ActiveRecord::Schema.define(version: 2022_10_31_092935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +40,22 @@ ActiveRecord::Schema.define(version: 2022_10_28_081633) do
   end
 
   create_table "randoku_memos", force: :cascade do |t|
-    t.text "content", default: ""
+    t.text "content"
     t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "content_state", default: 3, null: false
+  end
+
+  create_table "seidoku_memos", force: :cascade do |t|
+    t.text "content", default: "", null: false
+    t.integer "book_id"
+    t.integer "content_state", default: 4, null: false
+    t.integer "integer", default: 4, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "randoku_imgs", "books"
   add_foreign_key "randoku_memos", "books"
+  add_foreign_key "seidoku_memos", "books"
 end

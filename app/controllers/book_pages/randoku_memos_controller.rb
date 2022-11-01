@@ -18,7 +18,6 @@ class BookPages::RandokuMemosController < ApplicationController
     book = Book.find_by(id: params[:book_id])
     book_view_model = ViewModel::RandokuMemoNew.new(
       book: book,
-      time_now: I18n.l(Time.now, format: :short)
     )
     render("new", locals:{book: book_view_model})
   end
@@ -35,7 +34,8 @@ class BookPages::RandokuMemosController < ApplicationController
     else
       book_view_model = ViewModel::RandokuMemoNew.new(
         book: book,
-        content_state: params[:content_state]
+        content_state: params[:value],
+        content: params[:content]
       )
       render("new", locals:{book: book_view_model})
     end
