@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  get 'seidoku_memos/index'
-  get 'seidoku_memos/create'
-  get 'seidoku_memos/new'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "book_pages/new" => "book_pages#new"  # new_book_page_path
   post "book_pages/create" => "book_pages#create"  # book_pages_path
   get "book_pages/create" => "book_pages#new"  # book_pages_path
   get "book_pages/:id" => "book_pages#show" # book_page_path
+
+  #randoku_img
   post "book_pages/:book_id/imgs" => "book_pages/imgs#create" # book_page_imgs_path
 
   #randoku_memo
@@ -19,6 +17,6 @@ Rails.application.routes.draw do
   get "book_pages/:book_id/seidoku_memos/new" => "book_pages/seidoku_memos#new"
   post "book_pages/:book_id/seidoku_memos/create" => "book_pages/seidoku_memos#create"
 
-
-  root to: "book_pages#index"
+  get "book_pages/seidoku_index" => "book_pages#seidoku_index"
+  root to: "book_pages#randoku_index"
 end

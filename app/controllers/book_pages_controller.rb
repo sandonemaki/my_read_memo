@@ -1,11 +1,18 @@
 class BookPagesController < ApplicationController
   require_relative '../modules/state'
 
-  def index
-    book_view_models = Book.all.order(created_at: :desc).to_a.map { |book|
-      ViewModel::BookViewModel.new(book: book)
-    }
-    render("index", locals:{books: book_view_models})
+  def randoku_index
+    # 全ての乱読中の本
+    all_randoku_state_books = Book.where(reading_state: "0")
+    all_seidoku_state_books = Book.where(reading_state: "1")
+    all_books_count = Book.all.count
+
+    book_view_models = ViewModel::RandokuBooks.new(
+      all_randoku_state_books: all_randoku_state_books,
+      all_seidoku_state_books: all_seidoku_state_books,
+      all_books_count: all_books_count
+    )
+    render("randoku_index", locals:{books: book_view_models})
   end
 
   def new
