@@ -1,0 +1,43 @@
+<p>maki</p>
+<p>
+  <%= books.all_randoku_imgs_count %></br>
+  乱読画像数
+</p>
+<p>
+  <%= books.all_count %></br>
+  登録本数
+</p>
+<p>
+  <%= books.all_seidoku_state_count %></br>
+  精読本数
+</p>
+
+<h1>乱読中の本</h1>
+<p>
+  Total <%= books.all_randoku_state_count %>冊
+</p>
+<h3>前回の続き</h3>
+
+<h3>登録中の本</h3>
+<div>
+  <% if books.randoku_state_imgs_desc.empty? %>
+    <p>乱読本がありません</p>
+  <% elsif books.randoku_state_imgs_desc.empty? %>
+    <p>乱読画像が投稿されていません</p>
+  <% else %>
+    <% books.randoku_state_imgs_desc.each do |book| %>
+      <p>
+      <%= book[:titile] %>
+      </p>
+      <p>
+      乱読画像数</br>
+      <%= book[:randoku_imgs_count] %>
+      </p>
+      <p>
+      乱読メモ数</br>
+      <%= book[:randoku_memos_count] %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+
