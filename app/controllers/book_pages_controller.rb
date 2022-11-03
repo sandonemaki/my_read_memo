@@ -2,9 +2,8 @@ class BookPagesController < ApplicationController
   require_relative '../modules/state'
 
   def randoku_index
-    # 全ての乱読中の本
-    all_randoku_state_books = Book.where(reading_state: "0")
-    all_seidoku_state_books = Book.where(reading_state: "1")
+    all_randoku_state_books = Book.where(reading_state: "0") # 0 == 乱読
+    all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
     book_view_models = ViewModel::RandokuBooks.new(
