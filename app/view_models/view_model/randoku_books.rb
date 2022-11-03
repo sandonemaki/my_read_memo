@@ -4,7 +4,7 @@ module ViewModel
     attr_reader :all_count,
       :all_randoku_state_count, :all_seidoku_state_count,
       :all_randoku_imgs_count,
-      :randoku_state_imgs_desc, :randoku_state_updated_imgs_desc,
+      :randoku_state_imgs_desc, :randoku_state_created_imgs_desc,
       :randoku_state_created_desc
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, all_books_count:)
@@ -29,12 +29,12 @@ module ViewModel
         end
 
       # 乱読画像の投稿順
-      randoku_state_books_updated_imgs_desc =
+      randoku_state_books_created_imgs_desc =
         all_randoku_state_books.find(
-          RandokuImg.order('updated_at desc').pluck(:book_id)
+          RandokuImg.order('created_at desc').pluck(:book_id)
       )
-      @randoku_state_updated_imgs_desc =
-        randoku_state_books_updated_imgs_desc.map do |book|
+      @randoku_state_created_imgs_desc =
+        randoku_state_books_created_imgs_desc.map do |book|
           { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
         end
 
