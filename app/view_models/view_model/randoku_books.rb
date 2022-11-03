@@ -1,7 +1,11 @@
 module ViewModel
 
   class RandokuBooks
-    attr_reader :all_randoku_state_books, :all_books_count
+    attr_reader :all_books_count,
+      :all_randoku_state_books_count, :all_seidoku_state_books_count,
+      :all_randoku_books_imgs_count,
+      :randoku_state_books_imgs_desc, :randoku_state_books_updated_imgs_desc,
+      :randoku_state_created_books_desc
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, all_books_count:)
       @all_books_count = all_books_count
@@ -39,8 +43,8 @@ module ViewModel
         all_randoku_state_books.find(
           Book.all.order('created_at desc').pluck(:id)
       )
-      @randoku_state_books_imgs_desc =
-        randoku_state_books_imgs_desc.map do |book|
+      @randoku_state_created_books_desc =
+        randoku_state_created_books_desc.map do |book|
           { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
         end
     end
