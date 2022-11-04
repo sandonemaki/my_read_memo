@@ -1,6 +1,10 @@
 class BookPages::SeidokuMemosController < ApplicationController
   def index
     book = Book.find_by(id: params[:book_id])
+    new_path = "book_pages/#{book.id}/seidoku_memos/index")
+    book.reading_state == 0 ?
+      RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
+
     book_view_model = ViewModel::SeidokuMemos.new(book: book)
     render("index", locals:{book: book_view_model})
   end

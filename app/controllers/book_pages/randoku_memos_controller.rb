@@ -1,6 +1,10 @@
 class BookPages::RandokuMemosController < ApplicationController
   def index
     book = Book.find_by(id: params[:book_id])
+    new_path = "book_pages/#{book.id}/randoku_memos/index"
+    book.reading_state == 0 ?
+      RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
+
     randoku_img_first_post_filename =
       book.randoku_imgs.exists?(id: 1) ? book.randoku_imgs.find_by(id: 1).name : ""
     book_view_model = ViewModel::RandokuMemos.new(
