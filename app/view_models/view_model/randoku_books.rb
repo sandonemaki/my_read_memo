@@ -2,15 +2,28 @@ module ViewModel
 
   class RandokuBooks
     attr_reader :all_count,
-      :all_randoku_state_count, :all_seidoku_state_count,
-      :all_randoku_imgs_count,
-      :randoku_state_imgs_desc, :randoku_state_created_imgs_desc,
-      :randoku_state_created_desc
+      :all_randoku_state_count, :all_seidoku_state_count, :all_randoku_imgs_count,
+      :randoku_history, :randoku_history_ranking,
+      :randoku_state_imgs_desc, :randoku_state_created_imgs_desc, :randoku_state_created_desc
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, all_books_count:)
       @all_count = all_books_count
       @all_randoku_state_count = all_randoku_state_books.count
       @all_seidoku_state_count = all_seidoku_state_books.count
+      randoku_history_book = Book.find_by(id: RandokuHistory.last.book_id)
+      randoku_img_ranking = RandokuImg.group(:book_id).order('count(book_id) desc').pluck(:book_id)[0..2]
+
+      # 前回の続き
+      @randoku_history =
+        { titile: randoku_history_book.title,
+          randoku_imgs_count: randoku_history_book.randoku_imgs.count,
+          randoku_memos_count: randoku_history_book.randoku_memos.count,
+          seidoku_memos_count: randoku_history_book.seidoku_memos.count,
+          reading_state: randoku_history_book.reading_state,
+          path: RandokuHistory.last.path }
+      @randoku_history_ranking =
+        randoku_img_ranking.index(randoku_history_book.id) ?
+        randoku_img_ranking.index(randoku_history_book.id) : ""
 
       # 全ての乱読画像合計数
       @all_randoku_imgs_count =
