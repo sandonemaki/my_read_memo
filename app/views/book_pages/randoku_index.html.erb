@@ -21,7 +21,32 @@
 </p>
 
 <h3>前回の続き</h3>
-<% if books.study_history_path != "" %>
+<% unless books.randoku_history.blank? %>
+  <%= books.randoku_history[:reading_state] %>
+  <% unless books.randoku_history[:randoku_history_ranking].empty? %>
+    <p><%= books.randoku_history[:randoku_history_ranking] %>位</p>
+  <% end %>
+  <p>
+    タイトル:
+    <%= books.randoku_history[:title] %>
+  </p>
+  <p>
+    乱読画像数：
+    <%= books.randoku_history[:randoku_imgs_count] %>
+  </p>
+  <p>
+    乱読メモ数：
+    <%= books.randoku_history[:randoku_memos_count] %>
+  </p>
+  <p>
+    <% unless books.randoku_history[:seidoku_memos_count] == 0 %>
+      精読メモ数:
+      <%= books.randoku_history[:seidoku_memos_count] %>
+    <% end %>
+  </p>
+<% else %>
+  <p>乱読画像を投稿してメモを再読する必要性を伝える</p>
+<% end %>
 
 <h3>登録中の本</h3>
 <div>
