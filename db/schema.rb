@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_05_072823) do
+ActiveRecord::Schema.define(version: 2022_11_05_100330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2022_11_05_072823) do
   create_table "books", force: :cascade do |t|
     t.string "title", limit: 60, default: "", null: false
     t.string "author_1", limit: 60, default: "", null: false
-    t.string "author_2", limit: 60, default: ""
     t.string "publisher", limit: 60, default: ""
     t.integer "total_page", default: 0, null: false
     t.integer "reading_state", default: 0, null: false
@@ -47,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_072823) do
   end
 
   create_table "randoku_memos", force: :cascade do |t|
-    t.text "content", default: ""
+    t.text "content", default: "", null: false
     t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -65,7 +64,6 @@ ActiveRecord::Schema.define(version: 2022_11_05_072823) do
     t.text "content", default: "", null: false
     t.integer "book_id"
     t.integer "content_state", default: 4, null: false
-    t.integer "integer", default: 4, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
