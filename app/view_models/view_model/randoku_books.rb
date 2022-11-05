@@ -4,7 +4,8 @@ module ViewModel
     attr_reader :all_count,
       :all_randoku_state_count, :all_seidoku_state_count, :all_randoku_imgs_count,
       :randoku_history,
-      :randoku_state_imgs_desc, :randoku_state_created_imgs_desc, :randoku_state_created_desc
+      :imgs_desc_of_randoku_state_books, :created_imgs_desc_of_randoku_state_books,
+      :created_books_desc_of_randoku_state_books
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, all_books_count:)
       @all_count = all_books_count
@@ -13,7 +14,7 @@ module ViewModel
 
       if RandokuHistory.last
         randoku_history_book = Book.find_by(id: RandokuHistory.last.book_id)
-        # 乱読画像が多い順の本のid。1-3位まで
+        # 乱読画像が多い順のbook_id。1-3位まで
         randoku_img_ranking = RandokuImg.group(:book_id).order('count(book_id) desc').pluck(:book_id)[0..2]
 
         # 「前回の続き」用
@@ -31,7 +32,7 @@ module ViewModel
               "通読"
             end,
             path: RandokuHistory.last.path,
-            randoku_history_ranking: randoku_img_ranking.index(randoku_history_book.id) ?
+            randoku_history_ranking: randoku_img_ranking.include?(randoku_history_book.id) ?
             randoku_img_ranking.index(randoku_history_book.id) : "" }
       end
 
@@ -42,32 +43,32 @@ module ViewModel
         end
 
       # 乱読画像が多い順
-      randoku_state_books_imgs_desc =
+      imgs_desc_of_randoku_state_books =
         all_randoku_state_books.find(
           RandokuImg.group(:book_id).order('count(book_id) desc').pluck(:book_id)
       )
-      @randoku_state_imgs_desc =
-        randoku_state_books_imgs_desc.map do |book|
+      @imgs_desc_of_randoku_state_books =
+        imgs_desc_of_randoku_state_books.map do |book|
           { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
         end
 
       # 乱読画像の投稿順
-      randoku_state_books_created_imgs_desc =
+      created_imgs_desc_of_randoku_state_books =
         all_randoku_state_books.find(
           RandokuImg.order('created_at desc').pluck(:book_id)
       )
-      @randoku_state_created_imgs_desc =
-        randoku_state_books_created_imgs_desc.map do |book|
+      @created_imgs_desc_of_randoku_state_books =
+        created_imgs_desc_of_randoku_state_books.map do |book|
           { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
         end
 
       # 乱読本の投稿順
-      randoku_state_created_books_desc =
+      created_books_desc_of_randoku_state_books =
         all_randoku_state_books.find(
           Book.all.order('created_at desc').pluck(:id)
       )
-      @randoku_state_created_desc =
-        randoku_state_created_books_desc.map do |book|
+      @created_books_desc_of_randoku_state_books =
+        created_books_desc_of_randoku_state_books.map do |book|
           { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
         end
     end

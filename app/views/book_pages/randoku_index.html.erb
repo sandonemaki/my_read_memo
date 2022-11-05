@@ -50,14 +50,14 @@
 
 <h3>登録中の本</h3>
 <div>
-  <% if books.randoku_state_imgs_desc.empty? %>
+  <% if books.created_books_desc_of_randoku_state_books.empty? %>
     <p>乱読本がありません</p>
-  <% elsif books.randoku_state_imgs_desc.empty? %>
+  <% elsif books.created_imgs_desc_of_randoku_state_books.empty? %>
     <p>乱読画像が投稿されていません</p>
   <% else %>
-    <% books.randoku_state_imgs_desc.each do |book| %>
-    <%# books.randoku_state_created_imgs_desc.each do |book| %>
-    <%# books.randoku_state_created_desc.each do |book| %>
+    <% books.imgs_desc_of_randoku_state_books.each do |book| %>
+    <%# books.created_imgs_desc_of_randoku_state_books.each do |book| %>
+    <%# books.created_books_desc_of_randoku_state_books.each do |book| %>
       <p>
       タイトル：
       <%= book[:titile] %>
