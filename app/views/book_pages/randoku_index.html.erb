@@ -38,12 +38,6 @@
     乱読メモ数：
     <%= books.randoku_history[:randoku_memos_count] %>
   </p>
-  <p>
-    <% unless books.randoku_history[:seidoku_memos_count] == 0 %>
-      精読メモ数:
-      <%= books.randoku_history[:seidoku_memos_count] %>
-    <% end %>
-  </p>
 <% else %>
   <p>乱読画像を投稿してメモを再読する必要性を伝える</p>
 <% end %>
