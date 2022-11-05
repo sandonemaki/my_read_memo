@@ -44,7 +44,7 @@ class BookPagesController < ApplicationController
   def show
     book = Book.find_by(id: params[:id])
     new_path = "book_pages/#{book.id}"
-    book.reading_state == 0 ?
+    book.reading_state == 0 || 2 ?
       RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
     book_view_model = ViewModel::BookViewModel.new(book: book)
     render("show", locals: {book: book_view_model})
