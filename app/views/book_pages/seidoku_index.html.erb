@@ -1,0 +1,77 @@
+<p>maki</p>
+<p>
+  <%= books.all_randoku_imgs_count %></br>
+  乱読画像数</br>
+  ------
+</p>
+<p>
+  <%= books.all_count %></br>
+  登録本数</br>
+  ------
+</p>
+<p>
+  <%= books.all_seidoku_state_count %></br>
+  精読本数</p>
+  ------
+</p>
+
+<h1>精読中の本</h1>
+<p>
+  Total <%= books.all_seidoku_state_count %>冊
+</p>
+
+<h3>前回の続き</h3>
+<% unless books.seidoku_history.blank? %>
+  <%= books.seidoku_history[:reading_state] %>
+  <% unless books.seidoku_history[:seidoku_history_ranking].empty? %>
+    <p><%= books.seidoku_history[:seidoku_history_ranking] %>位</p>
+  <% end %>
+  <p>
+    タイトル:
+    <%= books.seidoku_history[:title] %>
+  </p>
+  <p>
+    乱読画像数：
+    <%= books.seidoku_history[:randoku_imgs_count] %>
+  </p>
+  <p>
+    乱読メモ数：
+    <%= books.seidoku_history[:randoku_memos_count] %>
+  </p>
+  <p>
+    <% unless books.seidoku_history[:seidoku_memos_count] == 0 %>
+      精読メモ数:
+      <%= books.seidoku_history[:seidoku_memos_count] %>
+    <% end %>
+  </p>
+<% else %>
+  <p>アウトプットに向けた精読メモの必要性、精読メモを取ることができない場合、乱読メモを見返す必要性を伝える</p>
+<% end %>
+
+<h3>登録中の本</h3>
+<div>
+  <% if books.created_books_desc_of_seidoku_state_books.empty? %>
+    <p>乱読本がありません</p>
+  <% elsif books.created_seidoku_memos_desc_of_seidoku_state_books.empty? %>
+    <p>乱読画像が投稿されていません</p>
+  <% else %>
+    <% books.seidoku_memos_desc_of_seidoku_state_books.each do |book| %>
+    <%# books.created_seidoku_memos_desc_of_seidoku_state_books.each do |book| %>
+    <%# books.created_books_desc_of_seidoku_state_books.each do |book| %>
+      <p>
+      タイトル：
+      <%= book[:titile] %>
+      </p>
+      <p>
+      乱読画像数：
+      <%= book[:randoku_imgs_count] %>
+      </p>
+      <p>
+      精読メモ数：
+      <%= book[:seidoku_memos_count] %>
+      </br>
+      ------
+      </p>
+    <% end %>
+  <% end %>
+</div>
