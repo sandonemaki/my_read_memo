@@ -22,11 +22,17 @@ module ViewModel
             randoku_imgs_count: randoku_history_book.randoku_imgs.count,
             randoku_memos_count: randoku_history_book.randoku_memos.count,
             seidoku_memos_count: randoku_history_book.seidoku_memos.count,
-            reading_state: randoku_history_book.reading_state == 0 ? "乱読" : "精読",
+            reading_state: case randoku_history_book.reading_state
+            when State::READING_STATE.key("乱読")
+              "乱読"
+            when State::READING_STATE.key("精読")
+              "精読"
+            else
+              "通読"
+            end,
             path: RandokuHistory.last.path,
-            randoku_history_ranking: randoku_history_ranking =
-              randoku_img_ranking.index(randoku_history_book.id) ?
-              randoku_img_ranking.index(randoku_history_book.id) : "" }
+            randoku_history_ranking: randoku_img_ranking.index(randoku_history_book.id) ?
+            randoku_img_ranking.index(randoku_history_book.id) : "" }
       end
 
       # 全ての乱読画像合計数
