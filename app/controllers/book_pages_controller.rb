@@ -2,7 +2,7 @@ class BookPagesController < ApplicationController
   require_relative '../modules/state'
 
   def randoku_index
-    all_randoku_state_books = Book.where(reading_state: "0") # 0 == 乱読
+    all_randoku_state_books = Book.where(reading_state: "0").where(reading_state: "2") # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
@@ -12,6 +12,19 @@ class BookPagesController < ApplicationController
       all_books_count: all_books_count
     )
     render("randoku_index", locals:{books: book_view_models})
+  end
+
+  def seidoku_index
+    all_randoku_state_books = Book.where(reading_state: "0").where(reading_state: "2") # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
+    all_books_count = Book.all.count
+
+    book_view_models = ViewModel::SeidokuBooks.new(
+      all_randoku_state_books: all_randoku_state_books,
+      all_seidoku_state_books: all_seidoku_state_books,
+      all_books_count: all_books_count
+    )
+    render("seidoku_index", locals:{books: book_view_models})
   end
 
   def new
