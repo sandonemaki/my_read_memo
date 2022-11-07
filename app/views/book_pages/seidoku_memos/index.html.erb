@@ -24,8 +24,11 @@
     "メモがありません"
   <% else %>
     <% book.seidoku_memos_all.each do |seidoku_memo| %>
+    <!-- 昇順 -->
+    <%# book.seidoku_memos_all_asc.each do |seidoku_memo| %>
       <%= seidoku_memo[:content] %></br>
       <%= seidoku_memo[:created_at] %></br>
+      <%= seidoku_memo[:content_state] %></br>
     <% end %>
   <% end %>
 </div>
