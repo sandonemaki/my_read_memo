@@ -16,12 +16,11 @@
 <h3>検索結果</h3>
 <div>
 <% book.selected_memos.each do |memo| %>
-  <%= memo[:content] %>
-  <%= memo[:content_state] %>
-  <%= memo[:created_at] %>
-  <%= memo[:content_state] %>
-  <%= memo[:book_title] %>
-  <%= memo[:book_author] %>
-  <%= memo[:book_reading_state] %>
+  <%= memo[:created_at] %><br>
+  <%= memo[:content_state] %><br>
+  <%= memo[:content] %><br>
+  <%= memo[:book_title] %><br>
+  <%= memo[:book_author] %><br>
+  <%= memo[:book_reading_state] %><br>
 <% end %>
 </div>
