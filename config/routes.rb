@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/search'
   get "book_pages/new" => "book_pages#new"  # new_book_page_path
   post "book_pages/create" => "book_pages#create"  # book_pages_path
   get "book_pages/create" => "book_pages#new"  # book_pages_path
@@ -16,6 +17,9 @@ Rails.application.routes.draw do
   get "book_pages/:book_id/seidoku_memos/index" => "book_pages/seidoku_memos#index"
   get "book_pages/:book_id/seidoku_memos/new" => "book_pages/seidoku_memos#new"
   post "book_pages/:book_id/seidoku_memos/create" => "book_pages/seidoku_memos#create"
+
+  # search
+  get "search" => "home#search"
 
   get "book_pages/seidoku_index" => "book_pages#seidoku_index"
   root to: "book_pages#randoku_index"
