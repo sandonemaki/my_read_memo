@@ -4,7 +4,7 @@ module ViewModel
     attr_reader :id, :title, :author_1, :reading_state, :publisher,
       :randoku_img_read_again_count, :randoku_img_finish_read_count,
       :randoku_img_first_post_filename,
-      :randoku_memos_all, :randoku_memos_all_count
+      :randoku_memos_all, :randoku_memos_all_asc, :randoku_memos_all_count
 
     def initialize(book:, randoku_img_first_post_filename:)
       @id = book.id
@@ -27,7 +27,14 @@ module ViewModel
       @randoku_img_first_post_filename = randoku_img_first_post_filename
       @randoku_memos_all_count = book.randoku_memos.all.size
       @randoku_memos_all = book.randoku_memos.all.order(created_at: :desc).to_a.map { |randoku_memo|
-        { content: randoku_memo.content, created_at: I18n.l(randoku_memo.created_at, format: :short) }
+        { content: randoku_memo.content, created_at: I18n.l(randoku_memo.created_at, format: :short),
+          content_state: book.randoku_memos.content_state == 0 ?
+            RANDOKU_MEMO_Q[0] : RANDOKU_MEMO_BKG[book.randoku_memos.content_state] }
+      }
+      @randoku_memos_all_asc = book.randoku_memos.all.order(created_at: :asc).to_a.map { |randoku_memo|
+        { content: randoku_memo.content, created_at: I18n.l(randoku_memo.created_at, format: :short),
+          content_state: book.randoku_memos.content_state == 0 ?
+            RANDOKU_MEMO_Q[0] : RANDOKU_MEMO_BKG[book.randoku_memos.content_state] }
       }
     end
   end

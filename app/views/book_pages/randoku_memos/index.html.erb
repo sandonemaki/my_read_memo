@@ -25,8 +25,11 @@
     "メモがありません"
   <% else %>
     <% book.randoku_memos_all.each do |randoku_memo| %>
+    <!--昇順-->
+    <%# book.randoku_memos_all_asc.each do |randoku_memo| %>
       <%= randoku_memo[:content] %></br>
       <%= randoku_memo[:created_at] %></br>
+      <%= randoku_memo[:content_state] %></br>
     <% end %>
   <% end %>
 </div>
