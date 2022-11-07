@@ -13,12 +13,14 @@ module ViewModel
         end
       @selected_memos =
         selected_memos.map do |memo|
-          { memo_content: memo.content,
-            memo_created_at: I18n.l(memo.created_at, format: :short),
-            memo_content_state: book.memo.content_state,
-            title: Book.find_by(id: memo.book_id).title,
-            author: Book.find_by(id: memo.book_id).author_1,
-            reading_state: Book.find_by(id: memo.book_id).reading_state
+          book_reading_state = Book.find_by(id: memo.book_id).reading_state
+          { content: memo.content,
+            created_at: I18n.l(memo.created_at, format: :short),
+            content_state: book_reading_state == 0 || 1 ?
+            randoku_memo_type[memo.content_state] : seidoku_memo_type[memo.content_state]
+            book_title: Book.find_by(id: memo.book_id).title,
+            book_author: Book.find_by(id: memo.book_id).author_1,
+            book_reading_state: book_reading_state
           }
         end
       @randoku_memo_type = randoku_memo_type

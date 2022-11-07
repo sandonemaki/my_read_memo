@@ -1,0 +1,27 @@
+<h1>メモを検索する</h1>
+<div>
+  <select name="value"><option value="">メモの種類で検索をする</option>
+    <optgroup label="乱読メモ">
+      <% book.randoku_memo_type.each.with_index do |(k, value), i| %>
+        <option value="randoku[<%=i%>]"><%= value %></option>
+      <% end %>
+    </optgroup>
+    <optgroup label="精読メモ">
+      <% book.seidoku_memo_type.each.with_index do |(k, value), i| %>
+        <option value="seidoku[<%=i%>]"><%= value %></option>
+      <% end %>
+    </optgroup>
+</div>
+
+<h3>検索結果</h3>
+<div>
+<% book.selected_memos.each do |memo| %>
+  <%= memo[:content] %>
+  <%= memo[:content_state] %>
+  <%= memo[:created_at] %>
+  <%= memo[:content_state] %>
+  <%= memo[:book_title] %>
+  <%= memo[:book_author] %>
+  <%= memo[:book_reading_state] %>
+<% end %>
+</div>
