@@ -1,6 +1,6 @@
 module ViewModelmemo
 
-  class RandokuMemos
+  class RandokuGazoMemos
     attr_reader :id, :title, :author_1, :reading_state, :publisher,
       :randoku_img_read_again_count, :randoku_img_finish_read_count,
       :randoku_img_first_post_filename,
