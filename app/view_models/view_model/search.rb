@@ -1,6 +1,6 @@
 module ViewModel
   class Search
-    attr_reader :selected_memos, :randoku_memo_type, :seidoku_memo_type
+    attr_reader :selected_memos, :selected_memos_count, :randoku_memo_type, :seidoku_memo_type
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, content_type:,
                    randoku_memo_type:, seidoku_memo_type:)
@@ -11,6 +11,7 @@ module ViewModel
         when content_value.include?("seidoku")
           all_seidoku_state_books.where(content_state: "#{content_type.match(/[(0-3)]/).to_s}")
         end
+      @selected_memos_count = selected_memos.count
       @selected_memos =
         selected_memos.map do |memo|
           book_reading_state = Book.find_by(id: memo.book_id).reading_state
