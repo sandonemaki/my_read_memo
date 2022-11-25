@@ -37,7 +37,6 @@ class BookPagesController < ApplicationController
     book = Book.new(
       title: params[:title],
       author_1: params[:author_1],
-      author_2: params[:author_2],
       publisher: params[:publisher],
       total_page: params[:total_page],
     )

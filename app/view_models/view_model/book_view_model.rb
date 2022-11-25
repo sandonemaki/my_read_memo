@@ -1,7 +1,7 @@
 module ViewModel
 
   class BookViewModel
-    attr_reader :id, :title, :author_1, :author_2, :total_page, :reading_state,
+    attr_reader :id, :title, :author_1, :total_page, :reading_state,
       :publisher, :errors, :randoku_img_read_again_count, :randoku_img_finish_read_count,
       :randoku_img_file_names
 
@@ -10,7 +10,6 @@ module ViewModel
       @id = book.id
       @title = book.title
       @author_1 = book.author_1
-      @author_2 = book.author_2
       @total_page = book.total_page
       @reading_state =
         case book.reading_state

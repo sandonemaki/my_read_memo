@@ -57,3 +57,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 自分でいれたdebugger
 gem 'debug', '1.6.3'
+
+gem "meilisearch", "~> 0.20.0"

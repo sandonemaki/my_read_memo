@@ -75,6 +75,14 @@ class BookPages::ImgsController < ApplicationController
     end
   end # def create
 
+  def show
+    book_view_model = ViewModel::RandokuImgShow.new(
+      book: Book.find_by(id: params[:book_id]),
+      randoku_img: RandokuImg.find_by(id: params[:id])
+    )
+    render("show", locals:{books: book_view_models})
+  end
+
   # 用途
   # - 乱読画像名/パスの保存
   # - 初登校画像flagの保存

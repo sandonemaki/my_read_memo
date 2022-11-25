@@ -6,8 +6,6 @@
   <p>著者名</p>
   <input type="text" name="author_1" placeholder="著者" value="<%= book.author_1 %>"><strong>必須</strong>
   <% book.errors[:author_1].each do |message| %><%= message %><% end %>
-  <p>著者名</p>
-  <input type="text" name="author_2" placeholder="著者" value="<%= book.author_2 %>">
   <p>出版社</p>
   <input type="text" name="publisher" placeholder="出版社" value="<%= book.publisher %>">
   <p>総ページ</p>

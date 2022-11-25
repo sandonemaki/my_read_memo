@@ -1,2 +1,0 @@
-module BookPages::ImgsHelper
-end
