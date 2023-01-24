@@ -17,7 +17,7 @@ class BookPages::ImgsController < ApplicationController
         # 用途
         # -ファイル名の取得
 
-        if page_img_extname.match("\.HEIC$|\.heic$")
+        if page_img_extname.match(".HEIC$|.heic$")
           jpg_imgname =
             page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg").gsub(" ", "")
           page_img_names << jpg_imgname

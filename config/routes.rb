@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "tmp/index" => "tmp#index"
+
   get 'home/search'
   get "book_pages/new" => "book_pages#new"  # new_book_page_path
   post "book_pages/create" => "book_pages#create"  # book_pages_path
