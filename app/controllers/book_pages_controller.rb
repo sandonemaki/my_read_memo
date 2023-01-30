@@ -3,7 +3,7 @@ class BookPagesController < ApplicationController
 
   def randoku_index
     all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: "1")     # 1 == 精読
+    all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
     book_view_models = ViewModel::RandokuBooks.new(
@@ -15,7 +15,7 @@ class BookPagesController < ApplicationController
   end
 
   def seidoku_index
-    all_randoku_state_books = Book.where(reading_state: "0").where(reading_state: "2") # 0 == 乱読, 2 == 通読
+    all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
@@ -29,7 +29,7 @@ class BookPagesController < ApplicationController
 
   def new
     book = Book.new
-    book_view_model = ViewModel::BookViewModel.new(book: book)
+    book_view_model = ViewModel::BookNew.new(book: book)
     render("new", locals:{book: book_view_model})
   end
 
@@ -44,7 +44,7 @@ class BookPagesController < ApplicationController
       redirect_to("/book_pages/#{book.id}")
     else
       book_view_model =
-        ViewModel::BookViewModel.new(book: book)
+        ViewModel::BookNew.new(book: book)
       render("new", locals:{book: book_view_model})
     end
   end
@@ -58,7 +58,7 @@ class BookPagesController < ApplicationController
     new_path = "book_pages/#{book.id}"
     book.reading_state == 0 || 2 ?
       RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
-    book_view_model = ViewModel::BookViewModel.new(book: book)
+    book_view_model = ViewModel::BookRandokuImgs.new(book: book)
     render("show", locals: {book: book_view_model})
   end
 end
