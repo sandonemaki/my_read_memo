@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   #randoku_img
   post "book_pages/:book_id/imgs" => "book_pages/imgs#create" # book_page_imgs_path
-  get "book_pages/:book_id/imgs/:id" => "book_pages/imgs#show"
+  # 乱読画像一覧から乱読画像をクリックしても遷移させないようにするためコメントアウトした
+  # get "book_pages/:book_id/imgs/:id" => "book_pages/imgs#show"
 
   #randoku_memo
   get "book_pages/:book_id/randoku_memos/index" => "book_pages/randoku_memos#index"
