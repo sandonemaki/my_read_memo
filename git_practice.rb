@@ -1,2 +1,2 @@
-puts "git branch pracD-6 welcome"
-"prac D-6"
+puts "git branch pracE-6 welcome"
+"prac E-6"
