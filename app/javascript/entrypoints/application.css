@@ -1,8 +1,4 @@
-@import './styles/thema.css';
-#randoku {
-  color: red;
-}
+/* @import './styles/thema.css'; */
 
-.randoku {
-  color: blue;
-}
+/* モーダルウィンドウ */
+@import './styles/index.css';
