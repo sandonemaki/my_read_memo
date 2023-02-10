@@ -1,0 +1,8 @@
+@import './styles/thema.css';
+#randoku {
+  color: red;
+}
+
+.randoku {
+  color: blue;
+}
