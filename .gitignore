@@ -42,4 +42,21 @@ node_modules
 # Vite uses dotenv and suggests to ignore local-only env files. See
 # https://vitejs.dev/guide/env-and-mode.html#env-files
 *.local
-
+GPATH
+GRTAGS
+GTAGS
+ID
+Procfile.dev
+app/GPATH
+app/GRTAGS
+app/GTAGS
+app/ID
+public/
+app/views/test
+app/views/tmp
+app/controllers/test_controller.rb
+app/controllers/tmp_controller.rb
+.idea/
+app/assets/stylesheets/book_pages/seidoku_memos.scss
+app/assets/stylesheets/home.scss
+tags

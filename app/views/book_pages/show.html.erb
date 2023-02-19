@@ -1,5 +1,7 @@
-<h1>登録した本の情報</h1>
+<!-- 乱読画像を表示するためのモーダル -->
+<%= render partial: 'modal_randoku_imgs', locals: { book: book } %>
 
+<h1>登録した本の情報</h1>
 <p>
 <%= book.title %>
 </p>
@@ -38,5 +40,3 @@
     <img src="<%= "/#{book.id}/thumb/#{file_name}" %>?#{Time.now.to_i}"/>
   <% end %>
 <% end %>
-
-
