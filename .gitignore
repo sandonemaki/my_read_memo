@@ -60,3 +60,5 @@ app/controllers/tmp_controller.rb
 app/assets/stylesheets/book_pages/seidoku_memos.scss
 app/assets/stylesheets/home.scss
 tags
+app/helpers/
+app/styles/
