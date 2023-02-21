@@ -1,3 +1,4 @@
+import '@/entrypoints/js/randoku_slide.js'
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //
@@ -13,7 +14,7 @@ console.log('Vite ⚡️ Rails')
 
 console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
 
-import '@/entrypoints/js/index.js'
+// import '@/entrypoints/js/index.js
 // Example: Load Rails libraries in Vite.
 //
 // import * as Turbo from '@hotwired/turbo'

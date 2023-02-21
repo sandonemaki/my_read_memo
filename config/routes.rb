@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "tmp/index" => "tmp#index"
+  get "test/randoku_slide" => "test#randoku_slide"
 
   get 'home/search'
   get "book_pages/new" => "book_pages#new"  # new_book_page_path
