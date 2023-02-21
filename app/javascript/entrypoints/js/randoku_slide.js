@@ -4,7 +4,7 @@ import '../styles/slide.css';
 
 const swiper = new Swiper(".swiper", {
   // modules: [Navigation, Pagination],
-  direction: 'vertical',
+  // direction: 'vertical',
   loop: true,
   pagination: {
     el: '.swiper-pagination',
