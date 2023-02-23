@@ -1,40 +1,29 @@
-p {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-content: center;
-}
 .swiper {
   /*スライダーの幅と高さを調整*/
   width: 100%;
-  height: 200px;
+  height: 500px;
 }
-
+.swiper-wrapper {
+  align-items: center;
+}
 .swiper-slide {
   /*スライド要素の幅と高さを調整*/
   display: flex;
-  width: 100%;
-  height: 100%;
-
+  flex-flow: column;
   /*テキストの位置調整*/
-  /* display: flex; */
-  justify-content: center;
+  display: flex;
+  /* justify-content: center; */
   align-items: center;
 
   /*テキストの色と太さを指定*/
-  color: #fff;
+  color: black;
   font-weight: bold;
 }
-
-/*各スライドの背景色の設定*/
-.slide1 {
+.img {
+  width: 100%;
+  height: 100%;
   background-color: #88acbd;
 }
-
-.slide2 {
-  background-color: #99cb1f;
-}
-
-.slide3 {
-  background-color: #e43a47;
+.updated_at {
+  margin-bottom: 30px;
 }
