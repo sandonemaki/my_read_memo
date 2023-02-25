@@ -42,6 +42,9 @@ node_modules
 # Vite uses dotenv and suggests to ignore local-only env files. See
 # https://vitejs.dev/guide/env-and-mode.html#env-files
 *.local
+
+# 230226必要なさそうなファイルを無視する
+# タグジャンプに必要なファイル
 GPATH
 GRTAGS
 GTAGS
@@ -51,14 +54,21 @@ app/GPATH
 app/GRTAGS
 app/GTAGS
 app/ID
+.idea/
+tags
+
+# 230226一旦git管理からはずした
 public/
 app/views/test
 app/views/tmp
 app/controllers/test_controller.rb
 app/controllers/tmp_controller.rb
-.idea/
 app/assets/stylesheets/book_pages/seidoku_memos.scss
 app/assets/stylesheets/home.scss
-tags
 app/helpers/
 app/styles/
+app/sample/
+app/views/test/hoge.html.erb
+src/
+test/
+app/views/book_pages/imgs/
