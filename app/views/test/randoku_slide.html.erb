@@ -1,0 +1,32 @@
+<!-- Sliderを包むコンテナ要素 -->
+<div class="swiper">
+  <!-- スライド要素を包む要素 -->
+  <div class="swiper-wrapper">
+    <!-- 各スライド -->
+    <% slides = [1,2,3] %>
+    <% slides.each do |slide| %>
+      <div class="swiper-slide">
+        <div class="img_name">
+          <p>img name</p>
+        </div>
+        <div class="img"></div>
+        <div class="updated_at">
+          <p>updated at</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+
+<!-- モーダル -->
+<div class="modal">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <div class="modal-image">
+      <img src="" alt="">
+    </div>
+  </div>
+</div>
