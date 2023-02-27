@@ -3,14 +3,13 @@ import 'swiper/swiper-bundle.css';
 import '../styles/slide.css';
 
 document.addEventListener('DOMContentLoaded', function() {
-  const img = document.querySelector("#img");
+  const swiperImg = document.querySelector("#swiper_img");
   const updated_at = document.querySelector("#updated_at");
   const img_name = document.querySelector("#img_name");
   // Todo:htmlの画像のリンクにidを書いて取得する
-  const links = document.querySelector("a[id^='photo-link-']");
+  const modalTriggers = document.querySelector("#modal_trigger");
   // モーダル
   const modal = document.querySelector("#modal")
-  const modalImage = document.querySelector("#modal-image")
   const closeButton = document.querySelector("#close-button")
   // swiper
   const prevButton = document.querySelector("#button-prev")
@@ -29,17 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // モーダルを開く
-  for (let i = 0; i < links.length; i++) {
-    links[i].addEventListner("click", (e) => {
-      const photoId = e.target.id.split("-")[2];
-      // Todo:クリックされた画像を拡大表示する
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListner("click", (e) => {
+      // キャッシュあり
+      swiperImg.src = trigger.src.replace("thumb/", "");
+      // swiperImg.src = trigger.src.replace(/thumb\/|\?#{Time.now.to_i}/g, '/');
       modal.style.display = "block";
     });
-  }
+  });
 
 
 
   // 画像の高さを揃える
+  // Note：cssで対応するので使わないかも
   function matchHeight(elements) {
     const targets =
       Array.from(document.querySelectorAll(elements));
@@ -53,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
       element.style.height = maxHeight + 'px'; // 最大高さに揃える
     });
   }
-  matchHeight(".img");
 
 
 
