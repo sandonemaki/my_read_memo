@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const prevButton = document.querySelector("#button-prev")
   const nextButton = document.querySelector("#button-next")
 
-
-
   // モーダルを閉じる
   closeButton.addEventListener("click", (e) => {
     modal.style.display = "none";
@@ -28,32 +26,33 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // モーダルを開く
-  modalTriggers.forEach(trigger => {
-    trigger.addEventListner("click", (e) => {
-      // キャッシュあり
-      swiperImg.src = trigger.src.replace("thumb/", "");
-      // swiperImg.src = trigger.src.replace(/thumb\/|\?#{Time.now.to_i}/g, '/');
-      modal.style.display = "block";
-    });
-  });
-
-
-
-  // 画像の高さを揃える
-  // Note：cssで対応するので使わないかも
-  function matchHeight(elements) {
-    const targets =
-      Array.from(document.querySelectorAll(elements));
-    const heightList = [];
-    targets.forEach(element => {
-      const height = element.clientHeight;
-      heightList.push(height);
-    });
-    const maxHeight = Math.max.apply(null,heightList);
-    targets.forEach(element => {
-      element.style.height = maxHeight + 'px'; // 最大高さに揃える
+  if (modalTriggers) {
+    modalTriggers.forEach(trigger => {
+      trigger.addEventListner("click", (e) => {
+        // キャッシュあり
+        swiperImg.src = trigger.src.replace("thumb/", "");
+        // swiperImg.src = trigger.src.replace(/thumb\/|\?#{Time.now.to_i}/g, '/');
+        modal.style.display = "block";
+      });
     });
   }
+
+
+//  // 画像の高さを揃える
+//  // Note：cssで対応するので使わないかも
+//  function matchHeight(elements) {
+//    const targets =
+//      Array.from(document.querySelectorAll(elements));
+//    const heightList = [];
+//    targets.forEach(element => {
+//      const height = element.clientHeight;
+//      heightList.push(height);
+//    });
+//    const maxHeight = Math.max.apply(null,heightList);
+//    targets.forEach(element => {
+//      element.style.height = maxHeight + 'px'; // 最大高さに揃える
+//    });
+//  }
 
 
 
