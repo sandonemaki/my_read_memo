@@ -1,35 +1,26 @@
-.swiper {
-  /*スライダーの幅と高さを調整*/
-  width: 100%;
-  height: 500px;
-}
+/**** swiper ****/
 .swiper-wrapper {
   align-items: center;
 }
 .swiper-slide {
-  /*スライド要素の幅と高さを調整*/
-  display: flex;
-  flex-flow: column;
-  /*テキストの位置調整*/
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-
-  /*テキストの色と太さを指定*/
+  background-color: #88acbd;
   color: black;
   font-weight: bold;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.img {
-  width: 100%;
-  height: 100%;
-  background-color: #88acbd;
-}
-.updated_at {
-  margin-bottom: 30px;
+.swiper_img {
+  background-color: blue;
+  height: 400px;
+  width: 400px;/*画像の場合はauto*/
+  max-width: 100%;
+  object-fit: contain;
 }
 
-
-/*モーダル*/
+/**** モーダル ****/
 .modal {
   display: none;
   position: fixed;
@@ -59,4 +50,3 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
-
