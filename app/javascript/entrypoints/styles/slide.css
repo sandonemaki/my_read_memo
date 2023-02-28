@@ -1,9 +1,9 @@
+* {
+  box-sizing: border-box;
+}
 /**** swiper ****/
 .swiper-wrapper {
   align-items: center;
-}
-.img_name {
-  margin-top: 10px;
 }
 .swiper-slide {
   /* background-color: #88acbd; */
@@ -22,47 +22,79 @@
   max-width: 100%;
   object-fit: contain;
 }
-.updated_at {
-  margin-bottom: 10px;
+.swiper-pagination {
+  margin-top: 10px;
 }
-
 /* ページネーション */
 .swiper-pagination-fraction {
   bottom: 0px;
 }
-
-
-
-
-/**** モーダル ****/
-.modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+.updated_at {
+  margin-bottom: 35px;
 }
-.modal-content {
-  background-color: black;
-  /* opacity: 0.7; */
-  border-radius: 10px;
-  padding: 20px;
-  height: 500px;
-}
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
-.modal-mask {
-  display: none;
+
+
+/**** モーダル *** */
+.reveal-outer {
   position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.reveal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 全面モーダルの内側 */
+  background-color: #add9e4;
+  border-radius: 10px;
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  right: 15px;
+  left: 15px;
+}
+
+.reveal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.modalTitle {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.close-button {
+  position: absolute;
+  cursor: pointer;
+  top: 15px;
+  right: 25px;
+  text-align: center;
+  width: 48px;
+  height: 48px;
+  color: blue;
+  font-size: 26px;
+  z-index: 10000;
+  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+/* .modal-mask { */
+/* display: none; */
+/* position: fixed; */
+/* top: 0; */
+/* left: 0; */
+/* width: 100%; */
+/* height: 100%; */
+/* background-color: rgba(0, 0, 0, 0.7); */
+/* z-index: 0; */
+/* } */

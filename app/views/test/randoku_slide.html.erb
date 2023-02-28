@@ -6,13 +6,13 @@
     <% slides = [1,2,3] %>
     <% slides.each do |slide| %>
       <div class="swiper-slide">
-        <div id="img_name" class="img_name">
+        <div id="img_name" class="sw_img_name">
           <p>img name</p>
         </div>
-        <div id="swiper_img" class="swiper_img">
+        <div id="img" class="sw_img">
           <img src="" alt="">
         </div>
-        <div id="updated_at" class="updated_at">
+        <div id="updated_at" class="sw_updated">
           <p>updated at</p>
         </div>
       </div>
@@ -24,11 +24,18 @@
 </div>
 
 <!-- モーダル -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span id="close-button" class="close-button">&times;</span>
+<div class="modal">
+<div class="reveal-outer">
+  <div class="reveal-wrapper">
+    <div class="reveal-inner">
+        <h1 class="modalTitle">全画面モーダル</h1>
+
+        <span id="close-btn" class="close-button">&times;</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- modal mask -->
-<div class="modal-mask"></div>
+<%# <div class="modal-mask"></div> %>
+
