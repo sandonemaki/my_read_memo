@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const updatedAt = document.querySelector("#updated_at");
   const imgName = document.querySelector("#img_name");
   // Todo:htmlの画像のリンクにidを書いて取得する
-  const modalTriggers = document.querySelector("#modal_trigger");
+  const modalTriggers = document.querySelectorAll("#modal_trigger");
   // モーダル
   const modal = document.querySelector(".modal")
   const closeButton = document.querySelector("#close-btn")
@@ -19,24 +19,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // モーダルを閉じる
   closeButton.addEventListener("click", (e) => {
-    modal.style.display = "none";
+    modal.classList.remove('active');
   });
-  window.addEventListener("click", (e) => {
-    if(e.target === modal) {
-      modal.style.display = "none";
-    }
-  });
+  // window.addEventListener("click", (e) => {
+    // if(e.target === modal) {
+      // modal.classList.remove('active');
+    // }
+  // });
 
   // モーダルを開く
+  // if (modalTriggers) {
+    // modalTriggers.forEach(trigger => {
+      // trigger.addEventListner("click", (e) => {
+       //// キャッシュあり
+        // swiperImg.src = trigger.src.replace("thumb/", "");
+      ////  swiperImg.src = trigger.src.replace(/thumb\/|\?#{Time.now.to_i}/g, '/');
+        // modal.style.display = "block";
+      // });
+    // });
+  // }
+//
+
   if (modalTriggers) {
     modalTriggers.forEach(trigger => {
-      trigger.addEventListner("click", (e) => {
-        // キャッシュあり
-        swiperImg.src = trigger.src.replace("thumb/", "");
-        // swiperImg.src = trigger.src.replace(/thumb\/|\?#{Time.now.to_i}/g, '/');
-        modal.style.display = "block";
-      });
+      trigger.addEventListener('click', modalOpen);
     });
+  }
+  function modalOpen() {
+    modal.classList.add("active");
   }
 
 

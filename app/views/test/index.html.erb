@@ -1,5 +1,7 @@
 <p>乱読メモ</p>
-<% book.randoku_img_file_names.each do |file_name| %>
-  <img src="<%= "/#{book.id}/thumb/#{file_name}" %>?#{Time.now.to_i}" alt=" " class="modal_trigger" />
-<% end %>
-<%= render partial: 'randoku_slide', locals: { book: book } %>
+<%# book.randoku_img_file_names.each do |file_name| %>
+  <!--<img src="<%#= "/#{book.id}/thumb/#{file_name}" %>?#{Time.now.to_i}" alt=" " class="modal_trigger" />
+<%# end %>-->
+<%# <%= render partial: 'randoku_slide', locals: { book: book } %>
+<button type="button" id="modal_trigger">ボタン</button>
+<%= render partial: 'randoku_slide' %>
