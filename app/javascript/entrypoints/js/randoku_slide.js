@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Todo:htmlの画像のリンクにidを書いて取得する
   const modalTriggers = document.querySelector("#modal_trigger");
   // モーダル
-  const modal = document.querySelector("#modal")
+  const modal = document.querySelector(".modal")
   const closeButton = document.querySelector("#close-btn")
   // swiper
   const prevButton = document.querySelector("#button-prev")
