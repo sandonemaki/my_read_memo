@@ -3,17 +3,19 @@ import 'swiper/swiper-bundle.css';
 import '../styles/slide.css';
 
 document.addEventListener('DOMContentLoaded', function() {
+
   const swiperImg = document.querySelector("#swiper_img");
-  const updated_at = document.querySelector("#updated_at");
-  const img_name = document.querySelector("#img_name");
+  const updatedAt = document.querySelector("#updated_at");
+  const imgName = document.querySelector("#img_name");
   // Todo:htmlの画像のリンクにidを書いて取得する
   const modalTriggers = document.querySelector("#modal_trigger");
   // モーダル
   const modal = document.querySelector("#modal")
-  const closeButton = document.querySelector("#close-button")
+  const closeButton = document.querySelector("#close-btn")
   // swiper
   const prevButton = document.querySelector("#button-prev")
   const nextButton = document.querySelector("#button-next")
+  const swiperScale = document.querySelector(".swiper").swiper;
 
   // モーダルを閉じる
   closeButton.addEventListener("click", (e) => {
@@ -68,5 +70,14 @@ document.addEventListener('DOMContentLoaded', function() {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
+  });
+
+  let resizeTimer;
+
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      swiper.update();
+    }, 500);
   });
 });
