@@ -3,24 +3,22 @@
   <div class="reveal-outer">
     <div class="reveal-wrapper">
       <div class="reveal-inner">
-       <!-- <h1 class="modalTitle">全画面モーダル</h1>-->
 
         <!-- Sliderを包むコンテナ要素 -->
         <div class="swiper">
           <!-- スライド要素を包む要素 -->
           <div class="swiper-wrapper">
             <!-- 各スライド -->
-            <% slides = [1,2,3] %>
-            <% slides.each do |slide| %>
+            <% book.randoku_imgs_all.each do |slide_img| %>
               <div class="swiper-slide">
                 <div id="img_name" class="sw_img_name">
-                  <p>img</p>
+                  <p><%= slide_img[:name] %></p>
                 </div>
                 <div id="swiper_img" class="sw_img">
-                  <img src="" alt="">
+                  <img src="<%= "#{slide_img[:path]}" %>?#{Time.now.to_i}" alt=" " />
                 </div>
                 <div id="updated_at" class="sw_updated">
-                  <p>updated at</p>
+                  <p><%= slide_img[:updated_at] %></p>
                 </div>
               </div>
             <% end %>
@@ -36,7 +34,3 @@
     </div>
   </div>
 </div>
-
-<!-- modal mask -->
-<%# <div class="modal-mask"></div> %>
-
