@@ -4,74 +4,28 @@ import '../styles/slide.css';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  const swiperImg = document.querySelector("#swiper_img");
-  const updatedAt = document.querySelector("#updated_at");
-  const imgName = document.querySelector("#img_name");
-  // Todo:htmlの画像のリンクにidを書いて取得する
   const modalTriggers = document.querySelectorAll("#modal_trigger");
+  // スライド
+  const imgName = document.querySelector("#img_name");
+  const imgs = document.querySelectorAll("#swiper_img");
+  const updatedAt = document.querySelector("#updated_at");
   // モーダル
   const modal = document.querySelector(".modal")
   const closeButton = document.querySelector("#close-btn")
   // swiper
   const prevButton = document.querySelector("#button-prev")
   const nextButton = document.querySelector("#button-next")
-  const swiperScale = document.querySelector(".swiper").swiper;
-
-  // モーダルを閉じる
-  closeButton.addEventListener("click", (e) => {
-    modal.classList.remove('active');
-  });
-  // window.addEventListener("click", (e) => {
-    // if(e.target === modal) {
-      // modal.classList.remove('active');
-    // }
-  // });
-
-  // モーダルを開く
-  // if (modalTriggers) {
-    // modalTriggers.forEach(trigger => {
-      // trigger.addEventListner("click", (e) => {
-       //// キャッシュあり
-        // swiperImg.src = trigger.src.replace("thumb/", "");
-      ////  swiperImg.src = trigger.src.replace(/thumb\/|\?#{Time.now.to_i}/g, '/');
-        // modal.style.display = "block";
-      // });
-    // });
-  // }
-//
-
-  if (modalTriggers) {
-    modalTriggers.forEach(trigger => {
-      trigger.addEventListener('click', modalOpen);
-    });
-  }
-  function modalOpen() {
-    modal.classList.add("active");
-  }
-
-
-//  // 画像の高さを揃える
-//  // Note：cssで対応するので使わないかも
-//  function matchHeight(elements) {
-//    const targets =
-//      Array.from(document.querySelectorAll(elements));
-//    const heightList = [];
-//    targets.forEach(element => {
-//      const height = element.clientHeight;
-//      heightList.push(height);
-//    });
-//    const maxHeight = Math.max.apply(null,heightList);
-//    targets.forEach(element => {
-//      element.style.height = maxHeight + 'px'; // 最大高さに揃える
-//    });
-//  }
 
 
 
   const swiper = new Swiper(".swiper", {
-    // modules: [Navigation, Pagination],
-    // direction: 'vertical',
-    // loop: true,
+    slidesPerView: 'auto',//スライドの余白を自動調整
+    centeredSlides: true, //中央揃え
+    resizeObserver: true, //コンテナのリサイズ。スマホ
+    zoom: {
+      enabled: true
+    },
+    height: 'auto',
     pagination: {
       el: '.swiper-pagination',
       type: "fraction"
@@ -82,12 +36,31 @@ document.addEventListener('DOMContentLoaded', function() {
     },
   });
 
-  let resizeTimer;
 
+  // 画面に対するリサイズ
+  let resizeTimer;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
       swiper.update();
     }, 500);
   });
+
+  // モーダルを開く。クリックされた画像からスライドを始める
+  const slides = document.querySelectorAll(".swiper-slide");
+  modalTriggers.forEach(torigger => {
+    torigger.addEventListener('click', () => {
+      const slideIndex = torigger.dataset.slideIndex;
+      swiper.slideTo(slideIndex);
+      modal.classList.add('active');
+    });
+  });
+
+  // モーダルを閉じる
+  closeButton.addEventListener("click", (e) => {
+    modal.classList.remove('active');
+  });
+
+
+
 });
