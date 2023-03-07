@@ -1,4 +1,4 @@
-module ViewModel
+ewModel
 
   class BooksSeidokuIndex
     attr_reader :all_count,
