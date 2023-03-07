@@ -1,5 +1,5 @@
 module ViewModel
-  class SeidokuMemos
+  class BooksSeidokuMemosIndex
     attr_reader :id, :title, :author_1, :reading_state, :publisher,
       :seidoku_memos_all_count, :seidoku_memos_all, :seidoku_memos_all_asc,
       :seidoku_memo_author_opinion, :seidoku_memo_my_opinion

@@ -21,7 +21,7 @@
 
 
 <!--画像アップロードフォームを表示-->
-<%= form_tag("/book_pages/#{book.id}/imgs", {multipart: true}) do %>
+<%= form_tag("/books/#{book.id}/imgs", {multipart: true}) do %>
   <h4>気になったページはパシャパシャ撮ってアップロードするだけ。<br>
   後で読み返せるメモにしましょう</h4>
   <input name="page_imgs[]" type="file" multiple="true" accept=".jpg, .jpeg, .png, .heic, .pdf">

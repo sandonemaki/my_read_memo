@@ -1,5 +1,5 @@
 module ViewModel
-  class Search
+  class HomeSearch
     attr_reader :selected_memos, :selected_memos_count, :randoku_memo_type, :seidoku_memo_type
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, content_type:,

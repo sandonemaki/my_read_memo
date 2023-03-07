@@ -1,6 +1,6 @@
 module ViewModel
 
-  class SeidokuBooks
+  class BooksSeidokuIndex
     attr_reader :all_count,
       :all_randoku_state_count, :all_seidoku_state_count, :all_randoku_imgs_count,
       :seidoku_history,

@@ -1,5 +1,5 @@
 module ViewModel
-  class SeidokuMemoNew
+  class BooksSeidokuMemosNew
     attr_reader :id, :title, :seidoku_memo_time_now, :seidoku_memo_type,
       :seidoku_memo_content_state, :seidoku_memo_content
 

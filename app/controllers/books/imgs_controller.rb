@@ -1,4 +1,4 @@
-class BookPages::ImgsController < ApplicationController
+class Books::ImgsController < ApplicationController
   require 'tmpdir'
   require 'fileutils'
 
@@ -69,25 +69,9 @@ class BookPages::ImgsController < ApplicationController
       each_randoku_imgs_and_first_flag_save(book, randoku_imgs, page_img_names)
     else
       flash.now[:danger] = "保存できませんでした"
-      show_book_view_model = book.show_for_book_view_model(book)
-      show_randoku_imgs_view_model = randoku_imgs.show_for_randoku_img_view_model(randoku_imgs)
-      render("show", locals: {book: show_book_view_model, randoku_img: show_randoku_imgs_view_model})
+      # Todo:保存できなかったときのviewmodelを作成する
     end
   end # def create
-
-  # 乱読画像をクリックして遷移させてから拡大表示するのではなく
-  # 遷移させずに表示することにしたのでこのアクションは必要なくなった
-  # def show
-    # book_view_model = ViewModel::RandokuImgShow.new(
-      # book: Book.find_by(id: params[:book_id]),
-      # randoku_img: RandokuImg.find_by(id: params[:id])
-    # )
-    # render("show", locals:{books: book_view_models})
-  # end
-
-  # 用途
-  # - 乱読画像名/パスの保存
-  # - 初登校画像flagの保存
 
   def each_randoku_imgs_and_first_flag_save(book, randoku_imgs, page_img_names)
     page_img_names_save = []
@@ -96,7 +80,8 @@ class BookPages::ImgsController < ApplicationController
         randoku_img_record = book.randoku_imgs.find_by(name: page_img_name)
         unless randoku_img_record.update(name: page_img_name)
           flash.now[:danger] = "保存できませんでした"
-          show_view_model_for_book_pages(book, randoku_imgs)
+          # Todo:保存できなかったときのviewmodelを作成する
+          # show_view_model_for_book_pages(book, randoku_imgs)
         end
       else
         new_randoku_img = book.randoku_imgs.new(
@@ -106,7 +91,8 @@ class BookPages::ImgsController < ApplicationController
         )
         unless new_randoku_img.save
           flash.now[:danger] = "保存できませんでした"
-          show_view_model_for_book_pages(book, randoku_imgs)
+          # show_view_model_for_book_pages(book, randoku_imgs)
+          # Todo:保存できなかったときのviewmodelを作成する
         end
       end
     }
@@ -118,11 +104,12 @@ class BookPages::ImgsController < ApplicationController
       randoku_img_id_1.first_post_flag = 1 if randoku_img_id_1.first_post_flag == 0
       unless randoku_img_id_1.save
         flash.now[:danger] = "保存できませんでした"
-        show_view_model_for_book_pages(book, randoku_imgs)
+        # show_view_model_for_book_pages(book, randoku_imgs)
+        # Todo:保存できなかったときのviewmodelを作成する
       end
     end
 
     flash[:notice] = "画像を保存しました"
-    redirect_to("/book_pages/#{book.id}")
+    redirect_to("/books/#{book.id}")
   end
 end

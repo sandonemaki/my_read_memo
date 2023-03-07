@@ -21,17 +21,18 @@
   </head>
 
   <body>
+<!--
     <header>
       <ul class="header-menus">
         <li>
-          <%= link_to("本の一覧", "/") %>
+          #= link_to("本の一覧", "/")
         </li>
         <li>
-          <%= link_to("本を登録する", "/book_pages/new") %>
+          #= link_to("本を登録する", "/books/new") %>
         </li>
       </ul>
     </header>
-
+-->
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>

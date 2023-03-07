@@ -1,5 +1,5 @@
 module ViewModel
-  class RandokuMemoNew
+  class BooksRandokuMemosNew
     attr_reader :id, :title, :randoku_memo_time_now, :randoku_memo_q, :randoku_memo_bkg,
       :randoku_memo_content_state, :randoku_memo_content
 

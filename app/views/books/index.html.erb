@@ -1,12 +1,12 @@
 <h1>本のリスト</h1>
 <button type="button">
-  <%= link_to("本を登録する", "/book_pages/new") %>
+  <%= link_to("本を登録する", "/books/new") %>
 </button>
 
 <table>
   <% books.each do |book|%>
     <tr><!-- 行1（見出し）-->
-      <th colspan="4", align="left"><%= link_to(book.title, "/book_pages/#{book.id}") %>
+      <th colspan="4", align="left"><%= link_to(book.title, "/books/#{book.id}") %>
       <br><%= " 著_#{book.author_1}" %>
       </th>
     </tr>

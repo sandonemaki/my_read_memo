@@ -1,4 +1,4 @@
-class BookPagesController < ApplicationController
+class BooksController < ApplicationController
   require_relative '../modules/state'
 
   def randoku_index
@@ -6,7 +6,7 @@ class BookPagesController < ApplicationController
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
-    book_view_models = ViewModel::RandokuBooks.new(
+    book_view_models = ViewModel::BooksRandokuIndex.new(
       all_randoku_state_books: all_randoku_state_books,
       all_seidoku_state_books: all_seidoku_state_books,
       all_books_count: all_books_count
@@ -19,7 +19,7 @@ class BookPagesController < ApplicationController
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
-    book_view_models = ViewModel::SeidokuBooks.new(
+    book_view_models = ViewModel::BooksSeidokuIndex.new(
       all_randoku_state_books: all_randoku_state_books,
       all_seidoku_state_books: all_seidoku_state_books,
       all_books_count: all_books_count
@@ -29,7 +29,7 @@ class BookPagesController < ApplicationController
 
   def new
     book = Book.new
-    book_view_model = ViewModel::BookNew.new(book: book)
+    book_view_model = ViewModel::BooksNew.new(book: book)
     render("new", locals:{book: book_view_model})
   end
 
@@ -41,10 +41,10 @@ class BookPagesController < ApplicationController
       total_page: params[:total_page],
     )
     if book.save
-      redirect_to("/book_pages/#{book.id}")
+      redirect_to("/books/#{book.id}")
     else
       book_view_model =
-        ViewModel::BookNew.new(book: book)
+        ViewModel::BooksNew.new(book: book)
       render("new", locals:{book: book_view_model})
     end
   end
@@ -58,7 +58,7 @@ class BookPagesController < ApplicationController
     new_path = "book_pages/#{book.id}"
     book.reading_state == 0 || 2 ?
       RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
-    book_view_model = ViewModel::BookRandokuImgs.new(book: book)
+    book_view_model = ViewModel::BooksShow.new(book: book)
     render("show", locals: {book: book_view_model})
   end
 end

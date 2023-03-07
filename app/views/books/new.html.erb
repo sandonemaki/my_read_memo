@@ -1,5 +1,5 @@
 <h1>読む本とページ数を登録をする</h1>
-<%= form_tag("/book_pages/create", method: :post) do %>
+<%= form_tag("/books/create", method: :post) do %>
   <p>本のタイトル</p>
   <input type="text" name="title" placeholder="タイトル" value="<%= book.title %>"><strong>必須</strong>
   <% book.errors[:title].each do |message| %><%= message %><% end %>
