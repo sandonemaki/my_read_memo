@@ -1,5 +1,5 @@
 <h3><%= book.title %></h3>
 <% book.randoku_imgs_all.each_with_index do |img, i| %>
-  <img src="<%= "#{img[:thumbnail_path]}" %>?#{Time.now.to_i}" alt=" " id="modal_trigger" data-slide-index="<%= i %>" />
+  <img src="<%= "#{img[:thumbnail_path]}" %>?#{Time.now.to_i}" alt=" " id="sw_modal_trigger" data-slide-index="<%= i %>" />
 <% end %>
 <%= render partial: 'randoku_slide', locals: { book: book } %>

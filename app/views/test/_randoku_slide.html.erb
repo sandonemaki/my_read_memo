@@ -1,8 +1,8 @@
 <!-- モーダル -->
-<div class="modal">
-  <div class="reveal-outer">
-    <div class="reveal-wrapper">
-      <div class="reveal-inner">
+<div class="sw-modal">
+  <div class="sw-reveal-outer">
+    <div class="sw-reveal-wrapper">
+      <div class="sw-reveal-inner">
 
         <!-- Sliderを包むコンテナ要素 -->
         <div class="swiper">
@@ -11,13 +11,13 @@
             <!-- 各スライド -->
             <% book.randoku_imgs_all.each do |slide_img| %>
               <div class="swiper-slide">
-                <div id="img_name" class="sw_img_name">
+                <div id="sw_img_name" class="sw_img_name">
                   <p><%= slide_img[:name] %></p>
                 </div>
                 <div id="swiper_img" class="sw_img">
                   <img src="<%= "#{slide_img[:path]}" %>?#{Time.now.to_i}" alt=" " />
                 </div>
-                <div id="updated_at" class="sw_updated">
+                <div id="sw_updated_at" class="sw_updated">
                   <p><%= slide_img[:updated_at] %></p>
                 </div>
               </div>
@@ -26,10 +26,10 @@
         </div>
 
         <div class="swiper-pagination"></div>
-        <div id="button-prev" class="swiper-button-prev"></div>
-        <div id="button-next" class="swiper-button-next"></div>
+        <div id="sw-button-prev" class="swiper-button-prev"></div>
+        <div id="sw-button-next" class="swiper-button-next"></div>
 
-        <span id="close-btn" class="close-button">&times;</span>
+        <span id="sw-close-btn" class="sw-close-button">&times;</span>
       </div>
     </div>
   </div>

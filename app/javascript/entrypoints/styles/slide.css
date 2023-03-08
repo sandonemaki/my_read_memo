@@ -45,7 +45,7 @@
 }
 
 /**** モーダル *** */
-.reveal-outer {
+.sw-reveal-outer {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -57,7 +57,7 @@
   justify-content: center;
   align-items: center;
 }
-.reveal-wrapper {
+.sw-reveal-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,14 +70,14 @@
   right: 15px;
   left: 15px;
 }
-.reveal-inner {
+.sw-reveal-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
 }
-.close-button {
+.sw-close-button {
   position: absolute;
   cursor: pointer;
   top: 15px;
@@ -90,7 +90,7 @@
   z-index: 10000;
   transition: all .2s ease;
 }
-.modal.active {
+.sw-modal.active {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +98,7 @@
   visibility: visible;
   opacity: 1;
 }
-.modal {
+.sw-modal {
   position: fixed;
   top: 0;
   left: 0;

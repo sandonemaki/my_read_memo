@@ -4,18 +4,14 @@ import '../styles/slide.css';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  const modalTriggers = document.querySelectorAll("#modal_trigger");
+  const modalTriggers = document.querySelectorAll("#sw_modal_trigger");
   // スライド
-  const imgName = document.querySelector("#img_name");
+  const imgName = document.querySelector("#sw_img_name");
   const imgs = document.querySelectorAll("#swiper_img");
-  const updatedAt = document.querySelector("#updated_at");
+  const updatedAt = document.querySelector("#sw_updated_at");
   // モーダル
-  const modal = document.querySelector(".modal")
-  const closeButton = document.querySelector("#close-btn")
-  // swiper
-  const prevButton = document.querySelector("#button-prev")
-  const nextButton = document.querySelector("#button-next")
-
+  const modal = document.querySelector(".sw-modal")
+  const closeButton = document.querySelector("#sw-close-btn")
 
 
   const swiper = new Swiper(".swiper", {
