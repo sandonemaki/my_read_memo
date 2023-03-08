@@ -36,16 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
     },
   });
 
-
-  // 画面に対するリサイズ
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      swiper.update();
-    }, 500);
-  });
-
   // モーダルを開く。クリックされた画像からスライドを始める
   const slides = document.querySelectorAll(".swiper-slide");
   modalTriggers.forEach(torigger => {
@@ -60,7 +50,4 @@ document.addEventListener('DOMContentLoaded', function() {
   closeButton.addEventListener("click", (e) => {
     modal.classList.remove('active');
   });
-
-
-
 });

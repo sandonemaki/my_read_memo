@@ -22,8 +22,6 @@
 }
 .sw_img {
   position: relative;
-  /* margin: 0 auto; */
-  /* top: 0%; */
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -37,15 +35,11 @@
   position: absolute;
   top: 50px;
   width: 90%;
-  /* height: auto; */
   text-align: center;
-  /* margin-bottom: 10px; */
 }
 .sw_updated {
   position: absolute;
   width: 90%;
-  /* height: auto; */
-  /* margin-top: 10px; */
   bottom: 50px;
   text-align: center;
 }
@@ -82,11 +76,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-}
-.modalTitle {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 1rem;
 }
 .close-button {
   position: absolute;
