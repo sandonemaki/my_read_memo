@@ -12,13 +12,13 @@
             <% book.randoku_imgs_all.each do |slide_img| %>
               <div class="swiper-slide">
                 <div id="sw_img_name" class="sw_img_name">
-                  <p><%= slide_img[:name] %></p>
+                  <p><%= slide_img.name %></p>
                 </div>
                 <div id="swiper_img" class="sw_img">
-                  <img src="<%= "#{slide_img[:path]}" %>?#{Time.now.to_i}" alt=" " />
+                  <img src="<%= "#{slide_img.path}" %>?#{Time.now.to_i}" alt=" " />
                 </div>
                 <div id="sw_updated_at" class="sw_updated">
-                  <p><%= slide_img[:updated_at] %></p>
+                  <p><%= slide_img.updated_at %></p>
                 </div>
               </div>
             <% end %>
