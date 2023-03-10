@@ -51,7 +51,7 @@
   border-radius: 100vh;
   transition: 0.5s;
 }
-.sw_read_btn.click {
+.sw_read_btn.completion {
   color: #fff;
   background: #27acd9;
 }
