@@ -1,6 +1,5 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
-// import '../styles/slide.css';
 
 document.addEventListener('DOMContentLoaded', function() {
 
