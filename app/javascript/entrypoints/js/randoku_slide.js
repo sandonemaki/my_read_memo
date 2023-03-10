@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': getCsrfToken()
         },
         body: JSON.stringify({ readingId: readingId }),
       });
@@ -78,5 +79,16 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('エラーが発生しました', error);
     }
   });
+
+  const getCsrfToken = () => {
+    const metas = document.getElementsByTagName('meta');
+    for (let meta of metas) {
+      if (meta.getAttribute('name') === 'csrf-token') {
+        console.log('csrf-token:', meta.getAttribute('content'));
+        return meta.getAttribute('content');
+      }
+    }
+    return '';
+  }
 
 });
