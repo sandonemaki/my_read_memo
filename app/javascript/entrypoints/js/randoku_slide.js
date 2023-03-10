@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const imgName = document.querySelector("#sw_img_name");
   const imgs = document.querySelectorAll("#swiper_img");
   const updatedAt = document.querySelector("#sw_updated_at");
+  const readBtn = document.querySelector("#sw-read-btn");
   // モーダル
   const modal = document.querySelector(".sw-modal")
   const closeButton = document.querySelector("#sw-close-btn")
@@ -45,4 +46,20 @@ document.addEventListener('DOMContentLoaded', function() {
   closeButton.addEventListener("click", (e) => {
     modal.classList.remove('active');
   });
+
+  // 未読・既読/toggle-button
+  readBtn.addEventListener('click', () => {
+    const bookId = readBtn.getAttribute('data-reading-id');
+
+    readBtn.classList.toggle('click');
+
+    if (readBtn.classList.contains('click')) {
+      readBtn.textContent = '完了済み';
+    } else {
+      readBtn.textContent = '読んだ!';
+    }
+  });
+
 });
+
+
