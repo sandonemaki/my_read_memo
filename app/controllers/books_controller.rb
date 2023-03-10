@@ -55,10 +55,33 @@ class BooksController < ApplicationController
 
   def show
     book = Book.find_by(id: params[:id])
-    new_path = "book_pages/#{book.id}"
-    book.reading_state == 0 || 2 ?
-      RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
-    book_view_model = ViewModel::BooksShow.new(book: book)
-    render("show", locals: {book: book_view_model})
+    puts "-----"
+    puts "sdddd"
+    respond_to do |format|
+      format.html {
+        new_path = "book_pages/#{book.id}"
+        book.reading_state == 0 || 2 ?
+          RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
+        book_view_model = ViewModel::BooksShow.new(book: book)
+        render("show", locals: {book: book_view_model})
+      }
+
+      format.json {
+        reading_id = book_params[:reading_id]
+        if reading_id.present?
+          book.reading_state = reading_id
+          unless book.save
+            render json: { status: :unprocessable_entity, message: book.errors.full_messages.join(',') }
+          end
+        end
+      }
+    end
   end
+
+  private
+
+  def book_params
+    params.permit(:reading_id)
+  end
+
 end
