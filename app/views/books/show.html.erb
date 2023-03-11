@@ -39,4 +39,4 @@
 <% end %>
 
 <!-- 乱読画像を表示するためのモーダル -->
-<%= render partial: 'modal_randoku_slide', locals: { randoku_imgs_all: book.randoku_imgs_all } %>
+<%= render partial: 'modal_randoku_slide', locals: { book_id: book.id, randoku_imgs_all: book.randoku_imgs_all } %>

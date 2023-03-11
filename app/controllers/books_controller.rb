@@ -55,21 +55,25 @@ class BooksController < ApplicationController
 
   def show
     book = Book.find_by(id: params[:id])
-    puts "-----"
-    puts "sdddd"
-    respond_to do |format|
-      format.html {
-        new_path = "book_pages/#{book.id}"
-        book.reading_state == 0 || 2 ?
-          RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
-        book_view_model = ViewModel::BooksShow.new(book: book)
-        render("show", locals: {book: book_view_model})
-      }
+    new_path = "books/#{book.id}"
+    book.reading_state == 0 || 2 ?
+      RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
+    book_view_model = ViewModel::BooksShow.new(book: book)
+    render("show", locals: {book: book_view_model})
+  end
 
+  def update
+    book = Book.find_by(id: params[:id])
+    respond_to do |format|
       format.json {
+        img_id = book_params[:img_id]
+        puts "----"
+        puts "img_id: #{img_id}"
+        puts "book.id: #{book.id}"
+        puts "reading_id: #{reading_id}"
         reading_id = book_params[:reading_id]
         if reading_id.present?
-          book.reading_state = reading_id
+          book.randoku_imgs.find_by(img_id).reading_state = reading_id
           unless book.save
             render json: { status: :unprocessable_entity, message: book.errors.full_messages.join(',') }
           end
@@ -81,7 +85,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:reading_id)
+    params.permit(:reading_id, :img_id)
   end
 
 end

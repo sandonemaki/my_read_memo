@@ -19,10 +19,12 @@
                 <div id="swiper_img" class="sw_img">
                   <img src="<%= "#{slide_img.path}" %>?#{Time.now.to_i}" alt=" " />
                 </div>
+<!--
                 <div id="sw_updated_at" class="sw_updated">
-                  <p><%= slide_img.updated_at %></p>
+                  <p><%#= slide_img.updated_at %></p>
                 </div>
-                <button id="sw-read-btn" class="sw_read_btn" data-reading-id="0">読んだ!</button>
+-->
+                <button id="sw_read_btn" class="sw-read-btn" data-reading-id="0" data-img-id="<%= slide_img.id %>" data-book-id="<%= book_id %>">読んだ!</button>
               </div>
             <% end %>
           </div>
