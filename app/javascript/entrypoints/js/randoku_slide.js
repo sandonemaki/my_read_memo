@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const imgName = document.querySelector("#sw_img_name");
   const imgs = document.querySelectorAll("#swiper_img");
   const updatedAt = document.querySelector("#sw_updated_at");
+  const readBtns = document.querySelectorAll('#sw_read_btn');
   // モーダル
   const modal = document.querySelector(".sw-modal")
   const closeButton = document.querySelector("#sw-close-btn")
