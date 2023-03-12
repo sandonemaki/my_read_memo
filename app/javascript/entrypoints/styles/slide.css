@@ -77,6 +77,13 @@
   justify-content: center;
   height: 100%;
 }
+.swiper-button-prev,
+.swiper-button-next,
+.sw-close-button {
+  border: none;
+  outline: none;
+  background: transparent;
+}
 .sw-close-button {
   position: absolute;
   cursor: pointer;

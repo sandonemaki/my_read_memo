@@ -1,6 +1,3 @@
-<!-- 乱読画像を表示するためのモーダル -->
-<%= render partial: 'modal_randoku_imgs', locals: { book: book } %>
-
 <h1>登録した本の情報</h1>
 <p>
 <%= book.title %>
@@ -36,7 +33,10 @@
 <% if book.randoku_img_file_names.empty? %>
   "画像がありません"
 <% else %>
-  <% book.randoku_img_file_names.each do |file_name| %>
-    <img src="<%= "/#{book.id}/thumb/#{file_name}" %>?#{Time.now.to_i}"/>
+  <% book.randoku_imgs_all.each_with_index do |img, i| %>
+    <img src="<%= "#{img.thumbnail_path}" %>?#{Time.now.to_i}" alt=" " id="sw_modal_trigger" data-slide-index="<%= i %>" />
   <% end %>
 <% end %>
+
+<!-- 乱読画像を表示するためのモーダル -->
+<%= render partial: 'modal_randoku_slide', locals: { randoku_imgs_all: book.randoku_imgs_all } %>

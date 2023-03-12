@@ -36,14 +36,22 @@ module ViewModel
       @randoku_imgs_all_count = book.randoku_imgs.all.size
       @randoku_imgs_all =
         book.randoku_imgs.all.order(updated_at: :desc).to_a.map { |img|
-          { id: img.id,
-            updated_at: I18n.l(img.updated_at, format: :short),
-            name: img.name,
-            path: img.path,
-            reading_state: img.reading_state,
-            bookmark_flag: img.bookmark_flag }
+          ViewModel::RandokuImg.new(img: img, book: book)
         }
+    end
+  end
 
+
+  class RandokuImg
+    attr_reader :id, :name, :updated_at, :path, :thumbnail_path, :bookmark_flag
+
+    def initialize(img:, book:)
+      @id = img.id
+      @name = img.name
+      @updated_at = I18n.l(img.updated_at, format: :short)
+      @path = "/#{book.id}/#{img.name}"
+      @thumbnail_path = "/#{book.id}/thumb/sm_#{img.name}"
+      @bookmark_flag = img.bookmark_flag
     end
   end
 end
