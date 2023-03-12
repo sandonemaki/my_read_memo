@@ -66,8 +66,8 @@ class BooksController < ApplicationController
     book = Book.find_by(id: params[:id])
     respond_to do |format|
       format.json {
-        img_id = params[:img_id]
-        reading_id = params[:reading_id]
+        img_id = book_params[:img_id]
+        reading_id = book_params[:reading_id]
         if reading_id.present?
           book.randoku_imgs.find_by(id: img_id).reading_state = reading_id
           unless book.save
