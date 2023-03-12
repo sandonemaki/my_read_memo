@@ -61,4 +61,13 @@ class BooksController < ApplicationController
     book_view_model = ViewModel::BooksShow.new(book: book)
     render("show", locals: {book: book_view_model})
   end
+
+  def update
+    book = Book.find_by(id: params[:id])
+  end
+
+
+
+
+
 end
