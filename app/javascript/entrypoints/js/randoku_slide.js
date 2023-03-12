@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-
   // 未読・既読/toggle-button
   if (readBtns) {
     readBtns.forEach(readBtn => {
@@ -69,31 +68,32 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
               'Content-Type': 'application/json',
               'X-CSRF-Token': getCsrfToken()
-              },
+            },
             body: JSON.stringify(updateData),
-            })
+          })
 
-          if (!response.ok) {
-            throw new Error(response.statusText);
+
+          if (response.ok) {
+            // リクエスト成功時の処理
+            readBtn.classList.toggle('completion');
+            if (readBtn.classList.contains('completion')) {
+              readBtn.setAttribute('data-reading-id', '0');
+              readBtn.textContent = '読んだ!';
+            } else {
+              readBtn.setAttribute('data-reading-id', '1');
+              readBtn.textContent = '完了済み';
             }
-
-          console.log("iiiii")
-          //成功時
-          readBtn.classList.toggle('completion');
-          if (readBtn.classList.contains('completion')) {
-            readBtn.setAttribute('data-reading-id', '0');
-            readBtn.textContent = '読んだ!';
           } else {
-            readBtn.setAttribute('data-reading-id', '1');
-            readBtn.textContent = '完了済み';
+            // リクエスト失敗時の処理
+            throw new Error(response.statusText);
           }
-
-          } catch (error) {
-            console.error('エラーが発生しました', error);
-            }
-        });
+          // try-catch
+        } catch (error) {
+          console.error('エラーが発生しました', error);
+        }
       });
-    }
+    });
+  }
 
 
   const getCsrfToken = () => {
@@ -102,9 +102,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (meta.getAttribute('name') === 'csrf-token') {
         console.log('csrf-token:', meta.getAttribute('content'));
         return meta.getAttribute('content');
-        }
       }
-    return '';
     }
+    return '';
+  }
 
 });
