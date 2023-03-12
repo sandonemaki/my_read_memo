@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.classList.remove('active');
   });
 
+
   // 未読・既読/toggle-button
   if (readBtns) {
     readBtns.forEach(readBtn => {
@@ -70,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
             body: JSON.stringify(updateData),
           });
 
-
           if (response.ok) {
             // リクエスト成功時の処理
             readBtn.classList.toggle('completion');
@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
           console.error('エラーが発生しました', error);
         }
-
       });
     });
   }
