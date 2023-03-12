@@ -44,6 +44,7 @@
   text-align: center;
 }
 .sw-read-btn {
+  margin-bottom: 12px;
   width: 120px;
   margin-top: 40px;
   border: 2px solid #27acd9;
