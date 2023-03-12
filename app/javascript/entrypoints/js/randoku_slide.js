@@ -51,16 +51,24 @@ document.addEventListener('DOMContentLoaded', function() {
   if (readBtns) {
     readBtns.forEach(readBtn => {
       readBtn.addEventListener('click', () => {
+        const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
+        const imgId = parseInt(readBtn.getAttribute('data-img-id'));
+        const updateData = {
+          reading_id: readingId,
+          img_id: imgId
+        };
 
-        readBtn.classList.toggle('completion');
-        if (readBtn.classList.contains('completion')) {
-          readBtn.textContent = '読んだ!';
-        } else {
-          readBtn.textContent = '完了済み';
-        }
+            // リクエスト成功時の処理
+            readBtn.classList.toggle('completion');
+            if (readBtn.classList.contains('completion')) {
+              readBtn.setAttribute('data-reading-id', '0');
+              readBtn.textContent = '読んだ!';
+            } else {
+              readBtn.setAttribute('data-reading-id', '1');
+              readBtn.textContent = '完了済み';
+            }
       });
     });
   }
-
 
 });
