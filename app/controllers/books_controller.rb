@@ -68,6 +68,9 @@ class BooksController < ApplicationController
       format.json {
         img_id = params[:img_id]
         reading_id = params[:reading_id]
+        if reading_id.present?
+          book.randoku_imgs.find_by(id: img_id).reading_state = reading_id
+        end
       }
     end
   end
