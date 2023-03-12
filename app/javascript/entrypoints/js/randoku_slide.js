@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // 未読・既読/toggle-button
   if (readBtns) {
     readBtns.forEach(readBtn => {
-      readBtn.addEventListener('click', () => {
+      readBtn.addEventListener('click', async () => {
         const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
         const imgId = parseInt(readBtn.getAttribute('data-img-id'));
         const updateData = {
@@ -58,6 +58,19 @@ document.addEventListener('DOMContentLoaded', function() {
           img_id: imgId
         };
 
+        try {
+          const response = await fetch(`#`, {
+            method: 'PUT',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': getCsrfToken()
+            },
+            body: JSON.stringify(updateData),
+          });
+
+
+          if (response.ok) {
             // リクエスト成功時の処理
             readBtn.classList.toggle('completion');
             if (readBtn.classList.contains('completion')) {
@@ -67,8 +80,28 @@ document.addEventListener('DOMContentLoaded', function() {
               readBtn.setAttribute('data-reading-id', '1');
               readBtn.textContent = '完了済み';
             }
+          } else {
+            // リクエスト失敗時の処理
+            throw new Error(response.statusText);
+          }
+          // try-catch
+        } catch (error) {
+          console.error('エラーが発生しました', error);
+        }
+
       });
     });
+  }
+
+  const getCsrfToken = () => {
+    const metas = document.getElementsByTagName('meta');
+    for (let meta of metas) {
+      if (meta.getAttribute('name') === 'csrf-token') {
+        console.log('csrf-token:', meta.getAttribute('content'));
+        return meta.getAttribute('content');
+      }
+    }
+    return '';
   }
 
 });
