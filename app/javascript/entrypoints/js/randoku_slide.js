@@ -46,4 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
   closeButton.addEventListener("click", (e) => {
     modal.classList.remove('active');
   });
+
+  // 未読・既読/toggle-button
+  if (readBtns) {
+    readBtns.forEach(readBtn => {
+      readBtn.addEventListener('click', () => {
+
+        readBtn.classList.toggle('completion');
+        if (readBtn.classList.contains('completion')) {
+          readBtn.textContent = '読んだ!';
+        } else {
+          readBtn.textContent = '完了済み';
+        }
+      });
+    });
+  }
+
+
 });
