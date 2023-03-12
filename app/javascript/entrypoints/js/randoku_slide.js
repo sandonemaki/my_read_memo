@@ -53,13 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
       readBtn.addEventListener('click', async () => {
         const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
         const imgId = parseInt(readBtn.getAttribute('data-img-id'));
+        const bookId = parseInt(readBtn.getAttribute('data-book-id'));
         const updateData = {
           reading_id: readingId,
           img_id: imgId
         };
 
         try {
-          const response = await fetch(`#`, {
+          const response = await fetch(`/books/${bookId}`, {
             method: 'PUT',
             credentials: 'same-origin',
             headers: {
