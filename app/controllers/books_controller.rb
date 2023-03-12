@@ -67,13 +67,9 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.json {
         img_id = book_params[:img_id]
-        puts "----"
-        puts "img_id: #{img_id}"
-        puts "book.id: #{book.id}"
-        puts "reading_id: #{reading_id}"
         reading_id = book_params[:reading_id]
         if reading_id.present?
-          book.randoku_imgs.find_by(img_id).reading_state = reading_id
+          book.randoku_imgs.find_by(id: img_id).reading_state = reading_id
           unless book.save
             render json: { status: :unprocessable_entity, message: book.errors.full_messages.join(',') }
           end

@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
         const imgId = parseInt(readBtn.getAttribute('data-img-id'));
         const bookId = parseInt(readBtn.getAttribute('data-book-id'));
-				const updateData = {
-					reading_id: readingId,
-					img_id: imgId
-				};
+        const updateData = {
+          reading_id: readingId,
+          img_id: imgId
+        };
 
         try {
           const response = await fetch(`/books/${bookId}`, {
@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
           //成功時
           readBtn.classList.toggle('completion');
           if (readBtn.classList.contains('completion')) {
+            readBtn.setAttribute('data-reading-id', '0');
+            readBtn.textContent = '読んだ!';
+          } else {
             readBtn.setAttribute('data-reading-id', '1');
             readBtn.textContent = '完了済み';
-            } else {
-              readBtn.setAttribute('data-reading-id', '0');
-              readBtn.textContent = '読んだ!';
-              }
+          }
 
           } catch (error) {
             console.error('エラーが発生しました', error);
