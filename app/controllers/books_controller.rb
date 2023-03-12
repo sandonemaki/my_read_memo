@@ -78,8 +78,10 @@ class BooksController < ApplicationController
     end
   end
 
+  private
 
-
-
+  def book_params
+    params.permit(:reading_id, :img_id)
+  end
 
 end
