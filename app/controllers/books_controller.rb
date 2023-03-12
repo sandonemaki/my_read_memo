@@ -70,6 +70,9 @@ class BooksController < ApplicationController
         reading_id = params[:reading_id]
         if reading_id.present?
           book.randoku_imgs.find_by(id: img_id).reading_state = reading_id
+          unless book.save
+            render json: { status: :unprocessable_entity, message: book.errors.full_messages.join(',') }
+          end
         end
       }
     end
