@@ -64,6 +64,12 @@ class BooksController < ApplicationController
 
   def update
     book = Book.find_by(id: params[:id])
+    respond_to do |format|
+      format.json {
+        img_id = params[:img_id]
+        reading_id = params[:reading_id]
+      }
+    end
   end
 
 
