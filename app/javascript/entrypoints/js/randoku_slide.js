@@ -60,38 +60,32 @@ document.addEventListener('DOMContentLoaded', function() {
           img_id: imgId
         };
 
-        try {
-          const response = await fetch(`/books/${bookId}`, {
-            method: 'PUT',
-            credentials: 'same-origin',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': getCsrfToken()
-            },
-            body: JSON.stringify(updateData),
-          });
+        const response = await fetch(`/books/${bookId}`, {
+          method: 'PUT',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': getCsrfToken()
+          },
+          body: JSON.stringify(updateData),
+        });
 
-          if (response.ok) {
-            // リクエスト成功時の処理
-            readBtn.classList.toggle('completion');
-            if (readBtn.classList.contains('completion')) {
-              readBtn.setAttribute('data-reading-id', '0');
-              readBtn.textContent = '読んだ!';
-            } else {
-              readBtn.setAttribute('data-reading-id', '1');
-              readBtn.textContent = '完了済み';
-            }
+        if (response.ok) {
+          // リクエスト成功時の処理
+          readBtn.classList.toggle('completion');
+          if (readBtn.classList.contains('completion')) {
+            readBtn.setAttribute('data-reading-id', '0');
+            readBtn.textContent = '読んだ!';
           } else {
-            // リクエスト失敗時の処理
-            throw new Error(response.statusText);
+            readBtn.setAttribute('data-reading-id', '1');
+            readBtn.textContent = '完了済み';
           }
-          // try-catch
-        } catch (error) {
-          console.error('エラーが発生しました', error);
+        } else {
+          // リクエスト失敗時の処理
+          console.error('エラーが発生しました', response.statusText);
         }
       });
     });
-  }
 
   const getCsrfToken = () => {
     const metas = document.getElementsByTagName('meta');
