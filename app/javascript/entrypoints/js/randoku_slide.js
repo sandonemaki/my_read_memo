@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const metas = document.getElementsByTagName('meta');
     for (let meta of metas) {
       if (meta.getAttribute('name') === 'csrf-token') {
-        console.log('csrf-token:', meta.getAttribute('content'));
         return meta.getAttribute('content');
       }
     }
