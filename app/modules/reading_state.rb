@@ -19,7 +19,11 @@ module State
     end
 
     def seidoku_status?
-      unread_randoku_imgs >= book_total_pages / 8 && unread_randoku_imgs < book_total_pages / 4
+      unread_randoku_imgs_count >= book_total_pages / 8 && unread_randoku_imgs_count < book_total_pages / 4
+    end
+
+    def unread_randoku_imgs_count
+      randoku_imgs_count[0] ||= 0 # 未読の数(0)
     end
   end
 end
