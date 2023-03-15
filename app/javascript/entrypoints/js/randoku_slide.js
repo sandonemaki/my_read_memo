@@ -93,6 +93,5 @@ document.addEventListener('DOMContentLoaded', function() {
         return meta.getAttribute('content');
       }
     }
-    return '';
   }
 });
