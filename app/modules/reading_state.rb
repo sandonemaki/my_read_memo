@@ -17,5 +17,9 @@ module State
     def randoku_status?
       randoku_imgs_count < book_total_pages / 8
     end
+
+    def seidoku_status?
+      unread_randoku_imgs >= book_total_pages / 8 && unread_randoku_imgs < book_total_pages / 4
+    end
   end
 end
