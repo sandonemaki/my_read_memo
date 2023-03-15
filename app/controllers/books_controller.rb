@@ -61,27 +61,4 @@ class BooksController < ApplicationController
     book_view_model = ViewModel::BooksShow.new(book: book)
     render("show", locals: {book: book_view_model})
   end
-
-  def update
-    book = Book.find_by(id: params[:id])
-    respond_to do |format|
-      format.json {
-        img_id = book_params[:img_id]
-        reading_id = book_params[:reading_id]
-        if reading_id.present?
-          book.randoku_imgs.find_by(id: img_id).reading_state = reading_id
-          unless book.save
-            render json: { status: :unprocessable_entity, message: book.errors.full_messages.join(',') }
-          end
-        end
-      }
-    end
-  end
-
-  private
-
-  def book_params
-    params.permit(:reading_id, :img_id)
-  end
-
 end

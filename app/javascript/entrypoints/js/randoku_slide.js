@@ -56,10 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const bookId = parseInt(readBtn.getAttribute('data-book-id'));
       const updateData = {
         reading_id: readingId,
-        img_id: imgId
       };
 
-      const response = await fetch(`/books/${bookId}`, {
+      const response = await fetch(`/books/${bookId}/imgs/${imgId}/toggle_already_read`, {
         method: 'PUT',
         credentials: 'same-origin',
         headers: {
