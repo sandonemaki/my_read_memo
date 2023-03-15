@@ -13,5 +13,9 @@ module State
       return State::READING_STATE.key("精読") if seidoku_status?
       State::READING_STATE.key("通読")
     end
+
+    def randoku_status?
+      randoku_imgs_count < book_total_pages / 8
+    end
   end
 end
