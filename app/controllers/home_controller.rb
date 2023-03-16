@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def search
-    all_randoku_state_books = Book.where(reading_state: "0").where(reading_state: "2") # 0 == 乱読, 2 == 通読
+    all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     book_view_models = ViewModel::HomeSearch.new(
       all_randoku_state_books: all_randoku_state_books,
