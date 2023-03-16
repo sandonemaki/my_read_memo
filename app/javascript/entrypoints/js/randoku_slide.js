@@ -3,15 +3,15 @@ import 'swiper/swiper-bundle.css';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  const modalTriggers = document.querySelectorAll("#sw_modal_trigger");
+  const modalTriggers = document.querySelectorAll("#sw_modal_trigger") || [];
   // スライド
-  const imgName = document.querySelector("#sw_img_name");
-  const imgs = document.querySelectorAll("#swiper_img");
-  const updatedAt = document.querySelector("#sw_updated_at");
-  const readBtns = document.querySelectorAll('#sw_read_btn') || [];
+  const imgName = document.querySelector("#sw_img_name")      || [];
+  const imgs = document.querySelectorAll("#swiper_img")       || [];
+  const updatedAt = document.querySelector("#sw_updated_at")  || [];
+  const readBtns = document.querySelectorAll('#sw_read_btn')  || [];
   // モーダル
-  const modal = document.querySelector(".sw-modal")
-  const closeButton = document.querySelector("#sw-close-btn")
+  const modal = document.querySelector(".sw-modal")           || [];
+  const closeButton = document.querySelector("#sw-close-btn") || [];
 
 
   const swiper = new Swiper(".swiper", {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // モーダルを開く。クリックされた画像からスライドを始める
-  const slides = document.querySelectorAll(".swiper-slide");
+  const slides = document.querySelectorAll(".swiper-slide") || [];
   modalTriggers.forEach(torigger => {
     torigger.addEventListener('click', () => {
       const slideIndex = torigger.dataset.slideIndex;
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // モーダルを閉じる
-  closeButton.addEventListener("click", (e) => {
+  closeButton.addEventListener("click", () => {
     modal.classList.remove('active');
   });
 
