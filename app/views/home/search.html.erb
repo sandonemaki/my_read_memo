@@ -1,7 +1,7 @@
 <h1>メモを検索する</h1>
 <%= form_tag("/home/search", method: :post) do %>
   <div>
-    <select name="value"><option value="">メモの種類で検索をする</option>
+    <select name="value[]"><option value="">メモの種類で検索をする</option>
       <optgroup label="乱読メモ">
         <% book.randoku_memo_type.each.with_index do |(k, value), i| %>
           <option value="randoku[<%=i%>]"><%= value %></option>
