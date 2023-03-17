@@ -10,8 +10,9 @@ class Books::RandokuMemosController < ApplicationController
       SeidokuHistory.set(new_path, book.id)
     end
 
-    randoku_img_first_post_filename =
-      book.randoku_imgs.exists?(id: 1) ? book.randoku_imgs.find_by(id: 1).name : ""
+    randoku_img_first_post = book.randoku_imgs.order(:created_at).first
+    randoku_img_first_post_filename = randoku_img_first_post ? randoku_img_first_post.name : ""
+
     book_view_model = ViewModel::BooksRandokuMemosIndex.new(
       book: book,
       randoku_img_first_post_filename: randoku_img_first_post_filename
