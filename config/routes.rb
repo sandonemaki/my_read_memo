@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   post "books/:book_id/seidoku_memos/create" => "books/seidoku_memos#create"
 
   # search
-  get "search" => "home#search"
+  get "memo_search" => "home#memo_search"
 
   get "books/seidoku_index" => "books#seidoku_index"
   root to: "books#randoku_index"
