@@ -13,6 +13,7 @@ class Books::RandokuMemosController < ApplicationController
     randoku_img_first_post = book.randoku_imgs.order(:created_at).first
     randoku_img_first_post_filename = randoku_img_first_post ? randoku_img_first_post.name : ""
 
+    # todo: view_modelを作成する
     book_view_model = ViewModel::BooksRandokuMemosIndex.new(
       book: book,
       randoku_img_first_post_filename: randoku_img_first_post_filename
