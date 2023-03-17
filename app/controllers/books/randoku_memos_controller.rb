@@ -32,7 +32,7 @@ class Books::RandokuMemosController < ApplicationController
   def create
     book = Book.find_by(id: params[:book_id])
     randoku_memos = book.randoku_memos.new(
-      content_state: params[:value].to_i,
+      content_state: params[:value].first.to_i,
       content: params[:content]
     )
     if randoku_memos.save
