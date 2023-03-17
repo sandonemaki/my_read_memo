@@ -1,6 +1,7 @@
 module ViewModel
+  # todo:要挙動確認。view_modelではなくクラス化必要?
   class Search
-    attr_reader :selected_memos, :selected_memos_count, :randoku_memo_type, :seidoku_memo_type
+    attr_reader :selected_memos_count, :randoku_memo_type, :seidoku_memo_type, :selected_memos
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, content_type:,
                    randoku_memo_type:, seidoku_memo_type:)
@@ -24,27 +25,33 @@ module ViewModel
       end
 
       @selected_memos_count = selected_memos.count || 0
-
       @selected_memos =
-      if seleted_memos.present?
-        selected_memos.map { |memo|
-          mbook = Book.find_by(id: memo.book_id)
-          reading_progress = mbook.reading_state
-          { content: memo.content,
-            created_at: I18n.l(memo.created_at, format: :short),
-            content_state:
-              if ['0', '2'].include?(reading_progress)
-                RANDOKU_MEMO_TYPE[memo.content_state]
-              else
-                SEIDOKU_MEMO_TYPE[memo.content_state]
-              end
-            book_title: book.title,
-            book_author: book.author_1,
-            book_reading_progress: reading_progress
+        if seleted_memos.present?
+          selected_memos.map { |memo|
+            book = Book.find_by(id: memo.book_id)
+            ViewModel::SelectedMemo.new(memo: memo, book: book)
           }
-        }
-      end
-
+        end
     end #initialize
   end
+
+  class SelectedMemo
+    attr_reader :content, :created_at, :book_reading_progress, :content_type,
+      :book_title, :book_author
+
+    def initialize(memo:, book:)
+      @content = memo.content
+      @created_at = I18n.l(memo.created_at, format: :short)
+      @book_reading_progress = book.reading_state
+      @content_type =
+        if ['0', '2'].include?(@reading_progress)
+          RANDOKU_MEMO_TYPE[memo.content_state]
+        else
+          SEIDOKU_MEMO_TYPE[memo.content_state]
+        end
+      @book_title = book.title
+      @book_author = book.author_1
+    end
+  end
+
 end
