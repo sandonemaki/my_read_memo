@@ -10,6 +10,7 @@ class Books::SeidokuMemosController < ApplicationController
       SeidokuHistory.set(new_path, book.id)
     end
 
+    # todo: view_modelを作成する
     book_view_model = ViewModel::BooksSeidokuMemosIndex.new(book: book)
     render("index", locals:{book: book_view_model})
   end
