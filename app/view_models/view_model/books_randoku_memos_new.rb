@@ -10,7 +10,7 @@ module ViewModel
       @randoku_memo_time_now = I18n.l(Time.now, format: :short)
       @randoku_memo_q = State::RANDOKU_MEMO_Q
       @randoku_memo_bkg = State::RANDOKU_MEMO_BKG
-      # セレクトボックのparams[:value].first
+      # String セレクトボックのparams[:value].first
       @randoku_memo_content_type = randokumemo_content_type
       @randoku_memo_content = randokumemo_content
     end
