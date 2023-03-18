@@ -29,8 +29,8 @@ class Books::SeidokuMemosController < ApplicationController
     else
       book_view_model = ViewModel::BooksSeidokuMemosNew.new(
         book: book,
-        content_state: params[:value].first,
-        content: params[:content]
+        seidokumemo_content_type: params[:value].first,
+        seidokumemo_content: params[:content]
       )
       render("new", locals:{book: book_view_model})
     end

@@ -9,7 +9,7 @@
   <div>
     <select name="value[]"><option value="">メモの内容を選択する</option>
       <% book.seidoku_memo_type.each do | k, value | %>
-        <% if book.seidoku_memo_content_state == k %>
+        <% if book.seidoku_memo_content_type == k %>
           <option value="<%= k %>" selected><%= value %></option>
         <% else %>
           <option value="<%= k %>"><%= value %></option>
