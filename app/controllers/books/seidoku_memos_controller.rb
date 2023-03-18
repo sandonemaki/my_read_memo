@@ -20,7 +20,7 @@ class Books::SeidokuMemosController < ApplicationController
   def create
     book = Book.find_by(id: params[:book_id])
     seidoku_memos = book.seidoku_memos.new(
-      content_state: params[:value].to_i,
+      content_state: params[:value].first.to_i,
       content: params[:content]
     )
     if seidoku_memos.save
@@ -29,7 +29,7 @@ class Books::SeidokuMemosController < ApplicationController
     else
       book_view_model = ViewModel::BooksSeidokuMemosNew.new(
         book: book,
-        content_state: params[:value],
+        content_state: params[:value].first,
         content: params[:content]
       )
       render("new", locals:{book: book_view_model})
