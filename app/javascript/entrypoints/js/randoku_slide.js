@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const imgId = parseInt(readBtn.getAttribute('data-img-id'));
       const bookId = parseInt(readBtn.getAttribute('data-book-id'));
       const updateData = {
-        reading_id: readingId,
+        alreadyread_toggle: readingId,
       };
 
       const response = await fetch(`/books/${bookId}/imgs/${imgId}/toggle_already_read`, {
