@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-	const readBtns = document.querySelectorAll('#sw_read_btn') || [];
+  const readBtns = document.querySelectorAll('#sw_read_btn') || [];
 
   // 未読・既読/toggle-button
   readBtns.forEach(readBtn => {
@@ -87,6 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return meta.getAttribute('content');
       }
     }
-		throw new Error('CSRF token meta tag not found');
+    throw new Error('CSRF token meta tag not found');
   }
 });
