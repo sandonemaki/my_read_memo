@@ -87,5 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return meta.getAttribute('content');
       }
     }
+		throw new Error('CSRF token meta tag not found');
   }
 });
