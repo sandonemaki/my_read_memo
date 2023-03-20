@@ -6,8 +6,10 @@ class Books::ImgsController < ApplicationController
     book = Book.find_by(id: params[:book_id])
     # randoku_imgsのカラム、reading_state はis_already_readに変更予定
     book.randoku_imgs.find_by(id: params[:id]).reading_state = img_params[:alreadyread_toggle]
-    unless book.save
-      render json: { status: :unprocessable_entity, message: book.errors.full_messages.join(',') }
+    if book.save
+      render json: { status: :ok }
+    else
+      render json: { status: 500 }
     end
   end
 

@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       } else {
         // リクエスト失敗時の処理
-        console.error('エラーが発生しました', response.statusText);
+        throw new Error(`${response.status} 保存ができませんでした`);
       }
     });
   });
