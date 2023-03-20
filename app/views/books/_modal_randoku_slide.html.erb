@@ -1,0 +1,40 @@
+<!-- モーダル -->
+<div class="sw-modal">
+  <div class="sw-reveal-outer">
+    <div class="sw-reveal-wrapper">
+      <div class="sw-reveal-inner">
+
+        <!-- Sliderを包むコンテナ要素 -->
+        <div class="swiper">
+          <!-- スライド要素を包む要素 -->
+          <div class="swiper-wrapper">
+            <!-- 各スライド -->
+            <% book.randoku_imgs_all.each do |slide_img| %>
+              <div class="swiper-slide">
+                <div class="sw_img_name">
+                  <p><%= slide_img.name %></p>
+                </div>
+                <div id="sw_bookmark_flag" class="sw_bookmark">
+                </div>
+                <div class="sw_img">
+                  <img src="<%= "#{slide_img.path}" %>?#{Time.now.to_i}" alt=" " />
+                </div>
+                <div class="sw_updated">
+                  <p><%= slide_img.updated_at %></p>
+                </div>
+                <button id="sw_read_btn" class="sw-read-btn" data-reading-id="0" data-img-id="<%= slide_img.id %>" data-book-id="<%= book.id %>">読んだ!</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <button id="sw-button-prev" class="swiper-button-prev"></button>
+        <button id="sw-button-next" class="swiper-button-next"></button>
+
+        <button id="sw-close-btn" class="sw-close-button">&times;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
