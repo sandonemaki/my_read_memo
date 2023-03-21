@@ -2,6 +2,17 @@ class Books::ImgsController < ApplicationController
   require 'tmpdir'
   require 'fileutils'
 
+  def toggle_already_read
+    book = Book.find_by(id: params[:book_id])
+    # randoku_imgsのカラム、reading_state はis_already_readに変更予定
+    book.randoku_imgs.find_by(id: params[:id]).reading_state = img_params[:alreadyread_toggle]
+    if book.save
+      render json: { status: :ok }
+    else
+      render json: { status: 500 }
+    end
+  end
+
   def create
     if params[:page_imgs]
       page_imgs = params[:page_imgs]
@@ -112,4 +123,12 @@ class Books::ImgsController < ApplicationController
     flash[:notice] = "画像を保存しました"
     redirect_to("/books/#{book.id}")
   end
+
+  private
+
+  def img_params
+    params.permit(:alreadyread_toggle)
+  end
+
+
 end

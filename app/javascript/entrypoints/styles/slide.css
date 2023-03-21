@@ -43,6 +43,19 @@
   bottom: 50px;
   text-align: center;
 }
+.sw-read-btn {
+  margin-bottom: 12px;
+  width: 120px;
+  margin-top: 40px;
+  border: 2px solid #27acd9;
+  color: #27acd9;
+  border-radius: 100vh;
+  transition: 0.5s;
+}
+.sw-read-btn.completion {
+  color: #fff;
+  background: #27acd9;
+}
 
 /**** モーダル *** */
 .sw-reveal-outer {

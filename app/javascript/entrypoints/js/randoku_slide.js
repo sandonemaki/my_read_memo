@@ -3,16 +3,6 @@ import 'swiper/swiper-bundle.css';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  const modalTriggers = document.querySelectorAll("#sw_modal_trigger");
-  // スライド
-  const imgName = document.querySelector("#sw_img_name");
-  const imgs = document.querySelectorAll("#swiper_img");
-  const updatedAt = document.querySelector("#sw_updated_at");
-  // モーダル
-  const modal = document.querySelector(".sw-modal")
-  const closeButton = document.querySelector("#sw-close-btn")
-
-
   const swiper = new Swiper(".swiper", {
     slidesPerView: 'auto',//スライドの余白を自動調整
     centeredSlides: true, //中央揃え
@@ -32,7 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // モーダルを開く。クリックされた画像からスライドを始める
-  const slides = document.querySelectorAll(".swiper-slide");
+  const modalTriggers = document.querySelectorAll("#sw_modal_trigger") || [];
+  const modal = document.querySelector(".sw-modal")
+
   modalTriggers.forEach(torigger => {
     torigger.addEventListener('click', () => {
       const slideIndex = torigger.dataset.slideIndex;
@@ -42,7 +34,59 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // モーダルを閉じる
-  closeButton.addEventListener("click", (e) => {
+  const closeButton = document.querySelector("#sw-close-btn")
+
+  closeButton.addEventListener("click", () => {
     modal.classList.remove('active');
   });
+
+
+  const readBtns = document.querySelectorAll('#sw_read_btn') || [];
+
+  // 未読・既読/toggle-button
+  readBtns.forEach(readBtn => {
+    readBtn.addEventListener('click', async () => {
+      const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
+      const imgId = parseInt(readBtn.getAttribute('data-img-id'));
+      const bookId = parseInt(readBtn.getAttribute('data-book-id'));
+      const updateData = {
+        alreadyread_toggle: readingId,
+      };
+
+      const response = await fetch(`/books/${bookId}/imgs/${imgId}/toggle_already_read`, {
+        method: 'PUT',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': getCsrfToken()
+        },
+        body: JSON.stringify(updateData),
+      });
+
+      if (response.ok) {
+        // リクエスト成功時の処理
+        readBtn.classList.toggle('completion');
+        if (readBtn.classList.contains('completion')) {
+          readBtn.setAttribute('data-reading-id', '0');
+          readBtn.textContent = '読んだ!';
+        } else {
+          readBtn.setAttribute('data-reading-id', '1');
+          readBtn.textContent = '完了済み';
+        }
+      } else {
+        // リクエスト失敗時の処理
+        throw new Error(`${response.status} 保存ができませんでした`);
+      }
+    });
+  });
+
+  const getCsrfToken = () => {
+    const metas = document.getElementsByTagName('meta');
+    for (let meta of metas) {
+      if (meta.getAttribute('name') === 'csrf-token') {
+        return meta.getAttribute('content');
+      }
+    }
+    throw new Error('CSRF token meta tag not found');
+  }
 });
