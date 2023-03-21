@@ -6,4 +6,17 @@ class Book < ApplicationRecord
   validates :title, length: {maximum: 30, message: "30文字以内で入力してください"}
   validates :author_1, presence: {message: "著者を入力してください"}
   validates :author_1, length: {maximum: 30, message: "30文字以内で入力してください"}
+
+  def try_update_reading_state(judgement_type:)
+    new_reading_state = case judgement_type
+    when State::ReadingState::Randoku
+      0
+    when State::ReadingState::Seidoku
+      1
+    when State::ReadingState::Tudoku
+      2
+    else
+      raise Error
+    end
+  end
 end
