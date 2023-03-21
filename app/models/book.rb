@@ -7,7 +7,7 @@ class Book < ApplicationRecord
   validates :author_1, presence: {message: "著者を入力してください"}
   validates :author_1, length: {maximum: 30, message: "30文字以内で入力してください"}
 
-  def try_update_reading_state(judgement_type:)
+  def try_update_reading_state(book:, judgement_type:)
     new_reading_state = case judgement_type
     when State::ReadingState::Randoku
       0
@@ -17,6 +17,11 @@ class Book < ApplicationRecord
       2
     else
       raise Error
+    end
+
+    if book.reading_state != new_reading_state
+      book.reading_state = new_reading_state
+      book.save
     end
   end
 end
