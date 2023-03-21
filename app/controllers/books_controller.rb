@@ -36,7 +36,7 @@ class BooksController < ApplicationController
   def create
     book = Book.new(
       title: params[:title],
-      author_1: params[:author_1],
+      author_1: params[:author],
       publisher: params[:publisher],
       total_page: params[:total_page],
     )
