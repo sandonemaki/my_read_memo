@@ -3,7 +3,7 @@
 <%= book.title %>
 </p>
 <p>
-<%= book.author_1 %>
+<%= book.author %>
 </p>
 <p>
 <%= book.publisher %>
@@ -13,7 +13,7 @@
 </p>
 <p>乱読画像メモ</p>
 <p>
-未読：<%= book.randoku_img_read_again_count %>, 読了：<%= book.randoku_img_finish_read_count %>
+未読：<%= book.randoku_imgs_unread_count %>, 読了：<%= book.randoku_imgs_alreadyread_count %>
 </p>
 
 
@@ -30,7 +30,7 @@
 
 <!--画像メモ一覧を表示-->
 <h2>乱読メモ一覧</h2>
-<% if book.randoku_img_file_names.empty? %>
+<% if book.randoku_imgs_file_names.empty? %>
   "画像がありません"
 <% else %>
   <% book.randoku_imgs_all.each_with_index do |img, i| %>
