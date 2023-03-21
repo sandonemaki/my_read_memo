@@ -16,7 +16,7 @@ class Book < ApplicationRecord
     when State::ReadingState::Tudoku
       2
     else
-      raise Error
+      raise TypeError, "無効の型が判定されました"
     end
 
     if book.reading_state != new_reading_state
