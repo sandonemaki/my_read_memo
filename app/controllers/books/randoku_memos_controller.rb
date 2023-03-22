@@ -2,8 +2,13 @@ class Books::RandokuMemosController < ApplicationController
   def index
     book = Book.find_by(id: params[:book_id])
     new_path = "books/#{book.id}/randoku_memos/index"
-    book.reading_state == 0 || 2 ?
-      RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
+
+    # 学習履歴を保存
+    if ['0', '2'].include?(book.reading.to_s)
+      RandokuHistory.set(new_path, book.id)
+    else
+      SeidokuHistory.set(new_path, book.id)
+    end
 
     randoku_img_first_post_filename =
       book.randoku_imgs.exists?(id: 1) ? book.randoku_imgs.find_by(id: 1).name : ""
