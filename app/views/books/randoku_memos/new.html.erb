@@ -9,20 +9,20 @@
   <div>
     <select name="value[]"><option value="">メモの内容を選択する</option>
       <optgroup label="質問">
-        <% book.randoku_memo_q.each.with_index do |(k, value), i| %>
-          <% if book.randoku_memo_content_state == k %>
-            <option value="<%=i%>" selected><%= value %></option>
+        <% book.randoku_memo_q.each do | k, value | %>
+          <% if book.randoku_memo_content_type == k %>
+            <option value="<%= k %>" selected><%= value %></option>
           <% else %>
-            <option value="<%=i%>"><%= value %></option>
+            <option value="<%= k %>"><%= value %></option>
           <% end %>
         <% end %>
       </optgroup>
       <optgroup label="背景">
-        <% book.randoku_memo_bkg.each.with_index(1) do |(k, value), i| %>
-          <% if book.randoku_memo_content_state == value %>
-            <option value="<%=i%>" selected><%= value %></option>
+        <% book.randoku_memo_bkg.each do | k, value | %>
+          <% if book.randoku_memo_content_type == k %>
+            <option value="<%= k %>" selected><%= value %></option>
           <% else %>
-            <option value="<%=i%>"><%= value %></option>
+            <option value="<%= k %>"><%= value %></option>
           <% end %>
         <% end %>
       </optgroup>
