@@ -7,7 +7,7 @@
 
 <%= form_tag("/books/#{book.id}/randoku_memos/create", method: :post) do %>
   <div>
-    <select name="value"><option value="">メモの内容を選択する</option>
+    <select name="value[]"><option value="">メモの内容を選択する</option>
       <optgroup label="質問">
         <% book.randoku_memo_q.each.with_index do |(k, value), i| %>
           <% if book.randoku_memo_content_state == k %>
