@@ -41,8 +41,8 @@ class Books::RandokuMemosController < ApplicationController
     else
       book_view_model = ViewModel::BooksRandokuMemosNew.new(
         book: book,
-        content_state: params[:value],
-        content: params[:content]
+        randokumemo_content_type: params[:value].first,
+        randokumemo_content: params[:content]
       )
       render("new", locals:{book: book_view_model})
     end
