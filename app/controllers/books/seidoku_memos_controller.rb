@@ -2,8 +2,13 @@ class Books::SeidokuMemosController < ApplicationController
   def index
     book = Book.find_by(id: params[:book_id])
     new_path = "books/#{book.id}/seidoku_memos/index")
-    book.reading_state == 0 || 2 ?
-      RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
+
+    # 学習履歴を保存
+    if ['0', '2'].include?(book.reading.to_s)
+      RandokuHistory.set(new_path, book.id)
+    else
+      SeidokuHistory.set(new_path, book.id)
+    end
 
     book_view_model = ViewModel::BooksSeidokuMemosIndex.new(book: book)
     render("index", locals:{book: book_view_model})
