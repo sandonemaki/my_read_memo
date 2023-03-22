@@ -4,30 +4,42 @@ module ViewModel
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, content_type:,
                    randoku_memo_type:, seidoku_memo_type:)
-      selected_memos =
-        case content_value
-        when content_value.include?("randoku")
-          all_randoku_state_books.where(content_state: "#{content_type.match(/[(0-2)]/).to_s}")
-        when content_value.include?("seidoku")
-          all_seidoku_state_books.where(content_state: "#{content_type.match(/[(0-3)]/).to_s}")
-        end
-      @selected_memos_count = selected_memos.count
-      @selected_memos =
-        selected_memos.map do |memo|
-          reading_progress = Book.find_by(id: memo.book_id).reading_state
-          # TODO: hashをクラス化する
-          { content: memo.content,
-            created_at: I18n.l(memo.created_at, format: :short),
-            # TODO: 0,2を使わない。reading_stateの文字列->intに詰め替えるメソッドを使う
-            content_state: book_reading_state == 0 || 2 ?
-            randoku_memo_type[memo.content_state] : seidoku_memo_type[memo.content_state]
-            book_title: Book.find_by(id: memo.book_id).title,
-            book_author: Book.find_by(id: memo.book_id).author_1,
-            book_reading_progress: reading_progress
-          }
-        end
+      @content_type = content_type
       @randoku_memo_type = randoku_memo_type
       @seidoku_memo_type = seidoku_memo_type
-    end
+      selected_memos =
+        case @content_type[0]
+        when /^randoku\[\d+\]$/
+          index = @content_type[0]&.scan(/\d+/)&.first&.to_i
+          all_randoku_state_books.map {|book|
+            book.randoku_memos.where(content_state: index)
+          }.flatten
+        when /^seidoku\[\d+\]$/
+          index = @content_type[0]&.scan(/\d+/)&.first&.to_i
+          all_randoku_state_books.map {|book|
+            book.seidoku_memos.where(content_state: index)
+          }.flatten
+        end || []
+      @selected_memos_count = selected_memos.count || 0
+      @selected_memos =
+        selected_memos&.map do |memo|
+          book = Book.find_by(id: memo.book_id)
+          reading_progress = book.reading_state || 0
+          # TODO: hashをクラスにする
+          { content: memo.content,
+            created_at: I18n.l(memo.created_at, format: :short),
+            # TODO: reading_state 0,2 を文字列から数字に詰め替えるメソッドで表現する
+            content_state:
+              if ['0', '2'].include?(reading_progress)
+                RANDOKU_MEMO_TYPE[memo.content_state]
+              else
+                SEIDOKU_MEMO_TYPE[memo.content_state]
+              end
+            book_title: book.title,
+            book_author: book.author_1,
+            book_reading_progress: reading_progress
+          }
+        end || []
+      end
   end
 end
