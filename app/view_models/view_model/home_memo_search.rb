@@ -11,18 +11,18 @@ module ViewModel
       @seidoku_memo_type = seidoku_memo_type
 
       selected_memos =
-      case @content_type[0]
-      when /^randoku\[\d+\]$/
-        index = @content_type[0].scan(/\d+/).first.to_i
-        all_randoku_state_books.map {|book|
-          book.randoku_memos.where(content_state: index)
-        }.flatten
-      when /^seidoku\[\d+\]$/
-        index = @content_type[0].scan(/\d+/).first.to_i
-        all_randoku_state_books.map {|book|
-          book.seidoku_memos.where(content_state: index)
-        }.flatten
-      end
+        case @content_type[0]
+        when /^randoku\[\d+\]$/
+          index = @content_type[0].scan(/\d+/).first.to_i
+          all_randoku_state_books.map {|book|
+            book.randoku_memos.where(content_state: index)
+          }.flatten
+        when /^seidoku\[\d+\]$/
+          index = @content_type[0].scan(/\d+/).first.to_i
+          all_randoku_state_books.map {|book|
+            book.seidoku_memos.where(content_state: index)
+          }.flatten
+        end
 
       @selected_memos_count = selected_memos.count || 0
       @selected_memos =
@@ -33,6 +33,7 @@ module ViewModel
           }
         end
     end #initialize
+
   end
 
   class SelectedMemo
