@@ -15,6 +15,7 @@ class BooksController < ApplicationController
   end
 
   def seidoku_index
+    # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
     all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
@@ -56,6 +57,7 @@ class BooksController < ApplicationController
   def show
     book = Book.find_by(id: params[:id])
     new_path = "books/#{book.id}"
+    # TODO: reading_stateのStringをIntに変換するメソッドを使う
     book.reading_state == 0 || 2 ?
       RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
     book_view_model = ViewModel::BooksShow.new(book: book)
