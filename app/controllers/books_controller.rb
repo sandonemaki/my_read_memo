@@ -57,9 +57,15 @@ class BooksController < ApplicationController
   def show
     book = Book.find_by(id: params[:id])
     new_path = "books/#{book.id}"
-    # TODO: reading_stateのStringをIntに変換するメソッドを使う
-    book.reading_state == 0 || 2 ?
-      RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
+
+    # 学習履歴を保存
+    # TODO: 数字ではなくモデリング名を使用する
+    if ['0', '2'].include?(book.reading.to_s)
+      RandokuHistory.set(new_path, book.id)
+    else
+      SeidokuHistory.set(new_path, book.id)
+    end
+
     book_view_model = ViewModel::BooksShow.new(book: book)
     render("show", locals: {book: book_view_model})
   end
