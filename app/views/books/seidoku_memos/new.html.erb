@@ -5,7 +5,7 @@
   <%= book.seidoku_memo_time_now %>
 </div>
 
-<%= form_tag("/book_pages/#{book.id}/seidoku_memos/create", method: :post) do %>
+<%= form_tag("/books/#{book.id}/seidoku_memos/create", method: :post) do %>
   <div>
     <select name="value"><option value="">メモの内容を選択する</option>
       <% book.seidoku_memo_type.each.with_index do |(k, value), i| %>
