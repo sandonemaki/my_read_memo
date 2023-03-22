@@ -18,12 +18,12 @@
 <h3>検索結果</h3>
 <p>result<%= book.selected_memos_count %>件</p>
 <div>
-  <% book.selected_memos.each do |memo| %>
-    <%= memo[:created_at] %><br>
-    <%= memo[:content_state] %><br>
-    <%= memo[:content] %><br>
-    <%= memo[:book_title] %><br>
-    <%= memo[:book_author] %><br>
-    <%= memo[:book_reading_progress] %><br>
+	<% book.selected_memos.each do |memo| %>
+    <%= memo.created_at %><br>
+    <%= memo.content_type %><br>
+    <%= memo.content %><br>
+    <%= memo.book_title %><br>
+    <%= memo.book_author %><br>
+    <%= memo.book_reading_progress %><br>
   <% end %>
 </div>
