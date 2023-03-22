@@ -1,6 +1,6 @@
 module ViewModel
   # todo:要挙動確認。view_modelではなくクラス化必要?
-  class Search
+  class HomeMemoSearch
     attr_reader :selected_memos_count, :randoku_memo_type, :seidoku_memo_type, :selected_memos
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, content_type:,
