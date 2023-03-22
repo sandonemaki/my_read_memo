@@ -14,14 +14,16 @@ module ViewModel
       @selected_memos_count = selected_memos.count
       @selected_memos =
         selected_memos.map do |memo|
-          book_reading_state = Book.find_by(id: memo.book_id).reading_state
+          reading_progress = Book.find_by(id: memo.book_id).reading_state
+          # TODO: hashをクラス化する
           { content: memo.content,
             created_at: I18n.l(memo.created_at, format: :short),
-            content_state: book_reading_state == 0 || 1 ?
+            # TODO: 0,2を使わない。reading_stateの文字列->intに詰め替えるメソッドを使う
+            content_state: book_reading_state == 0 || 2 ?
             randoku_memo_type[memo.content_state] : seidoku_memo_type[memo.content_state]
             book_title: Book.find_by(id: memo.book_id).title,
             book_author: Book.find_by(id: memo.book_id).author_1,
-            book_reading_state: book_reading_state
+            book_reading_progress: reading_progress
           }
         end
       @randoku_memo_type = randoku_memo_type
