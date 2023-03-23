@@ -1,21 +1,5 @@
 module State
 
-  # DBから取り出した値をview用に変換するメソッド
-  def display_reading_type(db_reading_status:)
-    case db_reading_status
-    when 0
-      "乱読"
-    when 1
-      "精読"
-    when 2
-      "通読"
-    else
-      raise TypeError, "未定義の本の状態です"
-    end
-  end
-
-
-
   module ReadingState
 
     def judgement_type(totalpage:, already_read:, unread:)
