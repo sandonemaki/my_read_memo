@@ -28,6 +28,7 @@ module ViewModel
 
 
         # 「前回の続き」用
+        # TODO: ハッシュをクラスにする
         @randoku_history =
           { titile: randoku_history.title,
             randoku_imgs_count: randoku_history.randoku_imgs.count,
@@ -43,7 +44,8 @@ module ViewModel
             end,
             path: RandokuHistory.last.path,
             randoku_history_ranking: randoku_img_ranking.include?(randoku_history.id) ?
-            randoku_img_ranking.index(randoku_history.id)+1 : "" }
+            randoku_img_ranking.index(randoku_history.id)+1 : ""
+          }
       end
 
       # 全ての乱読画像合計数
