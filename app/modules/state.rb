@@ -1,4 +1,6 @@
 module State
+  # TODO: 以下の定数の使用をやめて以下に定義したメソッドを使用する
+  READING_STATE = { 0 => "乱読", 1 => "精読", 2 => "通読" }.freeze
 
   # 乱読メモセレクトボックスに使用
   RANDOKU_MEMO_Q = {
