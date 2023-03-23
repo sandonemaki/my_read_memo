@@ -14,8 +14,11 @@ ewModel
 
       seidoku_history = Book.find_by(id: SeidokuHistory.last.book_id) if SeidokuHistory.last.present?
 
-        # 精読メモが多い順のbook_id。1-3位まで
-        seidoku_memo_ranking = SeidokuMemo.group(:book_id).order('count(book_id) desc').pluck(:book_id)[0..2]
+      # 精読中の本の中から精読メモが多い順のbook_id。1-3位まで
+      seidoku_memo_ranking = all_seidoku_state_books.joins(:seidoku_memos)
+        .group('book.id')
+        .select('books.id, COUNT(seidoku_memos.id) as count')
+        .order('COUNT(seidoku_memos.id) DESC').limit(3).pluck(:id)
 
         #「前回の続き」用
         @seidoku_history =
