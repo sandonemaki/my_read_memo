@@ -38,43 +38,43 @@ module ViewModel
           seidoku_history_ranking: seidoku_memo_ranking.include?(seidoku_history.id) ?
           seidoku_memo_ranking.index(seidoku_history.id)+1 : ""
         }
+
+      # 全ての乱読画像合計数
+      @all_randoku_imgs_count =
+        Book.includes(:randoku_imgs).where.not(reading_state: "1").sum("randoku_imgs.id")
+
+      # 現在精読ステータス中の本の中から精読メモの数が多い順に並べる
+      seidoku_memos_desc_of_seidoku_state_books =
+        all_seidoku_state_books.joins(:seidoku_memos)
+        .group('books.id')
+        .select('books.*, COUNT(seidoku_memos.id) as seidoku_memos_count')
+        .order('seidoku_memos_count DESC')
+
+
+      @seidoku_memos_desc_of_seidoku_state_books =
+        seidoku_memos_desc_of_seidoku_state_books.map do |book|
+          { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, seidoku_memos_count: book.seidoku_memos.count }
+        end
+
+      # 精読メモの投稿順
+      created_seidoku_memos_desc_of_seidoku_state_books =
+        all_seidoku_state_books.find(
+          SeidokuMemo.order('created_at desc').pluck(:book_id)
+        )
+      @created_seidoku_memos_desc_of_seidoku_state_books =
+        created_seidoku_memos_desc_of_seidoku_state_books.map do |book|
+          { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, seidoku_memos_count: book.seidoku_memos.count }
+        end
+
+      # 精読本の投稿順
+      created_books_desc_of_seidoku_state_books =
+        all_seidoku_state_books.find(
+          Book.all.order('created_at desc').pluck(:id)
+        )
+      @created_books_desc_of_seidoku_state_books =
+        created_books_desc_of_seidoku_state_books.map do |book|
+          { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, seidoku_memos_count: book.seidoku_memos.count }
+        end
     end
-
-    # 全ての乱読画像合計数
-    @all_randoku_imgs_count =
-      all_randoku_state_books.reduce(0) do |accumulator, book|
-        accumulator + book.randoku_imgs.count
-      end
-
-    # 精読メモが多い順
-    seidoku_memos_desc_of_seidoku_state_books =
-      all_seidoku_state_books.find(
-        SeidokuMemo.group(:book_id).order('count(book_id) desc').pluck(:book_id)
-      )
-    @seidoku_memos_desc_of_seidoku_state_books =
-      seidoku_memos_desc_of_seidoku_state_books.map do |book|
-        { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, seidoku_memos_count: book.seidoku_memos.count }
-      end
-
-    # 精読メモの投稿順
-    created_seidoku_memos_desc_of_seidoku_state_books =
-      all_seidoku_state_books.find(
-        SeidokuMemo.order('created_at desc').pluck(:book_id)
-      )
-    @created_seidoku_memos_desc_of_seidoku_state_books =
-      created_seidoku_memos_desc_of_seidoku_state_books.map do |book|
-        { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, seidoku_memos_count: book.seidoku_memos.count }
-      end
-
-    # 精読本の投稿順
-    created_books_desc_of_seidoku_state_books =
-      all_seidoku_state_books.find(
-        Book.all.order('created_at desc').pluck(:id)
-      )
-    @created_books_desc_of_seidoku_state_books =
-      created_books_desc_of_seidoku_state_books.map do |book|
-        { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, seidoku_memos_count: book.seidoku_memos.count }
-      end
   end
-end
 end
