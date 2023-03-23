@@ -60,7 +60,7 @@ class BooksController < ApplicationController
 
     # 学習履歴を保存
     # TODO: 数字ではなくモデリング名を使用する
-    if ['0', '2'].include?(book.reading.to_s)
+    if ['0', '2'].include?(book.reading_state.to_s)
       RandokuHistory.set(new_path, book.id)
     else
       SeidokuHistory.set(new_path, book.id)

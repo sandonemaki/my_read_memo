@@ -4,7 +4,7 @@ class Books::RandokuMemosController < ApplicationController
     new_path = "books/#{book.id}/randoku_memos/index"
 
     # 学習履歴を保存
-    if ['0', '2'].include?(book.reading.to_s)
+    if ['0', '2'].include?(book.reading_state.to_s)
       RandokuHistory.set(new_path, book.id)
     else
       SeidokuHistory.set(new_path, book.id)
