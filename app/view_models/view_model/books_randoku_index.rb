@@ -14,10 +14,10 @@ module ViewModel
 
       randoku_history = Book.find_by(id: RandokuHistory.last.book_id) if RandokuHistory.last.present?
 
-        # 乱読画像が多い順のbook_id。1-3位まで
-        randoku_img_ranking = Book.joins(:randoku_imgs).group('books.id')
-          .select('books.id, COUNT(randoku_imgs.id) as count')
-          .order('COUNT(randoku_imgs.id) DESC').limit(3).pluck(:id)
+      # 乱読画像が多い順のbook_id。1-3位まで
+      randoku_img_ranking = Book.joins(:randoku_imgs).group('books.id')
+        .select('books.id, COUNT(randoku_imgs.id) as count')
+        .order('COUNT(randoku_imgs.id) DESC').limit(3).pluck(:id)
 
 
 
