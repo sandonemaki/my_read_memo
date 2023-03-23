@@ -12,8 +12,8 @@ ewModel
       @all_randoku_state_count = all_randoku_state_books.count
       @all_seidoku_state_count = all_seidoku_state_books.count
 
-      if SeidokuHistory.last
-        seidoku_history_book = Book.find_by(id: SeidokuHistory.last.book_id)
+      seidoku_history = Book.find_by(id: SeidokuHistory.last.book_id) if SeidokuHistory.last.present?
+
         # 精読メモが多い順のbook_id。1-3位まで
         seidoku_memo_ranking = SeidokuMemo.group(:book_id).order('count(book_id) desc').pluck(:book_id)[0..2]
 
