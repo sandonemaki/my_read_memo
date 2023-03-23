@@ -86,7 +86,7 @@ module ViewModel
       # 乱読本の投稿順
       created_books_desc_of_randoku_state_books =
         all_randoku_state_books.find(
-          Book.all.order('created_at desc').pluck(:id)
+          Book.order('created_at desc').pluck(:id)
         )
       #TODO: ハッシュをクラスにする
       @created_books_desc_of_randoku_state_books =
