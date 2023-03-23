@@ -66,9 +66,14 @@ module ViewModel
         all_seidoku_state_books.find(
           SeidokuMemo.order('created_at desc').pluck(:book_id)
         )
+      #TODO: ハッシュをクラスにする
       @created_seidoku_memos_desc_of_seidoku_state_books =
         created_seidoku_memos_desc_of_seidoku_state_books.map do |book|
-          { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, seidoku_memos_count: book.seidoku_memos.count }
+          {
+            titile: book.title,
+            randoku_imgs_count: book.randoku_imgs.count,
+            seidoku_memos_count: book.seidoku_memos.count
+          }
         end
 
       # 精読本の投稿順
@@ -76,9 +81,14 @@ module ViewModel
         all_seidoku_state_books.find(
           Book.all.order('created_at desc').pluck(:id)
         )
+      #TODO: ハッシュをクラスにする
       @created_books_desc_of_seidoku_state_books =
         created_books_desc_of_seidoku_state_books.map do |book|
-          { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, seidoku_memos_count: book.seidoku_memos.count }
+          {
+            titile: book.title,
+            randoku_imgs_count: book.randoku_imgs.count,
+            seidoku_memos_count: book.seidoku_memos.count
+          }
         end
     end
   end
