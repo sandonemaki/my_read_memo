@@ -42,9 +42,7 @@ module ViewModel
 
       # 全ての乱読画像合計数
       @all_randoku_imgs_count =
-        all_randoku_state_books.reduce(0) do |accumulator, book|
-          accumulator + book.randoku_imgs.count
-        end
+      Book.includes(:randoku_imgs).where.not(reading_state: "1").sum("randoku_imgs.id")
 
       # 乱読画像が多い順
       imgs_desc_of_randoku_state_books =
