@@ -52,11 +52,12 @@ module ViewModel
       @all_randoku_imgs_count =
       Book.includes(:randoku_imgs).where.not(reading_state: "1").sum("randoku_imgs.id")
 
-      # 乱読画像が多い順
+      # 現在乱読ステータス中の本の中から乱読画像が多い順に並べる
       imgs_desc_of_randoku_state_books =
-        all_randoku_state_books.find(
-          RandokuImg.group(:book_id).order('count(book_id) desc').pluck(:book_id)
-      )
+        all_randoku_state_books.joins(:randoku_imgs)
+        .group('books.id')
+        .select('books.*, COUNT(randoku_imgs.id) as randoku_imgs_count')
+        .order('randoku_imgs_count DESC')
 
       @imgs_desc_of_randoku_state_books =
         imgs_desc_of_randoku_state_books.map do |book|
