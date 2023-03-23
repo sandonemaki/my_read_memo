@@ -14,11 +14,17 @@ module ViewModel
 
       randoku_history = Book.find_by(id: RandokuHistory.last.book_id) if RandokuHistory.last.present?
 
-      # 乱読画像が多い順のbook_id。1-3位まで
-      randoku_img_ranking = Book.joins(:randoku_imgs).group('books.id')
+      # すべての本の中から乱読画像が多い順のbook_id。1-3位まで
+      randoku_img_ranking = Book.joins(:randoku_imgs)
+        .group('books.id')
         .select('books.id, COUNT(randoku_imgs.id) as count')
         .order('COUNT(randoku_imgs.id) DESC').limit(3).pluck(:id)
 
+      # 現在乱読中の本の中から乱読画像が多い順のbook_id。1-3位まで
+      randoku_img_ranking = all_randoku_state_books.joins(:randoku_imgs)
+        .group('books.id')
+        .select('books.id, COUNT(randoku_imgs.id) as count')
+        .order('COUNT(randoku_imgs.id) DESC').limit(3).pluck(:id)
 
 
         # 「前回の続き」用
@@ -49,6 +55,7 @@ module ViewModel
         all_randoku_state_books.find(
           RandokuImg.group(:book_id).order('count(book_id) desc').pluck(:book_id)
       )
+
       @imgs_desc_of_randoku_state_books =
         imgs_desc_of_randoku_state_books.map do |book|
           { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
