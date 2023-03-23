@@ -12,8 +12,8 @@ module ViewModel
       @all_randoku_state_count = all_randoku_state_books.count
       @all_seidoku_state_count = all_seidoku_state_books.count
 
-      if RandokuHistory.last
-        randoku_history = Book.find_by(id: RandokuHistory.last.book_id)
+      randoku_history = Book.find_by(id: RandokuHistory.last.book_id) if RandokuHistory.last.present?
+
         # 乱読画像が多い順のbook_id。1-3位まで
         randoku_img_ranking = Book.joins(:randoku_imgs).group('books.id')
           .select('books.id, COUNT(randoku_imgs.id) as count')
