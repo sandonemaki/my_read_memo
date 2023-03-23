@@ -58,9 +58,14 @@ module ViewModel
         .select('books.*, COUNT(randoku_imgs.id) as randoku_imgs_count')
         .order('randoku_imgs_count DESC')
 
+      #TODO: ハッシュをクラスにする
       @imgs_desc_of_randoku_state_books =
         imgs_desc_of_randoku_state_books.map do |book|
-          { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
+          {
+            titile: book.title,
+            randoku_imgs_count: book.randoku_imgs.count,
+            randoku_memos_count: book.randoku_memos.count
+          }
         end
 
       # 乱読画像の投稿順
@@ -68,9 +73,14 @@ module ViewModel
         all_randoku_state_books.find(
           RandokuImg.order('created_at desc').pluck(:book_id)
         )
+      #TODO: ハッシュをクラスにする
       @created_imgs_desc_of_randoku_state_books =
         created_imgs_desc_of_randoku_state_books.map do |book|
-          { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
+          {
+            titile: book.title,
+            randoku_imgs_count: book.randoku_imgs.count,
+            randoku_memos_count: book.randoku_memos.count
+          }
         end
 
       # 乱読本の投稿順
@@ -78,9 +88,14 @@ module ViewModel
         all_randoku_state_books.find(
           Book.all.order('created_at desc').pluck(:id)
         )
+      #TODO: ハッシュをクラスにする
       @created_books_desc_of_randoku_state_books =
         created_books_desc_of_randoku_state_books.map do |book|
-          { titile: book.title, randoku_imgs_count: book.randoku_imgs.count, randoku_memos_count: book.randoku_memos.count }
+          {
+            titile: book.title,
+            randoku_imgs_count: book.randoku_imgs.count,
+            randoku_memos_count: book.randoku_memos.count
+          }
         end
     end
   end
