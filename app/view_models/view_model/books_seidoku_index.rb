@@ -79,7 +79,7 @@ module ViewModel
       # 精読本の投稿順
       created_books_desc_of_seidoku_state_books =
         all_seidoku_state_books.find(
-          Book.all.order('created_at desc').pluck(:id)
+          Book.order('created_at desc').pluck(:id)
         )
       #TODO: ハッシュをクラスにする
       @created_books_desc_of_seidoku_state_books =
