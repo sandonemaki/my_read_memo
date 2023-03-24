@@ -11,9 +11,8 @@
             <!-- 各スライド -->
             <% book.randoku_imgs_all.each do |slide_img| %>
               <div class="swiper-slide">
-                <div class="sw_img_name">
-                  <p><%= slide_img.name %></p>
-                </div>
+                <p class="sw_img_name"><%= slide_img.name %></p>
+                <p class="sw_book_title"><%= book.title %></p>
                 <div id="sw_bookmark_flag" class="sw_bookmark">
                 </div>
                 <div class="sw_img">
