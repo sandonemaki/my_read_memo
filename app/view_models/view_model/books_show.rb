@@ -2,7 +2,7 @@ module ViewModel
 
   class BooksShow
     attr_reader :id, :title, :author, :total_page, :reading_progress,
-      :publisher, :errors, :randoku_imgs_unread_count, :randoku_imgs_alreadyread_count,
+      :publisher, :errors, :first_post_img_path, :randoku_imgs_unread_count, :randoku_imgs_alreadyread_count,
       :randoku_imgs_file_names, :randoku_imgs_all_count, :randoku_imgs_all
 
 
@@ -23,6 +23,13 @@ module ViewModel
         end
       @publisher = book.publisher
       @errors = book.errors
+
+      @first_post_img_path =
+        if book.randoku_imgs.exists?(first_post_flag: 1)
+          "/#{book.id}/#{book.randoku_imgs.find_by(first_post_flag: 1).name}"
+        else
+          ""
+        end
 
       # Hash { 未読 => count, 既読 => count }
       randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
