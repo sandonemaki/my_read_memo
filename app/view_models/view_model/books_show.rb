@@ -3,7 +3,8 @@ module ViewModel
   class BooksShow
     attr_reader :id, :title, :author, :total_page, :reading_progress,
       :publisher, :errors, :first_post_img_path, :randoku_imgs_unread_count, :randoku_imgs_alreadyread_count,
-      :randoku_imgs_file_names, :randoku_imgs_all_count, :randoku_imgs_all
+      :randoku_imgs_file_names, :randoku_imgs_all_count, :randoku_imgs_all,
+      :seidoku_line_1, :seidoku_line_2
 
 
     # @param book [Book] 本モデル
@@ -30,6 +31,8 @@ module ViewModel
         else
           ""
         end
+      @seidoku_line_1 = (book.total_page*(1.0/8.0)).floor
+      @seidoku_line_2 = (book.total_page*(1.0/4.0)).floor
 
       # Hash { 未読 => count, 既読 => count }
       randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
