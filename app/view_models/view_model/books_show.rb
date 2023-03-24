@@ -58,7 +58,8 @@ module ViewModel
 
     def initialize(img:, book:)
       @id = img.id
-      @name = img.name
+      max_length = 15
+      @name = (img.name.length > max_length) ? img.name.slice(0, 15)+'…' : img.name
       @updated_at = I18n.l(img.updated_at, format: :short)
       @path = "/#{book.id}/#{img.name}"
       @thumbnail_path = "/#{book.id}/thumb/sm_#{img.name}"
