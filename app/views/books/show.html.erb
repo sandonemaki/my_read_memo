@@ -34,7 +34,7 @@
 
 <!--画像メモ一覧を表示-->
 <h2>乱読メモ一覧</h2>
-<% if book.randoku_imgs_file_names.empty? %>
+<% if book.randoku_imgs_all.empty? %>
   "画像がありません"
 <% else %>
   <% book.randoku_imgs_all.each_with_index do |img, i| %>

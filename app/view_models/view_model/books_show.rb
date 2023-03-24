@@ -38,10 +38,6 @@ module ViewModel
       randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
       @randoku_imgs_unread_count = randoku_imgs_group_count[0] ||= 0 # 未読の数
       @randoku_imgs_alreadyread_count = randoku_imgs_group_count[1] ||= 0 # 既読の数
-      @randoku_imgs_file_names = Dir.glob("public/#{book.id}/thumb/*")
-        .sort_by { |randoku_img_path| File.mtime(randoku_img_path) }
-        .map { |f| f.split("/").last }
-        .reverse
 
       # モーダル上で乱読画像を読むためのデータ
       @randoku_imgs_all_count = book.randoku_imgs.all.size
