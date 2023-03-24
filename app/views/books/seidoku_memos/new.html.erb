@@ -4,7 +4,7 @@
 <div>
   <%= book.seidoku_memo_time_now %>
 </div>
-
+<% book.seidoku_memo_errors[:content].each do |message| %><%= message %><% end %>
 <%= form_tag("/books/#{book.id}/seidoku_memos/create", method: :post) do %>
   <div>
     <select name="selectbox_value[]"><option value="0">メモの内容を選択する</option>
