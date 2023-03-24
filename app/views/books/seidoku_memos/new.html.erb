@@ -7,12 +7,12 @@
 
 <%= form_tag("/books/#{book.id}/seidoku_memos/create", method: :post) do %>
   <div>
-    <select name="selectbox_value[]"><option value="">メモの内容を選択する</option>
-      <% book.seidoku_memo_type.each_with_index do |k, value| %>
+    <select name="selectbox_value[]"><option value="0">メモの内容を選択する</option>
+      <% book.seidoku_memo_type.each_with_index do |(k, value), i| %>
         <% if book.seidoku_memo_selected_content_type == k %>
           <option value="<%= k %>" selected><%= value %></option>
         <% else %>
-          <option value="<%= k %>"><%= value %></option>
+          <option value="<%= i+1 %>"><%= value %></option>
         <% end %>
       <% end %>
     </select>
