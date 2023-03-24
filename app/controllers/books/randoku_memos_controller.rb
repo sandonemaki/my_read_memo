@@ -32,8 +32,8 @@ class Books::RandokuMemosController < ApplicationController
   def create
     book = Book.find_by(id: params[:book_id])
     randoku_memos = book.randoku_memos.new(
-      content_state: params[:value].first.to_i,
-      content: params[:content]
+      content_state: params[:selectbox_value].first.to_i,
+      content: params[:randoku_memo_content]
     )
     if randoku_memos.save
       flash[:notice] = "乱読メモを保存しました"
@@ -41,8 +41,8 @@ class Books::RandokuMemosController < ApplicationController
     else
       book_view_model = ViewModel::BooksRandokuMemosNew.new(
         book: book,
-        randokumemo_content_type: params[:value].first,
-        randokumemo_content: params[:content]
+        selected_content_type: params[:selectbox_value].first,
+        randoku_memo_content: params[:randoku_memo_content]
       )
       render("new", locals:{book: book_view_model})
     end

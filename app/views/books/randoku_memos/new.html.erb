@@ -7,10 +7,10 @@
 
 <%= form_tag("/books/#{book.id}/randoku_memos/create", method: :post) do %>
   <div>
-    <select name="value[]"><option value="">メモの内容を選択する</option>
+    <select name="selectbox_value[]"><option value="">メモの内容を選択する</option>
       <optgroup label="質問">
         <% book.randoku_memo_q.each do | k, value | %>
-          <% if book.randoku_memo_content_type == k %>
+          <% if book.randoku_memo_selected_content_type == k %>
             <option value="<%= k %>" selected><%= value %></option>
           <% else %>
             <option value="<%= k %>"><%= value %></option>
@@ -19,7 +19,7 @@
       </optgroup>
       <optgroup label="背景">
         <% book.randoku_memo_bkg.each do | k, value | %>
-          <% if book.randoku_memo_content_type == k %>
+          <% if book.randoku_memo_selected_content_type == k %>
             <option value="<%= k %>" selected><%= value %></option>
           <% else %>
             <option value="<%= k %>"><%= value %></option>
@@ -28,6 +28,6 @@
       </optgroup>
     </select>
   </div>
-  <textarea name="content"><%= book.randoku_memo_content %></textarea>
+  <textarea name="randoku_memo_content"><%= book.randoku_memo_content %></textarea>
   <input type="submit" value="保存">
 <% end %>
