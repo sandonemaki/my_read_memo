@@ -51,7 +51,7 @@ module ViewModel
 
 
   class RandokuImg
-    attr_reader :id, :name, :updated_at, :path, :thumbnail_path, :bookmark_flag
+    attr_reader :id, :name, :updated_at, :path, :thumbnail_path, :bookmark_flag, :alreadyread
 
     def initialize(img:, book:)
       @id = img.id
@@ -60,6 +60,7 @@ module ViewModel
       @path = "/#{book.id}/#{img.name}"
       @thumbnail_path = "/#{book.id}/thumb/sm_#{img.name}"
       @bookmark_flag = img.bookmark_flag
+      @alreadyread = img.reading_state
     end
   end
 end

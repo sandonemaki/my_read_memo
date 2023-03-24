@@ -40,6 +40,10 @@
 <% else %>
   <% book.randoku_imgs_all.each_with_index do |img, i| %>
     <img src="<%= "#{img.thumbnail_path}" %>?#{Time.now.to_i}" alt=" " id="sw_modal_trigger" data-slide-index="<%= i %>" />
+    <p><%= img.name %></p>
+    <p><%= img.updated_at %></p>
+    <p><%= img.alreadyread == 0 ? "未読" : "既読" %></p>
+    <p><%= img.bookmark_flag == 0 ? "" : "bkm" %></p>
   <% end %>
 <% end %>
 
