@@ -3,12 +3,12 @@
   <div>
     <select name="value[]"><option value="">メモの種類で検索をする</option>
       <optgroup label="乱読メモ">
-        <% book.randoku_memo_type.each do | k, value | %>
+        <% search.randoku_memo_type.each do | k, value | %>
           <option value="randoku[<%= k %>]"><%= value %></option>
         <% end %>
       </optgroup>
       <optgroup label="精読メモ">
-        <% book.seidoku_memo_type.each do | k, value | %>
+        <% search.seidoku_memo_type.each do | k, value | %>
           <option value="seidoku[<%= k %>]"><%= value %></option>
         <% end %>
       </optgroup>
