@@ -16,15 +16,17 @@
   <input type="submit" value="絞り込む">
 <% end %>
 
+<% if search.selected_memos.present? %>
 <h3>検索結果</h3>
-<p>result<%= book.selected_memos_count %>件</p>
+<p>result<%= search.selected_memos_count %>件</p>
 <div>
-  <% book.selected_memos.each do |memo| %>
-    <%= memo.created_at %><br>
-    <%= memo.content_type %><br>
-    <%= memo.content %><br>
-    <%= memo.book_title %><br>
-    <%= memo.book_author %><br>
-    <%= memo.book_reading_progress %><br>
+  <% search.selected_memos.each do |memo| %>
+    <%= search.created_at %><br>
+    <%= search.content_type %><br>
+    <%= search.content %><br>
+    <%= search.book_title %><br>
+    <%= search.book_author %><br>
+    <%= search.book_reading_progress %><br>
   <% end %>
 </div>
+<% end %>
