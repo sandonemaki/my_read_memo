@@ -3,10 +3,10 @@ module ViewModel
   class HomeMemoSearch_result
     attr_reader :selected_memos_count, :randoku_memo_type, :seidoku_memo_type, :selected_memos
 
-    def initialize(all_randoku_state_books:, all_seidoku_state_books:, content_type:,
+    def initialize(all_randoku_state_books:, all_seidoku_state_books:, selected_search_value:,
                    randoku_memo_type:, seidoku_memo_type:)
       # params[value]
-      @content_type = content_type
+      @selected_search_value = selected_search_value
       @randoku_memo_type = randoku_memo_type
       @seidoku_memo_type = seidoku_memo_type
 

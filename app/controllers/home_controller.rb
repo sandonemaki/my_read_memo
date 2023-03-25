@@ -22,7 +22,7 @@ class HomeController < ApplicationController
       # Array<String>
       # "randoku[0-4]" 0-4:randoku_memo_type
       # "seidoku[0-4]" 0-4:seidoku_memo_type
-      content_type: params[:value]
+      selected_search_value: params[:selected_search_value]
    )
     render("search", locals:{books: book_view_models})
   end

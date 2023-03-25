@@ -1,7 +1,7 @@
 <h1>メモを検索する</h1>
 <%= form_tag("/home/memo_search_result", method: :post) do %>
   <div>
-    <select name="value[]"><option value="0">メモの種類で検索をする</option>
+    <select name="selected_search_value[]"><option value="0">メモの種類で検索をする</option>
       <optgroup label="乱読メモ">
         <% search.randoku_memo_type.each_with_index do | (k, value), i | %>
           <% if search.randoku_memo_selected_menu == k %>
