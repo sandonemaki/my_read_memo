@@ -1,17 +1,27 @@
 <h1>メモを検索する</h1>
 <%= form_tag("/home/memo_search_result", method: :post) do %>
   <div>
-    <select name="value[]"><option value="">メモの種類で検索をする</option>
+    <select name="value[]"><option value="0">メモの種類で検索をする</option>
       <optgroup label="乱読メモ">
-        <% search.randoku_memo_type.each do | k, value | %>
-          <option value="randoku[<%= k %>]"><%= value %></option>
+        <% search.randoku_memo_type.each_with_index do | (k, value), i | %>
+          <% if search.randoku_memo_selected_menu == k %>
+            <option value="<%= k %>" selected><%= value %></option>
+          <% else %>
+            <option value="randoku[<%= i+1 %>]"><%= value %></option>
+          <% end %>
         <% end %>
       </optgroup>
+
       <optgroup label="精読メモ">
-        <% search.seidoku_memo_type.each do | k, value | %>
-          <option value="seidoku[<%= k %>]"><%= value %></option>
+        <% search.seidoku_memo_type.each_with_index do | (k, value), i | %>
+          <% if search.seidoku_memo_selected_menu == k %>
+            <option value="<%= k %>" selected><%= value %></option>
+          <% else %>
+            <option value="seidoku[<%= i+5 %>]"><%= value %></option>
+          <% end %>
         <% end %>
       </optgroup>
+
     </div>
   <input type="submit" value="絞り込む">
 <% end %>
