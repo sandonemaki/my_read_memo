@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   # search
   get "memo_search" => "home#memo_search"
+  post "memo_search_result" => "home#memo_search_result"
 
   get "books/seidoku_index" => "books#seidoku_index"
   root to: "books#randoku_index"
