@@ -26,9 +26,21 @@
   <input type="submit" value="絞り込む">
 <% end %>
 
-<% if search.selected_memos.present? %>
+<% if search.selected_memos.nil? %>
+  <h2>スライド検索の使い方</h2>
+  <p>
+  <span>
+    画面上記の絞り込み一覧から、
+    <br>
+    検索したいメモの項目を選択してください。
+    <br>
+    関連するメモの絞り込み検索ができます。
+  </span>
+  </p>
+
+<% elsif search.selected_memos.present? %>
   <h3>検索結果</h3>
-  <p>result<%= search.selected_memos_count %>件</p>
+  <p><%= search.selected_memos_count %>件</p>
   <div>
     <% search.selected_memos.each do |search| %>
       <%= search.memo_created_at %><br>
@@ -39,4 +51,8 @@
       <%= search.book_reading_progress %><br>
     <% end %>
   </div>
+<% else %>
+  <h3>検索結果</h3>
+  <p>0件</p>
+  <p>ヒットしませんでした</p>
 <% end %>
