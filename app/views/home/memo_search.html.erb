@@ -41,10 +41,10 @@
 <% elsif search.selected_memos.present? %>
   <h3>検索結果</h3>
   <p><%= search.selected_memos_count %>件</p>
+  <p><%= search.selected_memos.first.memo_content_type %></p>
   <div>
     <% search.selected_memos.each do |search| %>
       <%= search.memo_created_at %><br>
-      <%= search.memo_content_type %><br>
       <%= search.memo_content %><br>
       <%= link_to(search.book_title, "/books/#{search.book_id}") %>
       <%= search.book_author %><br>
