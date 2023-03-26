@@ -37,7 +37,7 @@ module ViewModel
 
   class SelectedMemo
     attr_reader :memo_content, :memo_created_at, :book_reading_progress,
-      :memo_content_type, :book_title, :book_author
+      :memo_content_type, :book_title, :book_author, :book_id
 
     def initialize(memo:, book:)
       @memo_content = memo.content
@@ -52,6 +52,7 @@ module ViewModel
         end
       @book_title = book.title
       @book_author = book.author_1
+      @book_id = book.id
     end
   end
 
