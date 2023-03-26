@@ -4,8 +4,8 @@
     <select name="selected_search_value[]"><option value="0">メモの種類で検索をする</option>
       <optgroup label="乱読メモ">
         <% search.randoku_memo_type.each_with_index do | (k, value), i | %>
-          <% if search.randoku_memo_selected_menu == k %>
-            <option value="<%= k %>" selected><%= value %></option>
+          <% if search.selected_search_value == "randoku[#{k}]" %>
+            <option value="<%= "randoku[#{k}]" %>" selected><%= value %></option>
           <% else %>
             <option value="randoku[<%= i+1 %>]"><%= value %></option>
           <% end %>
@@ -14,15 +14,15 @@
 
       <optgroup label="精読メモ">
         <% search.seidoku_memo_type.each_with_index do | (k, value), i | %>
-          <% if search.seidoku_memo_selected_menu == k %>
-            <option value="<%= k %>" selected><%= value %></option>
+          <% if search.selected_search_value == "seidoku[#{k}]" %>
+            <option value="<%= "seidoku[#{k}]" %>" selected><%= value %></option>
           <% else %>
-            <option value="seidoku[<%= i+5 %>]"><%= value %></option>
+            <option value="seidoku[<%= i+1 %>]"><%= value %></option>
           <% end %>
         <% end %>
       </optgroup>
 
-    </div>
+  </div>
   <input type="submit" value="絞り込む">
 <% end %>
 
