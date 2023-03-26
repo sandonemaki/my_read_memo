@@ -27,16 +27,16 @@
 <% end %>
 
 <% if search.selected_memos.present? %>
-<h3>検索結果</h3>
-<p>result<%= search.selected_memos_count %>件</p>
-<div>
-  <% search.selected_memos.each do |memo| %>
-    <%= search.created_at %><br>
-    <%= search.content_type %><br>
-    <%= search.content %><br>
-    <%= search.book_title %><br>
-    <%= search.book_author %><br>
-    <%= search.book_reading_progress %><br>
-  <% end %>
-</div>
+  <h3>検索結果</h3>
+  <p>result<%= search.selected_memos_count %>件</p>
+  <div>
+    <% search.selected_memos.each do |search| %>
+      <%= search.memo_created_at %><br>
+      <%= search.memo_content_type %><br>
+      <%= search.memo_content %><br>
+      <%= search.book_title %><br>
+      <%= search.book_author %><br>
+      <%= search.book_reading_progress %><br>
+    <% end %>
+  </div>
 <% end %>
