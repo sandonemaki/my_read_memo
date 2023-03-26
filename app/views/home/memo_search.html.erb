@@ -46,7 +46,7 @@
       <%= search.memo_created_at %><br>
       <%= search.memo_content_type %><br>
       <%= search.memo_content %><br>
-      <%= search.book_title %><br>
+      <%= link_to(search.book_title, "/books/#{search.book_id}") %>
       <%= search.book_author %><br>
       <%= search.book_reading_progress %><br>
     <% end %>
