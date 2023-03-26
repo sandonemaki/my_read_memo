@@ -17,13 +17,15 @@ class HomeController < ApplicationController
       all_randoku_state_books: all_randoku_state_books,
       all_seidoku_state_books: all_seidoku_state_books,
 
+      # key1-4
       randoku_memo_type: State::RANDOKU_MEMO_Q.merge(State::RANDOKU_MEMO_BKG),
+      # key1-5
       seidoku_memo_type: State::SEIDOKU_MEMO_TYPE,
       # Array<String>
-      # "randoku[0-4]" 0-4:randoku_memo_type
-      # "seidoku[0-4]" 0-4:seidoku_memo_type
-      selected_search_value: params[:selected_search_value]
-   )
+      # "randoku[1-4]" 1-4:randoku_memo_type
+      # "seidoku[1-5]" 1-5:seidoku_memo_type
+      selected_search_value: params[:selected_search_value].first
+    )
     render("search", locals:{books: book_view_models})
   end
 end
