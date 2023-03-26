@@ -26,6 +26,6 @@ class HomeController < ApplicationController
       # "seidoku[1-5]" 1-5:seidoku_memo_type
       selected_search_value: params[:selected_search_value].first
     )
-    render("search", locals:{books: book_view_models})
+    render("memo_search", locals:{search: book_view_models})
   end
 end
