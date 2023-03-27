@@ -14,7 +14,7 @@ class Books::RandokuMemosController < ApplicationController
     book_view_model = ViewModel::BooksRandokuMemosIndex.new(
       book: book,
     )
-    render("index", locals:{book: book_view_model})
+    render("books/randoku_memos/index", locals:{book: book_view_model})
   end
 
   def new
