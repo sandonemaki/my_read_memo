@@ -42,10 +42,19 @@ module ViewModel
     def initialize(memo:, book:)
       @memo_content = memo.content
       @memo_created_at = I18n.l(memo.created_at, format: :short)
-      @book_reading_progress = book.reading_state
+      @book_reading_progress =
+        case book.reading_state
+        when State::READING_STATE.key("乱読")
+          "乱読"
+        when State::READING_STATE.key("精読")
+          "精読"
+        else
+          "通読"
+        end
+
       @memo_content_type =
         # TODO: intではなくモデリング名を使用する
-        if ['0', '2'].include?(@reading_progress)
+        if ['0', '2'].include?(book.reading_state.to_s)
           State::RANDOKU_MEMO_TYPE[memo.content_state]
         else
           State::SEIDOKU_MEMO_TYPE[memo.content_state]
