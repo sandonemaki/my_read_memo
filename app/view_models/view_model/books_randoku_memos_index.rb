@@ -2,7 +2,7 @@ module ViewModel
 
   class BooksRandokuMemosIndex
     attr_reader :id, :title, :author, :total_page, :reading_progress,
-      :publisher, :randoku_memos_count, :randoku_memos
+      :publisher, :randoku_memos_all_count, :randoku_memos
 
     def initialize(book:)
       @id = book.id
@@ -19,7 +19,7 @@ module ViewModel
           "通読"
         end
       @publisher = book.publisher
-      @randoku_memos_count = book.randoku_memos.count
+      @randoku_memos_all_count = book.randoku_memos.count
       @randoku_memos =
         if book.randoku_memos.present?
           book.randoku_memos.order(updated_at: :desc).to_a.map { |memo|
@@ -30,18 +30,15 @@ module ViewModel
   end
 
   class RandokuMemo
-    attr_reader :memo_content, :memo_created_at, :memo_content_type,
-      :book_title, :book_author, :book_id
+    attr_reader :content, :created_at, :content_type
 
     def initialize(memo:, book:)
-      @memo_content = memo.content
-      @memo_created_at = I18n.l(memo.created_at, format: :short)
-      @memo_content_type =
+      @content = memo.content
+      @created_at = I18n.l(memo.created_at, format: :short)
+      @content_type =
         # TODO: intではなくモデリング名を使用する
         if ['0', '2'].include?(book.reading_state.to_s)
           State::RANDOKU_MEMO_TYPE[memo.content_state]
-        else
-          State::SEIDOKU_MEMO_TYPE[memo.content_state]
         end
     end
   end
