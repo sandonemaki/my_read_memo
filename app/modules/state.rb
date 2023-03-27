@@ -12,6 +12,8 @@ module State
     4 => "その他"
   }.freeze
 
+  RANDOKU_MEMO_TYPE = State::RANDOKU_MEMO_Q.merge(State::RANDOKU_MEMO_BKG)
+
   # 精読メモセレクトボックスに使用
   SEIDOKU_MEMO_TYPE = {
     1 => "要約",
