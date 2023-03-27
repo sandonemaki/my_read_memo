@@ -1,36 +1,33 @@
-<%= book.reading_state %>
-<h1>
-<%= book.title %>
-</h1>
+<h1>登録した本の情報</h1>
 <p>
-<%= book.author_1 %>
+<%= book.title %>
+</p>
+<p>
+<%= book.author %>
 </p>
 <p>
 <%= book.publisher %>
 </p>
-<p>乱読画像メモ
-（未読：<%= book.randoku_img_read_again_count %>, 読了：<%= book.randoku_img_finish_read_count %>）
-<% if book.randoku_img_first_post_filename != "" %>
-  <%= link_to("初投稿乱読画像", "public/#{book.randoku_img_first_post_filename}")%>
-<% end %>
+<p>
+<%= book.total_page %>
 </p>
+<%= book.reading_progress %>
 
 <h2>乱読メモ</h2>
 <div>
-  <p>total <%= book.randoku_memos_all_count %></p>
-  <%= link_to("add+", "/book_pages/#{book.id}/randoku_memos/new") %>
+  <p>total <%= book.randoku_memos_all_count %>枚</p>
+  <%= link_to("add+", "/books/#{book.id}/randoku_memos/new") %>
 </div>
 <div>
-  <% if book.randoku_memos_all.empty? %>
-    "メモがありません"
+  <% if book.randoku_memos.empty? %>
+    "まだ乱読メモがありません"
   <% else %>
-    <% book.randoku_memos_all.each do |randoku_memo| %>
+    <% book.randoku_memos.each do |memo| %>
     <!--昇順-->
-    <%# book.randoku_memos_all_asc.each do |randoku_memo| %>
-      <%= randoku_memo[:content] %></br>
-      <%= randoku_memo[:created_at] %></br>
-      <%= randoku_memo[:content_state] %></br>
+      <%= memo.created_at %><br>
+      <%= memo.content %><br>
+      <%= memo.content_type %><br>
     <% end %>
   <% end %>
 </div>
-<%= link_to("add+", "/book_pages/#{book.id}/randoku_memos/new") %>
+<%= link_to("add+", "/books/#{book.id}/randoku_memos/new") %>
