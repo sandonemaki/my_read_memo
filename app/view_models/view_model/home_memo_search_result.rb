@@ -27,7 +27,7 @@ module ViewModel
             book.randoku_memos.where(content_state: index)
           }.flatten
         when /^seidoku\[\d+\]$/
-          all_randoku_state_books.map {|book|
+          all_seidoku_state_books.map {|book|
             book.seidoku_memos.where(content_state: index)
           }.flatten
         end
