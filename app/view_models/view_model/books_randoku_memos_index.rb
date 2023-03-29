@@ -35,11 +35,7 @@ module ViewModel
     def initialize(memo:, book:)
       @content = memo.content
       @created_at = I18n.l(memo.created_at, format: :short)
-      @content_type =
-        # TODO: intではなくモデリング名を使用する
-        if ['0', '2'].include?(book.reading_state.to_s)
-          State::RANDOKU_MEMO_TYPE[memo.content_state]
-        end
+      @content_type = State::RANDOKU_MEMO_TYPE[memo.content_state]
     end
   end
 end #ViewModel
