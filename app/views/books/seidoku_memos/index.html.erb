@@ -1,35 +1,36 @@
-<%= book.reading_state %>
-<h1>
-  <%= book.title %>
-</h1>
+<h1>登録した本の情報</h1>
 <p>
-<%= book.author_1 %>
+<%= book.title %>
+</p>
+<p>
+<%= book.author %>
 </p>
 <p>
 <%= book.publisher %>
 </p>
+<p>
+<%= book.total_page %>
+</p>
+<%= book.reading_progress %>
+
+<p>精読メモ：著者の意見<%= book.seidoku_memo_author_opinion_count %>
+ 自分の意見<%= book.seidoku_memo_my_opinion_count %></p>
 
 <h2>精読メモ</h2>
 <div>
-  <p>精読メモ：著者の意見
-  <%= book.seidoku_memo_author_opinion %> 自分の意見<%= book.seidoku_memo_my_opinion %></p>
-</div>
-
-<div>
-  <p>total <%= book.seidoku_memos_all_count %></p>
-  <%= link_to("add+", "/book_pages/#{book.id}/seidoku_memos/new") %>
+  <p>total <%= book.seidoku_memos_all_count %>枚</p>
+  <%= link_to("add+", "/books/#{book.id}/seidoku_memos/new") %>
 </div>
 <div>
-  <% if book.seidoku_memos_all.empty? %>
-    "メモがありません"
+  <% if book.seidoku_memos.empty? %>
+    "まだ乱読メモがありません"
   <% else %>
-    <% book.seidoku_memos_all.each do |seidoku_memo| %>
-    <!-- 昇順 -->
-    <%# book.seidoku_memos_all_asc.each do |seidoku_memo| %>
-      <%= seidoku_memo[:content] %></br>
-      <%= seidoku_memo[:created_at] %></br>
-      <%= seidoku_memo[:content_state] %></br>
+    <% book.seidoku_memos.each do |memo| %>
+      <!--昇順-->
+      <%= memo.created_at %><br>
+      <%= memo.content %><br>
+      <%= memo.content_type %><br>
     <% end %>
   <% end %>
 </div>
-<%= link_to("add+", "/book_pages/#{book.id}/seidoku_memos/new") %>
+<%= link_to("add+", "/books/#{book.id}/seidoku_memos/new") %>
