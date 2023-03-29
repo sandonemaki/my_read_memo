@@ -1,7 +1,7 @@
 module ViewModel
   class HomeMemoSearchResult
     attr_reader :selected_search_value, :randoku_memo_type, :seidoku_memo_type,
-      :selected_memos_count, :selected_memos
+      :selected_memos_count, :selected_memos, :selected_search_memo_type
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:,
                    randoku_memo_type:, seidoku_memo_type:, selected_search_value:)
@@ -10,15 +10,23 @@ module ViewModel
       @randoku_memo_type = randoku_memo_type
       @seidoku_memo_type = seidoku_memo_type
 
+      index = selected_search_value.scan(/\d+/).first.to_i
+      @selected_search_memo_type =
+        case selected_search_value
+        when /^randoku\[\d+\]$/
+          State::RANDOKU_MEMO_TYPE[index]
+        when /^seidoku\[\d+\]$/
+          State::SEIDOKU_MEMO_TYPE[index]
+        end
+
+      index = selected_search_value.scan(/\d+/).first.to_i
       selected_memos =
         case selected_search_value
         when /^randoku\[\d+\]$/
-          index = selected_search_value.scan(/\d+/).first.to_i
           all_randoku_state_books.map {|book|
             book.randoku_memos.where(content_state: index)
           }.flatten
         when /^seidoku\[\d+\]$/
-          index = selected_search_value.scan(/\d+/).first.to_i
           all_randoku_state_books.map {|book|
             book.seidoku_memos.where(content_state: index)
           }.flatten
@@ -37,7 +45,7 @@ module ViewModel
 
   class SelectedMemo
     attr_reader :memo_content, :memo_created_at, :book_reading_progress,
-      :memo_content_type, :book_title, :book_author, :book_id
+      :book_title, :book_author, :book_id
 
     def initialize(memo:, book:)
       @memo_content = memo.content
@@ -52,13 +60,6 @@ module ViewModel
           "通読"
         end
 
-      @memo_content_type =
-        # TODO: intではなくモデリング名を使用する
-        if ['0', '2'].include?(book.reading_state.to_s)
-          State::RANDOKU_MEMO_TYPE[memo.content_state]
-        else
-          State::SEIDOKU_MEMO_TYPE[memo.content_state]
-        end
       @book_title = book.title
       @book_author = book.author_1
       @book_id = book.id
