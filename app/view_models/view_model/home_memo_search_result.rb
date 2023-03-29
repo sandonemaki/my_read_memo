@@ -3,8 +3,7 @@ module ViewModel
     attr_reader :selected_search_value, :randoku_memo_type, :seidoku_memo_type,
       :selected_memos_count, :selected_memos, :selected_search_memo_type
 
-    def initialize(all_randoku_state_books:, all_seidoku_state_books:,
-                   randoku_memo_type:, seidoku_memo_type:, selected_search_value:)
+    def initialize(all_books:, randoku_memo_type:, seidoku_memo_type:, selected_search_value:)
 
       @selected_search_value = selected_search_value
       @randoku_memo_type = randoku_memo_type
@@ -23,11 +22,11 @@ module ViewModel
       selected_memos =
         case selected_search_value
         when /^randoku\[\d+\]$/
-          all_randoku_state_books.map {|book|
+          all_books.map {|book|
             book.randoku_memos.where(content_state: index)
           }.flatten
         when /^seidoku\[\d+\]$/
-          all_seidoku_state_books.map {|book|
+          all_books.map {|book|
             book.seidoku_memos.where(content_state: index)
           }.flatten
         end
