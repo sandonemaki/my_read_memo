@@ -17,7 +17,7 @@ class HomeController < ApplicationController
       all_books: Book.all
 
       # key1-4
-      randoku_memo_type: State::RANDOKU_MEMO_Q.merge(State::RANDOKU_MEMO_BKG),
+      randoku_memo_type: State::RANDOKU_MEMO_TYPE,
       # key1-5
       seidoku_memo_type: State::SEIDOKU_MEMO_TYPE,
       # Array<String>
