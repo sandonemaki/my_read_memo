@@ -12,7 +12,7 @@ class Books::SeidokuMemosController < ApplicationController
 
     # todo: view_modelを作成する
     book_view_model = ViewModel::BooksSeidokuMemosIndex.new(book: book)
-    render("index", locals:{book: book_view_model})
+    render("books/seidoku_memos/index", locals:{book: book_view_model})
   end
 
   def new
