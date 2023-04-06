@@ -6,6 +6,8 @@ class Book < ApplicationRecord
   validates :title, length: {maximum: 30, message: "30文字以内で入力してください"}
   validates :author_1, presence: {message: "著者を入力してください"}
   validates :author_1, length: {maximum: 30, message: "30文字以内で入力してください"}
+  validates :total_page, presence: {message: "読む予定のページ数を入力してください"}, inclusion: { in: 1..999,
+  message: "登録できるページ数は999ページまでです" }
 
   def try_update_reading_state(book:, judgement_type:)
     new_reading_state = case judgement_type
