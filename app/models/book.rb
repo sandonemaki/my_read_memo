@@ -17,7 +17,7 @@ class Book < ApplicationRecord
     judgement_reading_state_type =
       State::ReadingState.judgement_reading_state_type(
         totalpage:          self.total_page,
-        already_read_count: self.randoku_imgs.where(reading_state: "1").count #既読の数
+        already_read_count: self.randoku_imgs.where(reading_state: "1").count, #既読の数
         unread_count:       self.randoku_imgs.where(reading_state: "0").count #未読の数
       )
 
@@ -31,17 +31,20 @@ class Book < ApplicationRecord
     else
       raise TypeError, "無効の型が判定されました"
     end
-
-    self.reading_satate_update?(new_reading_state)
+    is_updated = self.reading_satate_update?(new_reading_state)
+    { updated: is_updated }
   end
 
   # 上記try_update_reading_stateメソッドのcase文の戻り値を引数にとる
   # bookテーブルのreading_stateカラムをupdateするか判定するメソッド
   # dbの値と差異があれば新規の値を保存する
+  # 戻り値：true、false、nil
   def reading_satate_update?(new_reading_state)
     if self.reading_state != new_reading_state
       self.reading_state = new_reading_state
       self.save
+    else
+      nil
     end
   end
 
