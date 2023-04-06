@@ -13,12 +13,12 @@ class Book < ApplicationRecord
   # トータルページ、乱読画像の未読・既読の数によって状態を判定し、
   # その状態がdbと差異があれば更新するかどうかを判定するメソッド
   # totalpage、乱読画像の数、未読既読の数に変更があった時に呼び出される
-  def try_update_reading_state(book:)
+  def try_update_reading_state
     judgement_reading_state_type =
       State::ReadingState.judgement_reading_state_type(
-        totalpage:          book.total_page,
-        already_read_count: book.randoku_imgs.where(reading_state: "1").count #既読の数
-        unread_count:       book.randoku_imgs.where(reading_state: "0").count #未読の数
+        totalpage:          self.total_page,
+        already_read_count: self.randoku_imgs.where(reading_state: "1").count #既読の数
+        unread_count:       self.randoku_imgs.where(reading_state: "0").count #未読の数
       )
 
     new_reading_state = case judgement_reading_state_type
@@ -39,9 +39,9 @@ class Book < ApplicationRecord
   # bookテーブルのreading_stateカラムをupdateするか判定するメソッド
   # dbの値と差異があれば新規の値を保存する
   def reading_satate_update?(new_reading_state)
-    if book.reading_state != new_reading_state
-      book.reading_state = new_reading_state
-      book.save
+    if self.reading_state != new_reading_state
+      self.reading_state = new_reading_state
+      self.save
     end
   end
 
