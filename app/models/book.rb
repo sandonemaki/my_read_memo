@@ -6,11 +6,22 @@ class Book < ApplicationRecord
   validates :title, length: {maximum: 30, message: "30文字以内で入力してください"}
   validates :author_1, presence: {message: "著者を入力してください"}
   validates :author_1, length: {maximum: 30, message: "30文字以内で入力してください"}
-  validates :total_page, presence: {message: "読む予定のページ数を入力してください"}, inclusion: { in: 1..999,
-  message: "登録できるページ数は999ページまでです" }
+  validates :total_page, presence: {message: "読む予定のページ数を入力してください"},
+    inclusion: { in: 1..999, message: "登録できるページ数は999ページまでです" }
 
-  def try_update_reading_state(book:, judgement_type:)
-    new_reading_state = case judgement_type
+  # bookオブジェクトを引数にとる
+  # トータルページ、乱読画像の未読・既読の数によって状態を判定し、
+  # その状態がdbと差異があれば更新するかどうかを判定するメソッド
+  # totalpage、乱読画像の数、未読既読の数に変更があった時に呼び出される
+  def try_update_reading_state(book:)
+    judgement_reading_state_type =
+      State::ReadingState.judgement_reading_state_type(
+        totalpage:          book.total_page,
+        already_read_count: book.randoku_imgs.where(reading_state: "1").count #既読の数
+        unread_count:       book.randoku_imgs.where(reading_state: "0").count #未読の数
+      )
+
+    new_reading_state = case judgement_reading_state_type
     when State::ReadingState::Randoku
       0
     when State::ReadingState::Seidoku
@@ -21,9 +32,17 @@ class Book < ApplicationRecord
       raise TypeError, "無効の型が判定されました"
     end
 
+    self.reading_satate_update?(new_reading_state)
+  end
+
+  # 上記try_update_reading_stateメソッドのcase文の戻り値を引数にとる
+  # bookテーブルのreading_stateカラムをupdateするか判定するメソッド
+  # dbの値と差異があれば新規の値を保存する
+  def reading_satate_update?(new_reading_state)
     if book.reading_state != new_reading_state
       book.reading_state = new_reading_state
       book.save
     end
   end
+
 end
