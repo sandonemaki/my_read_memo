@@ -33,11 +33,12 @@ class Books::ImgsController < ApplicationController
         FileUtils.mkdir_p("public/#{book.id}/")
         FileUtils.mkdir_p("public/#{book.id}/thumb/")
       rescue StandardError => e
-        flash[:notice] = "ディレクトリの作成に失敗しました: #{e.message}"
-        redirect_to(controller: :books, action: :show) and return
+        flash[:danger] = "ディレクトリの作成に失敗しました: #{e.message}"
       end
       # DBに保存するためのファイル名を追加
       filenames_save_db = []
+      # 最後にerror_messageをまとめて表示
+      error_messages = []
 
       page_imgs.each { |page_img|
         # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
@@ -45,12 +46,11 @@ class Books::ImgsController < ApplicationController
           .transliterate(page_img.original_filename)
           .gsub(" ", "")).gsub(/[^\w.]+/, '_')
 
-        page_img_extname = File.extname(filename)
+        img_ext = File.extname(filename)
 
         # 用途
         # -ファイル名の取得
-
-        if page_img_extname.match(".HEIC$|.heic$")
+        if img_ext.match(".HEIC$|.heic$")
           jpg_imgname =
             filename.sub(/.HEIC$|.heic$/, ".jpg")
           filenames_save_db << jpg_imgname
@@ -58,21 +58,31 @@ class Books::ImgsController < ApplicationController
 
           # 用途
           # -ファイル名の取得
-        elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
+        elsif img_ext.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
           filenames_save_db << filename
           save_image_entity_after_convert_to_jpg(book, page_img, filename) #メソッド呼び出し1
 
         else
-          flash[:notice] = "指定の拡張子で画像を投稿してください"
-          redirect_to(controller: :books, action: :show)
+          error_messages << "#{filename}の拡張子が不正です"
         end
       }
       db_save_randoku_imgs(book, filenames_save_db)
+
+      if error_messages.empty?
+        redirect_to("/books/#{book.id}")
+      else
+        flash.now[:danger] = "アップロードに失敗：\n#{error_messages.join('\n')}"
+        book_view_model = ViewModel::BooksShow.new(book: book)
+        render 'book/show', locals: { book: book_view_model }
+      end
     else
       flash.now[:danger] = "保存できませんでした"
-      # Todo:保存できなかったときのviewmodelを作成する
+      book_view_model = ViewModel::BooksShow.new(book: book)
+      render 'book/show', locals: { book: book_view_model }
     end
   end # def create
+
+
 
   # 用途
   # -本画像の実体を保存 temp/
@@ -92,8 +102,7 @@ class Books::ImgsController < ApplicationController
       begin
         FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
       rescue StandardError => e
-        flash[:notice] = "ファイル操作に失敗しました: #{e.message}"
-        redirect_to(controller: :books, action: :show) and return
+        flash[:danger] = "ファイル操作に失敗しました: #{e.message}"
       end
     }
   end
@@ -115,8 +124,7 @@ class Books::ImgsController < ApplicationController
       begin
         FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
       rescue StandardError => e
-        flash[:notice] = "ファイル操作に失敗しました: #{e.message}"
-        redirect_to(controller: :books, action: :show) and return
+        flash[:danger] = "ファイル操作に失敗しました: #{e.message}"
       end
 
     }
@@ -147,14 +155,6 @@ class Books::ImgsController < ApplicationController
       end
     }
     save_first_post_flag(book)
-
-    if error_messages.empty?
-      redirect_to("/books/#{book.id}")
-    else
-      flash.now[:danger] = "アップロードに失敗：\n#{error_messages.join('\n')}"
-      book_view_model = ViewModel::BooksShow.new(book: book)
-      render 'book/show', locals: { book: book_view_model }
-    end
   end
 
   # 用途
