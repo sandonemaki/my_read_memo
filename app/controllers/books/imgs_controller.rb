@@ -74,6 +74,13 @@ class Books::ImgsController < ApplicationController
       }
       db_save_randoku_imgs(book, filenames_save_db)
 
+      result = book.try_update_reading_state
+      if result[:updated] == true
+        flash[:notice] = "本のステータスが更新されました!"
+      end
+
+      save_first_post_flag(book)
+
       if error_messages.empty?
         redirect_to("/books/#{book.id}")
       else
@@ -164,7 +171,6 @@ class Books::ImgsController < ApplicationController
         flash.now[:notice] = "#{img_name}の上書きアップロード完了"
       end
     }
-    save_first_post_flag(book)
   end
 
   # 用途
