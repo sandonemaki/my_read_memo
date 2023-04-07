@@ -29,9 +29,13 @@ class Books::ImgsController < ApplicationController
       page_imgs = params[:page_imgs]
       book = Book.find_by(id: params[:book_id])
 
-      FileUtils.mkdir_p("public/#{book.id}/")
-      FileUtils.mkdir_p("public/#{book.id}/thumb/")
-
+      begin
+        FileUtils.mkdir_p("public/#{book.id}/")
+        FileUtils.mkdir_p("public/#{book.id}/thumb/")
+      rescue StandardError => e
+        flash[:notice] = "ディレクトリの作成に失敗しました: #{e.message}"
+        redirect_to(controller: :books, action: :show) and return
+      end
       # DBに保存するためのファイル名を追加
       filenames_save_db = []
 
@@ -80,8 +84,13 @@ class Books::ImgsController < ApplicationController
       system('mogrify -strip '+tmpdir+'/"*"')
       system('magick mogrify -format jpg '+tmpdir+'/*.HEIC')
       system('convert '+tmpdir+'/*.jpg -thumbnail '+size+' -gravity North \
-             -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+jpg_imgname)
-      FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+        -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+jpg_imgname)
+      begin
+        FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+      rescue StandardError => e
+        flash[:notice] = "ファイル操作に失敗しました: #{e.message}"
+        redirect_to(controller: :books, action: :show) and return
+      end
     }
   end
 
@@ -98,8 +107,14 @@ class Books::ImgsController < ApplicationController
       system('mogrify -format jpg *.png')
       system('mogrify -strip '+tmpdir+'/*')
       system('convert '+tmpdir+'/* -thumbnail '+size+' -gravity North \
-             -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+filename)
-      FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+        -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+filename)
+      begin
+        FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+      rescue StandardError => e
+        flash[:notice] = "ファイル操作に失敗しました: #{e.message}"
+        redirect_to(controller: :books, action: :show) and return
+      end
+
     }
   end
 
