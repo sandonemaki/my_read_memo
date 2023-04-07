@@ -108,22 +108,26 @@ class Books::ImgsController < ApplicationController
     # dbに同じ画像名が存在するかを確認
     # 存在しない場合にパスと画像名を保存
     filenames_save_db.each { |page_img_name|
+      max_length = 20
+      img_name = (page_img_name.length > max_length) ? page_img_name.slice(0, 20)+'…' : img.name
+
       randoku_img_record = book.randoku_imgs.find_or_initialize_by(name: page_img_name)
       if randoku_img_record.new_record?
         randoku_img_record.path = "public/#{book.id}/#{page_img_name}"
         randoku_img_record.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
-        unless randoku_img_record.save
-          flash.now[:danger] = "保存できませんでした"
-        # Todo:保存できなかったときのviewmodelを作成する
+        if !randoku_img_record.save
+          flash.now[:danger] = "#{img_name}のアップロードに失敗しました"
+          break
         end
+
+        flash.now[:notice] = "#{img_name}のアップロード完了"
       else
         # すでに同じ名前の画像がdbに存在する場合
-        # MEMO: ニーズがあれば同じ画像名が存在する場合にユーザーに質問した上でupdateする場合はupdateするようにしたい
-        flash.now[:warning] = "#{page_img_name}はすでに存在します。別の名前で保存してください"
+        randoku_img_record.update(updated_at: Time.current)
+        flash.now[:notice] = "#{img_name}の上書きアップロード完了"
       end
     }
     save_first_post_flag(book)
-    flash[:notice] = "画像を保存しました"
     redirect_to("/books/#{book.id}")
   end
 
