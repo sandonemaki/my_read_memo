@@ -126,13 +126,13 @@ class Books::ImgsController < ApplicationController
       max_length = 20
       img_name = (page_img_name.length > max_length) ? page_img_name.slice(0, 20)+'…' : img.name
 
+      error_messages = []
       randoku_img_record = book.randoku_imgs.find_or_initialize_by(name: page_img_name)
       if randoku_img_record.new_record?
         randoku_img_record.path = "public/#{book.id}/#{page_img_name}"
         randoku_img_record.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
-        if !randoku_img_record.save
-          flash.now[:danger] = "#{img_name}のアップロードに失敗しました"
-          break
+        unless randoku_img_record.save
+          error_messages << img_name
         end
 
         flash.now[:notice] = "#{img_name}のアップロード完了"
@@ -143,7 +143,14 @@ class Books::ImgsController < ApplicationController
       end
     }
     save_first_post_flag(book)
-    redirect_to("/books/#{book.id}")
+
+    if error_messages.empty?
+      redirect_to("/books/#{book.id}")
+    else
+      flash.now[:danger] = "アップロードに失敗：\n#{error_messages.join('\n')}"
+      book_view_model = ViewModel::BooksShow.new(book: book)
+      render 'book/show', locals: { book: book_view_model }
+    end
   end
 
   # 用途
