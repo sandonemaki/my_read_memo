@@ -40,21 +40,25 @@ class Books::ImgsController < ApplicationController
       filenames_save_db = []
 
       page_imgs.each { |page_img|
-        page_img_extname = File.extname(page_img.original_filename)
+        # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
+        filename = ActiveSupport::Inflector
+          .transliterate(page_img.original_filename)
+          .gsub(" ", "")).gsub(/[^\w.]+/, '_')
+
+        page_img_extname = File.extname(filename)
 
         # 用途
         # -ファイル名の取得
 
         if page_img_extname.match(".HEIC$|.heic$")
           jpg_imgname =
-            page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg").gsub(" ", "")
+            filename.sub(/.HEIC$|.heic$/, ".jpg")
           filenames_save_db << jpg_imgname
           save_image_entity_after_convert_from_hiec_to_jpg(page_img, jpg_imgname)#メソッド呼び出し
 
           # 用途
           # -ファイル名の取得
         elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
-          filename = "#{page_img.original_filename.gsub(" ", "")}"
           filenames_save_db << filename
           save_image_entity_after_convert_to_jpg(book, page_img, filename) #メソッド呼び出し1
 
