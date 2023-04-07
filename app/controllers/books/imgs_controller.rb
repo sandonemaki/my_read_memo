@@ -48,6 +48,12 @@ class Books::ImgsController < ApplicationController
 
         img_ext = File.extname(filename)
 
+        if img_ext.empty? || ![".jpg", ".jpeg", ".png", ".pdf", ".heic"].include?(img_ext.downcase)
+          filename = convert_missing_ext_to_png(filename)
+          img_ext = File.extname(filename)
+        end
+
+
         # 用途
         # -ファイル名の取得
         if img_ext.match(".HEIC$|.heic$")
@@ -83,6 +89,10 @@ class Books::ImgsController < ApplicationController
   end # def create
 
 
+  # 拡張子を".png"に変更する
+  def convert_missing_ext_to_png(filename)
+    File.basename(filename, ".*") + ".png"
+  end
 
   # 用途
   # -本画像の実体を保存 temp/
