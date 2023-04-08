@@ -24,47 +24,85 @@ class Books::ImgsController < ApplicationController
   end
 
 
+  # TODO:フロント_jsでの制御
+  # TODO:createアクションから呼び出すメソッド定義を新しいクラスに配置する
   def create
-    if params[:page_imgs]
-      page_imgs = params[:page_imgs]
-      book = Book.find_by(id: params[:book_id])
+    page_imgs = params[:page_imgs]
+    book = Book.find_by(id: params[:book_id])
 
+    begin
       FileUtils.mkdir_p("public/#{book.id}/")
       FileUtils.mkdir_p("public/#{book.id}/thumb/")
+    rescue StandardError => e
+      flash[:danger] = "ファイルの処理に失敗しました"
+      book_view_model = ViewModel::BooksShow.new(book: book)
+      render 'books/show', locals: { book: book_view_model }
+      raise StandardError.new("原因：#{e.class}, #{e.message}")
+    end
 
-      # DBに保存するためのファイル名を追加
-      filenames_save_db = []
+    # DBに保存するためのファイル名を追加
+    filenames_save_db = []
+    # 最後にerror_messageをまとめて表示
+    error_messages = []
 
+    ActiveRecord::Base.transaction do
       page_imgs.each { |page_img|
-        page_img_extname = File.extname(page_img.original_filename)
+        # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
+        filename = ActiveSupport::Inflector
+          .transliterate(page_img.original_filename)
+          .gsub(" ", "").gsub(/[^\w.]+/, '_')
+
+        img_ext = File.extname(filename)
+
+        if img_ext.empty? || ![".jpg", ".jpeg", ".png", ".pdf", ".heic"].include?(img_ext.downcase)
+          filename = convert_missing_ext_to_png(filename)
+          img_ext = File.extname(filename)
+        end
 
         # 用途
         # -ファイル名の取得
-
-        if page_img_extname.match(".HEIC$|.heic$")
+        if img_ext.match(".HEIC$|.heic$")
           jpg_imgname =
-            page_img.original_filename.sub(/.HEIC$|.heic$/, ".jpg").gsub(" ", "")
+            filename.sub(/.HEIC$|.heic$/, ".jpg")
           filenames_save_db << jpg_imgname
           save_image_entity_after_convert_from_hiec_to_jpg(page_img, jpg_imgname)#メソッド呼び出し
 
           # 用途
           # -ファイル名の取得
-        elsif page_img_extname.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
-          filename = "#{page_img.original_filename.gsub(" ", "")}"
+        elsif img_ext.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
           filenames_save_db << filename
           save_image_entity_after_convert_to_jpg(book, page_img, filename) #メソッド呼び出し1
 
         else
-          flash[:notice] = "指定の拡張子で画像を投稿してください"
-          redirect_to(controller: :books, action: :show)
+          error_messages << "#{filename}の拡張子が不正です"
         end
       }
       db_save_randoku_imgs(book, filenames_save_db)
+
+      result = book.try_update_reading_state
+      if result[:updated] == true
+        flash[:notice] = "本のステータスが更新されました!"
+      end
+
+      save_first_post_flag(book)
+
+    end # transaction
+
+
+    if error_messages.empty?
+      redirect_to("/books/#{book.id}")
     else
-      flash.now[:danger] = "保存できませんでした"
-      # Todo:保存できなかったときのviewmodelを作成する
+      flash.now[:danger] = "アップロードに失敗：\n#{error_messages.join('\n')}"
+      book_view_model = ViewModel::BooksShow.new(book: book)
+      render 'books/show', locals: { book: book_view_model }
     end
   end # def create
+
+
+  # 拡張子を".png"に変更する
+  def convert_missing_ext_to_png(filename)
+    File.basename(filename, ".*") + ".png"
+  end
 
   # 用途
   # -本画像の実体を保存 temp/
@@ -80,8 +118,13 @@ class Books::ImgsController < ApplicationController
       system('mogrify -strip '+tmpdir+'/"*"')
       system('magick mogrify -format jpg '+tmpdir+'/*.HEIC')
       system('convert '+tmpdir+'/*.jpg -thumbnail '+size+' -gravity North \
-             -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+jpg_imgname)
-      FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+          -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+jpg_imgname)
+      begin
+        FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+      rescue StandardError => e
+        error_messages << "#{jpg_imgname}が保存されませんでした"
+        raise StandardError.new("原因：#{e.class}, #{e.message}")
+      end
     }
   end
 
@@ -98,8 +141,13 @@ class Books::ImgsController < ApplicationController
       system('mogrify -format jpg *.png')
       system('mogrify -strip '+tmpdir+'/*')
       system('convert '+tmpdir+'/* -thumbnail '+size+' -gravity North \
-             -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+filename)
-      FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+          -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+filename)
+      begin
+        FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+      rescue StandardError => e
+        error_messages << "#{filename}が保存に失敗しました"
+        raise StandardError.new("原因：#{e.class}, #{e.message}")
+      end
     }
   end
 
@@ -108,23 +156,25 @@ class Books::ImgsController < ApplicationController
     # dbに同じ画像名が存在するかを確認
     # 存在しない場合にパスと画像名を保存
     filenames_save_db.each { |page_img_name|
+      max_length = 20
+      img_name = (page_img_name.length > max_length) ? page_img_name.slice(0, 20)+'…' : page_img_name
+
+      error_messages = []
       randoku_img_record = book.randoku_imgs.find_or_initialize_by(name: page_img_name)
       if randoku_img_record.new_record?
         randoku_img_record.path = "public/#{book.id}/#{page_img_name}"
         randoku_img_record.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
         unless randoku_img_record.save
-          flash.now[:danger] = "保存できませんでした"
-        # Todo:保存できなかったときのviewmodelを作成する
+          error_messages << img_name
         end
+
+        flash.now[:notice] = "#{img_name}のアップロード完了"
       else
         # すでに同じ名前の画像がdbに存在する場合
-        # MEMO: ニーズがあれば同じ画像名が存在する場合にユーザーに質問した上でupdateする場合はupdateするようにしたい
-        flash.now[:warning] = "#{page_img_name}はすでに存在します。別の名前で保存してください"
+        randoku_img_record.update(updated_at: Time.current)
+        flash.now[:notice] = "#{img_name}の上書きアップロード完了"
       end
     }
-    save_first_post_flag(book)
-    flash[:notice] = "画像を保存しました"
-    redirect_to("/books/#{book.id}")
   end
 
   # 用途
