@@ -91,16 +91,18 @@ class Books::ImgsController < ApplicationController
       end
 
       if error_messages.empty?
-        redirect_to("/books/#{book.id}")
+        book_view_model = ViewModel::BooksShow.new(book: book)
+        render 'books/show', locals: { book: book_view_model }
+        # redirect_to("/books/#{book.id}")
       else
         flash.now[:danger] = "アップロードに失敗：\n#{error_messages.join('\n')}"
         book_view_model = ViewModel::BooksShow.new(book: book)
-        render 'book/show', locals: { book: book_view_model }
+        render 'books/show', locals: { book: book_view_model }
       end
     else # !params[:page_imgs]
       flash.now[:danger] = "本の情報が正しく送信されませんでした。フォームを確認して、再度送信してください"
       book_view_model = ViewModel::BooksShow.new(book: book)
-      render 'book/show', locals: { book: book_view_model }
+      render 'books/show', locals: { book: book_view_model }
     end
   end # def create
 
