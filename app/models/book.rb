@@ -15,18 +15,18 @@ class Book < ApplicationRecord
   # totalpage、乱読画像の数、未読既読の数に変更があった時に呼び出される
   def try_update_reading_state
     judgement_reading_state_type =
-      ReadinStateUtils::StateTypeJudge.determine_state(
+      ReadingStateUtils::StateTypeJudge.determine_state(
         totalpage:          self.total_page,
         already_read_count: self.randoku_imgs.where(reading_state: "1").count, #既読の数
         unread_count:       self.randoku_imgs.where(reading_state: "0").count #未読の数
       )
 
     new_reading_state = case judgement_reading_state_type
-    when State::ReadingState::Randoku
+    when ReadingStateUtils::StateTypeJudge::Randoku
       0
-    when State::ReadingState::Seidoku
+    when ReadingStateUtils::StateTypeJudge::Seidoku
       1
-    when State::ReadingState::Tudoku
+    when ReadingStateUtils::StateTypeJudge::Tudoku
       2
     else
       raise TypeError, "無効の型が判定されました"
