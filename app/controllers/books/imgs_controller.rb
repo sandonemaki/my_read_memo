@@ -24,6 +24,8 @@ class Books::ImgsController < ApplicationController
   end
 
 
+  # TODO:フロント_jsでの制御
+  # TODO:createアクションから呼び出すメソッド定義を新しいクラスに配置する
   def create
     page_imgs = params[:page_imgs]
     book = Book.find_by(id: params[:book_id])
