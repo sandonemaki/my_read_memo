@@ -15,7 +15,7 @@ class Book < ApplicationRecord
   # totalpage、乱読画像の数、未読既読の数に変更があった時に呼び出される
   def try_update_reading_state
     judgement_reading_state_type =
-      State::ReadingState.judgement_reading_state_type(
+      ReadinStateUtils::StateTypeJudge.determine_state(
         totalpage:          self.total_page,
         already_read_count: self.randoku_imgs.where(reading_state: "1").count, #既読の数
         unread_count:       self.randoku_imgs.where(reading_state: "0").count #未読の数
