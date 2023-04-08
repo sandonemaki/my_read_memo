@@ -44,7 +44,7 @@ class Books::ImgsController < ApplicationController
         # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
         filename = ActiveSupport::Inflector
           .transliterate(page_img.original_filename)
-          .gsub(" ", "")).gsub(/[^\w.]+/, '_')
+          .gsub(" ", "").gsub(/[^\w.]+/, '_')
 
         img_ext = File.extname(filename)
 
@@ -153,7 +153,7 @@ class Books::ImgsController < ApplicationController
     # 存在しない場合にパスと画像名を保存
     filenames_save_db.each { |page_img_name|
       max_length = 20
-      img_name = (page_img_name.length > max_length) ? page_img_name.slice(0, 20)+'…' : img.name
+      img_name = (page_img_name.length > max_length) ? page_img_name.slice(0, 20)+'…' : page_img_name
 
       error_messages = []
       randoku_img_record = book.randoku_imgs.find_or_initialize_by(name: page_img_name)
