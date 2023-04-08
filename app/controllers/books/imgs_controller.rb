@@ -40,46 +40,55 @@ class Books::ImgsController < ApplicationController
       # 最後にerror_messageをまとめて表示
       error_messages = []
 
-      page_imgs.each { |page_img|
-        # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
-        filename = ActiveSupport::Inflector
-          .transliterate(page_img.original_filename)
-          .gsub(" ", "").gsub(/[^\w.]+/, '_')
+      begin
+        ActiveRecord::Base.transaction do
 
-        img_ext = File.extname(filename)
+          page_imgs.each { |page_img|
+            # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
+            filename = ActiveSupport::Inflector
+              .transliterate(page_img.original_filename)
+              .gsub(" ", "").gsub(/[^\w.]+/, '_')
 
-        if img_ext.empty? || ![".jpg", ".jpeg", ".png", ".pdf", ".heic"].include?(img_ext.downcase)
-          filename = convert_missing_ext_to_png(filename)
-          img_ext = File.extname(filename)
-        end
+            img_ext = File.extname(filename)
+
+            if img_ext.empty? || ![".jpg", ".jpeg", ".png", ".pdf", ".heic"].include?(img_ext.downcase)
+              filename = convert_missing_ext_to_png(filename)
+              img_ext = File.extname(filename)
+            end
 
 
-        # 用途
-        # -ファイル名の取得
-        if img_ext.match(".HEIC$|.heic$")
-          jpg_imgname =
-            filename.sub(/.HEIC$|.heic$/, ".jpg")
-          filenames_save_db << jpg_imgname
-          save_image_entity_after_convert_from_hiec_to_jpg(page_img, jpg_imgname)#メソッド呼び出し
+            # 用途
+            # -ファイル名の取得
+            if img_ext.match(".HEIC$|.heic$")
+              jpg_imgname =
+                filename.sub(/.HEIC$|.heic$/, ".jpg")
+              filenames_save_db << jpg_imgname
+              save_image_entity_after_convert_from_hiec_to_jpg(page_img, jpg_imgname)#メソッド呼び出し
 
-          # 用途
-          # -ファイル名の取得
-        elsif img_ext.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
-          filenames_save_db << filename
-          save_image_entity_after_convert_to_jpg(book, page_img, filename) #メソッド呼び出し1
+              # 用途
+              # -ファイル名の取得
+            elsif img_ext.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
+              filenames_save_db << filename
+              save_image_entity_after_convert_to_jpg(book, page_img, filename) #メソッド呼び出し1
 
-        else
-          error_messages << "#{filename}の拡張子が不正です"
-        end
-      }
-      db_save_randoku_imgs(book, filenames_save_db)
+            else
+              error_messages << "#{filename}の拡張子が不正です"
+            end
+          }
+          db_save_randoku_imgs(book, filenames_save_db)
 
-      result = book.try_update_reading_state
-      if result[:updated] == true
-        flash[:notice] = "本のステータスが更新されました!"
+          result = book.try_update_reading_state
+          if result[:updated] == true
+            flash[:notice] = "本のステータスが更新されました!"
+          end
+
+          save_first_post_flag(book)
+
+        end # transaction
+
+      rescue StandardError => transaction_e
+        error_messages << transaction_e.message
       end
-
-      save_first_post_flag(book)
 
       if error_messages.empty?
         redirect_to("/books/#{book.id}")
@@ -88,8 +97,8 @@ class Books::ImgsController < ApplicationController
         book_view_model = ViewModel::BooksShow.new(book: book)
         render 'book/show', locals: { book: book_view_model }
       end
-    else
-      flash.now[:danger] = "保存できませんでした"
+    else # !params[:page_imgs]
+      flash.now[:danger] = "本の情報が正しく送信されませんでした。フォームを確認して、再度送信してください"
       book_view_model = ViewModel::BooksShow.new(book: book)
       render 'book/show', locals: { book: book_view_model }
     end
@@ -111,15 +120,15 @@ class Books::ImgsController < ApplicationController
   def save_image_entity_after_convert_from_hiec_to_jpg(boook, page_img, jpg_imgname)
     size = "220x150"
     Dir.mktmpdir { |tmpdir|
-      File.binwrite("#{tmpdir}/#{jpg_imgname}", page_img.read)
-      system('mogrify -strip '+tmpdir+'/"*"')
-      system('magick mogrify -format jpg '+tmpdir+'/*.HEIC')
-      system('convert '+tmpdir+'/*.jpg -thumbnail '+size+' -gravity North \
-        -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+jpg_imgname)
       begin
+        File.binwrite("#{tmpdir}/#{jpg_imgname}", page_img.read)
+        system('mogrify -strip '+tmpdir+'/"*"')
+        system('magick mogrify -format jpg '+tmpdir+'/*.HEIC')
+        system('convert '+tmpdir+'/*.jpg -thumbnail '+size+' -gravity North \
+          -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+jpg_imgname)
         FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
       rescue StandardError => e
-        flash[:danger] = "ファイル操作に失敗しました: #{e.message}"
+        raise StandardError.new("HEIC から JPG への変換に失敗しました。原因：#{e.message}")
       end
     }
   end
@@ -133,15 +142,15 @@ class Books::ImgsController < ApplicationController
   def save_image_entity_after_convert_to_jpg(book, page_img, filename)
     size = "220x150"
     Dir.mktmpdir { |tmpdir|
-      File.binwrite("#{tmpdir}/#{filename}", page_img.read)
-      system('mogrify -format jpg *.png')
-      system('mogrify -strip '+tmpdir+'/*')
-      system('convert '+tmpdir+'/* -thumbnail '+size+' -gravity North \
-        -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+filename)
       begin
+        File.binwrite("#{tmpdir}/#{filename}", page_img.read)
+        system('mogrify -format jpg *.png')
+        system('mogrify -strip '+tmpdir+'/*')
+        system('convert '+tmpdir+'/* -thumbnail '+size+' -gravity North \
+          -extent '+size+' public/'+book.id.to_s+'/thumb/sm_'+filename)
         FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
       rescue StandardError => e
-        flash[:danger] = "ファイル操作に失敗しました: #{e.message}"
+        raise StandardError.new("JPG への変換に失敗しました。原因：#{e.message}")
       end
 
     }
