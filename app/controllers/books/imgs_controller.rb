@@ -91,9 +91,7 @@ class Books::ImgsController < ApplicationController
       end
 
       if error_messages.empty?
-        book_view_model = ViewModel::BooksShow.new(book: book)
-        render 'books/show', locals: { book: book_view_model }
-        # redirect_to("/books/#{book.id}")
+        redirect_to("/books/#{book.id}")
       else
         flash.now[:danger] = "アップロードに失敗：\n#{error_messages.join('\n')}"
         book_view_model = ViewModel::BooksShow.new(book: book)
