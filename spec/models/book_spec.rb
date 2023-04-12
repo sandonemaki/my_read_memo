@@ -1,6 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
+  describe "バリデーション" do
+    subject(:valid?) { book.valid? }
+
+    let(:book) { Book.new(title: title, author_1: author_1, total_page: total_page) }
+    let(:title) { "ダイニングタイトル" }
+    let(:author_1) { "東野智子" }
+    let(:total_page) { 100 }
+
+    context 'すべての属性が有効なとき' do
+      it 'バリデーションが通ること' do
+        expect(valid?).to eq true
+      end
+    end
+
+    context 'タイトルがないとき' do
+      let(:title) { nil }
+      it 'バリデーションエラーが発生すること' do
+        valid?
+        expect(book.errors[:title]).to include("タイトルを入力してください")
+      end
+    end
+
+  end
+end
+RSpec.describe Book, type: :model do
   it "タイトル、著者、読む予定のページ数があれば有効な状態であること" do
     book = Book.new(
       title: "ダイニングタイトル",
