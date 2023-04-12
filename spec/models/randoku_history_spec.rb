@@ -6,7 +6,7 @@ RSpec.describe RandokuHistory, type: :model do
       title: "ダイニングタイトル",
       author_1: "東野智子",
       total_page: 100,
-      reading_state: 1,
+      reading_state: 0,
     )}
 
     let(:new_path) { "books/#{book.id}" }
