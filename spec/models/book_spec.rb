@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# 整理後のバリデーションテスト
 RSpec.describe Book, type: :model do
   describe "バリデーション" do
     subject(:valid?) { book.valid? }
@@ -31,8 +32,41 @@ RSpec.describe Book, type: :model do
       end
     end
 
+    context '読む予定のページ数が存在しないとき' do
+      let(:total_page) { nil }
+      it 'バリデーションエラーが発生すること' do
+        valid?
+        expect(book.errors[:total_page]).to include("読む予定のページ数を入力してください")
+      end
+    end
+
+    context 'タイトルが31文字以下であるとき' do
+      let(:title) { "a" * 31 }
+      it 'バリデーションエラーが発生すること' do
+        valid?
+        expect(book.errors[:title]).to include("30文字以内で入力してください")
+      end
+    end
+
+    context '著者の入力が31文字であるとき' do
+      let(:author_1) { "a" * 31 }
+      it 'バリデーションエラーが発生すること' do
+        valid?
+        expect(book.errors[:author_1]).to include("30文字以内で入力してください")
+      end
+    end
+
+    context '読む予定のページ数は1000ページであるとき' do
+      let(:total_page) { 1000 }
+      it 'バリデーションエラーが発生すること' do
+        valid?
+        expect(book.errors[:total_page]).to include("登録できるページ数は999ページまでです")
+      end
+    end
   end
 end
+
+# 整理前のバリデーションテスト
 RSpec.describe Book, type: :model do
   it "タイトル、著者、読む予定のページ数があれば有効な状態であること" do
     book = Book.new(
