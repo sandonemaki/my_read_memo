@@ -23,6 +23,14 @@ RSpec.describe Book, type: :model do
       end
     end
 
+    context '著者がないとき' do
+      let(:author_1) { nil }
+      it 'バリデーションエラーが発生すること' do
+        valid?
+        expect(book.errors[:author_1]).to include("著者を入力してください")
+      end
+    end
+
   end
 end
 RSpec.describe Book, type: :model do
