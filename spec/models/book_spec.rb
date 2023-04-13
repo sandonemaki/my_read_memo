@@ -114,3 +114,62 @@ RSpec.describe Book, type: :model do
     expect(book.errors[:total_page]).to include("登録できるページ数は999ページまでです")
   end
 end
+
+RSpec.describe Book, type: :model do
+  describe ".try_update_reading_state" do
+    let(:book) { Book.create(
+      title: "ダイニングタイトル",
+      author_1: "東野智子",
+      total_page: 100,
+      reading_state: 0
+    )}
+
+    context 'determine_stateの戻り値が乱読型のとき' do
+      before do
+        allow(ReadingStateUtils::StateTypeJudge)
+        .to receive(:determine_state)
+        .and_return(ReadingStateUtils::StateTypeJudge::Randoku.new)
+      end
+
+      it "状態に変化がないのでdbに保存されないこと" do
+        expect {book.try_update_reading_state}.not_to change {book.reading_state}
+      end
+    end  
+
+    context 'determine_stateの戻り値が精読型のとき' do
+      before do
+        allow(ReadingStateUtils::StateTypeJudge)
+        .to receive(:determine_state)
+        .and_return(ReadingStateUtils::StateTypeJudge::Seidoku.new)
+      end
+
+      it "乱読から精読に状態が変化するのでdbに保存されること" do
+        expect {book.try_update_reading_state}.to change {book.reading_state}
+      end
+    end  
+
+    context 'determine_stateの戻り値が精読型のとき' do
+      before do
+        allow(ReadingStateUtils::StateTypeJudge)
+        .to receive(:determine_state)
+        .and_return(ReadingStateUtils::StateTypeJudge::Tudoku.new)
+      end
+
+      it "乱読から通読に状態が変化するのでdbに保存されること" do
+        expect {book.try_update_reading_state}.to change {book.reading_state}
+      end
+    end  
+
+    context 'determine_stateの戻り値が精読型のとき' do
+      before do
+        allow(ReadingStateUtils::StateTypeJudge)
+        .to receive(:determine_state)
+        .and_return(ReadingStateUtils::StateTypeJudge)
+      end
+
+      it "detaermine_stateの戻り値が存在しない型のためエラーが出ること" do
+        expect {book.try_update_reading_state}.to raise_error
+      end
+    end  
+  end
+end
