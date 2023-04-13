@@ -133,6 +133,7 @@ RSpec.describe Book, type: :model do
 
       it "状態に変化がないのでdbに保存されないこと" do
         expect {book.try_update_reading_state}.not_to change {book.reading_state}
+        expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
     end  
 
@@ -145,6 +146,7 @@ RSpec.describe Book, type: :model do
 
       it "乱読から精読に状態が変化するのでdbに保存されること" do
         expect {book.try_update_reading_state}.to change {book.reading_state}
+        expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
     end  
 
@@ -157,6 +159,7 @@ RSpec.describe Book, type: :model do
 
       it "乱読から通読に状態が変化するのでdbに保存されること" do
         expect {book.try_update_reading_state}.to change {book.reading_state}
+        expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
     end  
 
@@ -169,6 +172,7 @@ RSpec.describe Book, type: :model do
 
       it "detaermine_stateの戻り値が存在しない型のためエラーが出ること" do
         expect {book.try_update_reading_state}.to raise_error
+        expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
     end  
   end
