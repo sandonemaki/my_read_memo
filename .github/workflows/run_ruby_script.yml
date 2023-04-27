@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'scripts/hello_world.rb'
+  workflow_dispatch:
 
 jobs:
   build:
