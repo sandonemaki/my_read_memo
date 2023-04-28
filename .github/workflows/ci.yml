@@ -17,10 +17,12 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get install -y libpq-dev
       
-      - name: Install Postgres
+      - name: Install and start PostgreSQL 
         run: |
           sudo apt-get update
           sudo apt-get -y install postgresql
+          sudo systemctl start postgresql
+          sudo systemctl status postgresql
 
       - name: Create database
         run: |
