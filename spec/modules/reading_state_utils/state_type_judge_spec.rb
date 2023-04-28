@@ -107,6 +107,5 @@ RSpec.describe ReadingStateUtils do
         end
       end
     end
-
   end
 end
