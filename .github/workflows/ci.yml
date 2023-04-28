@@ -24,7 +24,7 @@ jobs:
 
       - name: Create database
         run: |
-          sudo -u postgres psql -c "CREATE USER ${{ secrets.DB_USER }} WITH PASSWORD '${{{ secrets.DB_PASSWORD }}';"
+          sudo -u postgres psql -c "CREATE USER ${{ secrets.DB_USER }} WITH PASSWORD '${{ secrets.DB_PASSWORD }}';"
           sudo -u postgres psql -c "CREATE DATABASE ${{ secrets.DB_NAME }}"
       
       - name: Grant permissions
