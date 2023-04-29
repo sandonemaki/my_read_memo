@@ -26,5 +26,5 @@ aws_login:
 	ssh -i ${SECRET_KEY_PATH_V2} ${USER_NAME_V2}@${HOST_V2}
 
 .PHONY: release-for-aws
-elease-for-aws:
+release-for-aws:
 	aws_login pull aws_db_cp db_migrate kill_server_and_start_server_as_daemon
