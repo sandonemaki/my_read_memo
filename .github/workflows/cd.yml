@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows:
+      - "Ruby on Rails CI"
+    types:
+      - completed
 
 jobs:
   deploy:
@@ -13,7 +18,7 @@ jobs:
           EC2_USER_NAME: ${{ secrets.EC2_USER_NAME }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
-          ssh ${{ secrets.EC2_USER_NAME }}@${{ secrets.EC2_HOST }} -i ~/.ssh/id_rsa
+          ssh ${{ secrets.EC2_USER_NAME }}@${{ secrets.EC2_HOST }} -i $HOME/.ssh/id_rsa
           export PATH=\"/home/ubuntu/.anyenv/envs/rbenv/versions/3.0.4/bin:\$PATH\"
           cd my_read_memo
           bundle install
