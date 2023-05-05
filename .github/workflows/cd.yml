@@ -10,9 +10,9 @@ jobs:
     steps:
       - name: ssh deploy to ec2 with vagrant
         env:
-          SECRET_KEY_PATH: ${{ env.SECRET_KEY_PATH }}
-          EC2_USER_NAME: ${{ env.EC2_USER_NAME }}
-          EC2_HOST: ${{ env.EC2_HOST }}
+          SECRET_KEY_PATH: ${{ secrets.SECRET_KEY_PATH }}
+          EC2_USER_NAME: ${{ secrets.EC2_USER_NAME }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
           ssh ${{ secrets.EC2_USER_NAME }}@${{ secrets.EC2_HOST }} -i ${{ secrets.SECRET_KEY_PATH }}
           export PATH=\"/home/ubuntu/.anyenv/envs/rbenv/versions/3.0.4/bin:\$PATH\"
