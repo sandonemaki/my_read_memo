@@ -13,12 +13,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: ssh deploy to ec2 with vagrant
+      - name: Set up SSH key
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          eval $(ssh-agent -s)
+          ssh-add ~/.ssh/id_rsa
+          ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
+
+      - name: Deploy from Vagrant to EC2 with SSH
         env:
           EC2_USER_NAME: ${{ secrets.EC2_USER_NAME }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
-          ssh ${{ secrets.EC2_USER_NAME }}@${{ secrets.EC2_HOST }} -i $HOME/.ssh/id_rsa
+          ssh $EC2_USER_NAME@$EC2_HOST -i ~/.ssh/id_rsa <<-EOF
           export PATH=\"/home/ubuntu/.anyenv/envs/rbenv/versions/3.0.4/bin:\$PATH\"
           cd my_read_memo
           bundle install
@@ -28,3 +40,4 @@ jobs:
           bundle exec rails db:migrate
           kill $(cat tmp/pids/server.pid) 2>/dev/null || echo "Server is not running or Failed to kill server process"
           bundle exec rails s -b 0.0.0.0 -d
+          EOF
