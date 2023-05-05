@@ -10,11 +10,10 @@ jobs:
     steps:
       - name: ssh deploy to ec2 with vagrant
         env:
-          SECRET_KEY_PATH: ${{ secrets.SECRET_KEY_PATH }}
           EC2_USER_NAME: ${{ secrets.EC2_USER_NAME }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
-          ssh ${{ secrets.EC2_USER_NAME }}@${{ secrets.EC2_HOST }} -i $HOME/.ssh/id_rsa
+          ssh ${{ secrets.EC2_USER_NAME }}@${{ secrets.EC2_HOST }} -i /home/vagrant/.ssh/id_rsa
           export PATH=\"/home/ubuntu/.anyenv/envs/rbenv/versions/3.0.4/bin:\$PATH\"
           cd my_read_memo
           bundle install
