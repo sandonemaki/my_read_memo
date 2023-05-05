@@ -1,0 +1,26 @@
+name: "Ruby on Rails CD"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh deploy to ec2 with vagrant
+        env:
+          SECRET_KEY_PATH: ${{ env.SECRET_KEY_PATH }}
+          EC2_USER_NAME: ${{ env.EC2_USER_NAME }}
+          EC2_HOST: ${{ env.EC2_HOST }}
+        run: |
+          ssh EC2_USER_NAME@EC2_HOST -i VAGRANT_SECRET_KEY_PATH
+          export PATH=\"/home/ubuntu/.anyenv/envs/rbenv/versions/3.0.4/bin:\$PATH\"
+          cd my_read_memo
+          bundle install
+          git pull origin main
+          cd config
+          cp -f aws_database.yml database.yml
+          bundle exec rails db:migrate
+          kill $(cat tmp/pids/server.pid) 2>/dev/null || echo "Server is not running or Failed to kill server process"
+          bundle exec rails s -b 0.0.0.0 -d
