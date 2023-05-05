@@ -16,8 +16,8 @@ jobs:
 
       - name: Install dependencies
         run: sudo apt-get install -y libpq-dev
-      
-      - name: Install and start PostgreSQL 
+
+      - name: Install and start PostgreSQL
         run: |
           sudo apt-get update
           sudo apt-get -y install postgresql
@@ -28,7 +28,7 @@ jobs:
         run: |
           sudo -u postgres psql -c "CREATE USER ${{ secrets.DB_USER }} WITH PASSWORD '${{ secrets.DB_PASSWORD }}';"
           sudo -u postgres psql -c "CREATE DATABASE ${{ secrets.DB_NAME }}"
-      
+
       - name: Grant permissions
         run: |
           sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ${{ secrets.DB_NAME }} TO ${{ secrets.DB_USER }};"
