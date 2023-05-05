@@ -14,7 +14,7 @@ jobs:
           EC2_USER_NAME: ${{ env.EC2_USER_NAME }}
           EC2_HOST: ${{ env.EC2_HOST }}
         run: |
-          ssh ${EC2_USER_NAME}@${EC2_HOST} -i ${SECRET_KEY_PATH}
+          ssh ${{ EC2_USER_NAME }}@${{ EC2_HOST }} -i ${{ SECRET_KEY_PATH }}
           export PATH=\"/home/ubuntu/.anyenv/envs/rbenv/versions/3.0.4/bin:\$PATH\"
           cd my_read_memo
           bundle install
