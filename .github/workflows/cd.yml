@@ -3,14 +3,16 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '**/*.md'
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.ref_name == 'main' }}
-    needs: integration
+    if: (github.event_name == 'push') || (github.event.pull_request.merged == true)
     steps:
       - name: Set up SSH key
         env:
