@@ -8,6 +8,11 @@ on:
       - main
     types:
       - closed
+  workflow_run:
+    workflows:
+      - "Ruby on Rails CI"
+    types:
+      - completed
 
 jobs:
   deploy:
