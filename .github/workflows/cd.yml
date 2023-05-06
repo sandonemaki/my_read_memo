@@ -23,7 +23,7 @@ jobs:
           chmod 400 ~/.ssh/id_rsa
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa
-          ssh-keyscan -H EC2_HOST >> ~/.ssh/known_hosts
+          ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
 
       - name: Deploy from Vagrant to EC2 with SSH
         env:
