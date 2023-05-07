@@ -1,19 +1,15 @@
 name: "Ruby on Rails CD"
 on:
-  workflow_run:
-    workflows:
-      - "Ruby on Rails CI"
-    types:
-      - completed
-  pull_request:
+  push:
     branches:
-      - main
-    types: [closed]
+      -main
 
 jobs:
+  ci-reuse:
+    uses: ./.github/workflows/ci.yml
+
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success' && ${{ github.ref_name == 'main' }}
     steps:
       - name: Set up SSH key
         env:
