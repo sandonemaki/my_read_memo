@@ -23,13 +23,5 @@ db_migrate:
 
 .PHONY: release-for-aws
 release-for-aws:
-	ssh -i ${SECRET_KEY_PATH_V2} ${USER_NAME_V2}@${HOST_V2} \
-	"export PATH=\"/home/ubuntu/.anyenv/envs/rbenv/versions/3.0.4/bin:\$PATH\" && \
-	cd my_read_memo && \
-	bundle install && \
-	sudo apt-get update && \
-	sudo apt-get install -y git && \
-	git pull origin main && \
-	make aws_db_cp && \
-	make db_migrate && \
-	make kill-server-and-start-server-as-daemon"
+	scp -i ${SECRET_KEY_PATH_V2} -p /home/vagrant/my_read_memo/command-in-aws.sh ${USER_NAME_V2}@${HOST_V2}:/home/ubuntu/
+	ssh -i ${SECRET_KEY_PATH_V2} ${USER_NAME_V2}@${HOST_V2} "bash /home/ubuntu/command-in-aws.sh"
