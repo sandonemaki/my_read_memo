@@ -3,17 +3,7 @@ on:
     branches-ignore:
       - main
   workflow_call:
-    inputs:
-      DB_HOST:
-        type: string
-        required: true
-      DB_PORT:
-        type: string
-        required: true
-      RAILS_ENV:
-        type: string
-        required: true
-    secrets:
+   secrets:
       DB_USER:
         required: true
       DB_PASSWORD:
@@ -59,9 +49,6 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_NAME: ${{ secrets.DB_NAME }}
-          DB_HOST: localhost
-          DB_PORT: 5432
-          RAILS_ENV: test
         run: |
           bundle install
           bundle exec rails db:migrate
