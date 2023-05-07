@@ -5,7 +5,14 @@ on:
 
 jobs:
   ci-reuse:
-    uses: ./.github/workflows/ci.yml
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ./.github/workflows/ci.yml
+      with:
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+
 
   cd:
     runs-on: ubuntu-latest

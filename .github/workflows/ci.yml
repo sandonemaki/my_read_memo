@@ -1,8 +1,15 @@
 on:
-  workflow_call:
   push:
     branches-ignore:
       - main
+  workflow_call:
+    secrets:
+      DB_USER:
+        required: true
+      DB_PASSWORD:
+        required: true
+      DB_NAME:
+        required: true
 
 jobs:
   ci:
