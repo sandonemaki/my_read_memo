@@ -2,7 +2,7 @@ name: "Ruby on Rails CI"
 on:
   push:
     branches-ignore:
-      -main
+      - main
   workflow_call:
 
 jobs:

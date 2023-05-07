@@ -2,7 +2,7 @@ name: "Ruby on Rails CD"
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   ci-reuse:
