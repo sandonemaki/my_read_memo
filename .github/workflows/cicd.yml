@@ -1,0 +1,84 @@
+name: "ruby on rails CI/CD"
+on:
+  push:
+    paths-ignore:
+      - '**/*.md'
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: sudo apt-get install -y libpq-dev
+
+      - name: Install and start PostgreSQL
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install postgresql
+          sudo systemctl start postgresql
+          sudo systemctl status postgresql
+
+      - name: Create database
+        run: |
+          sudo -u postgres psql -c "CREATE USER ${{ secrets.DB_USER }} WITH PASSWORD '${{ secrets.DB_PASSWORD }}';"
+          sudo -u postgres psql -c "CREATE DATABASE ${{ secrets.DB_NAME }}"
+
+      - name: Grant permissions
+        run: |
+          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ${{ secrets.DB_NAME }} TO ${{ secrets.DB_USER }};"
+
+
+      - name: Set up Rails and run tests
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_HOST: localhost
+          DB_PORT: 5432
+          RAILS_ENV: test
+        run: |
+          bundle install
+          bundle exec rails db:migrate
+          bundle exec rake db:schema:load
+          bundle exec rspec
+
+  cd:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'main' }}
+    needs: ci
+    steps:
+      - name: Set up SSH key
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/id_rsa
+          ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
+
+      - name: Deploy from Vagrant to EC2 with SSH
+        env:
+          EC2_USER_NAME: ${{ secrets.EC2_USER_NAME }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+        run: |
+          ssh $EC2_USER_NAME@$EC2_HOST -i ~/.ssh/id_rsa <<-EOF
+          export PATH=\"/home/ubuntu/.anyenv/envs/rbenv/versions/3.0.4/bin:\$PATH\"
+          cd my_read_memo
+          bundle install
+          git pull origin main
+          cd config
+          cp -f aws_database.yml database.yml
+          bundle exec rails db:migrate
+          kill $(cat tmp/pids/server.pid) 2>/dev/null || echo "Server is not running or Failed to kill server process"
+          bundle exec rails s -b 0.0.0.0 -d
+          EOF
