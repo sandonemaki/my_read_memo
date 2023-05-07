@@ -3,6 +3,16 @@ on:
     branches-ignore:
       - main
   workflow_call:
+    inputs:
+      DB_HOST:
+        type: string
+        required: true
+      DB_PORT:
+        type: string
+        required: true
+      RAILS_ENV:
+        type: string
+        required: true
     secrets:
       DB_USER:
         required: true
@@ -10,6 +20,7 @@ on:
         required: true
       DB_NAME:
         required: true
+
 
 jobs:
   ci:
