@@ -21,6 +21,7 @@ on:
       DB_NAME:
         required: true
 
+
 jobs:
   ci:
     runs-on: ubuntu-latest
