@@ -1,0 +1,168 @@
+# Ignore bundler config.
+/.bundle
+vendor/
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+
+/public/assets
+.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+config/initializers/secret_token.rb
+/config/master.key
+
+## Environment normalization:
+/vendor/bundle
+
+# these should all be checked in to normalize the environment:
+# Gemfile.lock, .ruby-version, .ruby-gemset
+
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
+
+# if using bower-rails ignore default bower_components path bower.json files
+/vendor/assets/bower_components
+*.bowerrc
+bower.json
+
+# Ignore pow environment settings
+.powenv
+
+/vendor/assets/bower_components
+*.bowerrc
+bower.json
+
+/public/packs
+/public/packs-test
+/public/assets
+
+# Ignore yarn files
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# Vite Ruby
+/public/vite*
+
+# Vite uses dotenv and suggests to ignore local-only env files. See
+# https://vitejs.dev/guide/env-and-mode.html#env-files
+*.local
+
+# 230226必要なさそうなファイルをgit管理から無視する
+# タグジャンプに必要なファイル
+GPATH
+GRTAGS
+GTAGS
+ID
+Procfile.dev
+app/GPATH
+app/GRTAGS
+app/GTAGS
+app/ID
+.idea/
+tags
+
+# 230226一旦git管理からはずした
+public/
+app/views/tmp
+app/controllers/test_controller.rb
+app/controllers/tmp_controller.rb
+app/assets/stylesheets/book_pages/seidoku_memos.scss
+app/assets/stylesheets/home.scss
+app/helpers/
+app/styles/
+app/sample/
+app/views/test/hoge.html.erb
+src/
+test/
+app/views/book_pages/imgs/
+
+# .dockerignoreに追加
+# https://zenn.dev/trysmr/articles/b9c99302ebc205#4.-.dockerignore%E3%81%AE%E8%BF%BD%E5%8A%A0
+.DS_Store
+.dockerignore
+Dockerfile
+*.env
+docker
+# .dockerignoreに追加
+# https://prograshi.com/framework/rails/rails6-on-docker/
+docker-compose.*
+.cache
+LICENSE.md
+README.md
+storage/*
+
+# https://gist.github.com/yizeng/eeeb48d6823801061791cc5581f7e1fc
+.git
+.gitignore
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
+
+### Rails ###
+*.rbc
+capybara-*.html
+.rspec
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/public/system
+/coverage/
+/spec/tmp
+rerun.txt
+pickle-email-*.html
+
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
+
+### Ruby ###
+*.gem
+/.config
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+## Specific to RubyMotion:
+.dat*
+.repl_history
+build/
+*.bridgesupport
+build-iPhoneOS/
+build-iPhoneSimulator/
+
+## Documentation cache and generated files:
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
+/lib/bundler/man/
