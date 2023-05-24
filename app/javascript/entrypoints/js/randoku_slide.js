@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalTriggers = document.querySelectorAll("#sw_modal_trigger") || [];
   const modal = document.querySelector(".sw-modal")
 
-  modalTriggers.forEach(torigger => {
-    torigger.addEventListener('click', () => {
-      const slideIndex = torigger.dataset.slideIndex;
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const slideIndex = trigger.dataset.slideIndex;
       swiper.slideTo(slideIndex);
       modal.classList.add('active');
     });
@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-  const readBtns = document.querySelectorAll('#sw_read_btn') || [];
+  const readBtnList = document.querySelectorAll('#sw_read_btn') || [];
 
   // 未読・既読/toggle-button
-  readBtns.forEach(readBtn => {
+  readBtnList.forEach(readBtn => {
     readBtn.addEventListener('click', async () => {
       const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
       const imgId = parseInt(readBtn.getAttribute('data-img-id'));
@@ -81,8 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   const getCsrfToken = () => {
-    const metas = document.getElementsByTagName('meta');
-    for (let meta of metas) {
+    const metalist = document.getElementsByTagName('meta');
+    for (let meta of metalist) {
       if (meta.getAttribute('name') === 'csrf-token') {
         return meta.getAttribute('content');
       }
