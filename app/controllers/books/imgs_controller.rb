@@ -5,8 +5,9 @@ class Books::ImgsController < ApplicationController
   def toggle_already_read
     book = Book.find_by(id: params[:book_id])
     # randoku_imgsのカラム、reading_state はis_already_readに変更予定
-    book.randoku_imgs.find_by(id: params[:id]).reading_state = img_params[:alreadyread_toggle]
-    if !book.save
+    randoku_img = book.randoku_imgs.find_by(id: params[:id])
+    randoku_img.reading_state = img_params[:alreadyread_toggle]
+    if !randoku_img.save
       render json: { status: 500, message: "情報が更新されませんでした。もう一度お試しください" }
       return
     end
