@@ -12,14 +12,36 @@ class Books::ImgsController < ApplicationController
       return
     end
 
-    result = book.try_update_reading_state
-    if result[:updated] == true
+    # randoku_imgの未読/既読の保存が成功した後に実行
+    book_reading_state_result = book.try_update_reading_state
+    img_already_read_result = randoku_img.reading_state
+    img_already_read_count = book.randoku_imgs.where(reading_state: "1").count  # 既読の数
+    img_unread_count = book.randoku_imgs.where(reading_state: "0").count        # 未読の数
+
+    if book_reading_state_result[:updated] == true
       book_state_updated_info = State::READING_STATE[book.randoku_imgs.reading_state]
-      render json: { status: :ok, book_state_updated_info: book_state_updated_info }
-    elsif result[:updated] == false
-      render json: { status: 502, message: "本のステータスの更新ができませんでした。もう一度お試しください" }
+      render json: {
+        status: :ok,
+        book_state_updated_info: book_state_updated_info,
+        img_already_read_result: img_already_read_result,
+        img_already_read_count: img_already_read_count,
+        img_unread_count: img_unread_count
+      }
+    elsif book_reading_state_result[:updated] == false
+      render json: {
+        status: 502,
+        img_already_read_result: img_already_read_result,
+        img_already_read_count: img_already_read_count,
+        img_unread_count: img_unread_count
+        message: "本のステータスの更新ができませんでした。もう一度お試しください"
+      }
     else
-      render json: { status: :ok }
+      render json: {
+        status: :ok,
+        img_already_read_result: img_already_read_result,
+        img_already_read_count: img_already_read_count,
+        img_unread_count: img_unread_count
+      }
     end
 
   end
