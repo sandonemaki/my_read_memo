@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const imgId = parseInt(readBtn.getAttribute('data-img-id'));
       const bookId = parseInt(readBtn.getAttribute('data-book-id'));
       const updateData = {
-        alreadyread_toggle: readingId,
+        already_read_toggle: readingId,
       };
 
       const response = await fetch(`/books/${bookId}/imgs/${imgId}/toggle_already_read`, {
@@ -62,7 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         body: JSON.stringify(updateData),
       });
+      const responseData = await response.json();
 
+      if (!response.ok) {
+        console.error(`${response.status} ${responseData.message}`);
+        return
+      }
       if (response.ok) {
         // リクエスト成功時の処理
         readBtn.classList.toggle('completion');
@@ -73,9 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
           readBtn.setAttribute('data-reading-id', '1');
           readBtn.textContent = '完了済み';
         }
-      } else {
-        // リクエスト失敗時の処理
-        throw new Error(`${response.status} 保存ができませんでした`);
       }
     });
   });
