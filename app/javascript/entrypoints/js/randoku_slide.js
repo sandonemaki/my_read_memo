@@ -71,12 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(responseData);
 
     if (!response.ok) {
-      console.error(`${response.status} ${responseData.message}`);
-      return
+      alert(`${response.status} ${responseData.message}`);
+      throw new Error(`${response.status} ${responseData.message}`);
     }
 
     if (response.ok) {
-      // リクエスト成功時の処理
       readBtn.setAttribute('data-reading-id', responseData.img_reading_state_result);
       toggleImgAlreadyReadStateBtn(readBtn);
       judge_popup_message(responseData);
@@ -139,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return meta.getAttribute('content');
       }
     }
+    alert('エラーが発生しました: CSRF token metatag が見つかりません。 ページを更新して、もう一度お試しください');
     throw new Error('CSRF token meta tag not found');
   }
 });
