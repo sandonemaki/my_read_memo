@@ -74,10 +74,22 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error(`${response.status} ${responseData.message}`);
       return
     }
+
+    const judgePopupMessage = document.querySelector('#judged-seidoku');
+    const judgePopupCloseButton = document.querySelector('.judge-popup__close');
+    // judge_popup_message を非表示にする
+    judgePopupCloseButton.addEventListener('click', () => {
+      judgePopupMessage.classList.add('judge-popup__hidden');
+    });
+
     if (response.ok) {
       // リクエスト成功時の処理
       readBtn.setAttribute('data-reading-id', responseData.img_reading_state_result);
       toggleImgAlreadyReadStateBtn(readBtn);
+      // 本の状態が update されたら judge_popup_message を表示
+      if (responseData.book_state_updated_info) {
+        judgePopupMessage.classList.remove('judge-popup__hidden');
+      }
     }
   }
 
