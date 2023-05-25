@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
       body: JSON.stringify(updateData),
     });
     const responseData = await response.json();
+    console.log(responseData);
 
     if (!response.ok) {
       console.error(`${response.status} ${responseData.message}`);
@@ -75,17 +76,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (response.ok) {
       // リクエスト成功時の処理
+      readBtn.setAttribute('data-reading-id', responseData.img_reading_state_result);
       toggleImgAlreadyReadStateBtn(readBtn);
     }
   }
 
   const toggleImgAlreadyReadStateBtn = (readBtn) => {
-    readBtn.classList.toggle('completion');
-    if (readBtn.classList.contains('completion')) {
-      readBtn.setAttribute('data-reading-id', '0');
+    const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
+    //readBtn.classList.toggle('completion');
+    if (readingId === 0) {
+      readBtn.classList.remove('completion');
       readBtn.textContent = '読んだ!';
     } else {
-      readBtn.setAttribute('data-reading-id', '1');
+      readBtn.classList.add('completion');
       readBtn.textContent = '完了済み';
     }
   }
