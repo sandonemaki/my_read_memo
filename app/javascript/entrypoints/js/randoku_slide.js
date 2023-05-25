@@ -70,17 +70,21 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (response.ok) {
         // リクエスト成功時の処理
-        readBtn.classList.toggle('completion');
-        if (readBtn.classList.contains('completion')) {
-          readBtn.setAttribute('data-reading-id', '0');
-          readBtn.textContent = '読んだ!';
-        } else {
-          readBtn.setAttribute('data-reading-id', '1');
-          readBtn.textContent = '完了済み';
-        }
+        toggleImgAlreadyReadStateBtn(readBtn);
       }
     });
   });
+
+  const toggleImgAlreadyReadStateBtn = (readBtn) => {
+    readBtn.classList.toggle('completion');
+    if (readBtn.classList.contains('completion')) {
+      readBtn.setAttribute('data-reading-id', '0');
+      readBtn.textContent = '読んだ!';
+    } else {
+      readBtn.setAttribute('data-reading-id', '1');
+      readBtn.textContent = '完了済み';
+    }
+  }
 
   const getCsrfToken = () => {
     const metalist = document.getElementsByTagName('meta');
