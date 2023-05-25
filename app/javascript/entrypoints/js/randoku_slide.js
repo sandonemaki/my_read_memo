@@ -46,34 +46,38 @@ document.addEventListener('DOMContentLoaded', function() {
   // 未読・既読/toggle-button
   readBtnList.forEach(readBtn => {
     readBtn.addEventListener('click', async () => {
-      const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
-      const imgId = parseInt(readBtn.getAttribute('data-img-id'));
-      const bookId = parseInt(readBtn.getAttribute('data-book-id'));
-      const updateData = {
-        already_read_toggle: readingId,
-      };
-
-      const response = await fetch(`/books/${bookId}/imgs/${imgId}/toggle_already_read`, {
-        method: 'PUT',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': getCsrfToken()
-        },
-        body: JSON.stringify(updateData),
-      });
-      const responseData = await response.json();
-
-      if (!response.ok) {
-        console.error(`${response.status} ${responseData.message}`);
-        return
-      }
-      if (response.ok) {
-        // リクエスト成功時の処理
-        toggleImgAlreadyReadStateBtn(readBtn);
-      }
-    });
+      await ToggleImgAlreadyReadStatus(readBtn)
+    });  
   });
+
+  const ToggleImgAlreadyReadStatus = async (readBtn) => { 
+    const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
+    const imgId = parseInt(readBtn.getAttribute('data-img-id'));
+    const bookId = parseInt(readBtn.getAttribute('data-book-id'));
+    const updateData = {
+      already_read_toggle: readingId,
+    };
+
+    const response = await fetch(`/books/${bookId}/imgs/${imgId}/toggle_already_read`, {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCsrfToken()
+      },
+      body: JSON.stringify(updateData),
+    });
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      console.error(`${response.status} ${responseData.message}`);
+      return
+    }
+    if (response.ok) {
+      // リクエスト成功時の処理
+      toggleImgAlreadyReadStateBtn(readBtn);
+    }
+  }
 
   const toggleImgAlreadyReadStateBtn = (readBtn) => {
     readBtn.classList.toggle('completion');
