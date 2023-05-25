@@ -75,6 +75,17 @@ document.addEventListener('DOMContentLoaded', function() {
       return
     }
 
+    if (response.ok) {
+      // リクエスト成功時の処理
+      readBtn.setAttribute('data-reading-id', responseData.img_reading_state_result);
+      toggleImgAlreadyReadStateBtn(readBtn);
+      judge_popup_message(responseData);
+    }
+  }
+
+  // 本の状態が update されたら対応する judge_popup_message を表示
+  const judge_popup_message = (responseData) => {
+
     // judge_popup_message を表示するためのセレクターを取得
     const seidokuJudgePopupMessage = document.querySelector('#judged-seidoku');
     const tudokuJudgePopupMessage = document.querySelector('#judged-tudoku');
@@ -87,31 +98,24 @@ document.addEventListener('DOMContentLoaded', function() {
       tudokuJudgePopupMessage.classList.add('judge-popup__hidden');
       randokuJudgePopupMessage.classList.add('judge-popup__hidden');
     }
+
     // クローズボタンで judge_popup_message を非表示にする
     judgePopupCloseButtonList.forEach(judgePopupCloseButton => {
       judgePopupCloseButton.addEventListener('click', hideJudgePopupMessages);
     });
 
-    if (response.ok) {
-      // リクエスト成功時の処理
-      readBtn.setAttribute('data-reading-id', responseData.img_reading_state_result);
-      toggleImgAlreadyReadStateBtn(readBtn);
-
-      // 本の状態が update されたら対応する judge_popup_message を表示
-      if (responseData.book_state_updated_info) {
-        hideJudgePopupMessages(); // 一度すべての judge_popup_message を非表示にする
-
-        switch (responseData.book_state_updated_info) {
-          case '精読':
-            seidokuJudgePopupMessage.classList.remove('judge-popup__hidden');
-            break;
-          case '通常':
-            tudokuJudgePopupMessage.classList.remove('judge-popup__hidden');
-            break;
-          case '乱読':
-            randokuJudgePopupMessage.classList.remove('judge-popup__hidden');
-            break;
-        }
+    if (responseData.book_state_updated_info) {
+      hideJudgePopupMessages(); // 一度すべての judge_popup_message を非表示にする
+      switch (responseData.book_state_updated_info) {
+        case '精読':
+          seidokuJudgePopupMessage.classList.remove('judge-popup__hidden');
+          break;
+        case '通常':
+          tudokuJudgePopupMessage.classList.remove('judge-popup__hidden');
+          break;
+        case '乱読':
+          randokuJudgePopupMessage.classList.remove('judge-popup__hidden');
+          break;
       }
     }
   }
