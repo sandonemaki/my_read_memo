@@ -1,3 +1,9 @@
+/**** seidoku-tab ****/
+/* hiddenクラスで鍵が表示されないようにする */
+.fa-lock-keyhole.memo_key_hidden {
+  opacity: 0;
+  visibility: hidden;
+}
 /**** popup_seidoku ****/
 .judge-popup {
   box-shadow: 0 2px 10px rgba(0,0,0,0.04);

@@ -82,6 +82,17 @@ document.addEventListener('DOMContentLoaded', function() {
       img_already_read_check_update(responseData);
       img_read_status_count_update(responseData);
       book_reading_progress_update(responseData);
+      book_seidoku_memo_key(responseData);
+    }
+  }
+
+  // 乱読画像の状態が update され、それが精読なら精読メモタブの鍵を外す
+  const book_seidoku_memo_key = (responseData) => {
+    const seidokuMemoKeyIcon = document.querySelector('.seidoku_memo_key .fa-lock-keyhole');
+    const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
+    if (responseData.book_seidoku_memo_key === "key_false") {
+      //seidokuMemoKeyIcon.classList.add('memo_key_hidden');
+      seidokuMemoKeyWord.textContent = '精読メモタブ開錠';
     }
   }
 
@@ -92,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (responseData.book_state_updated_info) {
         book_reading_progress.textContent = responseData.book_state_updated_info;
       }
-    }
+    });
   }
 
   // 乱読画像の状態が update されたら乱読画像の未読/既読 check を更新

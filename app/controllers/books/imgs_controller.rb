@@ -34,14 +34,21 @@ class Books::ImgsController < ApplicationController
           return
         end
       end
-      render json: {
+      json_response = {
         status: :ok,
         book_state_updated_info: book_state_updated_info,
         img_reading_state_result: img_reading_state_result,
         img_already_read_count: img_already_read_count,
         img_unread_count: img_unread_count,
-        book_seidoku_memo_key: book.seidoku_memo_key == false ? "key_false" : "key_true"
       }
+      json_response[:book_seidoku_memo_key] =
+        if (book.seidoku_memo_key == false) || (book_state_updated_info == "精読")
+          "key_false"
+        else
+          "key_true"
+        end
+      render json: json_response
+
     elsif book_reading_state_result[:updated] == false
       render json: {
         status: 502,
