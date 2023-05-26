@@ -81,6 +81,17 @@ document.addEventListener('DOMContentLoaded', function() {
       judge_popup_message(responseData);
       img_already_read_check_update(responseData);
       img_read_status_count_update(responseData);
+      book_reading_progress_update(responseData);
+    }
+  }
+
+  // 乱読画像の状態が update されたら本の状態を更新
+  const book_reading_progress_update = (responseData) => {
+    const book_reading_progress_list = document.querySelectorAll('.book_reading_progress');
+    book_reading_progress_list.forEach(book_reading_progress => {
+      if (responseData.book_state_updated_info) {
+        book_reading_progress.textContent = responseData.book_state_updated_info;
+      }
     }
   }
 
