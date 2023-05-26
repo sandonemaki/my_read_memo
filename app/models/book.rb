@@ -38,7 +38,7 @@ class Book < ApplicationRecord
   # 上記try_update_reading_stateメソッドのcase文の戻り値を引数にとる
   # bookテーブルのreading_stateカラムをupdateするか判定するメソッド
   # dbの値と差異があれば新規の値を保存する
-  # 戻り値：true、false、nil
+  # 戻り値：true（更新成功）、false（更新失敗）、nil（変化がないため更新なし）
   def reading_satate_update?(new_reading_state)
     if self.reading_state != new_reading_state
       self.reading_state = new_reading_state

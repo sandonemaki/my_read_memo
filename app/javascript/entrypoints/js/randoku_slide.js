@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalTriggers = document.querySelectorAll("#sw_modal_trigger") || [];
   const modal = document.querySelector(".sw-modal")
 
-  modalTriggers.forEach(torigger => {
-    torigger.addEventListener('click', () => {
-      const slideIndex = torigger.dataset.slideIndex;
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const slideIndex = trigger.dataset.slideIndex;
       swiper.slideTo(slideIndex);
       modal.classList.add('active');
     });
@@ -41,52 +41,104 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-  const readBtns = document.querySelectorAll('#sw_read_btn') || [];
+  const readBtnList = document.querySelectorAll('#sw_read_btn') || [];
 
   // 未読・既読/toggle-button
-  readBtns.forEach(readBtn => {
+  readBtnList.forEach(readBtn => {
     readBtn.addEventListener('click', async () => {
-      const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
-      const imgId = parseInt(readBtn.getAttribute('data-img-id'));
-      const bookId = parseInt(readBtn.getAttribute('data-book-id'));
-      const updateData = {
-        alreadyread_toggle: readingId,
-      };
-
-      const response = await fetch(`/books/${bookId}/imgs/${imgId}/toggle_already_read`, {
-        method: 'PUT',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': getCsrfToken()
-        },
-        body: JSON.stringify(updateData),
-      });
-
-      if (response.ok) {
-        // リクエスト成功時の処理
-        readBtn.classList.toggle('completion');
-        if (readBtn.classList.contains('completion')) {
-          readBtn.setAttribute('data-reading-id', '0');
-          readBtn.textContent = '読んだ!';
-        } else {
-          readBtn.setAttribute('data-reading-id', '1');
-          readBtn.textContent = '完了済み';
-        }
-      } else {
-        // リクエスト失敗時の処理
-        throw new Error(`${response.status} 保存ができませんでした`);
-      }
-    });
+      await ToggleImgAlreadyReadStatus(readBtn)
+    });  
   });
 
+  const ToggleImgAlreadyReadStatus = async (readBtn) => { 
+    const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
+    const imgId = parseInt(readBtn.getAttribute('data-img-id'));
+    const bookId = parseInt(readBtn.getAttribute('data-book-id'));
+    const updateData = {
+      already_read_toggle: readingId,
+    };
+
+    const response = await fetch(`/books/${bookId}/imgs/${imgId}/toggle_already_read`, {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCsrfToken()
+      },
+      body: JSON.stringify(updateData),
+    });
+    const responseData = await response.json();
+    console.log(responseData);
+
+    if (!response.ok) {
+      alert(`${response.status} ${responseData.message}`);
+      throw new Error(`${response.status} ${responseData.message}`);
+    }
+
+    if (response.ok) {
+      readBtn.setAttribute('data-reading-id', responseData.img_reading_state_result);
+      toggleImgAlreadyReadStateBtn(readBtn);
+      judge_popup_message(responseData);
+    }
+  }
+
+  // 本の状態が update されたら対応する judge_popup_message を表示
+  const judge_popup_message = (responseData) => {
+
+    // judge_popup_message を表示するためのセレクターを取得
+    const seidokuJudgePopupMessage = document.querySelector('#judged-seidoku');
+    const tudokuJudgePopupMessage = document.querySelector('#judged-tudoku');
+    const randokuJudgePopupMessage = document.querySelector('#judged-randoku');
+    const judgePopupCloseButtonList = document.querySelectorAll('.judge-popup__close');
+
+    // judge_popup_message を非表示にする関数
+    const hideJudgePopupMessages = () => {
+      seidokuJudgePopupMessage.classList.add('judge-popup__hidden');
+      tudokuJudgePopupMessage.classList.add('judge-popup__hidden');
+      randokuJudgePopupMessage.classList.add('judge-popup__hidden');
+    }
+
+    // クローズボタンで judge_popup_message を非表示にする
+    judgePopupCloseButtonList.forEach(judgePopupCloseButton => {
+      judgePopupCloseButton.addEventListener('click', hideJudgePopupMessages);
+    });
+
+    if (responseData.book_state_updated_info) {
+      hideJudgePopupMessages(); // 一度すべての judge_popup_message を非表示にする
+      switch (responseData.book_state_updated_info) {
+        case '精読':
+          seidokuJudgePopupMessage.classList.remove('judge-popup__hidden');
+          break;
+        case '通常':
+          tudokuJudgePopupMessage.classList.remove('judge-popup__hidden');
+          break;
+        case '乱読':
+          randokuJudgePopupMessage.classList.remove('judge-popup__hidden');
+          break;
+      }
+    }
+  }
+
+  const toggleImgAlreadyReadStateBtn = (readBtn) => {
+    const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
+    //readBtn.classList.toggle('completion');
+    if (readingId === 0) {
+      readBtn.classList.remove('completion');
+      readBtn.textContent = '読んだ!';
+    } else {
+      readBtn.classList.add('completion');
+      readBtn.textContent = '完了済み';
+    }
+  }
+
   const getCsrfToken = () => {
-    const metas = document.getElementsByTagName('meta');
-    for (let meta of metas) {
+    const metalist = document.getElementsByTagName('meta');
+    for (let meta of metalist) {
       if (meta.getAttribute('name') === 'csrf-token') {
         return meta.getAttribute('content');
       }
     }
+    alert('エラーが発生しました: CSRF token metatag が見つかりません。 ページを更新して、もう一度お試しください');
     throw new Error('CSRF token meta tag not found');
   }
 });

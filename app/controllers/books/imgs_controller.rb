@@ -5,20 +5,47 @@ class Books::ImgsController < ApplicationController
   def toggle_already_read
     book = Book.find_by(id: params[:book_id])
     # randoku_imgsのカラム、reading_state はis_already_readに変更予定
-    book.randoku_imgs.find_by(id: params[:id]).reading_state = img_params[:alreadyread_toggle]
-    if !book.save
+    randoku_img = book.randoku_imgs.find_by(id: params[:id])
+    randoku_img.reading_state = (img_params[:already_read_toggle] == 0 ? 1 : 0)
+    puts "------------------"
+    puts img_params[:already_read_toggle]
+    puts randoku_img.reading_state
+    puts "------------------"
+    if !randoku_img.save
       render json: { status: 500, message: "情報が更新されませんでした。もう一度お試しください" }
       return
     end
 
-    result = book.try_update_reading_state
-    if result[:updated] == true
-      book_state_updated_info = State::READING_STATE[book.randoku_imgs.reading_state]
-      render json: { status: :ok, book_state_updated_info: book_state_updated_info }
-    elsif result[:updated] == false
-      render json: { status: 502, message: "本のステータスの更新ができませんでした。もう一度お試しください" }
+    # randoku_imgの未読/既読の保存が成功した後に実行
+    book_reading_state_result = book.try_update_reading_state
+    img_reading_state_result = randoku_img.reading_state
+    img_already_read_count = book.randoku_imgs.where(reading_state: "1").count  # 既読の数
+    img_unread_count = book.randoku_imgs.where(reading_state: "0").count        # 未読の数
+
+    if book_reading_state_result[:updated] == true
+      book_state_updated_info = State::READING_STATE[randoku_img.reading_state]
+      render json: {
+        status: :ok,
+        book_state_updated_info: book_state_updated_info,
+        img_reading_state_result: img_reading_state_result,
+        img_already_read_count: img_already_read_count,
+        img_unread_count: img_unread_count
+      }
+    elsif book_reading_state_result[:updated] == false
+      render json: {
+        status: 502,
+        img_reading_state_result: img_reading_state_result,
+        img_already_read_count: img_already_read_count,
+        img_unread_count: img_unread_count,
+        message: "本のステータスの更新ができませんでした。もう一度お試しください"
+      }
     else
-      render json: { status: :ok }
+      render json: {
+        status: :ok,
+        img_reading_state_result: img_reading_state_result,
+        img_already_read_count: img_already_read_count,
+        img_unread_count: img_unread_count
+      }
     end
 
   end
@@ -189,7 +216,7 @@ class Books::ImgsController < ApplicationController
   private
 
   def img_params
-    params.permit(:alreadyread_toggle)
+    params.permit(:already_read_toggle)
   end
 
 end

@@ -4,6 +4,43 @@
     <div class="sw-reveal-wrapper">
       <div class="sw-reveal-inner">
 
+        <!-- judge-popup -->
+        <div>
+          <!-- 精読popup -->
+          <div class="judge-popup judge-popup__hidden" id="judged-seidoku">
+            <div class="judge-popup__close">×</div>
+            <div class="judge-popup__title">Congratulations!</div>
+            <div class="judge-popup__message judge-popup__message--seidoku">
+              精読です！精読ページは「精読ああああ精読です」です！
+            </div>
+            <div class="judge-popup__suggestion">
+              つまったときはスライドやヒントも確認してみましょう
+            </div>
+          </div>
+          <!-- 通読popup -->
+          <div class="judge-popup judge-popup__hidden" id="judged-tudoku">
+            <div class="judge-popup__close">×</div>
+            <div class="judge-popup__title">Congratulations!</div>
+            <div class="judge-popup__message judge-popup__message--tudoku">
+              通読です！通読ページは「通読ああああ通読です」です！
+            </div>
+            <div class="judge-popup__suggestion">
+              つまったときはスライドやヒントも確認してみましょう
+            </div>
+          </div>
+          <!-- 乱読popup -->
+          <div class="judge-popup judge-popup__hidden" id="judged-randoku">
+            <div class="judge-popup__close">×</div>
+            <div class="judge-popup__title">Congratulations!</div>
+            <div class="judge-popup__message judge-popup__message--randoku">
+              乱読です！乱読ページは「乱読ああああ乱読です」です！
+            </div>
+            <div class="judge-popup__suggestion">
+              つまったときはスライドやヒントも確認してみましょう
+            </div>
+          </div>
+        </div>
+
         <!-- Sliderを包むコンテナ要素 -->
         <div class="swiper">
           <!-- スライド要素を包む要素 -->
@@ -19,9 +56,9 @@
                   <img src="<%= "#{slide_img.path}" %>?#{Time.now.to_i}" alt=" " />
                 </div>
                 <div class="sw_updated">
-                  <p><%= slide_img.updated_at %></p>
+                  <%# <p><%= slide_img.updated_at %></p>
                 </div>
-                <button id="sw_read_btn" class="sw-read-btn" data-reading-id="0" data-img-id="<%= slide_img.id %>" data-book-id="<%= book.id %>">読んだ!</button>
+                <button id="sw_read_btn" class="sw-read-btn <%= slide_img.alreadyread == 0 ? '' : 'completion' %>" data-reading-id="<%= slide_img.alreadyread %>" data-img-id="<%= slide_img.id %>" data-book-id="<%= book.id %>"><%= slide_img.alreadyread == 0 ? "読んだ!" : "完了済み" %></button>
               </div>
             <% end %>
           </div>
