@@ -11,7 +11,7 @@
 <p>
 <%= book.total_page %>
 </p>
-<%= book.reading_progress %>
+<div class="book_reading_progress"><%= book.reading_progress %></div>
 <p>乱読画像メモ</p>
 <p id="img_read_status_count">未読：<%= book.randoku_imgs_unread_count %>, 読了：<%= book.randoku_imgs_alreadyread_count %></p>
 <p>精読基準：乱読画像メモが<%= book.seidoku_line_1 %>以上、未読画像メモが<%= book.seidoku_line_2 %>未満</p>
