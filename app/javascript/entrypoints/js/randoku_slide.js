@@ -80,6 +80,19 @@ document.addEventListener('DOMContentLoaded', function() {
       toggleImgAlreadyReadStateBtn(readBtn);
       judge_popup_message(responseData);
       img_already_read_check_update(responseData);
+      img_read_status_count_update(responseData);
+    }
+  }
+
+  // 乱読画像の状態が update されたら乱読画像の未読/既読 check を更新
+  const img_read_status_count_update = (responseData) => {
+    const img_read_status_count = document.querySelector('#img_read_status_count');
+    // responseDataから変数を取り出す
+    const img_unread_count = responseData.img_unread_count;
+    const img_already_read_count = responseData.img_already_read_count;
+
+    if (img_unread_count !== undefined && img_already_read_count !== undefined) {
+      img_read_status_count.textContent = `未読：${img_unread_count}, 読了：${img_already_read_count}`;
     }
   }
 
