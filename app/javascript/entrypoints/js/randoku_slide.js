@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 乱読画像の状態が update され、それが精読なら精読メモタブの鍵を外す
   const book_seidoku_memo_key = (responseData) => {
-    const seidokuMemoKeyIcon = document.querySelector('.seidoku_memo_key .fa-lock-keyhole');
+    const seidokuMemoKeyIcon = document.querySelector('.seidoku_memo_key .fa-lock');
     const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
     if (responseData.book_seidoku_memo_key === "key_false") {
       //seidokuMemoKeyIcon.classList.add('memo_key_hidden');

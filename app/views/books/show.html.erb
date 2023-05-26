@@ -13,7 +13,7 @@
 </p>
 <div class="book_reading_progress"><%= book.reading_progress %></div>
 <p class="seidoku_memo_key">
-  <i class="fa-regular fa-lock-keyhole <%= book.seidoku_memo_key == false ? 'memo_key_hidden' : '' %>"></i>
+  <i class="fa-solid fa-lock <%= book.seidoku_memo_key == false ? 'memo_key_hidden' : '' %>"></i>
   <%= book.seidoku_memo_key == false ? '精読メモタグ開錠' : '精読メモタグ施錠' %>
 </p>
 
