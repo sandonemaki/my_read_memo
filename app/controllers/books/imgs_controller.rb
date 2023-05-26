@@ -22,15 +22,33 @@ class Books::ImgsController < ApplicationController
     img_already_read_count = book.randoku_imgs.where(reading_state: "1").count  # 既読の数
     img_unread_count = book.randoku_imgs.where(reading_state: "0").count        # 未読の数
 
+    # 本の状態の更新があった場合
     if book_reading_state_result[:updated] == true
-      book_state_updated_info = State::READING_STATE[randoku_img.reading_state]
-      render json: {
+      book_state_updated_info = State::READING_STATE[book.reading_state]
+      # 更新された本の状態が"精読"であれば精読メモのタブの鍵を外す
+      # 一度falseになると変更されない
+      if book_state_updated_info == "精読"
+        book.seidoku_memo_key = false
+        unless book.save
+          render json: { status: 500, message: "本の状態が更新されませんでした。もう一度お試しください" }
+          return
+        end
+      end
+      json_response = {
         status: :ok,
         book_state_updated_info: book_state_updated_info,
         img_reading_state_result: img_reading_state_result,
         img_already_read_count: img_already_read_count,
-        img_unread_count: img_unread_count
+        img_unread_count: img_unread_count,
       }
+      json_response[:book_seidoku_memo_key] =
+        if (book.seidoku_memo_key == false) || (book_state_updated_info == "精読")
+          "key_false"
+        else
+          "key_true"
+        end
+      render json: json_response
+
     elsif book_reading_state_result[:updated] == false
       render json: {
         status: 502,
