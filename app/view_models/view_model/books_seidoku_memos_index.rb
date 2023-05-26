@@ -10,7 +10,7 @@ module ViewModel
       @title = book.title
       @author = book.author_1
       @total_page = book.total_page
-      @reading_progres =
+      @reading_progress =
         case book.reading_state
         when State::READING_STATE.key("乱読")
           "乱読"
