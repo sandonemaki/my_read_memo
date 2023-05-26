@@ -22,8 +22,9 @@ class Books::ImgsController < ApplicationController
     img_already_read_count = book.randoku_imgs.where(reading_state: "1").count  # 既読の数
     img_unread_count = book.randoku_imgs.where(reading_state: "0").count        # 未読の数
 
+    # 本の状態の更新があった場合
     if book_reading_state_result[:updated] == true
-      book_state_updated_info = State::READING_STATE[randoku_img.reading_state]
+      book_state_updated_info = State::READING_STATE[book.reading_state]
       render json: {
         status: :ok,
         book_state_updated_info: book_state_updated_info,
