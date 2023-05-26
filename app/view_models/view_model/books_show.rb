@@ -1,7 +1,7 @@
 module ViewModel
 
   class BooksShow
-    attr_reader :id, :title, :author, :total_page, :reading_progress,
+    attr_reader :id, :title, :author, :total_page, :reading_progress, :seidoku_memo_key,
       :publisher, :errors, :first_post_img_path, :randoku_imgs_unread_count, :randoku_imgs_alreadyread_count,
       :randoku_imgs_file_names, :randoku_imgs_all_count, :randoku_imgs_all,
       :seidoku_line_1, :seidoku_line_2
@@ -22,6 +22,8 @@ module ViewModel
         else
           "通読"
         end
+      (book.seidoku_memo_key = false) if @reading_progress == "精読"
+      @seidoku_memo_key = book.seidoku_memo_key
       @publisher = book.publisher
       @errors = book.errors
 
