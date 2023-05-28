@@ -167,6 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // 読んだボタンをclickによるレスポンスの結果でボタンの色やテキストを変更
   const toggleImgAlreadyReadStateBtn = (readBtn) => {
     const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
     //readBtn.classList.toggle('completion');
