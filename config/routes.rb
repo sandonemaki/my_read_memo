@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   #randoku_img
   post "books/:book_id/imgs" => "books/imgs#create" # book_page_imgs_path
   put "books/:book_id/imgs/:id/toggle_already_read" => "books/imgs#toggle_already_read"
+  put "books/:book_id/imgs/:id/toggle_bookmark" => "books/imgs#toggle_bookmark"
 
   #randoku_memo
   get "books/:book_id/randoku_memos/index" => "books/randoku_memos#index"

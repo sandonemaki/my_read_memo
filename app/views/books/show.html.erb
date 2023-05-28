@@ -47,7 +47,9 @@
     <p><%= img.name %></p>
     <p><%= img.updated_at %></p>
     <p class="is_already_read_check"><%= img.alreadyread == 0 ? "未読" : "既読" %></p>
-    <p><%= img.bookmark_flag == 0 ? "" : "bkm" %></p>
+    <p class="img_bookmark_check" data-img-id="<%= img.id %>">
+      <i class="fa-bookmark <%= img.bookmark_flag == 0 ? "fa-regular" : "fa-solid" %>"></i>
+    </p>
   <% end %>
 <% end %>
 
