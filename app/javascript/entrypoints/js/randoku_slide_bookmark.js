@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (response.ok) {
       bookmarkBtn.setAttribute('data-bookmark-id', responseData.img_bookmark_flag_result);
       toggleImgBookmarkFlagBtn(bookmarkBtn);
-      //img_already_read_check_update(responseData);
+      img_bookmark_flag_check_update(imgId, responseData);
     }
   }
   // bookmarkボタンをclickしたことによりbookmarkのclassと文字を変更
@@ -49,17 +49,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // 乱読画像の状態が update されたら乱読画像の未読/既読 check を更新
-  // const img_already_read_check_update = (responseData) => {
-  //   const is_already_read_check_list = document.querySelectorAll('.is_already_read_check');
-  //   is_already_read_check_list.forEach(is_already_read_check => {
-  //     if (responseData.img_reading_state_result === 0) {
-  //       is_already_read_check.textContent = '未読';
-  //     } else {
-  //       is_already_read_check.textContent = '既読';
-  //     }
-  //   });
-  // }
+  // 乱読画像のbookmarkのflagが update されたら乱読画像の bookmark の check を更新
+  const img_bookmark_flag_check_update = (imgId, responseData) => {
+    const img_bookmark_check = document.querySelector(`.img_bookmark_check[data-img-id="${imgId}"]`);
+    if (responseData.img_bookmark_flag_result === 0) {
+      img_bookmark_check.innerHTML = '<i class="fa-regular fa-bookmark"></i>'; //off
+    } else {
+      img_bookmark_check.innerHTML = '<i class="fa-solid fa-bookmark"></i>'; //on
+    }
+  }
 
   const getCsrfToken = () => {
     const metalist = document.getElementsByTagName('meta');
