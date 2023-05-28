@@ -2,6 +2,13 @@ class Books::ImgsController < ApplicationController
   require 'tmpdir'
   require 'fileutils'
 
+  def toggle_bookmark
+    puts "-------"
+    puts "dddd"
+    puts "-------"
+    render json: { success: true }
+  end
+
   def toggle_already_read
     book = Book.find_by(id: params[:book_id])
     # randoku_imgsのカラム、reading_state はis_already_readに変更予定
