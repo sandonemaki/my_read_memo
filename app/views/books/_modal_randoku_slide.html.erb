@@ -50,15 +50,23 @@
               <div class="swiper-slide">
                 <p class="sw_img_name"><%= slide_img.name %></p>
                 <p class="sw_book_title"><%= book.title %></p>
-                <div id="sw_bookmark_flag" class="sw_bookmark">
+                <div class="sw_bookmark"
+                  data-bookmark-id="<%= slide_img.bookmark_flag %>"
+                  data-img-id="<%= slide_img.id %>"
+                  data-book-id="<%= book.id %>">
+                    <!--<%= slide_img.bookmark_flag == 0 ? "off" : "on" %>--> 
                 </div>
-                <div class="sw_img">
-                  <img src="<%= "#{slide_img.path}" %>?#{Time.now.to_i}" alt=" " />
-                </div>
+                <div class="sw_img"><img src="<%= "#{slide_img.path}" %>?#{Time.now.to_i}" alt=" " /></div>
                 <div class="sw_updated">
-                  <%# <p><%= slide_img.updated_at %></p>
+                  <!--<p><%= slide_img.updated_at %></p>-->
                 </div>
-                <button id="sw_read_btn" class="sw-read-btn <%= slide_img.alreadyread == 0 ? '' : 'completion' %>" data-reading-id="<%= slide_img.alreadyread %>" data-img-id="<%= slide_img.id %>" data-book-id="<%= book.id %>"><%= slide_img.alreadyread == 0 ? "読んだ!" : "完了済み" %></button>
+                <button id="sw_read_btn"
+                  class="sw-read-btn <%= slide_img.alreadyread == 0 ? '' : 'completion' %>"
+                  data-reading-id="<%= slide_img.alreadyread %>"
+                  data-img-id="<%= slide_img.id %>"
+                  data-book-id="<%= book.id %>">
+                    <%= slide_img.alreadyread == 0 ? "読んだ!" : "完了済み" %>
+                </button>
               </div>
             <% end %>
           </div>
