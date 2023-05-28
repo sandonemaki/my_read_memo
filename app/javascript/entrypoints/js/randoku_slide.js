@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 乱読画像の状態が update されたら乱読画像の未読/既読 check を更新
+  // 乱読画像の状態が update されたら乱読画像の未読/既読の数を更新
   const img_read_status_count_update = (responseData) => {
     const img_read_status_count = document.querySelector('#img_read_status_count');
     // responseDataから変数を取り出す
