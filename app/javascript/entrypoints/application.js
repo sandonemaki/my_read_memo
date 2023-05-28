@@ -1,4 +1,5 @@
 import '@/entrypoints/js/randoku_slide.js'
+import '@/entrypoints/js/randoku_slide_bookmark.js'
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //
