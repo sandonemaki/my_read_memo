@@ -122,12 +122,9 @@
 }
 /**** bookmark ****/
 .sw_bookmark_btn {
-  border: 2px solid #27acd9;
   color: #27acd9;
-  border-radius: 100vh;
   transition: 0.5s;
   margin: 10px;
-  padding: 8px;
 }
 
 /**** モーダル *** */

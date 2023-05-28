@@ -34,10 +34,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (response.ok) {
-      //bookmarkBtn.setAttribute('data-bookmark-id');
+      bookmarkBtn.setAttribute('data-bookmark-id', responseData.img_bookmark_flag_result);
+      toggleImgBookmarkFlagBtn(bookmarkBtn);
       //img_already_read_check_update(responseData);
     }
   }
+  // bookmarkボタンをclickしたことによりbookmarkのclassと文字を変更
+  const toggleImgBookmarkFlagBtn = (bookmarkBtn) => {
+    const bookmarkId = parseInt(bookmarkBtn.getAttribute('data-bookmark-id'));
+    if (bookmarkId === 0) {
+      bookmarkBtn.innerHTML = '<i class="fa-regular fa-bookmark fa-2xl"></i>'; //off
+    } else {
+      bookmarkBtn.innerHTML = '<i class="fa-solid fa-bookmark fa-2xl"></i>'; //on
+    }
+  }
+
   // 乱読画像の状態が update されたら乱読画像の未読/既読 check を更新
   // const img_already_read_check_update = (responseData) => {
   //   const is_already_read_check_list = document.querySelectorAll('.is_already_read_check');

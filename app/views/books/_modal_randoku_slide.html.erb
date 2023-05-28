@@ -54,8 +54,8 @@
                   data-bookmark-id="<%= slide_img.bookmark_flag %>"
                   data-img-id="<%= slide_img.id %>"
                   data-book-id="<%= book.id %>">
-                    bookmark_off
-                    <!--<%= slide_img.bookmark_flag == 0 ? "off" : "on" %>--> 
+                    <!-- bookmark_on : bookmark_off -->
+                    <i class="fa-bookmark fa-2xl <%= slide_img.bookmark_flag == 0 ? "fa-regular" : "fa-solid" %>"></i>
                 </div>
                 <div class="sw_img"><img src="<%= "#{slide_img.path}" %>?#{Time.now.to_i}" alt=" " /></div>
                 <div class="sw_updated">
