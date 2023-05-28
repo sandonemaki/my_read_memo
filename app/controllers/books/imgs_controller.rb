@@ -3,11 +3,25 @@ class Books::ImgsController < ApplicationController
   require 'fileutils'
 
   def toggle_bookmark
+    book = Book.find_by(id: params[:book_id])
+    randoku_img = book.randoku_imgs.find_by(id: params[:id])
+    randoku_img.bookmark_flag = (img_params[:bookmark_toggle] == 0 ? 1 : 0)
     puts "-------"
-    puts "dddd"
+    puts img_params[:bookmark_toggle]
+    puts randoku_img.bookmark_flag
     puts "-------"
-    render json: { success: true }
+    if !randoku_img.save
+      render json: { status: 500, message: "情報が更新されませんでした。もう一度お試しください" }
+    end
+    # bookmark_flagの保存が成功した後に実行
+    img_bookmark_flag_result = randoku_img.bookmark_flag
+
+    render json: {
+      status: :ok,
+      img_bookmark_flag_result: img_bookmark_flag_result
+    }
   end
+
 
   def toggle_already_read
     book = Book.find_by(id: params[:book_id])
@@ -241,7 +255,7 @@ class Books::ImgsController < ApplicationController
   private
 
   def img_params
-    params.permit(:already_read_toggle)
+    params.permit(:already_read_toggle, :bookmark_toggle)
   end
 
 end
