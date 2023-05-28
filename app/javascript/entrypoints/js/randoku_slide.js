@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
       readBtn.setAttribute('data-reading-id', responseData.img_reading_state_result);
       toggleImgAlreadyReadStateBtn(readBtn);
       judge_popup_message(responseData);
-      img_already_read_check_update(responseData);
+      img_already_read_check_update(imgId, responseData);
       img_read_status_count_update(responseData);
       book_reading_progress_update(responseData);
       book_seidoku_memo_key(responseData);
@@ -119,15 +119,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // 乱読画像の状態が update されたら乱読画像の未読/既読 check を更新
-  const img_already_read_check_update = (responseData) => {
-    const is_already_read_check_list = document.querySelectorAll('.is_already_read_check');
-    is_already_read_check_list.forEach(is_already_read_check => {
-      if (responseData.img_reading_state_result === 0) {
-        is_already_read_check.textContent = '未読';
-      } else {
-        is_already_read_check.textContent = '既読';
-      }
-    });
+  const img_already_read_check_update = (imgId, responseData) => {
+    const is_already_read_check = document.querySelector(`.is_already_read_check[data-img-id="${imgId}"]`);
+    if (responseData.img_reading_state_result === 0) {
+      is_already_read_check.textContent = '未読';
+    } else {
+      is_already_read_check.textContent = '既読';
+    }
   }
 
   // 本の状態が update されたら対応する judge_popup_message を表示
