@@ -2,12 +2,22 @@ class BooksController < ApplicationController
   require_relative '../modules/state'
 
   def update_total_page
-    puts "----------"
-    puts params
-    puts "ddddd"
-    puts "----------"
+    book = Book.find_by(id: params[:id])
+    book.total_page = img_params[:input_total_page]
+    puts "------------------"
+    puts book.total_page
+    puts img_params[:input_total_page]
+    puts "------------------"
+    if !book.save
+      render json: { status: 500, message: "情報が更新されませんでした。もう一度お試しください" }
+      return
+    end
+    # total_pageの保存が成功した後に実行
+    total_page_update_result = book.total_page
+
     render json: {
       status: :ok,
+      total_page_update_result: total_page_update_result
     }
   end
 
@@ -78,5 +88,9 @@ class BooksController < ApplicationController
 
     book_view_model = ViewModel::BooksShow.new(book: book)
     render("show", locals: {book: book_view_model})
+  end
+
+  def img_params
+    params.permit(:input_total_page)
   end
 end

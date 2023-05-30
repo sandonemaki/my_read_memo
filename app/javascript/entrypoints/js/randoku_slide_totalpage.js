@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
   const totalPageSubmitBtn = document.querySelector('#total_page_submit_btn') || [];
-  const inputTotalPage = document.querySelector('#input_total_page').value
 
   totalPageSubmitBtn.addEventListener('click', async () => {
     await UpdateTotalPage(totalPageSubmitBtn)
@@ -8,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const UpdateTotalPage = async (totalPageSubmitBtn) => {
     const bookId = parseInt(totalPageSubmitBtn.getAttribute('data-book-id'));
+    const inputTotalPage = document.querySelector('#input_total_page').value
     const updateData = {
       input_total_page: inputTotalPage
     };
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (response.ok) {
-      console.log("せいこう")
       //judge_popup_message(responseData);
       //book_reading_progress_update(responseData);
       //book_seidoku_memo_key(responseData);
