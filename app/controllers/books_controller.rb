@@ -1,6 +1,16 @@
 class BooksController < ApplicationController
   require_relative '../modules/state'
 
+  def update_total_page
+    puts "----------"
+    puts params
+    puts "ddddd"
+    puts "----------"
+    render json: {
+      status: :ok,
+    }
+  end
+
   def randoku_index
     all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読

@@ -1,5 +1,55 @@
 document.addEventListener('DOMContentLoaded', function() {
-  
+  const totalPageSubmitBtn = document.querySelector('#total_page_submit_btn') || [];
+  const inputTotalPage = document.querySelector('#input_total_page').value
+
+  totalPageSubmitBtn.addEventListener('click', async () => {
+    await UpdateTotalPage(totalPageSubmitBtn)
+  });
+
+  const UpdateTotalPage = async (totalPageSubmitBtn) => {
+    const bookId = parseInt(totalPageSubmitBtn.getAttribute('data-book-id'));
+    const updateData = {
+      input_total_page: inputTotalPage
+    };
+
+    const response = await fetch(`/books/${bookId}/update_total_page`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCsrfToken()
+      },
+      body: JSON.stringify(updateData),
+    });
+    const responseData = await response.json();
+    console.log(responseData);
+
+    if (!response.ok) {
+      alert(`${response.status} ${responseData.message}`);
+      throw new Error(`${response.status} ${responseData.message}`);
+    }
+
+    if (response.ok) {
+      console.log("せいこう")
+      //judge_popup_message(responseData);
+      //book_reading_progress_update(responseData);
+      //book_seidoku_memo_key(responseData);
+    }
+  }
+
+  const getCsrfToken = () => {
+    const metalist = document.getElementsByTagName('meta');
+    for (let meta of metalist) {
+      if (meta.getAttribute('name') === 'csrf-token') {
+        return meta.getAttribute('content');
+      }
+    }
+    alert('エラーが発生しました: CSRF token metatag が見つかりません。 ページを更新して、もう一度お試しください');
+    throw new Error('CSRF token meta tag not found');
+  }
+
+
+  // totalpageのモーダル
   // Open the modal
   function openModal() {
     const modal = document.querySelector('.ModalWrapper');
