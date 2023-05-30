@@ -1,0 +1,32 @@
+/**** フラッシュメッセージ ****/
+.c-flash {
+  opacity: 0;  /* 元々は透明 */
+  position: fixed;
+  top: 70px;
+  right: -1000px;  /* 元々は見えない位置にある */
+  z-index: 5000000;
+  text-align: center;
+  color: #fff;
+  font-size: 0.75rem;
+  min-height: 40px;
+  padding: 10px;
+  letter-spacing: .07em;
+  border-radius: 2px;
+  display: table;
+  transition: right 0.5s, opacity 0.5s;  /* right と opacity が変更されるときにアニメーションする */
+}
+
+.c-flash--notice {
+  background-color: #30c8d6;
+}
+
+.c-flash-text {
+  text-align: left;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.c-flash-icon {
+  display: table-cell;
+  vertical-align: middle;
+}

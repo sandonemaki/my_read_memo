@@ -1,3 +1,5 @@
+import { js_flash } from './flash.js'
+
 document.addEventListener('DOMContentLoaded', function() {
   const totalPageSubmitBtn = document.querySelector('#total_page_submit_btn') || [];
 
@@ -29,7 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
       throw new Error(`${response.status} ${responseData.message}`);
     }
 
+    // フラッシュメッセージの要素を取得
+    const flashMessage = document.querySelector('.c-flash');
+
     if (response.ok) {
+      js_flash({ flashMessage: flashMessage, input_message: "保存しました" });
       //judge_popup_message(responseData);
       //book_reading_progress_update(responseData);
       //book_seidoku_memo_key(responseData);
