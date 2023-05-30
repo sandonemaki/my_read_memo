@@ -4,6 +4,23 @@
     <div class="sw-reveal-wrapper">
       <div class="sw-reveal-inner">
 
+        <!-- トータルページモーダル -->
+        <div class="ModalOverlay"></div>
+        <div class="ModalWrapper">
+          <div class="ModalContent">
+            <i class="ModalCloseButton fa fa-times" aria-hidden="true"></i>
+            <h3 class="modal__StyledHeading">ページ数を登録をする</h3>
+            <%= form_tag("/books/total_page_update", method: :post) do %>
+              <p>総ページ</p>
+              <p>（乱読と精読の評価に使われる数字です。読書するページ数を入力してください）</p>
+              <input type="number" name="total_page" min="20" step="1" placeholder="00"
+                value="<%= book.total_page %>"><strong>必須</strong>
+              <div class="error">整数のみ入力できます</div>
+              <input type="submit" value="更新する">
+            <% end %>
+          </div>
+        </div>
+
         <!-- judge-popup -->
         <div>
           <!-- 精読popup -->
@@ -72,11 +89,14 @@
             <% end %>
           </div>
         </div>
-
+        <!-- トータルページモーダルトリガーボタン -->
+        <button id="open-totalpage-modal" class="totalpage-btn">
+          <img src="https://prog-8.com/assets/packs/dist/images/footer-slides-button-icon-5422fe1e516d2055acb4..svg">
+          <span>読むページを更新</span>
+        </button>
         <div class="swiper-pagination"></div>
         <button id="sw-button-prev" class="swiper-button-prev"></button>
         <button id="sw-button-next" class="swiper-button-next"></button>
-
         <button id="sw-close-btn" class="sw-close-button">&times;</button>
       </div>
     </div>

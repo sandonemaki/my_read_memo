@@ -90,6 +90,7 @@
 
 /* ページネーション */
 .swiper-pagination-fraction {
+  pointer-events: none;
   bottom: 20px;
 }
 .sw_img_name {
@@ -177,7 +178,7 @@
   height: 48px;
   color: blue;
   font-size: 26px;
-  z-index: 10000;
+  z-index: 10;
   transition: all .2s ease;
 }
 .sw-modal.active {
@@ -200,3 +201,89 @@
   visibility: hidden;
   transition: opacity .3s ease;
 }
+/**** トータルページモーダル ****/
+*:before {
+  box-sizing: border-box;
+}
+
+.ModalOverlay, .ModalWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}
+
+.ModalOverlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+
+.ModalWrapper {
+  z-index: 20;
+}
+
+.ModalContent {
+  width: 100%;
+  max-width: 600px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 3px;
+  /*transform: scale(0.9);*/
+  transform: translateY(40px);
+  transition: all 0.3s ease-out;
+}
+
+.ModalCloseButton {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.23em;
+  color: rgb(132, 145, 165);
+  cursor: pointer;
+  font-style: normal;
+}
+
+.ModalOverlay.show, .ModalWrapper.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ModalWrapper.show .ModalContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+.totalpage-btn {
+  background-color: #35b7e4;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  color: #fff;
+  font-size: 0.75rem;
+  letter-spacing: .04em;
+  height: 36px;
+  line-height: 36px;
+  margin-top: 3px;
+  padding-left: 14px;
+  padding-right: 15px;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+}
+
+.totalpage-btn img {
+  width: 20px;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+  margin-right: 4px;
+}
+/*.exercise-footer {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  right: 20px;
+
+}*/
