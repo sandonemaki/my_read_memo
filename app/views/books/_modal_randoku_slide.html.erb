@@ -10,14 +10,14 @@
           <div class="ModalContent">
             <i class="ModalCloseButton fa fa-times" aria-hidden="true"></i>
             <h3 class="modal__StyledHeading">ページ数を登録をする</h3>
-            <%= form_tag("/books/total_page_update", method: :post) do %>
+            <!--<%= form_tag("/books/total_page_update", method: :post) do %>-->
               <p>総ページ</p>
               <p>（乱読と精読の評価に使われる数字です。読書するページ数を入力してください）</p>
-              <input type="number" name="total_page" min="20" step="1" placeholder="00"
+              <input id="input_totalpage" type="number" name="total_page" min="20" step="1" placeholder="00"
                 value="<%= book.total_page %>"><strong>必須</strong>
-              <div class="error">整数のみ入力できます</div>
-              <input type="submit" value="更新する">
-            <% end %>
+              <!--<div class="error">整数のみ入力できます</div>-->
+              <input id="totalpage_submit_btn" type="submit" value="更新する">
+            <!--<% end %>-->
           </div>
         </div>
 
