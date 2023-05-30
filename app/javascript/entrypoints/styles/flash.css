@@ -19,8 +19,10 @@
 .c-flash--notice {
   background-color: #30c8d6;
 }
-
-.c-flash-text {
+.c-flash--alert{
+  background-color: #e75252
+}
+  .c-flash-text {
   text-align: left;
   display: table-cell;
   vertical-align: middle;

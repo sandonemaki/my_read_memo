@@ -26,13 +26,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const responseData = await response.json();
     console.log(responseData);
 
-    if (!response.ok) {
-      alert(`${response.status} ${responseData.message}`);
-      throw new Error(`${response.status} ${responseData.message}`);
-    }
-
     // フラッシュメッセージの要素を取得
     const flashMessage = document.querySelector('.c-flash');
+
+    if (!response.ok) {
+      flashMessage.classList.remove('c-flash--notice');
+      flashMessage.classList.add('c-flash--alert');
+      js_flash({ flashMessage: flashMessage, input_message: "保存に失敗しました" });
+      throw new Error(`${response.status} ${responseData.message}`);
+    }
 
     if (response.ok) {
       js_flash({ flashMessage: flashMessage, input_message: "保存しました" });
