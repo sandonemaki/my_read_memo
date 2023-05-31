@@ -1,3 +1,4 @@
+import '@/entrypoints/js/upload_btn.js'
 import '@/entrypoints/js/modal.js'
 import '@/entrypoints/js/get_csrf_token.js'
 import '@/entrypoints/js/flash.js'

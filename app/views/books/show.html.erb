@@ -30,9 +30,15 @@
 <%= form_tag("/books/#{book.id}/imgs", {multipart: true}) do %>
   <h4>気になったページはパシャパシャ撮ってアップロードするだけ。<br>
   後で読み返せるメモにしましょう</h4>
-  <input name="page_imgs[]" type="file" multiple="true" accept=".jpg, .jpeg, .png, .heic, .pdf">
+  <input id="upload"
+    name="page_imgs[]"
+    type="file"
+    multiple="true"
+    accept=".jpg, .jpeg, .png, .heic, .pdf"
+    style="display: none;">
+    <label for="upload" class="upload-button">画像を選択</label>
   <div>
-    <input type="submit" value="アップロードする">
+    <input id="submit-btn" type="submit" value="アップロードする" disabled>
   </div>
   <p>投稿できる画像の拡張子はjpg/jpeg/png/heic/pdf(1ページ分)のみになります</p>
 <% end %>
