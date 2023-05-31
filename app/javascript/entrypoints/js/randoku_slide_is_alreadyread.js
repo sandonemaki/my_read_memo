@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
       body: JSON.stringify(updateData),
     });
     const responseData = await response.json();
-    console.log(responseData);
 
     if (!response.ok) {
       js_flash({ flashMessage: flashMessage, input_message: responseData.message });

@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
       body: JSON.stringify(updateData),
     });
     const responseData = await response.json();
-    console.log(responseData);
 
     // フラッシュメッセージの要素を取得
     const flashMessage = document.querySelector('.c-flash');

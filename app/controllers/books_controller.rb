@@ -4,10 +4,6 @@ class BooksController < ApplicationController
   def update_total_page
     book = Book.find_by(id: params[:id])
     book.total_page = img_params[:input_total_page]
-    puts "------------------"
-    puts book.total_page
-    puts img_params[:input_total_page]
-    puts "------------------"
     if !book.save
       render json: { status: 500, message: "情報が更新されませんでした。もう一度お試しください" }
       return

@@ -15,9 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.classList.remove('show');
     overlay.classList.remove('show');
   }
-  console.log("dddd")
   document.querySelector('#open-totalpage-modal').addEventListener('click', function() {
-    console.log('Button clicked!'); // デバッグメッセージ
     openModal();
   });
   
