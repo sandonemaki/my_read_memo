@@ -28,6 +28,10 @@ class BooksController < ApplicationController
       # 一度falseになると変更されない
       if book_state_updated_info == "精読"
         book.seidoku_memo_key = false
+        unless book.save
+          render json: { status: 500, message: "本の状態が更新されませんでした。もう一度お試しください" }
+          return
+        end
         # json_responseに追加
         json_response[:book_seidoku_memo_key] = (book.seidoku_memo_key == false) ? "key_false" : "key_true"
       end

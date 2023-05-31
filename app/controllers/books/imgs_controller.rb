@@ -46,6 +46,13 @@ class Books::ImgsController < ApplicationController
     # 本の状態の更新があった場合
     if book_reading_state_result[:updated] == true
       book_state_updated_info = State::READING_STATE[book.reading_state]
+      json_response = {
+        status: :ok,
+        book_state_updated_info: book_state_updated_info,
+        img_reading_state_result: img_reading_state_result,
+        img_already_read_count: img_already_read_count,
+        img_unread_count: img_unread_count,
+      }
       # 更新された本の状態が"精読"であれば精読メモのタブの鍵を外す
       # 一度falseになると変更されない
       if book_state_updated_info == "精読"
@@ -54,20 +61,9 @@ class Books::ImgsController < ApplicationController
           render json: { status: 500, message: "本の状態が更新されませんでした。もう一度お試しください" }
           return
         end
+        # json_responseに追加
+        json_response[:book_seidoku_memo_key] = (book.seidoku_memo_key == false) ? "key_false" : "key_true"
       end
-      json_response = {
-        status: :ok,
-        book_state_updated_info: book_state_updated_info,
-        img_reading_state_result: img_reading_state_result,
-        img_already_read_count: img_already_read_count,
-        img_unread_count: img_unread_count,
-      }
-      json_response[:book_seidoku_memo_key] =
-        if (book.seidoku_memo_key == false) || (book_state_updated_info == "精読")
-          "key_false"
-        else
-          "key_true"
-        end
       render json: json_response
 
     elsif book_reading_state_result[:updated] == false
@@ -86,7 +82,6 @@ class Books::ImgsController < ApplicationController
         img_unread_count: img_unread_count
       }
     end
-
   end
 
 
