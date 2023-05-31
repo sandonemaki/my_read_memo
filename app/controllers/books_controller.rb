@@ -14,11 +14,35 @@ class BooksController < ApplicationController
     end
     # total_pageの保存が成功した後に実行
     total_page_update_result = book.total_page
+    book_reading_state_result = book.try_update_reading_state
 
-    render json: {
-      status: :ok,
-      total_page_update_result: total_page_update_result
-    }
+    # 本の状態の更新があった場合
+    if book_reading_state_result[:updated] == true
+      # 本の状態
+      book_state_updated_info = State::READING_STATE[book.reading_state]
+      json_response = {
+        status: :ok,
+        book_state_updated_info: book_state_updated_info,
+      }
+      # 更新された本の状態が"精読"であれば精読メモのタブの鍵を外す
+      # 一度falseになると変更されない
+      if book_state_updated_info == "精読"
+        book.seidoku_memo_key = false
+        # json_responseに追加
+        json_response[:book_seidoku_memo_key] = (book.seidoku_memo_key == false) ? "key_false" : "key_true"
+      end
+      render json: json_response
+
+    elsif book_reading_state_result[:updated] == false
+      render json: {
+        status: 502,
+        message: "本のステータスの更新ができませんでした。もう一度お試しください"
+      }
+    else
+      render json: {
+        status: :ok,
+      }
+    end
   end
 
   def randoku_index

@@ -1,3 +1,5 @@
+import { getCsrfToken } from './get_csrf_token.js';
+
 document.addEventListener('DOMContentLoaded', function() {
   const bookmarkBtnList = document.querySelectorAll('.sw_bookmark_btn') || [];
 
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(responseData);
 
     if (!response.ok) {
-      alert(`${response.status} ${responseData.message}`);
+      js_flash({ flashMessage: flashMessage, input_message: responseData.message });
       throw new Error(`${response.status} ${responseData.message}`);
     }
 
@@ -57,16 +59,5 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       img_bookmark_check.innerHTML = '<i class="fa-solid fa-bookmark"></i>'; //on
     }
-  }
-
-  const getCsrfToken = () => {
-    const metalist = document.getElementsByTagName('meta');
-    for (let meta of metalist) {
-      if (meta.getAttribute('name') === 'csrf-token') {
-        return meta.getAttribute('content');
-      }
-    }
-    alert('エラーが発生しました: CSRF token metatag が見つかりません。 ページを更新して、もう一度お試しください');
-    throw new Error('CSRF token meta tag not found');
   }
 });
