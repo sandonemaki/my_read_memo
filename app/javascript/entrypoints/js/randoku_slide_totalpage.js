@@ -1,4 +1,7 @@
 import { js_flash } from './flash.js'
+import { book_seidoku_memo_key } from './randoku_slide.js'
+import { book_reading_progress_update } from './randoku_slide.js'
+import { getCsrfToken } from './get_csrf_token.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   const totalPageSubmitBtn = document.querySelector('#total_page_submit_btn') || [];
@@ -38,21 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (response.ok) {
       js_flash({ flashMessage: flashMessage, input_message: "保存しました" });
-      //judge_popup_message(responseData);
-      //book_reading_progress_update(responseData);
-      //book_seidoku_memo_key(responseData);
+      book_reading_progress_update(responseData);
+      book_seidoku_memo_key(responseData);
     }
-  }
-
-  const getCsrfToken = () => {
-    const metalist = document.getElementsByTagName('meta');
-    for (let meta of metalist) {
-      if (meta.getAttribute('name') === 'csrf-token') {
-        return meta.getAttribute('content');
-      }
-    }
-    alert('エラーが発生しました: CSRF token metatag が見つかりません。 ページを更新して、もう一度お試しください');
-    throw new Error('CSRF token meta tag not found');
   }
 
 

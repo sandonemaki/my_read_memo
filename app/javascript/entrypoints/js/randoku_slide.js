@@ -1,5 +1,6 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
+import { getCsrfToken } from './get_csrf_token.js';
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -85,10 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
       book_seidoku_memo_key(responseData);
     }
   }
+});
 
   // 乱読画像の状態が / トータルページが
   // update される -> 乱読画像の未読・既読の数が変わる -> 精読なら精読メモタブの鍵を外す
-  const book_seidoku_memo_key = (responseData) => {
+  export const book_seidoku_memo_key = (responseData) => {
     const seidokuMemoKeyIcon = document.querySelector('.seidoku_memo_key .fa-lock');
     const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
     if (responseData.book_seidoku_memo_key === "key_false") {
@@ -99,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 乱読画像の状態が / トータルページが
   // update される -> 乱読画像の未読・既読の数が変わる -> 本の状態を更新
-  const book_reading_progress_update = (responseData) => {
+  export const book_reading_progress_update = (responseData) => {
     const book_reading_progress_list = document.querySelectorAll('.book_reading_progress');
     book_reading_progress_list.forEach(book_reading_progress => {
       if (responseData.book_state_updated_info) {
@@ -180,15 +182,3 @@ document.addEventListener('DOMContentLoaded', function() {
       readBtn.textContent = '完了済み';
     }
   }
-
-  const getCsrfToken = () => {
-    const metalist = document.getElementsByTagName('meta');
-    for (let meta of metalist) {
-      if (meta.getAttribute('name') === 'csrf-token') {
-        return meta.getAttribute('content');
-      }
-    }
-    alert('エラーが発生しました: CSRF token metatag が見つかりません。 ページを更新して、もう一度お試しください');
-    throw new Error('CSRF token meta tag not found');
-  }
-});
