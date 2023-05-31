@@ -1,6 +1,6 @@
 import { js_flash } from './flash.js'
-import { book_seidoku_memo_key } from './randoku_slide.js'
-import { book_reading_progress_update } from './randoku_slide.js'
+import { book_seidoku_memo_key } from './randoku_slide_is_alreadyread.js'
+import { book_reading_progress_update } from './randoku_slide_is_alreadyread.js'
 import { getCsrfToken } from './get_csrf_token.js';
 
 document.addEventListener('DOMContentLoaded', function() {

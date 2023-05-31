@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(responseData);
 
     if (!response.ok) {
-      alert(`${response.status} ${responseData.message}`);
+      js_flash({ flashMessage: flashMessage, input_message: responseData.message });
       throw new Error(`${response.status} ${responseData.message}`);
     }
 
