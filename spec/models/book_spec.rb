@@ -60,7 +60,7 @@ RSpec.describe Book, type: :model do
       let(:total_page) { 1000 }
       it 'バリデーションエラーが発生すること' do
         valid?
-        expect(book.errors[:total_page]).to include("登録できるページ数は999ページまでです")
+        expect(book.errors[:total_page]).to include("登録できるページ数は20〜999ページです")
       end
     end
   end
@@ -111,7 +111,7 @@ RSpec.describe Book, type: :model do
   it "読む予定のページ数は1-999ページまでであること" do
     book = Book.new(total_page: 1000)
     book.valid?
-    expect(book.errors[:total_page]).to include("登録できるページ数は999ページまでです")
+    expect(book.errors[:total_page]).to include("登録できるページ数は20〜999ページです")
   end
 end
 
