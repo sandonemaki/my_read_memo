@@ -86,7 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // 乱読画像の状態が update され、それが精読なら精読メモタブの鍵を外す
+  // 乱読画像の状態が / トータルページが
+  // update される -> 乱読画像の未読・既読の数が変わる -> 精読なら精読メモタブの鍵を外す
   const book_seidoku_memo_key = (responseData) => {
     const seidokuMemoKeyIcon = document.querySelector('.seidoku_memo_key .fa-lock');
     const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
@@ -96,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // 乱読画像の状態が update されたら本の状態を更新
+  // 乱読画像の状態が / トータルページが
+  // update される -> 乱読画像の未読・既読の数が変わる -> 本の状態を更新
   const book_reading_progress_update = (responseData) => {
     const book_reading_progress_list = document.querySelectorAll('.book_reading_progress');
     book_reading_progress_list.forEach(book_reading_progress => {
@@ -106,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 乱読画像の状態が update されたら乱読画像の未読/既読の数を更新
+  // 乱読画像の状態が update される -> 乱読画像の未読/既読の数を更新
   const img_read_status_count_update = (responseData) => {
     const img_read_status_count = document.querySelector('#img_read_status_count');
     // responseDataから変数を取り出す
@@ -118,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // 乱読画像の状態が update されたら乱読画像の未読/既読 check を更新
+  // 乱読画像の状態が update される -> 乱読画像の未読/既読 check を更新
   const img_already_read_check_update = (imgId, responseData) => {
     const is_already_read_check = document.querySelector(`.is_already_read_check[data-img-id="${imgId}"]`);
     if (responseData.img_reading_state_result === 0) {
@@ -128,7 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // 本の状態が update されたら対応する judge_popup_message を表示
+  // 本の状態が update される -> 本の状態が更新される -> 対応する judge_popup_message を表示
+  // モーダルでのトータルページの更新 -> 本の状態が変更 -> popupは表示しない
   const judge_popup_message = (responseData) => {
 
     // judge_popup_message を表示するためのセレクターを取得
@@ -165,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // 読んだボタンをclickによるレスポンスの結果でボタンの色やテキストを変更
+  // 読んだボタンの click によるレスポンスの結果に応じてボタンの色やテキストを変更
   const toggleImgAlreadyReadStateBtn = (readBtn) => {
     const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
     //readBtn.classList.toggle('completion');
