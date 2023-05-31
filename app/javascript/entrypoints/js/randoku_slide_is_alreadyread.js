@@ -89,20 +89,23 @@ const img_already_read_check_update = (imgId, responseData) => {
   }
 }
 
+//// 本の状態が変更されたことを知らせるpopup関数 ////
+// judge_popup_message を表示するためのセレクターを取得
+const seidokuJudgePopupMessage = document.querySelector('#judged-seidoku');
+const tudokuJudgePopupMessage = document.querySelector('#judged-tudoku');
+const randokuJudgePopupMessage = document.querySelector('#judged-randoku');
+const judgePopupCloseButtonList = document.querySelectorAll('.judge-popup__close');
+
+// judge_popup_message を非表示にする関数
+export const hideJudgePopupMessages = () => {
+  seidokuJudgePopupMessage.classList.add('judge-popup__hidden');
+  tudokuJudgePopupMessage.classList.add('judge-popup__hidden');
+  randokuJudgePopupMessage.classList.add('judge-popup__hidden');
+}
+
 // 本の状態が update される -> 本の状態が更新される -> 対応する judge_popup_message を表示
 // モーダルでのトータルページの更新 -> 本の状態が変更 -> popupは表示しない
 const judge_popup_message = (responseData) => {
-  // judge_popup_message を表示するためのセレクターを取得
-  const seidokuJudgePopupMessage = document.querySelector('#judged-seidoku');
-  const tudokuJudgePopupMessage = document.querySelector('#judged-tudoku');
-  const randokuJudgePopupMessage = document.querySelector('#judged-randoku');
-  const judgePopupCloseButtonList = document.querySelectorAll('.judge-popup__close');
-  // judge_popup_message を非表示にする関数
-  const hideJudgePopupMessages = () => {
-    seidokuJudgePopupMessage.classList.add('judge-popup__hidden');
-    tudokuJudgePopupMessage.classList.add('judge-popup__hidden');
-    randokuJudgePopupMessage.classList.add('judge-popup__hidden');
-  }
   // クローズボタンで judge_popup_message を非表示にする
   judgePopupCloseButtonList.forEach(judgePopupCloseButton => {
     judgePopupCloseButton.addEventListener('click', hideJudgePopupMessages);
