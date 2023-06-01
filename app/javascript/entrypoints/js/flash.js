@@ -1,25 +1,51 @@
-export const js_flash = ({ flashMessage, input_message }) => {
+// フラッシュ notice メッセージの要素を取得
+const flashMessage_notice = document.querySelector('.c-flash--notice');
+export const js_flash = (message) => {
   // メッセージを設定
-  setFlashMessage(flashMessage, input_message);
+  setFlashMessage({ flashElement: flashMessage_notice, message: message });
   // メッセージを表示
-  showFlashMessage(flashMessage);
+  showFlashMessage({ flashElement: flashMessage_notice });
   // 一定時間後にメッセージを非表示にする
-  setTimeout(() => hideFlashMessage(flashMessage), 4500); // 4500ミリ秒（4.5秒）後に実行する
+  setTimeout(() => hideFlashMessage({ flashElement: flashMessage_notice }), 4500); // 4500ミリ秒（4.5秒）後に実行する
 }
 
+
+// フラッシュ alert メッセージの要素を取得
+const flashMessage_alert = document.querySelector('.c-flash--alert');
+export const js_flash_alert = (message) => {
+  // メッセージを設定
+  setFlashMessage({ flashElement: flashMessage_alert, message: message });
+  // メッセージを表示
+  showFlashMessage({ flashElement: flashMessage_alert });
+  // X ボタンで非表示
+  closeFlash({ flashElement: flashMessage_alert });
+}
+
+
 // メッセージを設定する関数
-const setFlashMessage = (flashMessage, message) => {
-    flashMessage.querySelector('.c-flash-text').textContent = message;
+const setFlashMessage = ({ flashElement, message }) => {
+  flashElement.querySelector('.c-flash-text').textContent = message;
 }
 
 // メッセージを表示する関数
-const showFlashMessage = (flashMessage) => {
-    flashMessage.style.right = '10px';  // 右端から10pxの位置に移動する
-    flashMessage.style.opacity = '1';  // 不透明にする
+const showFlashMessage = ({ flashElement }) => {
+  flashElement.style.right = '10px';  // 右端から10pxの位置に移動する
+  flashElement.style.opacity = '1';  // 不透明にする
 }
 
 // メッセージを非表示にする関数
-const hideFlashMessage = (flashMessage) => {
-    flashMessage.style.right = '-1000px';  // 元の位置に戻す
-    flashMessage.style.opacity = '0';  // 透明にする
+const hideFlashMessage = ({ flashElement }) => {
+  flashElement.style.right = '-1000px';  // 元の位置に戻す
+  flashElement.style.opacity = '0';  // 透明にする
 }
+
+/// メッセージを即座に非表示にする関数
+const closeFlash = ({ flashElement }) => {
+  const closeFlashElement = document.querySelector('#close-flash');
+  closeFlashElement.addEventListener('click', (event) => {
+    flashElement.style.right = '-1000px';
+    flashElement.style.opacity = '0';
+  });
+}
+
+// window.addEventListener('DOMContentLoaded', closeFlash);

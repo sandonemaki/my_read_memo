@@ -1,4 +1,4 @@
-import { js_flash } from './flash.js'
+import { js_flash, js_flash_alert } from './flash.js'
 import { book_seidoku_memo_key } from './randoku_slide_is_alreadyread.js'
 import { book_reading_progress_update } from './randoku_slide_is_alreadyread.js'
 import { getCsrfToken } from './get_csrf_token.js';
@@ -32,14 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const flashMessage = document.querySelector('.c-flash');
 
     if (!response.ok) {
-      flashMessage.classList.remove('c-flash--notice');
-      flashMessage.classList.add('c-flash--alert');
-      js_flash({ flashMessage: flashMessage, input_message: "保存に失敗しました" });
+      js_flash_alert(responseData.message);
       throw new Error(`${response.status} ${responseData.message}`);
     }
 
     if (response.ok) {
-      js_flash({ flashMessage: flashMessage, input_message: "保存しました" });
+      js_flash("保存しました");
       book_reading_progress_update(responseData);
       book_seidoku_memo_key(responseData);
     }

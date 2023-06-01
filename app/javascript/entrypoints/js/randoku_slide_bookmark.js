@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const responseData = await response.json();
 
     if (!response.ok) {
-      js_flash({ flashMessage: flashMessage, input_message: responseData.message });
+      js_flash_alert(responseData.message);
       throw new Error(`${response.status} ${responseData.message}`);
     }
 
