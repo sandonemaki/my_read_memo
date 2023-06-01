@@ -1,6 +1,7 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 import { hideJudgePopupMessages } from './randoku_slide_is_alreadyread.js'
+import { js_flash, js_flash_alert } from './flash.js'
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
   closeButton.addEventListener("click", () => {
     modal.classList.remove('active');
     hideJudgePopupMessages(); // すべての judge_popup_message を非表示にする
+    closeFlash();
   });
 
 });

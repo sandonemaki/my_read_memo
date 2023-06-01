@@ -18,7 +18,7 @@ export const js_flash_alert = (message) => {
   // メッセージを表示
   showFlashMessage({ flashElement: flashMessage_alert });
   // X ボタンで非表示
-  closeFlash({ flashElement: flashMessage_alert });
+  closeFlash();
 }
 
 
@@ -40,11 +40,11 @@ const hideFlashMessage = ({ flashElement }) => {
 }
 
 /// メッセージを即座に非表示にする関数
-const closeFlash = ({ flashElement }) => {
+const closeFlash = () => {
   const closeFlashElement = document.querySelector('#close-flash');
   closeFlashElement.addEventListener('click', (event) => {
-    flashElement.style.right = '-1000px';
-    flashElement.style.opacity = '0';
+    flashMessage_alert.style.right = '-1000px';
+    flashMessage_alert.style.opacity = '0';
   });
 }
 
