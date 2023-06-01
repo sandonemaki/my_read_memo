@@ -40,5 +40,18 @@
     <% end %>
 
     <%= yield %>
+
+    <script>
+      // controllerからhtmlフォーマットに対しての以下のレスポンスがある場合scriptタグ内が実行される
+      // flash[:error] = @object.errors.full_messages
+      // render :new
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const flash = <%= flash[:error].blank? ? 'null' : flash[:error].to_json.html_safe %>;
+        if (flash) {
+          js_flash_alert(flash);
+        }
+      });
+    </script>
+
   </body>
 </html>
