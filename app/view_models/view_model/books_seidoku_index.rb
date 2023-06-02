@@ -63,9 +63,11 @@ module ViewModel
 
       # 精読メモの投稿順
       created_seidoku_memos_desc_of_seidoku_state_books =
-        all_seidoku_state_books.find(
-          SeidokuMemo.order('created_at desc').pluck(:book_id)
-        )
+        all_seidoku_state_books.joins(:seidoku_memos)
+        .select('books.*, MAX(seidoku_memos.created_at) as latest_seidoku_memo_time')
+        .group('books.id')
+        .order('latest_seidoku_memo_time DESC')
+
       #TODO: ハッシュをクラスにする
       @created_seidoku_memos_desc_of_seidoku_state_books =
         created_seidoku_memos_desc_of_seidoku_state_books.map do |book|
@@ -81,6 +83,7 @@ module ViewModel
         all_seidoku_state_books.find(
           Book.order('created_at desc').pluck(:id)
         )
+
       #TODO: ハッシュをクラスにする
       @created_books_desc_of_seidoku_state_books =
         created_books_desc_of_seidoku_state_books.map do |book|
