@@ -49,7 +49,7 @@ module ViewModel
 
       # 全ての乱読画像合計数
       @all_randoku_imgs_count =
-        Book.includes(:randoku_imgs).where.not(reading_state: "1").sum("randoku_imgs.id")
+        Book.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
 
       # 現在乱読ステータス中の本の中から乱読画像が多い順に並べる
       imgs_desc_of_randoku_state_books =
