@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   get "test/index" => "test#index"
 
   # randoku_inex_ランキング
-  get "books/rank_randoku_books" => "books#rank_randoku_books"
-  get "books/rank_randoku_imgs" => "books#rank_randoku_imgs"
+  get "books/randoku_rank_created_books" => "books#randoku_rank_created_book"
+  get "books/randoku_rank_most_randoku_imgs" => "books#randoku_rank_most_randoku_imgs"
+
+  # randoku_inex_ランキング
+  get "books/seidoku_index" => "books#seidoku_index"
+  get "books/seidoku_rank_created_bookss" => "books#seidoku_rank_created_books"
+  get "books/seidoku_rank_most_randoku_imgs" => "books#seidoku_rank_most_randoku_imgs"
 
   get 'home/search'
   get "books/new" => "books#new"  # new_book_page_path
@@ -31,6 +36,5 @@ Rails.application.routes.draw do
   get "memo_search" => "home#memo_search"
   post "memo_search_result" => "home#memo_search_result"
 
-  get "books/seidoku_index" => "books#seidoku_index"
   root to: "books#randoku_index"
 end

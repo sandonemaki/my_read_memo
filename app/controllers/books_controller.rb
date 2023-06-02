@@ -61,7 +61,7 @@ class BooksController < ApplicationController
   end
 
   # ランキング：乱読本の投稿順
-  def rank_randoku_books
+  def randoku_rank_created_books
     all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
@@ -75,7 +75,7 @@ class BooksController < ApplicationController
   end
 
   # 乱読画像の投稿順
-  def rank_randoku_imgs
+  def randoku_rank_most_randoku_imgs
     all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
