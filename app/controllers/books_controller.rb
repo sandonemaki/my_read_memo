@@ -89,7 +89,7 @@ class BooksController < ApplicationController
   end
 
 
-
+  # 精読メモの多い順
   def seidoku_index
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
     all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
@@ -103,6 +103,37 @@ class BooksController < ApplicationController
     )
     render("seidoku_index", locals:{books: book_view_models})
   end
+
+  # 精読本の投稿順
+  def seidoku_rank_created_books
+    # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
+    all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
+    all_books_count = Book.all.count
+
+    book_view_models = ViewModel::BooksSeidokuIndex.new(
+      all_randoku_state_books: all_randoku_state_books,
+      all_seidoku_state_books: all_seidoku_state_books,
+      all_books_count: all_books_count
+    )
+    render("seidoku_index", locals:{books: book_view_models})
+  end
+
+  # 乱読メモの投稿順
+  def seidoku_rank_most_randoku_imgs
+    # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
+    all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
+    all_books_count = Book.all.count
+
+    book_view_models = ViewModel::BooksSeidokuIndex.new(
+      all_randoku_state_books: all_randoku_state_books,
+      all_seidoku_state_books: all_seidoku_state_books,
+      all_books_count: all_books_count
+    )
+    render("seidoku_index", locals:{books: book_view_models})
+  end
+
 
   def new
     book = Book.new
