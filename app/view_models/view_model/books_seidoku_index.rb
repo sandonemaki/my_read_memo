@@ -41,7 +41,7 @@ module ViewModel
 
       # 全ての乱読画像合計数
       @all_randoku_imgs_count =
-        Book.includes(:randoku_imgs).where.not(reading_state: "1").sum("randoku_imgs.id")
+        Book.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
 
       # 現在精読ステータス中の本の中から精読メモの数が多い順に並べる
       seidoku_memos_desc_of_seidoku_state_books =
