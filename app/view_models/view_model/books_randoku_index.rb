@@ -70,9 +70,10 @@ module ViewModel
 
       # 乱読画像の投稿順
       created_imgs_desc_of_randoku_state_books =
-        all_randoku_state_books.left_joins(:randoku_imgs)
-        .group(:id)
-        .order('COUNT(randoku_imgs.id) DESC')
+        all_randoku_state_books.joins(:randoku_imgs)
+        .select('books.*, MAX(randoku_imgs.created_at) as latest_randoku_img_time')
+        .group('books.id')
+        .order('latest_randoku_img_time DESC')
 
       #TODO: ハッシュをクラスにする
       @created_imgs_desc_of_randoku_state_books =
