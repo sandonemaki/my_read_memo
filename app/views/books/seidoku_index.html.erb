@@ -9,11 +9,24 @@
   登録本数</br>
   ------
 </p>
-<p>
+<br>
   <%= books.all_seidoku_state_count %></br>
-  精読本数</p>
+  精読本数</br>
   ------
 </p>
+
+<p>ランキング</p>
+<ul class="ranking-menus">
+  <li>
+    <%= link_to('精読メモの多い順', "/books/seidoku_index", class: 'button') %>
+  </li>
+  <li>
+    <%= link_to('精読本の投稿順', "/books/seidoku_rank_created_books", class: 'button') %>
+  </li>
+  <li>
+    <%= link_to('乱読メモの投稿順', "/books/seidoku_rank_most_randoku_imgs", class: 'button') %>
+  </li>
+</ul>
 
 <h1>精読中の本</h1>
 <p>
@@ -68,8 +81,7 @@
       </p>
       <p>
       精読メモ数：
-      <%= book[:seidoku_memos_count] %>
-      </br>
+      <%= book[:seidoku_memos_count] %></br>
       ------
       </p>
     <% end %>
