@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get "test/index" => "test#index"
 
+  # randoku_inex_ランキング
+  get "books/rank_randoku_books" => "books#rank_randoku_books"
+  get "books/rank_randoku_imgs" => "books#rank_randoku_imgs"
+
   get 'home/search'
   get "books/new" => "books#new"  # new_book_page_path
   post "books/create" => "books#create"  # book_pages_path

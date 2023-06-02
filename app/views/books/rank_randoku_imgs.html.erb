@@ -28,7 +28,6 @@
   </li>
 </ul>
 
-
 <h1>乱読中の本</h1>
 <p>
   Total <%= books.all_randoku_state_count %>冊
@@ -63,8 +62,8 @@
   <% elsif books.created_imgs_desc_of_randoku_state_books.empty? %>
     <p>乱読画像が投稿されていません</p>
   <% else %>
-    <% books.imgs_desc_of_randoku_state_books.each do |book| %>
-    <%# books.created_imgs_desc_of_randoku_state_books.each do |book| %>
+    <%# books.imgs_desc_of_randoku_state_books.each do |book| %>
+    <% books.created_imgs_desc_of_randoku_state_books.each do |book| %>
     <%# books.created_books_desc_of_randoku_state_books.each do |book| %>
       <p>
       タイトル：

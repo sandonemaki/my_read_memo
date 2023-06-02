@@ -63,9 +63,9 @@
   <% elsif books.created_imgs_desc_of_randoku_state_books.empty? %>
     <p>乱読画像が投稿されていません</p>
   <% else %>
-    <% books.imgs_desc_of_randoku_state_books.each do |book| %>
+    <%# books.imgs_desc_of_randoku_state_books.each do |book| %>
     <%# books.created_imgs_desc_of_randoku_state_books.each do |book| %>
-    <%# books.created_books_desc_of_randoku_state_books.each do |book| %>
+    <% books.created_books_desc_of_randoku_state_books.each do |book| %>
       <p>
       タイトル：
       <%= book[:title] %>

@@ -70,9 +70,10 @@ module ViewModel
 
       # 乱読画像の投稿順
       created_imgs_desc_of_randoku_state_books =
-        all_randoku_state_books.find(
-          RandokuImg.order('created_at desc').pluck(:book_id)
-        )
+        all_randoku_state_books.left_joins(:randoku_imgs)
+        .group(:id)
+        .order('COUNT(randoku_imgs.id) DESC')
+
       #TODO: ハッシュをクラスにする
       @created_imgs_desc_of_randoku_state_books =
         created_imgs_desc_of_randoku_state_books.map do |book|
@@ -85,9 +86,7 @@ module ViewModel
 
       # 乱読本の投稿順
       created_books_desc_of_randoku_state_books =
-        all_randoku_state_books.find(
-          Book.order('created_at desc').pluck(:id)
-        )
+        all_randoku_state_books.order(created_at: :desc)
       #TODO: ハッシュをクラスにする
       @created_books_desc_of_randoku_state_books =
         created_books_desc_of_randoku_state_books.map do |book|
