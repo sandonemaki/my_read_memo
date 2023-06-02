@@ -44,7 +44,7 @@ module ViewModel
       # モーダル上で乱読画像を読むためのデータ
       @randoku_imgs_all_count = book.randoku_imgs.all.size
       @randoku_imgs_all =
-        book.randoku_imgs.all.order(updated_at: :desc).to_a.map { |img|
+        book.randoku_imgs.all.order(created_at: :desc).to_a.map { |img|
           ViewModel::RandokuImg.new(img: img, book: book)
         }
     end
@@ -52,12 +52,13 @@ module ViewModel
 
 
   class RandokuImg
-    attr_reader :id, :name, :updated_at, :path, :thumbnail_path, :bookmark_flag, :alreadyread
+    attr_reader :id, :name, :updated_at, :created_at, :path, :thumbnail_path, :bookmark_flag, :alreadyread
 
     def initialize(img:, book:)
       @id = img.id
       max_length = 15
       @name = (img.name.length > max_length) ? img.name.slice(0, 15)+'…' : img.name
+      @created_at = I18n.l(img.created_at, format: :short)
       @updated_at = I18n.l(img.updated_at, format: :short)
       @path = "/#{book.id}/#{img.name}"
       @thumbnail_path = "/#{book.id}/thumb/sm_#{img.name}"
