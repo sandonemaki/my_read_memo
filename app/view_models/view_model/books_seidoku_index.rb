@@ -16,7 +16,7 @@ module ViewModel
 
       # 精読中の本の中から精読メモが多い順のbook_id。1-3位まで
       seidoku_memo_ranking = all_seidoku_state_books.joins(:seidoku_memos)
-        .group('book.id')
+        .group('books.id')
         .select('books.id, COUNT(seidoku_memos.id) as count')
         .order('COUNT(seidoku_memos.id) DESC').limit(3).pluck(:id)
 

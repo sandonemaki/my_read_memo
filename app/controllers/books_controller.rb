@@ -71,7 +71,7 @@ class BooksController < ApplicationController
       all_seidoku_state_books: all_seidoku_state_books,
       all_books_count: all_books_count
     )
-    render("rank_randoku_books", locals:{books: book_view_models})
+    render("randoku_index", locals:{books: book_view_models})
   end
 
   # 乱読画像の投稿順
@@ -85,7 +85,7 @@ class BooksController < ApplicationController
       all_seidoku_state_books: all_seidoku_state_books,
       all_books_count: all_books_count
     )
-    render("rank_randoku_imgs", locals:{books: book_view_models})
+    render("randoku_index", locals:{books: book_view_models})
   end
 
 
