@@ -35,9 +35,9 @@
 </p>
 
 <h3>前回の続き</h3>
-<% unless books.randoku_history.blank? %>
+<% if books.randoku_history.present? %>
   <%= books.randoku_history[:reading_state] %>
-  <% unless books.randoku_history[:randoku_history_ranking] == "" %>
+  <% if books.randoku_history[:randoku_history_ranking].present? %>
     <p><%= books.randoku_history[:randoku_history_ranking] %>位</p>
   <% end %>
   <p>

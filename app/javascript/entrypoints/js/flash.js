@@ -20,6 +20,8 @@ export const js_flash_alert = (message) => {
   // X ボタンで非表示
   closeFlash();
 }
+// application.html.erbから呼び出すため関数をグローバルスコープに公開する
+window.js_flash_alert = js_flash_alert;
 
 
 // メッセージを設定する関数

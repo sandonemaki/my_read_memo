@@ -34,9 +34,9 @@
 </p>
 
 <h3>前回の続き</h3>
-<% unless books.seidoku_history.blank? %>
+<% if books.seidoku_history.present? %>
   <%= books.seidoku_history[:reading_state] %>
-  <% unless books.seidoku_history[:seidoku_history_ranking] == "" %>
+  <% if books.seidoku_history[:seidoku_history_ranking].present? %>
     <p><%= books.seidoku_history[:seidoku_history_ranking] %>位</p>
   <% end %>
   <p>
@@ -51,12 +51,12 @@
     乱読メモ数：
     <%= books.seidoku_history[:randoku_memos_count] %>
   </p>
-  <p>
-    <% unless books.seidoku_history[:seidoku_memos_count] == 0 %>
+  <% if books.seidoku_history[:seidoku_memos_count] != 0 %>
+    <p>
       精読メモ数:
       <%= books.seidoku_history[:seidoku_memos_count] %>
-    <% end %>
-  </p>
+    </p>
+  <% end %>
 <% else %>
   <p>アウトプットに向けた精読メモの必要性、精読メモを取ることができない場合、乱読メモを見返す必要性を伝える</p>
 <% end %>
