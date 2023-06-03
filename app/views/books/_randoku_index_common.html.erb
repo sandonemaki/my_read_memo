@@ -1,0 +1,57 @@
+<p>maki</p>
+<p>
+  <%= books.all_randoku_imgs_count %></br>
+  乱読画像数</br>
+  ------
+</p>
+<p>
+  <%= books.all_count %></br>
+  登録本数</br>
+  ------
+</p>
+<br>
+  <%= books.all_seidoku_state_count %></br>
+  精読本数</br>
+  ------
+</p>
+
+<p>ランキング</p>
+<ul class="ranking-menus">
+  <li>
+    <%= link_to('乱読画像の多い順', :root, class: 'button') %>
+  </li>
+  <li>
+    <%= link_to('乱読本の投稿順', "/books/randoku_rank_created_books", class: 'button') %>
+  </li>
+  <li>
+    <%= link_to('乱読画像の投稿順', "/books/randoku_rank_created_randoku_imgs", class: 'button') %>
+  </li>
+</ul>
+
+
+<h1>乱読中の本</h1>
+<p>
+  Total <%= books.all_randoku_state_count %>冊
+</p>
+
+<h3>前回の続き</h3>
+<% if books.randoku_history.present? %>
+  <%= books.randoku_history[:reading_state] %>
+  <% if books.randoku_history[:randoku_history_ranking].present? %>
+    <p><%= books.randoku_history[:randoku_history_ranking] %>位</p>
+  <% end %>
+  <p>
+    タイトル:
+    <%= books.randoku_history[:title] %>
+  </p>
+  <p>
+    乱読画像数：
+    <%= books.randoku_history[:randoku_imgs_count] %>
+  </p>
+  <p>
+    乱読メモ数：
+    <%= books.randoku_history[:randoku_memos_count] %>
+  </p>
+<% else %>
+  <p>乱読画像を投稿してメモを再読する必要性を伝える</p>
+<% end %>

@@ -16,7 +16,7 @@ module ViewModel
 
       # 精読中の本の中から精読メモが多い順のbook_id。1-3位まで
       seidoku_memo_ranking = all_seidoku_state_books.joins(:seidoku_memos)
-        .group('book.id')
+        .group('books.id')
         .select('books.id, COUNT(seidoku_memos.id) as count')
         .order('COUNT(seidoku_memos.id) DESC').limit(3).pluck(:id)
 
@@ -41,7 +41,7 @@ module ViewModel
 
       # 全ての乱読画像合計数
       @all_randoku_imgs_count =
-        Book.includes(:randoku_imgs).where.not(reading_state: "1").sum("randoku_imgs.id")
+        Book.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
 
       # 現在精読ステータス中の本の中から精読メモの数が多い順に並べる
       seidoku_memos_desc_of_seidoku_state_books =
@@ -63,9 +63,11 @@ module ViewModel
 
       # 精読メモの投稿順
       created_seidoku_memos_desc_of_seidoku_state_books =
-        all_seidoku_state_books.find(
-          SeidokuMemo.order('created_at desc').pluck(:book_id)
-        )
+        all_seidoku_state_books.joins(:seidoku_memos)
+        .select('books.*, MAX(seidoku_memos.created_at) as latest_seidoku_memo_time')
+        .group('books.id')
+        .order('latest_seidoku_memo_time DESC')
+
       #TODO: ハッシュをクラスにする
       @created_seidoku_memos_desc_of_seidoku_state_books =
         created_seidoku_memos_desc_of_seidoku_state_books.map do |book|
@@ -78,9 +80,8 @@ module ViewModel
 
       # 精読本の投稿順
       created_books_desc_of_seidoku_state_books =
-        all_seidoku_state_books.find(
-          Book.order('created_at desc').pluck(:id)
-        )
+        all_seidoku_state_books.order(created_at: :desc)
+
       #TODO: ハッシュをクラスにする
       @created_books_desc_of_seidoku_state_books =
         created_books_desc_of_seidoku_state_books.map do |book|

@@ -1,57 +1,14 @@
-<p>maki</p>
-<p>
-  <%= books.all_randoku_imgs_count %></br>
-  乱読画像数</br>
-  ------
-</p>
-<p>
-  <%= books.all_count %></br>
-  登録本数</br>
-  ------
-</p>
-<p>
-  <%= books.all_seidoku_state_count %></br>
-  精読本数</p>
-  ------
-</p>
-
-<h1>乱読中の本</h1>
-<p>
-  Total <%= books.all_randoku_state_count %>冊
-</p>
-
-<h3>前回の続き</h3>
-<% unless books.randoku_history.blank? %>
-  <%= books.randoku_history[:reading_state] %>
-  <% unless books.randoku_history[:randoku_history_ranking] == "" %>
-    <p><%= books.randoku_history[:randoku_history_ranking] %>位</p>
-  <% end %>
-  <p>
-    タイトル:
-    <%= books.randoku_history[:title] %>
-  </p>
-  <p>
-    乱読画像数：
-    <%= books.randoku_history[:randoku_imgs_count] %>
-  </p>
-  <p>
-    乱読メモ数：
-    <%= books.randoku_history[:randoku_memos_count] %>
-  </p>
-<% else %>
-  <p>乱読画像を投稿してメモを再読する必要性を伝える</p>
-<% end %>
+<!-- randoku_indexの共通部分 -->
+<%= render partial: 'books/randoku_index_common', locals: { books: books } %>
 
 <h3>登録中の本</h3>
 <div>
-  <% if books.created_books_desc_of_randoku_state_books.empty? %>
+  <% if books_rank.books_index_rank.empty? %>
     <p>乱読本がありません</p>
-  <% elsif books.created_imgs_desc_of_randoku_state_books.empty? %>
+  <% elsif books_rank.books_index_rank.empty? %>
     <p>乱読画像が投稿されていません</p>
   <% else %>
-    <% books.imgs_desc_of_randoku_state_books.each do |book| %>
-    <%# books.created_imgs_desc_of_randoku_state_books.each do |book| %>
-    <%# books.created_books_desc_of_randoku_state_books.each do |book| %>
+    <% books_rank.books_index_rank.each do |book| %>
       <p>
       タイトル：
       <%= book[:title] %>
