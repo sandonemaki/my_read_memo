@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # randoku_inex_ランキング
   get "books/randoku_rank_created_books" => "books#randoku_rank_created_books"
-  get "books/randoku_rank_most_randoku_imgs" => "books#randoku_rank_most_randoku_imgs"
+  get "books/randoku_rank_created_randoku_imgs" => "books#randoku_rank_created_randoku_imgs"
 
   # randoku_inex_ランキング
   get "books/seidoku_index" => "books#seidoku_index"

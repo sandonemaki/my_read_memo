@@ -21,12 +21,13 @@
     <%= link_to('乱読画像の多い順', :root, class: 'button') %>
   </li>
   <li>
-    <%= link_to('乱読本の投稿順', "/books/rank_randoku_books", class: 'button') %>
+    <%= link_to('乱読本の投稿順', "/books/randoku_rank_created_books", class: 'button') %>
   </li>
   <li>
-    <%= link_to('乱読画像の投稿順', "/books/rank_randoku_imgs", class: 'button') %>
+    <%= link_to('乱読画像の投稿順', "/books/randoku_rank_created_randoku_imgs", class: 'button') %>
   </li>
 </ul>
+
 
 <h1>乱読中の本</h1>
 <p>
@@ -54,32 +55,3 @@
 <% else %>
   <p>乱読画像を投稿してメモを再読する必要性を伝える</p>
 <% end %>
-
-<h3>登録中の本</h3>
-<div>
-  <% if books.created_books_desc_of_randoku_state_books.empty? %>
-    <p>乱読本がありません</p>
-  <% elsif books.created_imgs_desc_of_randoku_state_books.empty? %>
-    <p>乱読画像が投稿されていません</p>
-  <% else %>
-    <%# books.imgs_desc_of_randoku_state_books.each do |book| %>
-    <% books.created_imgs_desc_of_randoku_state_books.each do |book| %>
-    <%# books.created_books_desc_of_randoku_state_books.each do |book| %>
-      <p>
-      タイトル：
-      <%= book[:title] %>
-      </p>
-      <p>
-      乱読画像数：
-      <%= book[:randoku_imgs_count] %>
-      </p>
-      <p>
-      乱読メモ数：
-      <%= book[:randoku_memos_count] %>
-      </br>
-      ------
-      </p>
-    <% end %>
-  <% end %>
-</div>
-
