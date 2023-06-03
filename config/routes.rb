@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "books/randoku_rank_created_books" => "books#randoku_rank_created_books"
   get "books/randoku_rank_created_randoku_imgs" => "books#randoku_rank_created_randoku_imgs"
 
-  # randoku_inex_ランキング
+  # seidoku_inex_ランキング
   get "books/seidoku_index" => "books#seidoku_index"
   get "books/seidoku_rank_created_books" => "books#seidoku_rank_created_books"
   get "books/seidoku_rank_most_randoku_imgs" => "books#seidoku_rank_most_randoku_imgs"
