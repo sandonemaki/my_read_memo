@@ -104,6 +104,7 @@ class BooksController < ApplicationController
   end
 
 
+
   # 精読メモの多い順
   def seidoku_index
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
@@ -111,12 +112,17 @@ class BooksController < ApplicationController
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
-    book_view_models = ViewModel::BooksSeidokuIndex.new(
+    seidoku_index_common_view_models = ViewModel::BooksSeidokuIndexCommon.new(
       all_randoku_state_books: all_randoku_state_books,
       all_seidoku_state_books: all_seidoku_state_books,
       all_books_count: all_books_count
     )
-    render("seidoku_index", locals:{books: book_view_models})
+    seidoku_index_rank_view_models = ViewModel::BooksSeidokuIndexRankMostSeidokuMemos.new(
+      all_seidoku_state_books: all_seidoku_state_books,
+    )
+    render("seidoku_index", locals:{
+      books: seidoku_index_common_view_models, books_rank: seidoku_index_rank_view_models
+      })
   end
 
   # 精読本の投稿順
@@ -126,28 +132,39 @@ class BooksController < ApplicationController
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
-    book_view_models = ViewModel::BooksSeidokuIndex.new(
+    seidoku_index_common_view_models = ViewModel::BooksSeidokuIndexCommon.new(
       all_randoku_state_books: all_randoku_state_books,
       all_seidoku_state_books: all_seidoku_state_books,
       all_books_count: all_books_count
     )
-    render("seidoku_index", locals:{books: book_view_models})
+    seidoku_index_rank_view_models = ViewModel::BooksSeidokuIndexRankCreatedBooks.new(
+      all_seidoku_state_books: all_seidoku_state_books,
+    )
+    render("seidoku_index", locals:{
+      books: seidoku_index_common_view_models, books_rank: seidoku_index_rank_view_models
+      })
   end
 
-  # 乱読メモの投稿順
+  # 乱読メモの多い順
   def seidoku_rank_most_randoku_imgs
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
     all_randoku_state_books = Book.where.not(reading_state: "1") # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: "1") # 1 == 精読
     all_books_count = Book.all.count
 
-    book_view_models = ViewModel::BooksSeidokuIndex.new(
+    seidoku_index_common_view_models = ViewModel::BooksSeidokuIndexCommon.new(
       all_randoku_state_books: all_randoku_state_books,
       all_seidoku_state_books: all_seidoku_state_books,
       all_books_count: all_books_count
     )
-    render("seidoku_index", locals:{books: book_view_models})
+    seidoku_index_rank_view_models = ViewModel::BooksSeidokuIndexRankMostRandokuImgs.new(
+      all_seidoku_state_books: all_seidoku_state_books,
+    )
+    render("seidoku_index", locals:{
+      books: seidoku_index_common_view_models, books_rank: seidoku_index_rank_view_models
+      })
   end
+
 
 
   def new
