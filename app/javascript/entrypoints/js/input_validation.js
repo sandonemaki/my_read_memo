@@ -15,4 +15,21 @@ document.addEventListener('DOMContentLoaded', function() {
     checkValidation();
   });
 
+
+  // book/newの著者名
+  const inputAuthor = document.querySelector('#input_author');
+  const authorValidError = document.querySelector('#author_valid_error');
+
+  const isInputAuthorLengthValid = (inputAuthor, minLength = 0, maxLength = 20) => {
+    return inputAuthor.value.length >= minLength && inputAuthor.value.length <= maxLength;
+  }
+
+  inputAuthor.addEventListener('input', () => {
+    if (isInputAuthorLengthValid(inputAuthor) === false) {
+      authorValidError.textContent = '著者名は20文字以内で入力してください';
+    } else {
+      authorValidError.textContent = '';
+    }
+    checkValidation();
+  })
 });
