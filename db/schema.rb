@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_26_131502) do
+ActiveRecord::Schema.define(version: 2023_06_06_100147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2023_05_26_131502) do
     t.string "title", limit: 60, default: "", null: false
     t.string "author_1", limit: 60, default: "", null: false
     t.string "publisher", limit: 60, default: ""
-    t.integer "total_page", default: 0, null: false
+    t.integer "total_page", default: 20, null: false
     t.integer "reading_state", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
