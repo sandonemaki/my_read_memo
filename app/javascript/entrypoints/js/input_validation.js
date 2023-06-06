@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+  const bookInfoSubmit = document.querySelector('#book_info_submit');
+  const checkValidation = () => {
+    if (
+      isInputTotalPageValid(inputTotalPage) === false
+      || isInputTitleLengthValid(inputTitle) === false
+      || isInputAuthorLengthValid(inputAuthor) === false
+    ) {
+      bookInfoSubmit.disabled = true;
+    } else {
+      bookInfoSubmit.disabled = false;
+    }
+  }
+
+
   // book/newのタイトル
   const inputTitle = document.querySelector('#input_title');
   const titleValidError = document.querySelector('#title_valid_error');
