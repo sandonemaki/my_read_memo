@@ -32,4 +32,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     checkValidation();
   })
+
+
+  // book/newのトータルページ
+  const inputTotalPage = document.querySelector('#input_total_page');
+  const totalPageValidError = document.querySelector('#total_page_valid_error');
+
+  const isInputTotalPageValid = (inputTotalPage, minNum = 20, maxNum = 999) => {
+    const inputValue = Number(inputTotalPage.value);
+    return inputValue >= minNum && inputValue <= maxNum && Number.isInteger(inputValue);
+  }
+
+  inputTotalPage.addEventListener('input', () => {
+    if (isInputTotalPageValid(inputTotalPage) === false) {
+      totalPageValidError.textContent = '20から999の整数を入力してください';
+    } else {
+      totalPageValidError.textContent = '';
+    }
+    checkValidation();
+  });
 });
