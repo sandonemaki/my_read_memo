@@ -22,7 +22,7 @@
     type="number" name="total_page" 
     min="20" step="1" 
     placeholder="20" 
-    value="<%= book.total_page %>">
+    value="<%= book.total_page.present? && book.total_page != 0 ? book.total_page : 20 %>">
     <strong>必須</strong>
   <p id="total_page_valid_error"></p>
   <div class="error">20-999の整数のみ入力できます</div>
