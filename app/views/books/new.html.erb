@@ -1,16 +1,31 @@
 <h1>読む本とページ数を登録をする</h1>
 <%= form_tag("/books/create", method: :post) do %>
+
   <p>本のタイトル</p>
-  <input type="text" name="title" placeholder="タイトル" value="<%= book.title %>"><strong>必須</strong>
+  <input id="input_title" type="text" name="title" placeholder="タイトル" value="<%= book.title %>">
+  <strong>必須</strong>
+  <p id="title_valid_error"></p>
   <% book.errors[:title].each do |message| %><%= message %><% end %>
+
   <p>著者名</p>
-  <input type="text" name="author" placeholder="著者" value="<%= book.author %>"><strong>必須</strong>
+  <input id="input_author" type="text" name="author" placeholder="著者" value="<%= book.author %>">
+  <strong>必須</strong>
+  <p id="author_valid_error"></p>
   <% book.errors[:author].each do |message| %><%= message %><% end %>
+
   <p>出版社</p>
   <input type="text" name="publisher" placeholder="出版社" value="<%= book.publisher %>">
+
   <p>総ページ</p>
   <p>（乱読と精読の評価に使われる数字です。読書するページ数を入力してください）</p>
-  <input type="number" name="total_page" min="0" step="1" placeholder="00" value="<%= book.total_page %>"><strong>必須</strong>
-  <div class="error">整数のみ入力できます</div>
-  <input type="submit" value="送信">
+  <input id="input_total_page" 
+    type="number" name="total_page" 
+    min="20" step="1" 
+    placeholder="20" 
+    value="<%= book.total_page %>">
+    <strong>必須</strong>
+  <p id="total_page_valid_error"></p>
+  <div class="error">20-999の整数のみ入力できます</div>
+
+  <input id="book_info_submit" type="submit" value="送信">
 <% end %>
