@@ -29,11 +29,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (!response.ok) {
-      js_flash_alert(`Error: ${response.status}`);
+      js_flash_alert(`ダウンロードに失敗しました`);
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     // Blob としてレスポンスを取得
     const blob = await response.blob();
 
-}
+    // IE用
+    if (window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, fileName);
+      } else { // Chromeなど
+        let link = document.createElement('a');
+        const objUrl = URL.createObjectURL(blob); // このオブジェクトURLを保存
+        link.href= objUrl;
+        link.download = fileName;
+        link.click();
+        setTimeout(() => {
+          URL.revokeObjectURL(objUrl); // 保存したオブジェクトURLを解放
+      }, 1E4)
+    }
+  }
+});
