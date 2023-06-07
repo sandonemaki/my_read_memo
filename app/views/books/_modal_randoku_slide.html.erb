@@ -113,9 +113,10 @@
                     <%= slide_img.alreadyread == 0 ? "読んだ!" : "完了済み" %>
                 </button>
 
-                <button class="download-btn"
-                  data-img-name="<%= slide_img.name %>">画像ダウンロード
-                </button>
+                <div class="download-btn"
+                  data-img-name="<%= slide_img.name %>">
+                  <i class="fa-regular fa-circle-down fa-xl"></i>
+                </div>
 
 
               </div>

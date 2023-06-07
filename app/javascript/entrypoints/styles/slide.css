@@ -127,6 +127,13 @@
   transition: 0.5s;
   margin: 10px;
 }
+/**** download ****/
+.fa-circle-down {
+  color: #27acd9;
+}
+.fa-circle-down:hover {
+  background-color: rgb(35, 164, 176);
+}
 
 /**** モーダル *** */
 .sw-reveal-outer {
