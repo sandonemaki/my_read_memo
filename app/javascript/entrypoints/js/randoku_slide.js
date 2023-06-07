@@ -1,5 +1,4 @@
 import Swiper from 'swiper/bundle';
-import 'swiper/swiper-bundle.css';
 import { hideJudgePopupMessages } from './randoku_slide_is_alreadyread.js'
 import { js_flash, js_flash_alert } from './flash.js'
 

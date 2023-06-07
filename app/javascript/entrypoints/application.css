@@ -1,6 +1,7 @@
 /* @import './styles/thema.css'; */
 
 /* モーダルウィンドウ */
+@import 'swiper/swiper-bundle.css';
 @import './styles/index.css';
 @import './styles/slide.css';
 @import './styles/flash.css';
