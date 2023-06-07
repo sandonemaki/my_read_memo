@@ -6,6 +6,7 @@ import '@/entrypoints/js/flash.js'
 import '@/entrypoints/js/randoku_slide_is_alreadyread.js'
 import '@/entrypoints/js/randoku_slide_bookmark.js'
 import '@/entrypoints/js/randoku_slide_totalpage.js'
+import '@/entrypoints/js/randoku_slide_download_btn.js'
 import '@/entrypoints/js/randoku_slide.js'
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
