@@ -96,7 +96,12 @@
                       <i class="fa-bookmark fa-2xl <%= slide_img.bookmark_flag == 0 ? "fa-regular" : "fa-solid" %>"></i>
                   </div>
                 </div>
-                <div class="sw_img"><img src="<%= "#{slide_img.path}" %>?#{Time.now.to_i}" alt=" " /></div>
+
+                <div class="sw_img">
+                  <img src="<%= slide_img.path %>?<%= Time.now.to_i %>"
+                  alt=" " data-img-path="<%= slide_img.path %>"/>
+                </div>
+
                 <div class="sw_updated">
                   <!--<p><%= slide_img.updated_at %></p>-->
                 </div>
@@ -107,6 +112,7 @@
                   data-book-id="<%= book.id %>">
                     <%= slide_img.alreadyread == 0 ? "読んだ!" : "完了済み" %>
                 </button>
+
               </div>
             <% end %>
           </div>
