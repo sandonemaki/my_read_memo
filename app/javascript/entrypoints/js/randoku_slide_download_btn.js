@@ -18,4 +18,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const url = imgElement.dataset.imgPath;
     const fileName = download_btn.getAttribute('data-img-name');
 
+    // Fetchを用いて画像を取得
+    const response = await fetch(url, {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCsrfToken() // getCsrfToken は既存の関数を利用
+      }
+    });
+
+    if (!response.ok) {
+      js_flash_alert(`Error: ${response.status}`);
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Blob としてレスポンスを取得
+    const blob = await response.blob();
+
 }
