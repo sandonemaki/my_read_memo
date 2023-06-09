@@ -5,14 +5,14 @@
 }
 /**** popup_seidoku ****/
 .judge-popup {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   margin: 8px;
   padding: 32px;
-  font-family: "Lato", "Hiragino Maru Gothic Pro", "Meiryo UI", Meiryo, "MS PGothic", sans-serif;
+  font-family: 'Lato', 'Hiragino Maru Gothic Pro', 'Meiryo UI', Meiryo, 'MS PGothic', sans-serif;
   box-sizing: border-box;
   background-color: #f9fbfe;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -29,7 +29,7 @@
 #judged-seidoku {
   border-left: 8px solid #30c8d6;
   border-radius: 3px;
-  z-index: 80
+  z-index: 80;
 }
 
 .judge-popup__close {
@@ -38,7 +38,7 @@
   top: 16px;
   right: 16px;
   color: #647288;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .judge-popup__title {
@@ -46,17 +46,18 @@
   color: #ff708f;
   letter-spacing: 2px;
   margin-bottom: 16px;
-  font-family: "Quicksand", "M PLUS Rounded 1c", "Hiragino Maru Gothic Pro", "Meiryo UI", Meiryo, "MS PGothic", sans-serif
+  font-family: 'Quicksand', 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', 'Meiryo UI', Meiryo, 'MS PGothic',
+    sans-serif;
 }
 
 .judge-popup__message {
   color: #647288;
   font-size: 0.875rem;
-  line-height: 1.5
+  line-height: 1.5;
 }
 
 .judge-popup__message--seidoku {
-  padding-right: 230px
+  padding-right: 230px;
 }
 
 /**** swiper ****/
@@ -186,7 +187,7 @@
   color: blue;
   font-size: 26px;
   z-index: 10;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 .sw-modal.active {
   display: flex;
@@ -206,14 +207,15 @@
   z-index: 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 /**** トータルページモーダル ****/
 *:before {
   box-sizing: border-box;
 }
 
-.ModalOverlay, .ModalWrapper {
+.ModalOverlay,
+.ModalWrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -257,7 +259,8 @@
   font-style: normal;
 }
 
-.ModalOverlay.show, .ModalWrapper.show {
+.ModalOverlay.show,
+.ModalWrapper.show {
   opacity: 1;
   pointer-events: auto;
 }
@@ -268,10 +271,10 @@
 }
 .totalpage-btn {
   background-color: #35b7e4;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   color: #fff;
   font-size: 0.75rem;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
   height: 36px;
   line-height: 36px;
   margin-top: 3px;
@@ -284,7 +287,7 @@
 
 .totalpage-btn img {
   width: 20px;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
   margin-right: 4px;
 }
 /*.exercise-footer {

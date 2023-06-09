@@ -1,20 +1,20 @@
-import { js_flash, js_flash_alert } from './flash.js'
-import { book_seidoku_memo_key } from './randoku_slide_is_alreadyread.js'
-import { book_reading_progress_update } from './randoku_slide_is_alreadyread.js'
+import { js_flash, js_flash_alert } from './flash.js';
+import { book_seidoku_memo_key } from './randoku_slide_is_alreadyread.js';
+import { book_reading_progress_update } from './randoku_slide_is_alreadyread.js';
 import { getCsrfToken } from './get_csrf_token.js';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const totalPageSubmitBtn = document.querySelector('#total_page_submit_btn') || [];
 
   totalPageSubmitBtn.addEventListener('click', async () => {
-    await UpdateTotalPage(totalPageSubmitBtn)
+    await UpdateTotalPage(totalPageSubmitBtn);
   });
 
   const UpdateTotalPage = async (totalPageSubmitBtn) => {
     const bookId = parseInt(totalPageSubmitBtn.getAttribute('data-book-id'));
-    const inputTotalPage = document.querySelector('#input_total_page').value
+    const inputTotalPage = document.querySelector('#input_total_page').value;
     const updateData = {
-      input_total_page: inputTotalPage
+      input_total_page: inputTotalPage,
     };
 
     const response = await fetch(`/books/${bookId}/update_total_page`, {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': getCsrfToken()
+        'X-CSRF-Token': getCsrfToken(),
       },
       body: JSON.stringify(updateData),
     });
@@ -37,10 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (response.ok) {
-      js_flash("保存しました");
+      js_flash('保存しました');
       book_reading_progress_update(responseData);
       book_seidoku_memo_key(responseData);
     }
-  }
-
+  };
 });

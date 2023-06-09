@@ -1,13 +1,15 @@
 <h1>メモを検索する</h1>
 <%= form_tag("/memo_search_result", method: :post) do %>
   <div>
-    <select name="selected_search_value[]"><option value="0">メモの種類で検索をする</option>
+    <select name="selected_search_value[]">
+      <option value="0">メモの種類で検索をする</option>
       <optgroup label="乱読メモ">
         <% search.randoku_memo_type.each_with_index do | (k, value), i | %>
           <% if search.selected_search_value == "randoku[#{k}]" %>
-            <option value="<%= "randoku[#{k}]" %>" selected><%= value %></option>
-          <% else %>
-            <option value="randoku[<%= i+1 %>]"><%= value %></option>
+            <option value="<%= "randoku[#{k}]" %>" selected>
+              <%= value %>
+            </option>
+          <% else %><option value="randoku[<%= i + 1 %>]"><%= value %></option>
           <% end %>
         <% end %>
       </optgroup>
@@ -15,40 +17,40 @@
       <optgroup label="精読メモ">
         <% search.seidoku_memo_type.each_with_index do | (k, value), i | %>
           <% if search.selected_search_value == "seidoku[#{k}]" %>
-            <option value="<%= "seidoku[#{k}]" %>" selected><%= value %></option>
-          <% else %>
-            <option value="seidoku[<%= i+1 %>]"><%= value %></option>
+            <option value="<%= "seidoku[#{k}]" %>" selected>
+              <%= value %>
+            </option>
+          <% else %><option value="seidoku[<%= i + 1 %>]"><%= value %></option>
           <% end %>
         <% end %>
       </optgroup>
-
+    </select>
   </div>
-  <input type="submit" value="絞り込む">
+  <input type="submit" value="絞り込む" />
 <% end %>
 
 <% if search.selected_memos.nil? %>
   <h2>スライド検索の使い方</h2>
   <p>
-  <span>
-    画面上記の絞り込み一覧から、
-    <br>
-    検索したいメモの項目を選択してください。
-    <br>
-    関連するメモの絞り込み検索ができます。
-  </span>
+    <span>
+      画面上記の絞り込み一覧から、
+      <br />
+      検索したいメモの項目を選択してください。
+      <br />
+      関連するメモの絞り込み検索ができます。
+    </span>
   </p>
-
 <% elsif search.selected_memos.present? %>
   <h3>検索結果</h3>
   <p><%= search.selected_memos_count %>件</p>
   <p><%= search.selected_search_memo_type %></p>
   <div>
     <% search.selected_memos.each do |search| %>
-      <%= search.memo_created_at %><br>
-      <%= search.memo_content %><br>
+      <%= search.memo_created_at %><br />
+      <%= search.memo_content %><br />
       <%= link_to(search.book_title, "/books/#{search.book_id}") %>
-      <%= search.book_author %><br>
-      <%= search.book_reading_progress %><br>
+      <%= search.book_author %><br />
+      <%= search.book_reading_progress %><br />
     <% end %>
   </div>
 <% else %>

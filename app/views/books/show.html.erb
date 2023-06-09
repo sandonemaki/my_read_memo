@@ -1,15 +1,15 @@
 <h1>登録した本の情報</h1>
 <p>
-<%= book.title %>
+  <%= book.title %>
 </p>
 <p>
-<%= book.author %>
+  <%= book.author %>
 </p>
 <p>
-<%= book.publisher %>
+  <%= book.publisher %>
 </p>
 <p>
-<%= book.total_page %>
+  <%= book.total_page %>
 </p>
 <div class="book_reading_progress"><%= book.reading_progress %></div>
 <p class="seidoku_memo_key">
@@ -18,27 +18,37 @@
 </p>
 
 <p>乱読画像メモ</p>
-<p id="img_read_status_count">未読：<%= book.randoku_imgs_unread_count %>, 読了：<%= book.randoku_imgs_alreadyread_count %></p>
+<p id="img_read_status_count">
+  未読：<%= book.randoku_imgs_unread_count %>, 読了：<%= book.randoku_imgs_alreadyread_count %>
+</p>
 <p>精読基準：乱読画像メモが<%= book.seidoku_line_1 %>以上、未読画像メモが<%= book.seidoku_line_2 %>未満</p>
 <% if book.first_post_img_path.present? %>
-  <%= link_to "初めての乱読画像", "javascript:void(0)", id: "sw_modal_trigger",
-  "data-slide-index": 0, "data-src": "#{book.first_post_img_path}" %>
+  <%=
+    link_to '初めての乱読画像',
+            'javascript:void(0)',
+            id: 'sw_modal_trigger',
+            'data-slide-index': 0,
+            'data-src': "#{book.first_post_img_path}"
+  %>
 <% end %>
-
 
 <!--画像アップロードフォームを表示-->
 <%= form_tag("/books/#{book.id}/imgs", {multipart: true}) do %>
-  <h4>気になったページはパシャパシャ撮ってアップロードするだけ。<br>
-  後で読み返せるメモにしましょう</h4>
-  <input id="upload"
+  <h4>
+    気になったページはパシャパシャ撮ってアップロードするだけ。<br />
+    後で読み返せるメモにしましょう
+  </h4>
+  <input
+    id="upload"
     name="page_imgs[]"
     type="file"
     multiple="true"
     accept=".jpg, .jpeg, .png, .heic, .pdf"
-    style="display: none;">
-    <label for="upload" class="upload-button">画像を選択</label>
+    style="display: none;"
+  />
+  <label for="upload" class="upload-button">画像を選択</label>
   <div>
-    <input id="submit-btn" type="submit" value="アップロードする" disabled>
+    <input id="submit-btn" type="submit" value="アップロードする" disabled />
   </div>
   <p>投稿できる画像の拡張子はjpg/jpeg/png/heic/pdf(1ページ分)のみになります</p>
 <% end %>
@@ -49,12 +59,17 @@
   "画像がありません"
 <% else %>
   <% book.randoku_imgs_all.each_with_index do |img, i| %>
-    <img src="<%= "#{img.thumbnail_path}" %>?#{Time.now.to_i}" alt=" " id="sw_modal_trigger" data-slide-index="<%= i %>" />
+    <img
+      src="<%= "#{img.thumbnail_path}" %>?#{Time.now.to_i}"
+      alt=" "
+      id="sw_modal_trigger"
+      data-slide-index="<%= i %>"
+    />
     <p><%= img.name %></p>
     <p><%= img.updated_at %></p>
-    <p class="is_already_read_check" data-img-id="<%= img.id %>"><%= img.alreadyread == 0 ? "未読" : "既読" %></p>
+    <p class="is_already_read_check" data-img-id="<%= img.id %>"><%= img.alreadyread == 0 ? '未読' : '既読' %></p>
     <p class="img_bookmark_check" data-img-id="<%= img.id %>">
-      <i class="fa-bookmark <%= img.bookmark_flag == 0 ? "fa-regular" : "fa-solid" %>"></i>
+      <i class="fa-bookmark <%= img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"></i>
     </p>
   <% end %>
 <% end %>

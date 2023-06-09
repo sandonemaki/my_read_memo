@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // モーダル
   // Open the modal
   function openModal() {
@@ -15,10 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.classList.remove('show');
     overlay.classList.remove('show');
   }
-  document.querySelector('#open-totalpage-modal').addEventListener('click', function() {
+  document.querySelector('#open-totalpage-modal').addEventListener('click', function () {
     openModal();
   });
-  
 
   // Attach event listener to the close button
   document.querySelector('.ModalCloseButton').addEventListener('click', closeModal);

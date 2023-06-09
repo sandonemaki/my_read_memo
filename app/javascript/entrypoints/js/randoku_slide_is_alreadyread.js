@@ -1,16 +1,16 @@
 import { getCsrfToken } from './get_csrf_token.js';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const readBtnList = document.querySelectorAll('#sw_read_btn') || [];
 
   // 未読・既読/toggle-button
-  readBtnList.forEach(readBtn => {
+  readBtnList.forEach((readBtn) => {
     readBtn.addEventListener('click', async () => {
-      await ToggleImgAlreadyReadStatus(readBtn)
-    });  
+      await ToggleImgAlreadyReadStatus(readBtn);
+    });
   });
 
-  const ToggleImgAlreadyReadStatus = async (readBtn) => { 
+  const ToggleImgAlreadyReadStatus = async (readBtn) => {
     const readingId = parseInt(readBtn.getAttribute('data-reading-id'));
     const imgId = parseInt(readBtn.getAttribute('data-img-id'));
     const bookId = parseInt(readBtn.getAttribute('data-book-id'));
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': getCsrfToken()
+        'X-CSRF-Token': getCsrfToken(),
       },
       body: JSON.stringify(updateData),
     });
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
       book_reading_progress_update(responseData);
       book_seidoku_memo_key(responseData);
     }
-  }
+  };
 });
 
 // 乱読画像の状態が / トータルページが
@@ -51,22 +51,22 @@ document.addEventListener('DOMContentLoaded', function() {
 export const book_seidoku_memo_key = (responseData) => {
   const seidokuMemoKeyIcon = document.querySelector('.seidoku_memo_key .fa-lock');
   const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
-  if (responseData.book_seidoku_memo_key === "key_false") {
+  if (responseData.book_seidoku_memo_key === 'key_false') {
     //seidokuMemoKeyIcon.classList.add('memo_key_hidden');
     seidokuMemoKeyWord.textContent = '精読メモタブ開錠';
   }
-}
+};
 
 // 乱読画像の状態が / トータルページが
 // update される -> 乱読画像の未読・既読の数が変わる -> 本の状態を更新
 export const book_reading_progress_update = (responseData) => {
   const book_reading_progress_list = document.querySelectorAll('.book_reading_progress');
-  book_reading_progress_list.forEach(book_reading_progress => {
+  book_reading_progress_list.forEach((book_reading_progress) => {
     if (responseData.book_state_updated_info) {
       book_reading_progress.textContent = responseData.book_state_updated_info;
     }
   });
-}
+};
 
 // 乱読画像の状態が update される -> 乱読画像の未読/既読の数を更新
 const img_read_status_count_update = (responseData) => {
@@ -77,7 +77,7 @@ const img_read_status_count_update = (responseData) => {
   if (img_unread_count !== undefined && img_already_read_count !== undefined) {
     img_read_status_count.textContent = `未読：${img_unread_count}, 読了：${img_already_read_count}`;
   }
-}
+};
 
 // 乱読画像の状態が update される -> 乱読画像の未読/既読 check を更新
 const img_already_read_check_update = (imgId, responseData) => {
@@ -87,7 +87,7 @@ const img_already_read_check_update = (imgId, responseData) => {
   } else {
     is_already_read_check.textContent = '既読';
   }
-}
+};
 
 //// 本の状態が変更されたことを知らせるpopup関数 ////
 // judge_popup_message を表示するためのセレクターを取得
@@ -101,13 +101,13 @@ export const hideJudgePopupMessages = () => {
   seidokuJudgePopupMessage.classList.add('judge-popup__hidden');
   tudokuJudgePopupMessage.classList.add('judge-popup__hidden');
   randokuJudgePopupMessage.classList.add('judge-popup__hidden');
-}
+};
 
 // 本の状態が update される -> 本の状態が更新される -> 対応する judge_popup_message を表示
 // モーダルでのトータルページの更新 -> 本の状態が変更 -> popupは表示しない
 const judge_popup_message = (responseData) => {
   // クローズボタンで judge_popup_message を非表示にする
-  judgePopupCloseButtonList.forEach(judgePopupCloseButton => {
+  judgePopupCloseButtonList.forEach((judgePopupCloseButton) => {
     judgePopupCloseButton.addEventListener('click', hideJudgePopupMessages);
   });
   if (responseData.book_state_updated_info) {
@@ -124,7 +124,7 @@ const judge_popup_message = (responseData) => {
         break;
     }
   }
-}
+};
 
 // 読んだボタンの click によるレスポンスの結果に応じてボタンの色やテキストを変更
 const toggleImgAlreadyReadStateBtn = (readBtn) => {
@@ -137,4 +137,4 @@ const toggleImgAlreadyReadStateBtn = (readBtn) => {
     readBtn.classList.add('completion');
     readBtn.textContent = '完了済み';
   }
-}
+};

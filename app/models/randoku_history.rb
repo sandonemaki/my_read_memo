@@ -1,5 +1,4 @@
 class RandokuHistory < ApplicationRecord
-
   def self.set(new_path, book_id)
     randoku_history = RandokuHistory.order(:created_at).first_or_initialize
     randoku_history.path = new_path

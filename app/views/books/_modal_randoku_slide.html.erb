@@ -3,7 +3,6 @@
   <div class="sw-reveal-outer">
     <div class="sw-reveal-wrapper">
       <div class="sw-reveal-inner">
-
         <!-- フラッシュを表示 -->
         <div class="c-flash c-flash--notice">
           <div class="c-flash-icon">
@@ -23,17 +22,19 @@
             <i class="ModalCloseButton fa fa-times" aria-hidden="true"></i>
             <h3 class="modal__StyledHeading">ページ数を登録をする</h3>
             <!--<%= form_tag("/books/total_page_update", method: :post) do %>-->
-              <p>総ページ</p>
-              <p>（乱読と精読の評価に使われる数字です。読書するページ数を入力してください）</p>
-              <input id="input_total_page"
-                type="number"
-                name="total_page"
-                min="20"
-                step="1"
-                placeholder="00"
-                value="<%= book.total_page %>"><strong>必須</strong>
-              <!--<div class="error">整数のみ入力できます</div>-->
-              <input id="total_page_submit_btn" data-book-id="<%= book.id %>" type="submit" value="更新する">
+            <p>総ページ</p>
+            <p>（乱読と精読の評価に使われる数字です。読書するページ数を入力してください）</p>
+            <input
+              id="input_total_page"
+              type="number"
+              name="total_page"
+              min="20"
+              step="1"
+              placeholder="00"
+              value="<%= book.total_page %>"
+            /><strong>必須</strong>
+            <!--<div class="error">整数のみ入力できます</div>-->
+            <input id="total_page_submit_btn" data-book-id="<%= book.id %>" type="submit" value="更新する" />
             <!--<% end %>-->
           </div>
         </div>
@@ -47,9 +48,7 @@
             <div class="judge-popup__message judge-popup__message--seidoku">
               精読です！精読ページは「精読ああああ精読です」です！
             </div>
-            <div class="judge-popup__suggestion">
-              つまったときはスライドやヒントも確認してみましょう
-            </div>
+            <div class="judge-popup__suggestion">つまったときはスライドやヒントも確認してみましょう</div>
           </div>
           <!-- 通読popup -->
           <div class="judge-popup judge-popup__hidden" id="judged-tudoku">
@@ -58,9 +57,7 @@
             <div class="judge-popup__message judge-popup__message--tudoku">
               通読です！通読ページは「通読ああああ通読です」です！
             </div>
-            <div class="judge-popup__suggestion">
-              つまったときはスライドやヒントも確認してみましょう
-            </div>
+            <div class="judge-popup__suggestion">つまったときはスライドやヒントも確認してみましょう</div>
           </div>
           <!-- 乱読popup -->
           <div class="judge-popup judge-popup__hidden" id="judged-randoku">
@@ -69,9 +66,7 @@
             <div class="judge-popup__message judge-popup__message--randoku">
               乱読です！乱読ページは「乱読ああああ乱読です」です！
             </div>
-            <div class="judge-popup__suggestion">
-              つまったときはスライドやヒントも確認してみましょう
-            </div>
+            <div class="judge-popup__suggestion">つまったときはスライドやヒントも確認してみましょう</div>
           </div>
         </div>
 
@@ -88,44 +83,44 @@
                 <p class="sw_img_name"><%= slide_img.name %></p>
                 <p class="sw_book_title"><%= book.title %></p>
                 <div>
-                  <div class="sw_bookmark_btn"
+                  <div
+                    class="sw_bookmark_btn"
                     data-bookmark-id="<%= slide_img.bookmark_flag %>"
                     data-img-id="<%= slide_img.id %>"
-                    data-book-id="<%= book.id %>">
-                      <!-- bookmark_on : bookmark_off -->
-                      <i class="fa-bookmark fa-2xl <%= slide_img.bookmark_flag == 0 ? "fa-regular" : "fa-solid" %>"></i>
+                    data-book-id="<%= book.id %>"
+                  >
+                    <!-- bookmark_on : bookmark_off -->
+                    <i class="fa-bookmark fa-2xl <%= slide_img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"></i>
                   </div>
                 </div>
 
                 <div class="sw_img">
-                  <img src="<%= slide_img.path %>?<%= Time.now.to_i %>"
-                  alt=" " data-img-path="<%= slide_img.path %>"/>
+                  <img src="<%= slide_img.path %>?<%= Time.now.to_i %>" alt=" " data-img-path="<%= slide_img.path %>" />
                 </div>
 
                 <div class="sw_updated">
-                  <!--<p><%= slide_img.updated_at %></p>-->
+                  <!--<p>[object Object]</p>-->
                 </div>
-                <button id="sw_read_btn"
+                <button
+                  id="sw_read_btn"
                   class="sw-read-btn <%= slide_img.alreadyread == 0 ? '' : 'completion' %>"
                   data-reading-id="<%= slide_img.alreadyread %>"
                   data-img-id="<%= slide_img.id %>"
-                  data-book-id="<%= book.id %>">
-                    <%= slide_img.alreadyread == 0 ? "読んだ!" : "完了済み" %>
+                  data-book-id="<%= book.id %>"
+                >
+                  <%= slide_img.alreadyread == 0 ? '読んだ!' : '完了済み' %>
                 </button>
 
-                <div class="download-btn"
-                  data-img-name="<%= slide_img.name %>">
+                <div class="download-btn" data-img-name="<%= slide_img.name %>">
                   <i class="fa-regular fa-circle-down fa-xl"></i>
                 </div>
-
-
               </div>
             <% end %>
           </div>
         </div>
         <!-- トータルページモーダルトリガーボタン -->
         <button id="open-totalpage-modal" class="totalpage-btn">
-          <img src="https://prog-8.com/assets/packs/dist/images/footer-slides-button-icon-5422fe1e516d2055acb4..svg">
+          <img src="https://prog-8.com/assets/packs/dist/images/footer-slides-button-icon-5422fe1e516d2055acb4..svg" />
           <span>読むページを更新</span>
         </button>
         <div class="swiper-pagination"></div>
@@ -136,4 +131,3 @@
     </div>
   </div>
 </div>
-

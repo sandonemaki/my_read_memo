@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>MyReadMemo</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <script src="https://kit.fontawesome.com/7e6ef99139.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,14 +21,13 @@
   </head>
 
   <body>
-
     <header>
       <ul class="header-menus">
         <li>
-          <%= link_to("本の一覧", "/") %>
+          <%= link_to('本の一覧', '/') %>
         </li>
         <li>
-          <%= link_to("本を登録する", "/books/new") %>
+          <%= link_to('本を登録する', '/books/new') %>
         </li>
       </ul>
     </header>
@@ -46,6 +45,5 @@
         }
       });
     </script>
-
   </body>
 </html>

@@ -1,16 +1,16 @@
 import { getCsrfToken } from './get_csrf_token.js';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const bookmarkBtnList = document.querySelectorAll('.sw_bookmark_btn') || [];
 
   // bookmark/toggle-button
-  bookmarkBtnList.forEach(bookmarkBtn => {
+  bookmarkBtnList.forEach((bookmarkBtn) => {
     bookmarkBtn.addEventListener('click', async () => {
-      await ToggleImgBookmarkStatus(bookmarkBtn)
-    });  
+      await ToggleImgBookmarkStatus(bookmarkBtn);
+    });
   });
 
-  const ToggleImgBookmarkStatus = async (bookmarkBtn) => { 
+  const ToggleImgBookmarkStatus = async (bookmarkBtn) => {
     const bookmarkId = parseInt(bookmarkBtn.getAttribute('data-bookmark-id'));
     const imgId = parseInt(bookmarkBtn.getAttribute('data-img-id'));
     const bookId = parseInt(bookmarkBtn.getAttribute('data-book-id'));
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': getCsrfToken()
+        'X-CSRF-Token': getCsrfToken(),
       },
       body: JSON.stringify(updateData),
     });
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
       toggleImgBookmarkFlagBtn(bookmarkBtn);
       img_bookmark_flag_check_update(imgId, responseData);
     }
-  }
+  };
   // bookmarkボタンをclickしたことによりbookmarkのclassと文字を変更
   const toggleImgBookmarkFlagBtn = (bookmarkBtn) => {
     const bookmarkId = parseInt(bookmarkBtn.getAttribute('data-bookmark-id'));
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       bookmarkBtn.innerHTML = '<i class="fa-solid fa-bookmark fa-2xl"></i>'; //on
     }
-  }
+  };
 
   // 乱読画像のbookmarkのflagが update されたら乱読画像の bookmark の check を更新
   const img_bookmark_flag_check_update = (imgId, responseData) => {
@@ -58,5 +58,5 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       img_bookmark_check.innerHTML = '<i class="fa-solid fa-bookmark"></i>'; //on
     }
-  }
+  };
 });

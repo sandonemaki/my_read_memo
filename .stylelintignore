@@ -1,0 +1,18 @@
+# .stylelintignore
+node_modules/
+dist/
+vendor/
+public/
+log/
+tmp/
+.git/
+Config/application.rb
+app/*
+!app/controllers/
+!app/javascript/
+!app/models/
+!app/modules/
+!app/view_models/view_model/
+!app/views/
+!app/spec/
+!app/mailers/
