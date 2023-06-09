@@ -1,25 +1,26 @@
 <h1>登録した本の情報</h1>
 <p>
-<%= book.title %>
+  <%= book.title %>
 </p>
 <p>
-<%= book.author %>
+  <%= book.author %>
 </p>
 <p>
-<%= book.publisher %>
+  <%= book.publisher %>
 </p>
 <p>
-<%= book.total_page %>
+  <%= book.total_page %>
 </p>
 <div class="book_reading_progress"><%= book.reading_progress %></div>
 
-<p>精読メモ：著者の意見<%= book.seidoku_memo_author_opinion_count %>
- 自分の意見<%= book.seidoku_memo_my_opinion_count %></p>
+<p>
+  精読メモ：著者の意見<%= book.seidoku_memo_author_opinion_count %> 自分の意見<%= book.seidoku_memo_my_opinion_count %>
+</p>
 
 <h2>精読メモ</h2>
 <div>
   <p>total <%= book.seidoku_memos_all_count %>枚</p>
-  <%= link_to("add+", "/books/#{book.id}/seidoku_memos/new") %>
+  <%= link_to('add+', "/books/#{book.id}/seidoku_memos/new") %>
 </div>
 <div>
   <% if book.seidoku_memos.empty? %>
@@ -27,10 +28,10 @@
   <% else %>
     <% book.seidoku_memos.each do |memo| %>
       <!--昇順-->
-      <%= memo.created_at %><br>
-      <%= memo.content %><br>
-      <%= memo.content_type %><br>
+      <%= memo.created_at %><br />
+      <%= memo.content %><br />
+      <%= memo.content_type %><br />
     <% end %>
   <% end %>
 </div>
-<%= link_to("add+", "/books/#{book.id}/seidoku_memos/new") %>
+<%= link_to('add+', "/books/#{book.id}/seidoku_memos/new") %>

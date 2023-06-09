@@ -3,6 +3,6 @@ class TestController < ApplicationController
     book = Book.find_by(id: 3)
     new_path = "books/#{book.id}"
     book_view_model = ViewModel::TestBookRandokuImgs.new(book: book)
-    render("index", locals: {book: book_view_model})
+    render('index', locals: { book: book_view_model })
   end
 end

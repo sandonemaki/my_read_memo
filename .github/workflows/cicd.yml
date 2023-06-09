@@ -1,4 +1,4 @@
-name: "ruby on rails CI/CD"
+name: 'ruby on rails CI/CD'
 on:
   push:
     paths-ignore:
@@ -33,7 +33,6 @@ jobs:
       - name: Grant permissions
         run: |
           sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ${{ secrets.DB_NAME }} TO ${{ secrets.DB_USER }};"
-
 
       - name: Set up Rails and run tests
         env:

@@ -1,19 +1,19 @@
-import '@/entrypoints/js/upload_btn.js'
-import '@/entrypoints/js/input_validation.js'
-import '@/entrypoints/js/modal.js'
-import '@/entrypoints/js/get_csrf_token.js'
-import '@/entrypoints/js/flash.js'
-import '@/entrypoints/js/randoku_slide_is_alreadyread.js'
-import '@/entrypoints/js/randoku_slide_bookmark.js'
-import '@/entrypoints/js/randoku_slide_totalpage.js'
-import '@/entrypoints/js/randoku_slide.js'
-import '@/entrypoints/js/randoku_slide_download_btn.js'
+import '@/entrypoints/js/upload_btn.js';
+import '@/entrypoints/js/input_validation.js';
+import '@/entrypoints/js/modal.js';
+import '@/entrypoints/js/get_csrf_token.js';
+import '@/entrypoints/js/flash.js';
+import '@/entrypoints/js/randoku_slide_is_alreadyread.js';
+import '@/entrypoints/js/randoku_slide_bookmark.js';
+import '@/entrypoints/js/randoku_slide_totalpage.js';
+import '@/entrypoints/js/randoku_slide.js';
+import '@/entrypoints/js/randoku_slide_download_btn.js';
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //
 //    <%= vite_client_tag %>
 //    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails')
+console.log('Vite ⚡️ Rails');
 
 // If using a TypeScript entrypoint file:
 //     <%= vite_typescript_tag 'application' %>
@@ -21,7 +21,7 @@ console.log('Vite ⚡️ Rails')
 // If you want to use .jsx or .tsx, add the extension:
 //     <%= vite_javascript_tag 'application.jsx' %>
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
+console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails');
 
 // import '@/entrypoints/js/index.js
 // Example: Load Rails libraries in Vite.

@@ -1,17 +1,17 @@
 <p>maki</p>
 <p>
-  <%= books.all_randoku_imgs_count %></br>
-  乱読画像数</br>
+  <%= books.all_randoku_imgs_count %><br />
+  乱読画像数<br />
   ------
 </p>
 <p>
-  <%= books.all_count %></br>
-  登録本数</br>
+  <%= books.all_count %><br />
+  登録本数<br />
   ------
 </p>
-<br>
-  <%= books.all_seidoku_state_count %></br>
-  精読本数</br>
+<p>
+  <%= books.all_seidoku_state_count %><br />
+  精読本数<br />
   ------
 </p>
 
@@ -21,18 +21,15 @@
     <%= link_to('乱読画像の多い順', :root, class: 'button') %>
   </li>
   <li>
-    <%= link_to('乱読本の投稿順', "/books/randoku_rank_created_books", class: 'button') %>
+    <%= link_to('乱読本の投稿順', '/books/randoku_rank_created_books', class: 'button') %>
   </li>
   <li>
-    <%= link_to('乱読画像の投稿順', "/books/randoku_rank_created_randoku_imgs", class: 'button') %>
+    <%= link_to('乱読画像の投稿順', '/books/randoku_rank_created_randoku_imgs', class: 'button') %>
   </li>
 </ul>
 
-
 <h1>乱読中の本</h1>
-<p>
-  Total <%= books.all_randoku_state_count %>冊
-</p>
+<p>Total <%= books.all_randoku_state_count %>冊</p>
 
 <h3>前回の続き</h3>
 <% if books.randoku_history.present? %>

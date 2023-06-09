@@ -2,12 +2,12 @@ require 'rails_helper'
 
 # 整理後のバリデーションテスト
 RSpec.describe Book, type: :model do
-  describe "バリデーション" do
+  describe 'バリデーション' do
     subject(:valid?) { book.valid? }
 
     let(:book) { Book.new(title: title, author_1: author_1, total_page: total_page) }
-    let(:title) { "ダイニングタイトル" }
-    let(:author_1) { "東野智子" }
+    let(:title) { 'ダイニングタイトル' }
+    let(:author_1) { '東野智子' }
     let(:total_page) { 100 }
 
     context 'すべての属性が有効なとき' do
@@ -20,7 +20,7 @@ RSpec.describe Book, type: :model do
       let(:title) { nil }
       it 'バリデーションエラーが発生すること' do
         valid?
-        expect(book.errors[:title]).to include("タイトルを入力してください")
+        expect(book.errors[:title]).to include('タイトルを入力してください')
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe Book, type: :model do
       let(:author_1) { nil }
       it 'バリデーションエラーが発生すること' do
         valid?
-        expect(book.errors[:author_1]).to include("著者を入力してください")
+        expect(book.errors[:author_1]).to include('著者を入力してください')
       end
     end
 
@@ -36,23 +36,23 @@ RSpec.describe Book, type: :model do
       let(:total_page) { nil }
       it 'バリデーションエラーが発生すること' do
         valid?
-        expect(book.errors[:total_page]).to include("読む予定のページ数を入力してください")
+        expect(book.errors[:total_page]).to include('読む予定のページ数を入力してください')
       end
     end
 
     context 'タイトルが31文字以下であるとき' do
-      let(:title) { "a" * 31 }
+      let(:title) { 'a' * 31 }
       it 'バリデーションエラーが発生すること' do
         valid?
-        expect(book.errors[:title]).to include("30文字以内で入力してください")
+        expect(book.errors[:title]).to include('30文字以内で入力してください')
       end
     end
 
     context '著者の入力が31文字であるとき' do
-      let(:author_1) { "a" * 31 }
+      let(:author_1) { 'a' * 31 }
       it 'バリデーションエラーが発生すること' do
         valid?
-        expect(book.errors[:author_1]).to include("30文字以内で入力してください")
+        expect(book.errors[:author_1]).to include('30文字以内で入力してください')
       end
     end
 
@@ -60,7 +60,7 @@ RSpec.describe Book, type: :model do
       let(:total_page) { 1000 }
       it 'バリデーションエラーが発生すること' do
         valid?
-        expect(book.errors[:total_page]).to include("登録できるページ数は20〜999ページです")
+        expect(book.errors[:total_page]).to include('登録できるページ数は20〜999ページです')
       end
     end
   end
@@ -68,112 +68,102 @@ end
 
 # 整理前のバリデーションテスト
 RSpec.describe Book, type: :model do
-  it "タイトル、著者、読む予定のページ数があれば有効な状態であること" do
-    book = Book.new(
-      title: "ダイニングタイトル",
-      author_1: "東野智子",
-      total_page: 100
-    )
+  it 'タイトル、著者、読む予定のページ数があれば有効な状態であること' do
+    book = Book.new(title: 'ダイニングタイトル', author_1: '東野智子', total_page: 100)
     expect(book).to be_valid
   end
 
-  it "タイトルがなければ無効な状態であること" do
+  it 'タイトルがなければ無効な状態であること' do
     book = Book.new(title: nil)
     book.valid?
-    expect(book.errors[:title]).to include("タイトルを入力してください")
+    expect(book.errors[:title]).to include('タイトルを入力してください')
   end
 
-  it "著者がなければ無効な状態であること" do
+  it '著者がなければ無効な状態であること' do
     book = Book.new(author_1: nil)
     book.valid?
-    expect(book.errors[:author_1]).to include("著者を入力してください")
+    expect(book.errors[:author_1]).to include('著者を入力してください')
   end
 
-  it "読む予定のページ数が存在しなければ無効な状態であること" do
+  it '読む予定のページ数が存在しなければ無効な状態であること' do
     book = Book.new(total_page: nil)
     book.valid?
-    expect(book.errors[:total_page]).to include("読む予定のページ数を入力してください")
+    expect(book.errors[:total_page]).to include('読む予定のページ数を入力してください')
   end
 
-  it "タイトルが30文字以下であること" do
-    book = Book.new(title: "a" * 31)
+  it 'タイトルが30文字以下であること' do
+    book = Book.new(title: 'a' * 31)
     book.valid?
-    expect(book.errors[:title]).to include("30文字以内で入力してください")
+    expect(book.errors[:title]).to include('30文字以内で入力してください')
   end
 
-  it "著者の入力が30字以下であること" do
-    book = Book.new(author_1: "a" * 31)
+  it '著者の入力が30字以下であること' do
+    book = Book.new(author_1: 'a' * 31)
     book.valid?
-    expect(book.errors[:author_1]).to include("30文字以内で入力してください")
-
+    expect(book.errors[:author_1]).to include('30文字以内で入力してください')
   end
 
-  it "読む予定のページ数は1-999ページまでであること" do
+  it '読む予定のページ数は1-999ページまでであること' do
     book = Book.new(total_page: 1000)
     book.valid?
-    expect(book.errors[:total_page]).to include("登録できるページ数は20〜999ページです")
+    expect(book.errors[:total_page]).to include('登録できるページ数は20〜999ページです')
   end
 end
 
 RSpec.describe Book, type: :model do
-  describe ".try_update_reading_state" do
-    let(:book) { Book.create(
-      title: "ダイニングタイトル",
-      author_1: "東野智子",
-      total_page: 100,
-      reading_state: 0
-    )}
+  describe '.try_update_reading_state' do
+    let(:book) { Book.create(title: 'ダイニングタイトル', author_1: '東野智子', total_page: 100, reading_state: 0) }
 
     context 'determine_stateの戻り値が乱読型のとき' do
       before do
-        allow(ReadingStateUtils::StateTypeJudge)
-        .to receive(:determine_state)
-        .and_return(ReadingStateUtils::StateTypeJudge::Randoku.new)
+        allow(ReadingStateUtils::StateTypeJudge).to receive(:determine_state).and_return(
+          ReadingStateUtils::StateTypeJudge::Randoku.new,
+        )
       end
 
-      it "状態に変化がないのでdbに保存されないこと" do
-        expect {book.try_update_reading_state}.not_to change {book.reading_state}
+      it '状態に変化がないのでdbに保存されないこと' do
+        expect { book.try_update_reading_state }.not_to change { book.reading_state }
         expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
-    end  
+    end
 
     context 'determine_stateの戻り値が精読型のとき' do
       before do
-        allow(ReadingStateUtils::StateTypeJudge)
-        .to receive(:determine_state)
-        .and_return(ReadingStateUtils::StateTypeJudge::Seidoku.new)
+        allow(ReadingStateUtils::StateTypeJudge).to receive(:determine_state).and_return(
+          ReadingStateUtils::StateTypeJudge::Seidoku.new,
+        )
       end
 
-      it "乱読から精読に状態が変化するのでdbに保存されること" do
-        expect {book.try_update_reading_state}.to change {book.reading_state}
+      it '乱読から精読に状態が変化するのでdbに保存されること' do
+        expect { book.try_update_reading_state }.to change { book.reading_state }
         expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
-    end  
+    end
 
     context 'determine_stateの戻り値が精読型のとき' do
       before do
-        allow(ReadingStateUtils::StateTypeJudge)
-        .to receive(:determine_state)
-        .and_return(ReadingStateUtils::StateTypeJudge::Tudoku.new)
+        allow(ReadingStateUtils::StateTypeJudge).to receive(:determine_state).and_return(
+          ReadingStateUtils::StateTypeJudge::Tudoku.new,
+        )
       end
 
-      it "乱読から通読に状態が変化するのでdbに保存されること" do
-        expect {book.try_update_reading_state}.to change {book.reading_state}
+      it '乱読から通読に状態が変化するのでdbに保存されること' do
+        expect { book.try_update_reading_state }.to change { book.reading_state }
         expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
-    end  
+    end
 
     context 'determine_stateの戻り値が精読型のとき' do
       before do
-        allow(ReadingStateUtils::StateTypeJudge)
-        .to receive(:determine_state)
-        .and_return(ReadingStateUtils::StateTypeJudge)
+        allow(ReadingStateUtils::StateTypeJudge).to receive(:determine_state).and_return(
+          ReadingStateUtils::StateTypeJudge,
+        )
       end
 
-      it "detaermine_stateの戻り値が存在しない型のためエラーが出ること" do
-        expect {book.try_update_reading_state}.to raise_error
+      it 'detaermine_stateの戻り値が存在しない型のためエラーが出ること' do
+        expect { book.try_update_reading_state }.to raise_error
         expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
-    end  
+    end
   end
 end

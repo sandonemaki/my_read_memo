@@ -10,18 +10,18 @@
   <% else %>
     <% books_rank.books_index_rank.each do |book| %>
       <p>
-      タイトル：
-      <%= book[:titile] %>
+        タイトル：
+        <%= book[:titile] %>
       </p>
       <p>
-      乱読画像数：
-      <%= book[:randoku_imgs_count] %>
+        乱読画像数：
+        <%= book[:randoku_imgs_count] %>
       </p>
       <p>
-      精読メモ数：
-      <%= book[:seidoku_memos_count] %>
-      </br>
-      ------
+        精読メモ数：
+        <%= book[:seidoku_memos_count] %>
+        <br />
+        ------
       </p>
     <% end %>
   <% end %>

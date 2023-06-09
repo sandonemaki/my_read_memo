@@ -27,8 +27,8 @@ services:
     volumes:
       - .:/myapp
     ports:
-      - "3000:3000" # rails用
-      - "3036:3036" # vite-rails用
+      - '3000:3000' # rails用
+      - '3036:3036' # vite-rails用
     restart: always # コンテナが停止すると常に再起動
     tty: true # 疑似ターミナル (pseudo-TTY) を割り当て。https://docs.docker.jp/compose/compose-file/index.html#tty
     stdin_open: true # サービス コンテナに標準入力を割り当てて実行するよう設定(https://docs.docker.jp/compose/compose-file/index.html#stdin-open)。

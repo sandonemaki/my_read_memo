@@ -1,33 +1,33 @@
 <h1>登録した本の情報</h1>
 <p>
-<%= book.title %>
+  <%= book.title %>
 </p>
 <p>
-<%= book.author %>
+  <%= book.author %>
 </p>
 <p>
-<%= book.publisher %>
+  <%= book.publisher %>
 </p>
 <p>
-<%= book.total_page %>
+  <%= book.total_page %>
 </p>
 <div class="book_reading_progress"><%= book.reading_progress %></div>
 
 <h2>乱読メモ</h2>
 <div>
   <p>total <%= book.randoku_memos_all_count %>枚</p>
-  <%= link_to("add+", "/books/#{book.id}/randoku_memos/new") %>
+  <%= link_to('add+', "/books/#{book.id}/randoku_memos/new") %>
 </div>
 <div>
   <% if book.randoku_memos.empty? %>
     "まだ乱読メモがありません"
   <% else %>
     <% book.randoku_memos.each do |memo| %>
-    <!--昇順-->
-      <%= memo.created_at %><br>
-      <%= memo.content %><br>
-      <%= memo.content_type %><br>
+      <!--昇順-->
+      <%= memo.created_at %><br />
+      <%= memo.content %><br />
+      <%= memo.content_type %><br />
     <% end %>
   <% end %>
 </div>
-<%= link_to("add+", "/books/#{book.id}/randoku_memos/new") %>
+<%= link_to('add+', "/books/#{book.id}/randoku_memos/new") %>

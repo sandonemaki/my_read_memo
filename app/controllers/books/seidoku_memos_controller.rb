@@ -4,7 +4,7 @@ class Books::SeidokuMemosController < ApplicationController
     new_path = "books/#{book.id}/seidoku_memos/index"
 
     # 学習履歴を保存
-    if ['0', '2'].include?(book.reading_state.to_s)
+    if %w[0 2].include?(book.reading_state.to_s)
       RandokuHistory.set(new_path, book.id)
     else
       SeidokuHistory.set(new_path, book.id)
@@ -12,33 +12,30 @@ class Books::SeidokuMemosController < ApplicationController
 
     # todo: view_modelを作成する
     book_view_model = ViewModel::BooksSeidokuMemosIndex.new(book: book)
-    render("books/seidoku_memos/index", locals:{book: book_view_model})
+    render('books/seidoku_memos/index', locals: { book: book_view_model })
   end
 
   def new
     book = Book.find_by(id: params[:book_id])
-    book_view_model = ViewModel::BooksSeidokuMemosNew.new(
-      book: book,
-    )
-    render("new", locals:{book: book_view_model})
+    book_view_model = ViewModel::BooksSeidokuMemosNew.new(book: book)
+    render('new', locals: { book: book_view_model })
   end
 
   def create
     book = Book.find_by(id: params[:book_id])
-    seidoku_memos = book.seidoku_memos.new(
-      content_state: params[:selectbox_value].first.to_i,
-      content: params[:seidoku_memo_content]
-    )
+    seidoku_memos =
+      book.seidoku_memos.new(content_state: params[:selectbox_value].first.to_i, content: params[:seidoku_memo_content])
     if seidoku_memos.save
-      flash[:notice] = "精読メモを保存しました"
+      flash[:notice] = '精読メモを保存しました'
       redirect_to("/books/#{book.id}/seidoku_memos/index")
     else
-      book_view_model = ViewModel::BooksSeidokuMemosNew.new(
-        book: book,
-        selected_content_type: params[:selectbox_value].first, # viewに表示するためString
-        seidoku_memo_content: params[:seidoku_memo_content]
-      )
-      render("new", locals:{book: book_view_model})
+      book_view_model =
+        ViewModel::BooksSeidokuMemosNew.new(
+          book: book,
+          selected_content_type: params[:selectbox_value].first, # viewに表示するためString
+          seidoku_memo_content: params[:seidoku_memo_content],
+        )
+      render('new', locals: { book: book_view_model })
     end
   end
 end

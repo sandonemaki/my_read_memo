@@ -7,4 +7,4 @@ export const getCsrfToken = () => {
   }
   alert('エラーが発生しました: CSRF token metatag が見つかりません。 ページを更新して、もう一度お試しください');
   throw new Error('CSRF token meta tag not found');
-}
+};

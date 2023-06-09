@@ -10,16 +10,16 @@
 }
 
 #modal {
-  position: fixed;   /* スクロールで移動しないようmodalの位置を固定します */
+  position: fixed; /* スクロールで移動しないようmodalの位置を固定します */
   top: 10vh;
   /* 以下3行：モーダルを左右中央揃えにする方法 */
   left: 0;
   right: 0;
   margin: 0 auto;
   transform: translate(0, 0) scale(1);
-  transition: 0.2s;   /* transitionでアニメーションを作成 */
-  z-index: 2;   /* マスクより上に重なるようにする */
-  width: 935px;   /* showビューの幅に合わせて設定 */
+  transition: 0.2s; /* transitionでアニメーションを作成 */
+  z-index: 2; /* マスクより上に重なるようにする */
+  width: 935px; /* showビューの幅に合わせて設定 */
 }
 
 /* hiddenクラスで最初は表示されないようにする */
@@ -31,5 +31,5 @@
 #modal.hidden {
   opacity: 0;
   visibility: hidden;
-  transform: translate(0, 0) scale(0.8);   /* 大きさ0.8倍から等倍にモーダルが拡大される */
+  transform: translate(0, 0) scale(0.8); /* 大きさ0.8倍から等倍にモーダルが拡大される */
 }

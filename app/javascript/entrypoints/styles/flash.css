@@ -1,26 +1,26 @@
 /**** フラッシュメッセージ ****/
 .c-flash {
-  opacity: 0;  /* 元々は透明 */
+  opacity: 0; /* 元々は透明 */
   position: fixed;
   top: 70px;
-  right: -1000px;  /* 元々は見えない位置にある */
+  right: -1000px; /* 元々は見えない位置にある */
   z-index: 200;
   text-align: center;
   color: #fff;
   font-size: 0.75rem;
   min-height: 40px;
   padding: 10px;
-  letter-spacing: .07em;
+  letter-spacing: 0.07em;
   border-radius: 2px;
   display: table;
-  transition: right 0.5s, opacity 0.5s;  /* right と opacity が変更されるときにアニメーションする */
+  transition: right 0.5s, opacity 0.5s; /* right と opacity が変更されるときにアニメーションする */
 }
 
 .c-flash--notice {
   background-color: #30c8d6;
 }
 
-.c-flash--alert{
+.c-flash--alert {
   background-color: #e75252;
   opacity: 0; /* 初期状態では透明 */
   right: -1000px; /* 元々は見えない位置にある */
@@ -41,5 +41,5 @@
   cursor: pointer;
   display: table-cell !important;
   vertical-align: middle;
-  padding-left: 10px
+  padding-left: 10px;
 }
