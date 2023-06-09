@@ -48,6 +48,8 @@ group :development do
   gem 'spring'
   gem 'prettier_print'
   gem 'syntax_tree'
+  gem 'syntax_tree-haml'
+  gem 'syntax_tree-rbs'
 end
 
 group :test do
