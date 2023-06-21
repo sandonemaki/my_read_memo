@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const aspectRatio = img.naturalWidth / img.naturalHeight;
 
         if (aspectRatio > 1) {
-          img.style.width = '650px';
+          img.style.width = '100%';
           img.style.height = 'auto';
         } else {
           img.style.width = 'auto';
-          img.style.height = '600px';
+          img.style.height = '100%';
         }
       };
       // 画像の読み込みが完了したら
