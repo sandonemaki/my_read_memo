@@ -9,7 +9,7 @@
   color: #fff;
   font-size: 0.75rem;
   min-height: 40px;
-  padding: 10px;
+  padding: 15px;
   letter-spacing: 0.07em;
   border-radius: 2px;
   display: table;
@@ -44,4 +44,5 @@
   vertical-align: middle;
   padding-left: 10px;
   color: white;
+  font-size: 14px;
 }
