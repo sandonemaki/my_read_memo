@@ -6,6 +6,7 @@
     <div class="c-flash-text"></div>
     <i class="fa fa-times c-flash-close" id="close-flash"></i>
   </div>
+
   <div class="book-profile">
     <h1>本のプロフィール</h1>
 
@@ -20,6 +21,7 @@
           style="display: none;"
           onchange="this.form.submit()"
         />
+
         <label for="book-cover-field" class="upload-cover-button">
           <div class="book-cover-img">
             <img src="https://placehold.jp/100x140.png" alt="ブックカバー" />
@@ -30,6 +32,7 @@
         </label>
       <% end %>
     </div>
+
     <%= form_tag("/books/create", method: :post) do %>
       <div class="book-profile-form">
         <div class="input-book-info">
@@ -44,6 +47,7 @@
           />
           <p id="title_valid_error"></p>
         </div>
+
         <div class="input-book-info">
           <p class="input-book-label">著者名</p>
           <input
@@ -56,6 +60,7 @@
           />
           <p id="author_valid_error"></p>
         </div>
+
         <div class="input-book-info">
           <p class="input-book-label">出版社</p>
           <input
@@ -67,6 +72,7 @@
           />
         </div>
       </div>
+
       <div class="book-profile-totalpage">
         <p class="total-page-label">読む予定のページ数を<br />入力してください</p>
         <p class="total-page-description">
@@ -84,6 +90,7 @@
         />
         <p id="total_page_valid_error"></p>
       </div>
+
       <input id="book_info_submit" type="submit" value="送信" />
     <% end %>
   </div>
