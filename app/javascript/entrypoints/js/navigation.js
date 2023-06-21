@@ -18,4 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  // naviPanelメニューをクリックしたときの処理
+  naviPanels.forEach((naviPanel) => {
+    naviPanel.addEventListener('click', (e) => {
+      e.stopPropagation(); // windowまで伝播しない
+    });
+  });
 });
