@@ -26,9 +26,10 @@ class Books::RandokuMemosController < ApplicationController
     randoku_memos =
       book.randoku_memos.new(content_state: params[:selectbox_value].first.to_i, content: params[:randoku_memo_content])
     if randoku_memos.save
-      flash[:notice] = '乱読メモを保存しました'
+      flash[:notice] = 'メモを保存しました'
       redirect_to("/books/#{book.id}/randoku_memos/index")
     else
+      flash.now[:error] = randoku_memos.errors.messages[:content].join(',')
       book_view_model =
         ViewModel::BooksRandokuMemosNew.new(
           book: book,
