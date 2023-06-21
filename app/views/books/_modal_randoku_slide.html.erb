@@ -93,14 +93,17 @@
             <!-- 各スライド -->
             <% book.randoku_imgs_all.each do |slide_img| %>
               <div class="swiper-slide">
-                <div class="sw_img">
-                  <div class="sw_slide_img">
-                    <img
-                      src="<%= slide_img.path %>?<%= Time.now.to_i %>"
-                      alt=" "
-                      data-img-path="<%= slide_img.path %>"
-                      data-img-name="<%= slide_img.name %>"
-                    />
+                <div class="sw_img container">
+                  <div class="sw_slide_img outer">
+                    <div class="panzoom">
+                      <img
+                        src="<%= slide_img.path %>?<%= Time.now.to_i %>"
+                        class="panzoom-img"
+                        alt=" "
+                        data-img-path="<%= slide_img.path %>"
+                        data-img-name="<%= slide_img.name %>"
+                      />
+                    </div>
                   </div>
 
                   <div class="sw_img_footer">
