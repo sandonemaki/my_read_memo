@@ -1,0 +1,155 @@
+.book-show-bk {
+  background-color: #f2f4f7;
+}
+.book-show-white {
+  background-color: white;
+}
+.book-show-upper-inner {
+  width: 980px;
+  margin: 40px auto 0;
+}
+#img_read_status_count span {
+  border-radius: 50%;
+  background-color: white;
+  padding: 4px 6.75px;
+}
+.show-memo-plus-count {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.show-memo-plus-btn {
+  position: relative;
+  cursor: pointer;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+.memo-plus-btn {
+  vertical-align: middle;
+}
+.tabbed-show-work-area {
+  display: flex;
+  padding: 0 10px;
+}
+.tab-show-book-progress {
+  border-bottom: none;
+  padding: 14px 42px;
+
+  float: left;
+  text-align: center;
+  background-color: #d4dce4;
+  border-top-right-radius: 100px 250px;
+  border-top-left-radius: 100px 250px;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tab-show-book-progress.active {
+  background-color: #f0f4f9;
+  cursor: auto;
+  z-index: 2;
+}
+.tabbled-book-show {
+  display: flex;
+  justify-content: space-between;
+  /*border-bottom: 1px solid rgb(48, 200, 214);*/
+  margin-top: 60px;
+}
+
+.tabbled-book-show .tabbed-show-work-area {
+  width: 50%;
+}
+.seidoku_memo_key {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #d4dce4;
+  border-radius: 50%;
+  padding: 8px 11.6px;
+  transform: translate(30%, -40%);
+}
+.tabbed-content {
+  padding-top: 24px;
+  /*background-color: #fff;*/
+  background-color: #f2f4f7;
+  z-index: 1;
+  position: relative;
+  /*border-top: 2px solid #e9edf1;*/
+  z-index: 2;
+  width: 980px;
+  margin: 0 auto;
+}
+.tabbed-content-bk {
+  background-color: #f2f4f7;
+}
+
+/******* メモ ********/
+.tabbed-memo-content {
+  /*border: 1px solid gray;*/
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-top: 16px;
+  background-color: #fff;
+  position: relative;
+}
+.memo-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.memo-ellipsis {
+  font-size: 20px;
+}
+.memo-created-at {
+  font-size: 12px;
+}
+.memo-content-type {
+  font-size: 12px;
+}
+.memo-edit-btn {
+  position: relative;
+  cursor: pointer;
+}
+/******* メモコンテンツ ********/
+.memo-content-type {
+  padding-bottom: 16px;
+}
+
+/******* ナビゲーション ********/
+.memo-edit-navi {
+  position: absolute;
+  background-color: white;
+  right: 20px;
+  top: 38%;
+  width: 70px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px;
+  letter-spacing: 1px;
+  visibility: hidden;
+  opacity: 0;
+  transition: transform 0.2s ease-out;
+  z-index: 10;
+}
+
+.memo-edit-navi.active {
+  visibility: visible;
+  z-index: 10;
+  opacity: 1;
+}
+.edit-menu .button {
+  color: rgb(43, 84, 106);
+  font-size: 14px;
+  line-height: 1.7;
+  text-decoration: none;
+  display: block; /* ボタンをブロック要素に設定 */
+  padding: 14px 20px; /* ここでパディングを設定 */
+  transition: all 0.2s ease 0s;
+}
+.edit-menu {
+  display: block;
+}
+.edit-menu:hover {
+  background-color: #f3f4f5;
+}
