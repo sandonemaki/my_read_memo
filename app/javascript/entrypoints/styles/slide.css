@@ -360,9 +360,9 @@
 
 .ModalCloseButton {
   position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 1.23em;
+  top: 24px;
+  right: 24px;
+  font-size: 1.5em;
   color: rgb(132, 145, 165);
   cursor: pointer;
   font-style: normal;
