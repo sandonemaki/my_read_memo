@@ -159,7 +159,8 @@ class Books::ImgsController < ApplicationController
       system('mogrify -strip ' + tmpdir + '/"*"')
       system('magick mogrify -format jpg ' + tmpdir + '/*.HEIC')
       system(
-        'convert ' + tmpdir + '/*.jpg -thumbnail ' + size +
+        #'convert ' + tmpdir + '/*.jpg -thumbnail ' + size +
+        'convert ' + tmpdir + '/* -resize ' + size + '^' +
           ' -gravity North \
           -extent ' + size + ' public/' + book.id.to_s + '/thumb/sm_' + jpg_imgname,
       )
@@ -185,7 +186,8 @@ class Books::ImgsController < ApplicationController
       system('mogrify -format jpg *.png')
       system('mogrify -strip ' + tmpdir + '/*')
       system(
-        'convert ' + tmpdir + '/* -thumbnail ' + size +
+        #'convert ' + tmpdir + '/* -thumbnail ' + size +
+        'convert ' + tmpdir + '/* -resize ' + size + '^' +
           ' -gravity North \
           -extent ' + size + ' public/' + book.id.to_s + '/thumb/sm_' + filename,
       )
