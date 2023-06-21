@@ -1,0 +1,246 @@
+.book-index {
+  width: 828px;
+  margin: 40px auto 0;
+  color: #2b546a;
+  letter-spacing: 0.04em;
+}
+.user-profile {
+  display: flex;
+  padding: 16px 100px;
+  /*border: 1px solid #000;*/
+  border-radius: 8px;
+  margin-top: 40px;
+}
+.user-profile-item {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.user-profile-item.user-status {
+  display: flex;
+  justify-content: center;
+}
+.user-profile-item.user-status img {
+  margin-right: 16px;
+}
+.user-profile-item.book-count {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.user-profile-item.clear-lessons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.seidoku-book-count {
+  display: flex;
+}
+.user-profile-name {
+  font-size: 14px;
+}
+.user-profile-imgs-count {
+  font-size: 20px;
+}
+.user-profile-cleared-text {
+  font-size: 12px;
+  margin-top: -6px;
+}
+.user-profile-cleard-count {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  margin-left: 4px;
+}
+.user-profile-cleard-count i {
+  font-size: 22px;
+  vertical-align: middle;
+}
+.user-profile-cleard-count .fa-book {
+  margin-right: 4px;
+}
+.user-profile__separator {
+  margin: 0 40px;
+  background-color: #e9edf4;
+  width: 1px;
+  height: 96px;
+  display: flex;
+}
+.tabbed-index-work-area {
+  display: flex;
+  padding: 0 10px;
+}
+.tab-index-book-progress {
+  /*border: 1px solid rgb(48, 200, 214);*/
+  border-bottom: none;
+  padding: 14px 42px;
+
+  float: left;
+  text-align: center;
+  background-color: #d4dce4;
+  border-top-right-radius: 100px 250px;
+  border-top-left-radius: 100px 250px;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tab-index-book-progress.active {
+  background-color: #f0f4f9;
+  /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);*/
+  cursor: auto;
+  z-index: 2;
+}
+.tabbled-sort-area {
+  display: flex;
+  justify-content: space-between;
+  /*border-bottom: 1px solid rgb(48, 200, 214);*/
+  margin-top: 80px;
+}
+
+.tabbled-sort-area .tabbed-index-work-area {
+  width: 50%;
+}
+.ranking-sort {
+  width: 44px;
+  height: auto;
+  margin-left: 12px;
+}
+.index-book-ranking {
+  display: flex;
+  align-items: center;
+}
+.ranking-sort-btn {
+  position: relative;
+  cursor: pointer;
+}
+.ranking-sort-navi {
+  position: absolute;
+  background-color: white;
+  right: 0;
+  top: 87%;
+  width: 180px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px;
+  letter-spacing: 1px;
+  visibility: hidden;
+  opacity: 0;
+  transition: transform 0.2s ease-out;
+  /*z-index: 4;*/
+}
+
+.ranking-sort-navi.active {
+  visibility: visible;
+  opacity: 1;
+  z-index: 4;
+}
+.ranking-menu .button {
+  color: rgb(43, 84, 106);
+  font-size: 14px;
+  line-height: 1.7;
+  text-decoration: none;
+  display: block; /* ボタンをブロック要素に設定 */
+  padding: 14px 20px; /* ここでパディングを設定 */
+  transition: all 0.2s ease 0s;
+}
+.ranking-menu {
+  /*margin-bottom: 14px;*/
+  display: block;
+}
+
+.ranking-menu:hover {
+  background-color: #f3f4f5;
+}
+
+.fa-image,
+.fa-book,
+.fa-note-sticky {
+  padding-bottom: 4px;
+}
+
+/****** 本の一覧 ******/
+.index-user-lesson-label {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+.index-lesson-label-icon {
+  font-size: 16px;
+  vertical-align: baseline;
+}
+.index-user-book-table {
+  margin-top: 56px;
+}
+.index-user-last-time-book-table {
+  padding-top: 36px;
+  background-color: white;
+  z-index: 1;
+  position: relative;
+  border-top: 2px solid #e9edf1;
+  z-index: 2;
+}
+.index-lesson-label {
+  font-size: 16px;
+  margin-left: 8px;
+}
+.index-user-book-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.index-user-book {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  align-items: center;
+}
+.index-user-book-memo {
+  display: flex;
+  justify-content: space-between;
+  width: 28%;
+}
+.index-user-book-cover {
+  width: 18.5%;
+  position: relative;
+  margin-right: 32px;
+}
+.index-user-book-title {
+  width: 86%;
+}
+.index-crown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+.index-book-title-label {
+  font-size: 10px;
+}
+.index-book-title {
+  font-size: 16px;
+}
+.index-book-progress {
+  font-size: 12px;
+}
+.index-book-memo {
+  display: flex;
+  margin-top: -4px;
+  align-items: center;
+}
+.index-memo-icon {
+  margin-right: 8px;
+}
+.index-user-book-memo {
+  align-items: center;
+}
+.index-book-memo-count {
+  font-size: 32px;
+}
+.index-book-label {
+  font-size: 12px;
+}
+.index-book-memo-unit {
+  font-size: 18px;
+}
