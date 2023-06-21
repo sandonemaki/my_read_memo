@@ -1,3 +1,113 @@
+.book-show {
+  margin: 40px auto 0;
+}
+.book-show-upper-inner {
+  width: 980px;
+  margin: 40px auto 0;
+}
+.book-info-wrapp {
+  display: flex;
+  justify-content: space-between;
+}
+.book-info-detail {
+  width: 70%;
+}
+.book-status {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
+.book-input-info {
+  margin-top: 16px;
+  margin-left: 30px;
+}
+.book-input-info > h1 {
+  margin-bottom: 10px;
+}
+.book-input-info > p {
+  margin-bottom: 10px;
+}
+.book-cover {
+  width: 15%;
+  position: relative;
+}
+.book-cover img,
+.book-cover i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.book-cover img {
+  width: 100%;
+  height: auto;
+}
+
+.book_reading_progress {
+  border-radius: 8px;
+  background-color: rgb(48, 200, 214);
+  padding: 8px 20px;
+  margin-right: 10px;
+  font-size: 20px;
+  color: white;
+  letter-spacing: 3px;
+}
+.tabbed-work-area {
+  border-bottom: 1px solid rgb(48, 200, 214);
+  margin-top: 16px;
+  display: flex;
+}
+.tab-book-progress {
+  border: 1px solid rgb(48, 200, 214);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 14px 24px;
+  background-color: #d4dce4;
+  cursor: pointer;
+  position: relative;
+  font-size: 12px;
+  text-align: center;
+  /*width: 20%;*/
+  line-height: 24px;
+  border-top-right-radius: 100px 250px;
+  border-top-left-radius: 100px 250px;
+  /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);*/
+}
+.seidoku_memo_key {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #d4dce4;
+  border-radius: 50%;
+  padding: 8px 12px;
+  transform: translate(30%, -40%);
+}
+
+.tab-book-progress.active {
+  background-color: #f0f4f9;
+  z-index: 2;
+}
+.book-progress.active .book_reading_progress {
+  background-color: rgb(35, 164, 176);
+}
+.book-progress .book_reading_progress {
+  background-color: rgb(48, 200, 214);
+}
+#sw_modal_trigger {
+  color: gray;
+  font-size: 12px;
+}
+.tabbed-content {
+  padding-top: 24px;
+  background-color: #fff;
+  z-index: 1;
+  position: relative;
+  border-top: 2px solid #e9edf1;
+  z-index: 2;
+}
+.upload-file-form {
+  margin-top: 24px;
+}
 .upload-button {
   font-size: 0.875rem;
   display: inline-block;
@@ -8,7 +118,70 @@
   cursor: pointer;
   border-radius: 3px;
   text-decoration: none;
+  margin: auto;
 }
 .upload-button:hover {
   background-color: rgb(35, 164, 176);
+}
+#upload-form {
+  text-align: center;
+}
+.upload-description {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 12px;
+  color: gray;
+  line-height: 2;
+}
+.imgs-count {
+  text-align: right;
+}
+.img-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.img-thumbnail {
+  width: 31%;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  /*box-shadow: 5px 5px 5px #ddd;*/
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.img-thumbnail img {
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+}
+.thumbnail-wide {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding-bottom: 50%;
+}
+.img-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 18px 18px 18px;
+}
+
+.img-item-name {
+  font-size: 16px;
+  color: gray;
+}
+.img-updated {
+  font-size: 10px;
+}
+.img-item-icon {
+  display: flex;
+  align-items: center;
+  color: gray;
+}
+.is_already_read_check {
+  margin-right: 8px;
+}
+.img-name {
+  margin-bottom: 4px;
 }
