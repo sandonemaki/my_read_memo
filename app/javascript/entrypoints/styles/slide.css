@@ -124,6 +124,7 @@
   position: relative;
   top: inherit;
   bottom: inherit;
+  z-index: inherit;
 }
 .sw-pagination-wrap {
   display: flex;
@@ -157,6 +158,10 @@
   font-size: 14px;
   color: #35b7e4;
   font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .sw_updated {
   width: 100%;
@@ -325,6 +330,7 @@
   width: 100%;
   height: 110px;
   align-items: center;
+  position: relative;
 }
 .modal_footer {
   display: flex;
@@ -397,6 +403,52 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/**** ふきだし *****/
+.balloon {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0;
+  padding: 8px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+  background: #373737;
+  border-radius: 6px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.17);
+}
+.total-page-btn {
+  position: relative;
+}
+.ballown-wrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-37%, -94%);
+  width: 100%;
+  display: none;
+}
+.baloon-hover:hover .ballown-wrap {
+  display: block;
+}
+
+.balloon:before {
+  content: '';
+  position: absolute;
+  top: 83%;
+  left: 50%;
+  margin-left: -18px;
+  border: 17px solid transparent;
+  border-top: 15px solid #373737;
+}
+
+.balloon p {
+  margin: 0;
+  padding: 0;
+}
+
 .totalpage-btn {
   background-color: #35b7e4;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
