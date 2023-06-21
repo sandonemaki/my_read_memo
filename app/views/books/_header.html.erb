@@ -1,0 +1,39 @@
+<header class="header-wrapper">
+  <div class="randoku-logo"><img src="https://placehold.jp/50x50.png" width="100%" height="auto" /></div>
+  <div class="header-menus-wrapper">
+    <ul class="header-menus">
+      <li class="link">
+        <%= link_to '本の一覧', '/', class: "link-text #{'is_active' if current_page?('/')}" %>
+      </li>
+      <li class="link">
+        <%= link_to '本を登録する', '/books/new', class: "link-text #{'is_active' if current_page?('/books/new')}" %>
+      </li>
+      <li class="link">
+        <%=
+          link_to '絞り込み検索', '/memo_search', class: "link-text #{'is_active' if current_page?('/memo_search')}"
+        %>
+      </li>
+    </ul>
+    <div class="search-icon">検索アイコン</div>
+  </div>
+
+  <div class="user-menu-navigation">
+    <button class="user-icon navi-trigger-btn-js">ユーザーアイコン</button>
+    <div class="user-navi navi-panel-js">
+      <ul class="user-menus">
+        <li class="user-menu">
+          <%= link_to('アカウントの設定', '#', class: 'button') %>
+        </li>
+        <li class="user-menu">
+          <%= link_to('推しの設定', '#', class: 'button') %>
+        </li>
+        <li class="user-menu">
+          <%= link_to('ヘルプ', '#', class: 'button') %>
+        </li>
+        <li class="user-menu">
+          <%= link_to('ログアウト', '#', class: 'button') %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
