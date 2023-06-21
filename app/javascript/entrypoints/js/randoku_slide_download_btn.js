@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentSlide = document.querySelector('.swiper-slide-active'); //swiperのcss
     const imgElement = currentSlide.querySelector('.sw_img img');
     const url = imgElement.dataset.imgPath;
-    const fileName = download_btn.getAttribute('data-img-name');
+    const fileName = imgElement.dataset.imgName;
+    //const fileName = download_btn.getAttribute('data-img-name');
 
     // Fetchを用いて画像を取得
     const response = await fetch(url, {
