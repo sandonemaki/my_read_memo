@@ -63,14 +63,17 @@
 /**** swiper ****/
 .swiper {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 50px - 50px);
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: space-between;
 }
 .swiper-wrapper {
   align-items: center;
   width: 100%;
   height: 100%;
+  position: absolute;
 }
 .swiper-slide {
   font-weight: bold;
@@ -84,15 +87,42 @@
 }
 .sw_img {
   position: relative;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sw_slide_img > img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+}
+.sw_slide_img {
+  height: calc(100% - 100px);
+}
+.sw_img_footer {
+  display: flex;
+  margin-top: 10px;
+  height: 70px;
+  justify-content: center;
+  /*flex-direction: column;*/
+  align-items: center;
+}
+.slide_book_info {
+  position: absolute;
+  left: 20px;
+  top: 20px;
 }
 
 /* ページネーション */
 .swiper-pagination-fraction {
   pointer-events: none;
-  bottom: 20px;
+  font-size: 12px;
+}
+.swiper-pagination {
+  align-items: center;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .sw_img_name {
   position: fixed;
@@ -104,19 +134,21 @@
   font-size: 14px;
 }
 .sw_updated {
-  position: absolute;
-  width: 90%;
-  bottom: 50px;
+  width: 100%;
   text-align: center;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 .sw-read-btn {
-  margin-bottom: 12px;
   width: 120px;
-  margin-top: 10px;
+  height: 40px;
   border: 2px solid #27acd9;
   color: #27acd9;
   border-radius: 100vh;
   transition: 0.5s;
+  margin: 12px;
 }
 .sw-read-btn.completion {
   color: #fff;
@@ -124,25 +156,38 @@
 }
 /**** bookmark ****/
 .sw_bookmark_btn {
+  display: flex;
   color: #27acd9;
   transition: 0.5s;
   margin: 10px;
+  justify-content: flex-end;
 }
-/**** download ****/
-.fa-circle-down {
+.bookmark-icon {
+  line-height: 1;
+}
+.slide_menu_btn {
+  margin-right: 30px;
+  display: flex;
   color: #27acd9;
 }
-.fa-circle-down:hover {
+/**** download ****/
+.download-btn:hover,
+.img_delete_btn:hover {
   background-color: rgb(35, 164, 176);
 }
 
+.while {
+  margin: 0 12px;
+}
+
 /**** モーダル *** */
+
 .sw-reveal-outer {
-  position: fixed;
+  /*position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0;*/
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 0;
   display: flex;
@@ -150,9 +195,9 @@
   align-items: center;
 }
 .sw-reveal-wrapper {
-  display: flex;
+  /*display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;*/
   /* 全面モーダルの内側 */
   background-color: #add9e4;
   border-radius: 10px;
@@ -176,18 +221,24 @@
   outline: none;
   background: transparent;
 }
+.swiper-button-prev {
+  left: 40px;
+}
+.swiper-button-next {
+  right: 40px;
+}
 .sw-close-button {
-  position: absolute;
+  /*position: absolute;*/
   cursor: pointer;
-  top: 15px;
-  right: 25px;
+  /* top: 15px; */
+  /* right: 25px; */
   text-align: center;
   width: 48px;
   height: 48px;
   color: blue;
   font-size: 26px;
-  z-index: 10;
-  transition: all 0.2s ease;
+  /* z-index: 10; */
+  /* transition: all 0.2s ease; */
 }
 .sw-modal.active {
   display: flex;
@@ -209,6 +260,22 @@
   visibility: hidden;
   transition: opacity 0.3s ease;
 }
+.modal_header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 110px;
+  align-items: center;
+}
+.modal_footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 60px;
+  align-items: center;
+  position: relative;
+}
+
 /**** トータルページモーダル ****/
 *:before {
   box-sizing: border-box;
@@ -251,7 +318,7 @@
 
 .ModalCloseButton {
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 20px;
   font-size: 1.23em;
   color: rgb(132, 145, 165);
@@ -277,7 +344,7 @@
   letter-spacing: 0.04em;
   height: 36px;
   line-height: 36px;
-  margin-top: 3px;
+  margin-left: 8px;
   padding-left: 14px;
   padding-right: 15px;
   display: inline-flex;
