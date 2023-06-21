@@ -21,3 +21,23 @@ export const zoomReset = (instance) => {
   instance.moveTo(0, 0);
   instance.zoomAbs(0, 0, 1); // 1 is the initial scale
 };
+
+// zoom in/out, reset関数をclick時、touchend時に呼び出す
+export const setupZoomEvents = (panzoomEl, instance, zoomInEl, zoomOutEl, zoomResetEl) => {
+  zoomInEl.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('Zoom in button clicked');
+    zoomInOut(panzoomEl, instance, true);
+  });
+  zoomInEl.addEventListener('touchend', () => zoomInOut(panzoomEl, instance, true));
+  zoomOutEl.addEventListener('click', (e) => {
+    e.preventDefault();
+    zoomInOut(panzoomEl, instance, false);
+  });
+  zoomOutEl.addEventListener('touchend', () => zoomInOut(panzoomEl, instance, false));
+  // リセット
+  zoomResetEl.addEventListener('click', (e) => {
+    e.preventDefault();
+    zoomReset(instance);
+  });
+};
