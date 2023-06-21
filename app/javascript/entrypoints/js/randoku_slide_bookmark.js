@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggleImgBookmarkFlagBtn = (bookmarkBtn) => {
     const bookmarkId = parseInt(bookmarkBtn.getAttribute('data-bookmark-id'));
     if (bookmarkId === 0) {
-      bookmarkBtn.innerHTML = '<i class="fa-regular fa-bookmark fa-2xl"></i>'; //off
+      bookmarkBtn.innerHTML = '<i class="fa-regular fa-bookmark fa-2xl bookmark-icon"></i>'; //off
     } else {
-      bookmarkBtn.innerHTML = '<i class="fa-solid fa-bookmark fa-2xl"></i>'; //on
+      bookmarkBtn.innerHTML = '<i class="fa-solid fa-bookmark fa-2xl bookmark-icon"></i>'; //on
     }
   };
 
@@ -54,9 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const img_bookmark_flag_check_update = (imgId, responseData) => {
     const img_bookmark_check = document.querySelector(`.img_bookmark_check[data-img-id="${imgId}"]`);
     if (responseData.img_bookmark_flag_result === 0) {
-      img_bookmark_check.innerHTML = '<i class="fa-regular fa-bookmark"></i>'; //off
+      img_bookmark_check.innerHTML = '<i class="fa-regular fa-bookmark bookmark-icon"></i>'; //off
     } else {
-      img_bookmark_check.innerHTML = '<i class="fa-solid fa-bookmark"></i>'; //on
+      img_bookmark_check.innerHTML = '<i class="fa-solid fa-bookmark bookmark-icon"></i>'; //on
     }
   };
 });
