@@ -1,7 +1,7 @@
 import '@/entrypoints/js/upload_btn.js';
 import '@/entrypoints/js/input_validation.js';
 import '@/entrypoints/js/modal.js';
-// import '@/entrypoints/js/randoku_slide_img_resize.js'
+//import '@/entrypoints/js/randoku_slide_img_resize.js';
 import '@/entrypoints/js/get_csrf_token.js';
 import '@/entrypoints/js/flash.js';
 import '@/entrypoints/js/randoku_slide_is_alreadyread.js';
@@ -9,6 +9,7 @@ import '@/entrypoints/js/randoku_slide_bookmark.js';
 import '@/entrypoints/js/randoku_slide_totalpage.js';
 import '@/entrypoints/js/randoku_slide.js';
 import '@/entrypoints/js/randoku_slide_download_btn.js';
+import '@/entrypoints/js/panzoom.js';
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //
