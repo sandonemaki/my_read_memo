@@ -1,6 +1,7 @@
 import '@/entrypoints/js/upload_btn.js';
 import '@/entrypoints/js/input_validation.js';
 import '@/entrypoints/js/modal.js';
+// import '@/entrypoints/js/randoku_slide_img_resize.js'
 import '@/entrypoints/js/get_csrf_token.js';
 import '@/entrypoints/js/flash.js';
 import '@/entrypoints/js/randoku_slide_is_alreadyread.js';
