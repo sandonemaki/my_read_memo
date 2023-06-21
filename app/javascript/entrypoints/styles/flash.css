@@ -30,6 +30,7 @@
   text-align: left;
   display: table-cell;
   vertical-align: middle;
+  color: white;
 }
 
 .c-flash-icon {
@@ -42,4 +43,5 @@
   display: table-cell !important;
   vertical-align: middle;
   padding-left: 10px;
+  color: white;
 }
