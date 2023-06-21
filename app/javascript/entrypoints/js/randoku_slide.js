@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // モーダルを開く。クリックされた画像からスライドを始める
-  const modalTriggers = document.querySelectorAll('#sw_modal_trigger') || [];
+  const modalTriggers = document.querySelectorAll('.sw_modal_trigger') || [];
 
   const modal = document.querySelector('.sw-modal');
 
