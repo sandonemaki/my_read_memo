@@ -12,7 +12,6 @@
   right: 0;
   margin: 8px;
   padding: 32px;
-  font-family: 'Lato', 'Hiragino Maru Gothic Pro', 'Meiryo UI', Meiryo, 'MS PGothic', sans-serif;
   box-sizing: border-box;
   background-color: #f9fbfe;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -46,8 +45,6 @@
   color: #ff708f;
   letter-spacing: 2px;
   margin-bottom: 16px;
-  font-family: 'Quicksand', 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', 'Meiryo UI', Meiryo, 'MS PGothic',
-    sans-serif;
 }
 
 .judge-popup__message {
@@ -117,12 +114,23 @@
 /* ページネーション */
 .swiper-pagination-fraction {
   pointer-events: none;
-  font-size: 12px;
+  font-size: 18px;
+  font-weight: bold;
 }
 .swiper-pagination {
   align-items: center;
   top: 50%;
-  transform: translateY(-50%);
+  /*transform: translateY(-50%);*/
+  position: relative;
+  top: inherit;
+  bottom: inherit;
+}
+.sw-pagination-wrap {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-right: 24px;
+  color: #35b7e4;
 }
 .sw_img_name {
   position: fixed;
@@ -130,8 +138,25 @@
   margin: 0;
   font-size: 10px;
 }
+.book-progress {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  color: #35b7e4;
+}
+.book-progress-icon {
+  font-size: 24px;
+}
+.book_reading_progress {
+  margin-left: 12px;
+  font-size: 24px;
+  letter-spacing: 3.4px;
+  padding-top: 3px;
+}
 .sw_book_title {
   font-size: 14px;
+  color: #35b7e4;
+  font-weight: bold;
 }
 .sw_updated {
   width: 100%;
@@ -144,50 +169,85 @@
 .sw-read-btn {
   width: 120px;
   height: 40px;
-  border: 2px solid #27acd9;
-  color: #27acd9;
+  border: 3px solid #35b7e4;
+  color: #35b7e4;
   border-radius: 100vh;
   transition: 0.5s;
-  margin: 12px;
+  margin: 0 20px;
 }
 .sw-read-btn.completion {
   color: #fff;
-  background: #27acd9;
+  background: #35b7e4;
 }
 /**** bookmark ****/
 .sw_bookmark_btn {
   display: flex;
-  color: #27acd9;
+  color: #35b7e4;
   transition: 0.5s;
-  margin: 10px;
+  margin: 0 20px;
+  font-size: 38px;
   justify-content: flex-end;
 }
-.bookmark-icon {
-  line-height: 1;
-}
+
 .slide_menu_btn {
-  margin-right: 30px;
+  margin-right: 14px;
   display: flex;
-  color: #27acd9;
+  color: #35b7e4;
+  height: 100%;
+  align-items: center;
+  font-size: 34px;
 }
-/**** download ****/
-.download-btn:hover,
-.img_delete_btn:hover {
-  background-color: rgb(35, 164, 176);
+.zoom-controls {
+  margin-right: 16px;
+  display: flex;
+  color: #35b7e4;
+  height: 100%;
+  align-items: center;
+  font-size: 34px;
 }
 
-.while {
-  margin: 0 12px;
+/**** モーダルボタン ****/
+.download-btn,
+.img_delete_btn,
+.zoomIn,
+.zoomOut,
+.zoomReset,
+.swiper-button-prev,
+.swiper-button-next,
+.sw-close-button,
+.sw_bookmark_btn,
+.sw-read-btn,
+.totalpage-btn {
+  color: #35b7e4;
+}
+.download-btn:hover,
+.img_delete_btn:hover,
+.zoomIn:hover,
+.zoomOut:hover,
+.zoomReset:hover,
+.swiper-button-prev:hover,
+.swiper-button-next:hover,
+.sw-close-button:hover,
+.sw_bookmark_btn:hover {
+  color: #2090b6;
+}
+.totalpage-btn:hover {
+  background-color: #2090b6;
+}
+.sw-read-btn:hover {
+  border: 3px solid #2090b6;
+  color: #2090b6;
+}
+.slide-while {
+  margin: 0 8px;
+}
+.zoom-while {
+  margin: 0 10px;
 }
 
 /**** モーダル *** */
 
 .sw-reveal-outer {
-  /*position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;*/
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 0;
   display: flex;
@@ -195,11 +255,12 @@
   align-items: center;
 }
 .sw-reveal-wrapper {
-  /*display: flex;
-  justify-content: center;
-  align-items: center;*/
   /* 全面モーダルの内側 */
-  background-color: #add9e4;
+  background: -moz-radial-gradient(center, circle cover, #f2fcff 0%, #b5dbe4 100%);
+  background: -webkit-radial-gradient(center, circle cover, #f2fcff 0%, #b5dbe4 100%);
+  /*background: -o-radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
+  /*background: -ms-radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
+  /*background: radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
   border-radius: 10px;
   position: absolute;
   top: 15px;
@@ -220,6 +281,7 @@
   border: none;
   outline: none;
   background: transparent;
+  color: #35b7e4;
 }
 .swiper-button-prev {
   left: 40px;
@@ -228,17 +290,14 @@
   right: 40px;
 }
 .sw-close-button {
-  /*position: absolute;*/
   cursor: pointer;
-  /* top: 15px; */
-  /* right: 25px; */
   text-align: center;
   width: 48px;
   height: 48px;
-  color: blue;
-  font-size: 26px;
-  /* z-index: 10; */
-  /* transition: all 0.2s ease; */
+  color: #35b7e4;
+  font-size: 34px;
+  margin-right: 14px;
+  margin-top: -29px;
 }
 .sw-modal.active {
   display: flex;
@@ -274,6 +333,7 @@
   height: 60px;
   align-items: center;
   position: relative;
+  align-items: end;
 }
 
 /**** トータルページモーダル ****/
@@ -314,11 +374,12 @@
   /*transform: scale(0.9);*/
   transform: translateY(40px);
   transition: all 0.3s ease-out;
+  border-radius: 20px;
 }
 
 .ModalCloseButton {
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 20px;
   font-size: 1.23em;
   color: rgb(132, 145, 165);
@@ -342,9 +403,9 @@
   color: #fff;
   font-size: 0.75rem;
   letter-spacing: 0.04em;
-  height: 36px;
+  height: 40px;
   line-height: 36px;
-  margin-left: 8px;
+  margin-left: 14px;
   padding-left: 14px;
   padding-right: 15px;
   display: inline-flex;
@@ -357,10 +418,55 @@
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
   margin-right: 4px;
 }
-/*.exercise-footer {
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
-  right: 20px;
 
-}*/
+/**** panzoomで使う枠 ****/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.outer {
+  position: relative;
+  width: 800px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.panzoom {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.panzoom img {
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.zoom > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+  background-color: #000;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+.print {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  color: #35b7e4;
+  margin: 0 20px;
+}
