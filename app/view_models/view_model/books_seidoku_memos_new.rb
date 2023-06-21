@@ -5,7 +5,7 @@ module ViewModel
 
     def initialize(book:, selected_content_type: nil, seidoku_memo_content: "")
       @id = book.id
-      @titile = book.title
+      @title = book.title
       @seidoku_memo_time_now = I18n.l(Time.now, format: :short)
       @seidoku_memo_type = State::SEIDOKU_MEMO_TYPE
       # String セレクトボックのparams[:value].first
