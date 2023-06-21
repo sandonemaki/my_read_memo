@@ -76,9 +76,14 @@
 
         <!-- 本の状態を表示 -->
         <div class="modal_header">
-          <div class="book_reading_progress"><%= book.reading_progress %></div>
+          <div class="book-progress">
+            <div class="book-progress-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+            <div class="book_reading_progress"><%= book.reading_progress %></div>
+          </div>
           <p class="sw_book_title"><%= book.title %></p>
-          <button id="sw-close-btn" class="sw-close-button">&times;</button>
+          <button id="sw-close-btn" class="sw-close-button">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
         </div>
 
         <!-- Sliderを包むコンテナ要素 -->
@@ -88,14 +93,17 @@
             <!-- 各スライド -->
             <% book.randoku_imgs_all.each do |slide_img| %>
               <div class="swiper-slide">
-                <div class="sw_img">
-                  <div class="sw_slide_img">
-                    <img
-                      src="<%= slide_img.path %>?<%= Time.now.to_i %>"
-                      alt=" "
-                      data-img-path="<%= slide_img.path %>"
-                      data-img-name="<%= slide_img.name %>"
-                    />
+                <div class="sw_img container">
+                  <div class="sw_slide_img outer">
+                    <div class="panzoom">
+                      <img
+                        src="<%= slide_img.path %>?<%= Time.now.to_i %>"
+                        class="panzoom-img"
+                        alt=" "
+                        data-img-path="<%= slide_img.path %>"
+                        data-img-name="<%= slide_img.name %>"
+                      />
+                    </div>
                   </div>
 
                   <div class="sw_img_footer">
@@ -108,7 +116,7 @@
                     >
                       <%= slide_img.alreadyread == 0 ? '読んだ!' : '完了済み' %>
                     </button>
-                    <div
+                    <button
                       class="sw_bookmark_btn"
                       data-bookmark-id="<%= slide_img.bookmark_flag %>"
                       data-img-id="<%= slide_img.id %>"
@@ -116,8 +124,11 @@
                     >
                       <!-- bookmark_on : bookmark_off -->
                       <i
-                        class="fa-bookmark fa-2xl bookmark-icon <%= slide_img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"
+                        class="fa-bookmark bookmark-icon <%= slide_img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"
                       ></i>
+                    </button>
+                    <div class="print">
+                      <p class="print-zoom"></p>
                     </div>
                   </div>
                 </div>
@@ -137,14 +148,29 @@
             />
             <span>読むページを更新</span>
           </button>
-          <div div class="swiper-pagination"></div>
+
           <div class="slide_menu_btn">
-            <div class="download-btn">
-              <i class="fa-regular fa-circle-down fa-xl while"></i>
+            <div class="sw-pagination-wrap">
+              <div class="swiper-pagination"></div>
             </div>
-            <div class="img_delete_btn">
-              <i class="fa-regular fa-trash-can fa-xl while"></i>
+            <!-- ここに各スライドのコントロールボタンを追加します -->
+            <div class="zoom-controls">
+              <button class="zoomIn">
+                <i class="fa-regular fa-square-plus zoom-while"></i>
+              </button>
+              <button class="zoomOut">
+                <i class="fa-regular fa-square-minus zoom-while"></i>
+              </button>
+              <button class="zoomReset">
+                <i class="fa-solid fa-arrows-to-dot zoom-while"></i>
+              </button>
             </div>
+            <button class="download-btn">
+              <i class="fa-regular fa-circle-down slide-while"></i>
+            </button>
+            <button class="img_delete_btn">
+              <i class="fa-regular fa-trash-can slide-while"></i>
+            </button>
           </div>
         </div>
       </div>
