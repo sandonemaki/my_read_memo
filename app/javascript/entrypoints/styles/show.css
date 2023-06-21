@@ -93,7 +93,7 @@
 .book-progress .book_reading_progress {
   background-color: rgb(48, 200, 214);
 }
-#sw_modal_trigger {
+.sw_modal_trigger {
   color: gray;
   font-size: 12px;
 }
