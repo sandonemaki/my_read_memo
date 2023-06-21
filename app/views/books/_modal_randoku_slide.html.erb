@@ -22,7 +22,7 @@
             <i class="ModalCloseButton fa fa-times" aria-hidden="true"></i>
             <!--<%= form_tag("/books/total_page_update", method: :post) do %>-->
             <div class="modal-totl-page">
-              <p class="total-page-label">読む予定のページ数を<br />入力してください</p>
+              <p class="total-page-title">読む予定のページ数を<br />入力してください</p>
               <p class="total-page-description">
                 「乱読」と「精読」の評価に使われる数字です。<br />
                 <span>（20-999の整数のみ入力できます）</span>
@@ -78,7 +78,7 @@
         <div class="modal_header">
           <div class="book-progress">
             <div class="book-progress-icon"><i class="fa-solid fa-book-bookmark"></i></div>
-            <div class="book_reading_progress"><%= book.reading_progress %></div>
+            <div class="book_reading_progress_modal"><%= book.reading_progress %></div>
           </div>
           <p class="sw_book_title"><%= book.title %></p>
           <button id="sw-close-btn" class="sw-close-button">

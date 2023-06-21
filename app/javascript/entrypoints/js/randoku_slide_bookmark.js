@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggleImgBookmarkFlagBtn = (bookmarkBtn) => {
     const bookmarkId = parseInt(bookmarkBtn.getAttribute('data-bookmark-id'));
     if (bookmarkId === 0) {
-      bookmarkBtn.innerHTML = '<i class="fa-regular fa-bookmark fa-2xl bookmark-icon"></i>'; //off
+      bookmarkBtn.innerHTML = '<i class="fa-regular fa-bookmark bookmark-icon"></i>'; //off
     } else {
-      bookmarkBtn.innerHTML = '<i class="fa-solid fa-bookmark fa-2xl bookmark-icon"></i>'; //on
+      bookmarkBtn.innerHTML = '<i class="fa-solid fa-bookmark bookmark-icon"></i>'; //on
     }
   };
 
