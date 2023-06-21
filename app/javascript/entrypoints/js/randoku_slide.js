@@ -1,6 +1,7 @@
 import Swiper from 'swiper/bundle';
 import { hideJudgePopupMessages } from './randoku_slide_is_alreadyread.js';
 import { js_flash, js_flash_alert } from './flash.js';
+import { initializePanzoom, zoomInOut, setupZoomEvents, outputZoomString } from './panzoom.js';
 
 document.addEventListener('DOMContentLoaded', function () {
   const swiper = new Swiper('.swiper', {
@@ -30,10 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const zoomInEl = document.querySelector('.zoomIn');
     const zoomOutEl = document.querySelector('.zoomOut');
     const zoomResetEl = document.querySelector('.zoomReset');
+
+    const instance = initializePanzoom(panzoomEl);
+    setupZoomEvents(panzoomEl, instance, zoomInEl, zoomOutEl, zoomResetEl);
+    outputZoomString(instance, printZoomEl);
   });
 
   // モーダルを開く。クリックされた画像からスライドを始める
   const modalTriggers = document.querySelectorAll('#sw_modal_trigger') || [];
+
   const modal = document.querySelector('.sw-modal');
 
   modalTriggers.forEach((trigger) => {
