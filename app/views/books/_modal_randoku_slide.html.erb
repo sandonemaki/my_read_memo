@@ -148,14 +148,29 @@
             />
             <span>読むページを更新</span>
           </button>
-          <div div class="swiper-pagination"></div>
+
           <div class="slide_menu_btn">
-            <div class="download-btn">
-              <i class="fa-regular fa-circle-down fa-xl while"></i>
+            <div class="sw-pagination-wrap">
+              <div class="swiper-pagination"></div>
             </div>
-            <div class="img_delete_btn">
-              <i class="fa-regular fa-trash-can fa-xl while"></i>
+            <!-- ここに各スライドのコントロールボタンを追加します -->
+            <div class="zoom-controls">
+              <button class="zoomIn">
+                <i class="fa-regular fa-square-plus zoom-while"></i>
+              </button>
+              <button class="zoomOut">
+                <i class="fa-regular fa-square-minus zoom-while"></i>
+              </button>
+              <button class="zoomReset">
+                <i class="fa-solid fa-arrows-to-dot zoom-while"></i>
+              </button>
             </div>
+            <button class="download-btn">
+              <i class="fa-regular fa-circle-down slide-while"></i>
+            </button>
+            <button class="img_delete_btn">
+              <i class="fa-regular fa-trash-can slide-while"></i>
+            </button>
           </div>
         </div>
       </div>
