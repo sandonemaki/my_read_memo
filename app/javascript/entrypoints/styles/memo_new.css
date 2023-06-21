@@ -1,0 +1,94 @@
+.memo-new-content-inner {
+  width: 960px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 40px;
+  padding: 40px 50px;
+}
+.memo-new-content-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.memo-content-header {
+  display: flex;
+  justify-content: space-between;
+}
+.memo-new-time-now {
+  margin-top: 8px;
+  font-size: 12px;
+}
+.memo-submit-button {
+  font-size: 0.875rem;
+  display: flex;
+  padding: 0px 16px;
+  background-color: #30c8d6;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+}
+.memo-submit-button:hover {
+  background-color: rgb(35, 164, 176);
+}
+.memo-submit-button:disabled {
+  transition: all 0.3s ease-in-out 0s;
+  color: rgba(186, 198, 211, 0.6);
+  background-color: rgb(240, 244, 249);
+}
+
+.memo-input-textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #d0d5d8;
+  padding: 24px 20px;
+}
+.memo-input-textarea::placeholder {
+  color: lightgray;
+}
+.memo-content-header-info {
+  display: flex;
+  align-items: center;
+}
+.new-memo-i {
+  padding-left: 12px;
+}
+
+/*****セレクトボックス*****/
+.memo-type-select {
+  outline: none;
+  text-indent: 0.01px;
+  vertical-align: middle;
+  padding: 0 12px;
+  border: 1px solid #d0d5d8;
+  color: #555;
+  width: fit-content;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.memo-content-type-selectbox {
+  position: relative;
+  width: fit-content;
+}
+.memo-content-type-selectbox::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-bottom: solid 2px #d0d5d8;
+  border-right: solid 2px #d0d5d8;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  right: 16px;
+}
