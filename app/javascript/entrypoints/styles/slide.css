@@ -1,3 +1,6 @@
+.sw-modal * {
+  color: #35b7e4;
+}
 /**** seidoku-tab ****/
 /* hiddenクラスで鍵が表示されないようにする */
 .fa-lock.memo_key_hidden {
@@ -125,7 +128,7 @@
   top: inherit;
   bottom: inherit;
   z-index: inherit;
-  color: #2b546a;
+  color: #35b7e4;
   font-size: 25px;
 }
 .swiper-pagination-current {
@@ -217,45 +220,6 @@
   height: 100%;
   align-items: center;
   font-size: 34px;
-}
-
-/**** モーダルボタン ****/
-.download-btn,
-.img_delete_btn,
-.zoomIn,
-.zoomOut,
-.zoomReset,
-.swiper-button-prev,
-.swiper-button-next,
-.sw-close-button,
-.sw_bookmark_btn,
-.sw-read-btn,
-.totalpage-btn {
-  color: #35b7e4;
-}
-.download-btn:hover,
-.img_delete_btn:hover,
-.zoomIn:hover,
-.zoomOut:hover,
-.zoomReset:hover,
-.swiper-button-prev:hover,
-.swiper-button-next:hover,
-.sw-close-button:hover,
-.sw_bookmark_btn:hover {
-  color: #2090b6;
-}
-.totalpage-btn:hover {
-  background-color: #2090b6;
-}
-.sw-read-btn:hover {
-  border: 3px solid #2090b6;
-  color: #2090b6;
-}
-.slide-while {
-  margin: 0 8px;
-}
-.zoom-while {
-  margin: 0 10px;
 }
 
 /**** モーダル *** */
@@ -534,4 +498,45 @@
   letter-spacing: 0.4px;
   color: #35b7e4;
   margin-left: 10px;
+}
+
+/**** モーダルボタン ****/
+.sw-modal .download-btn,
+.sw-modal .img_delete_btn,
+.zoomIn,
+.zoomOut,
+.zoomReset,
+.swiper-button-prev,
+.swiper-button-next,
+.sw-close-button,
+.sw_bookmark_btn,
+.sw-read-btn,
+.totalpage-btn {
+  color: #35b7e4;
+}
+
+.download-btn:hover > .fa-regular:hover,
+.img_delete_btn > .fa-regular:hover,
+.zoomIn > .fa-regular:hover,
+.zoomOut > .fa-regular:hover,
+.zoomReset > .fa-solid:hover,
+.swiper-button-prev:hover,
+.swiper-button-next:hover,
+.sw-close-button > .fa-solid:hover,
+.sw_bookmark_btn > .fa-regular:hover {
+  color: #2090b6 !important;
+}
+
+.totalpage-btn:hover {
+  background-color: #2090b6;
+}
+.sw-read-btn:hover {
+  border: 3px solid #2090b6;
+  color: #2090b6;
+}
+.slide-while {
+  margin: 0 8px;
+}
+.zoom-while {
+  margin: 0 10px;
 }
