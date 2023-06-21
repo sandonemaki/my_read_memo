@@ -20,20 +20,24 @@
         <div class="ModalWrapper">
           <div class="ModalContent">
             <i class="ModalCloseButton fa fa-times" aria-hidden="true"></i>
-            <h3 class="modal__StyledHeading">ページ数を登録をする</h3>
             <!--<%= form_tag("/books/total_page_update", method: :post) do %>-->
-            <p>総ページ</p>
-            <p>（乱読と精読の評価に使われる数字です。読書するページ数を入力してください）</p>
-            <input
-              id="input_total_page"
-              type="number"
-              name="total_page"
-              min="20"
-              step="1"
-              placeholder="00"
-              value="<%= book.total_page %>"
-            /><strong>必須</strong>
-            <!--<div class="error">整数のみ入力できます</div>-->
+            <div class="modal-totl-page">
+              <p class="total-page-label">読む予定のページ数を<br />入力してください</p>
+              <p class="total-page-description">
+                「乱読」と「精読」の評価に使われる数字です。<br />
+                <span>（20-999の整数のみ入力できます）</span>
+              </p>
+              <input
+                id="input_total_page"
+                type="number"
+                name="total_page"
+                min="20"
+                step="1"
+                placeholder="20"
+                value="<%= book.total_page.present? && book.total_page != 0 ? book.total_page : 20 %>"
+              />
+              <p id="total_page_valid_error"></p>
+            </div>
             <input id="total_page_submit_btn" data-book-id="<%= book.id %>" type="submit" value="更新する" />
             <!--<% end %>-->
           </div>
@@ -71,7 +75,11 @@
         </div>
 
         <!-- 本の状態を表示 -->
-        <div class="book_reading_progress"><%= book.reading_progress %></div>
+        <div class="modal_header">
+          <div class="book_reading_progress"><%= book.reading_progress %></div>
+          <p class="sw_book_title"><%= book.title %></p>
+          <button id="sw-close-btn" class="sw-close-button">&times;</button>
+        </div>
 
         <!-- Sliderを包むコンテナ要素 -->
         <div class="swiper">
@@ -80,53 +88,65 @@
             <!-- 各スライド -->
             <% book.randoku_imgs_all.each do |slide_img| %>
               <div class="swiper-slide">
-                <p class="sw_img_name"><%= slide_img.name %></p>
-                <p class="sw_book_title"><%= book.title %></p>
-                <div>
-                  <div
-                    class="sw_bookmark_btn"
-                    data-bookmark-id="<%= slide_img.bookmark_flag %>"
-                    data-img-id="<%= slide_img.id %>"
-                    data-book-id="<%= book.id %>"
-                  >
-                    <!-- bookmark_on : bookmark_off -->
-                    <i class="fa-bookmark fa-2xl <%= slide_img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"></i>
-                  </div>
-                </div>
-
                 <div class="sw_img">
-                  <img src="<%= slide_img.path %>?<%= Time.now.to_i %>" alt=" " data-img-path="<%= slide_img.path %>" />
-                </div>
+                  <div class="sw_slide_img">
+                    <img
+                      src="<%= slide_img.path %>?<%= Time.now.to_i %>"
+                      alt=" "
+                      data-img-path="<%= slide_img.path %>"
+                      data-img-name="<%= slide_img.name %>"
+                    />
+                  </div>
 
-                <div class="sw_updated">
-                  <!--<p>[object Object]</p>-->
-                </div>
-                <button
-                  id="sw_read_btn"
-                  class="sw-read-btn <%= slide_img.alreadyread == 0 ? '' : 'completion' %>"
-                  data-reading-id="<%= slide_img.alreadyread %>"
-                  data-img-id="<%= slide_img.id %>"
-                  data-book-id="<%= book.id %>"
-                >
-                  <%= slide_img.alreadyread == 0 ? '読んだ!' : '完了済み' %>
-                </button>
-
-                <div class="download-btn" data-img-name="<%= slide_img.name %>">
-                  <i class="fa-regular fa-circle-down fa-xl"></i>
+                  <div class="sw_img_footer">
+                    <button
+                      id="sw_read_btn"
+                      class="sw-read-btn <%= slide_img.alreadyread == 0 ? '' : 'completion' %>"
+                      data-reading-id="<%= slide_img.alreadyread %>"
+                      data-img-id="<%= slide_img.id %>"
+                      data-book-id="<%= book.id %>"
+                    >
+                      <%= slide_img.alreadyread == 0 ? '読んだ!' : '完了済み' %>
+                    </button>
+                    <div
+                      class="sw_bookmark_btn"
+                      data-bookmark-id="<%= slide_img.bookmark_flag %>"
+                      data-img-id="<%= slide_img.id %>"
+                      data-book-id="<%= book.id %>"
+                    >
+                      <!-- bookmark_on : bookmark_off -->
+                      <i
+                        class="fa-bookmark fa-2xl bookmark-icon <%= slide_img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"
+                      ></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             <% end %>
           </div>
+
+          <button id="sw-button-prev" class="swiper-button-prev"></button>
+          <button id="sw-button-next" class="swiper-button-next"></button>
         </div>
-        <!-- トータルページモーダルトリガーボタン -->
-        <button id="open-totalpage-modal" class="totalpage-btn">
-          <img src="https://prog-8.com/assets/packs/dist/images/footer-slides-button-icon-5422fe1e516d2055acb4..svg" />
-          <span>読むページを更新</span>
-        </button>
-        <div class="swiper-pagination"></div>
-        <button id="sw-button-prev" class="swiper-button-prev"></button>
-        <button id="sw-button-next" class="swiper-button-next"></button>
-        <button id="sw-close-btn" class="sw-close-button">&times;</button>
+
+        <div class="modal_footer">
+          <!-- トータルページモーダルトリガーボタン -->
+          <button id="open-totalpage-modal" class="totalpage-btn">
+            <img
+              src="https://prog-8.com/assets/packs/dist/images/footer-slides-button-icon-5422fe1e516d2055acb4..svg"
+            />
+            <span>読むページを更新</span>
+          </button>
+          <div div class="swiper-pagination"></div>
+          <div class="slide_menu_btn">
+            <div class="download-btn">
+              <i class="fa-regular fa-circle-down fa-xl while"></i>
+            </div>
+            <div class="img_delete_btn">
+              <i class="fa-regular fa-trash-can fa-xl while"></i>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
