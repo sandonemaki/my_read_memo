@@ -41,3 +41,18 @@ export const setupZoomEvents = (panzoomEl, instance, zoomInEl, zoomOutEl, zoomRe
     zoomReset(instance);
   });
 };
+
+// 拡大率を表示する関数
+export const outputZoomString = (instance, printZoomEl) => {
+  const formatZoom = () => {
+    // パーセンテージに変換
+    let scalePercentage = instance.getTransform().scale * 100;
+    scalePercentage = scalePercentage.toFixed(3);
+    printZoomEl.innerText = `${scalePercentage}%`;
+  };
+
+  formatZoom();
+
+  // zoomが変更されるたびにformatZoomを呼び出す
+  instance.on('zoom', formatZoom);
+};
