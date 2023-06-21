@@ -1,60 +1,101 @@
-<h1>メモを検索する</h1>
-<%= form_tag("/memo_search_result", method: :post) do %>
-  <div>
-    <select name="selected_search_value[]">
-      <option value="0">メモの種類で検索をする</option>
-      <optgroup label="乱読メモ">
-        <% search.randoku_memo_type.each_with_index do | (k, value), i | %>
-          <% if search.selected_search_value == "randoku[#{k}]" %>
-            <option value="<%= "randoku[#{k}]" %>" selected>
-              <%= value %>
-            </option>
-          <% else %><option value="randoku[<%= i + 1 %>]"><%= value %></option>
-          <% end %>
-        <% end %>
-      </optgroup>
+<body class="memo-search-bk">
+  <div class="memo-search-result-white">
+    <%= render partial: 'layouts/header' %>
+    <div class="memo-search-result-inner">
+      <%= form_tag("/memo_search_result", method: :post) do %>
+        <div class="search-selectbox">
+          <select id="search-select" name="selected_search_value[]">
+            <option value="0">- メモの種類で検索をする -</option>
+            <optgroup label="乱読メモ">
+              <% search.randoku_memo_type.each_with_index do | (k, value), i | %>
+                <% if search.selected_search_value == "randoku[#{k}]" %>
+                  <option value="<%= "randoku[#{k}]" %>" selected>
+                    <%= value %>
+                  </option>
+                <% else %><option value="randoku[<%= i + 1 %>]"><%= value %></option>
+                <% end %>
+              <% end %>
+            </optgroup>
 
-      <optgroup label="精読メモ">
-        <% search.seidoku_memo_type.each_with_index do | (k, value), i | %>
-          <% if search.selected_search_value == "seidoku[#{k}]" %>
-            <option value="<%= "seidoku[#{k}]" %>" selected>
-              <%= value %>
-            </option>
-          <% else %><option value="seidoku[<%= i + 1 %>]"><%= value %></option>
-          <% end %>
-        <% end %>
-      </optgroup>
-    </select>
+            <optgroup label="精読メモ">
+              <% search.seidoku_memo_type.each_with_index do | (k, value), i | %>
+                <% if search.selected_search_value == "seidoku[#{k}]" %>
+                  <option value="<%= "seidoku[#{k}]" %>" selected>
+                    <%= value %>
+                  </option>
+                <% else %><option value="seidoku[<%= i + 1 %>]"><%= value %></option>
+                <% end %>
+              <% end %>
+            </optgroup>
+          </select>
+        </div>
+        <!--<input type="submit" value="絞り込む" />-->
+      <% end %>
+    </div>
   </div>
-  <input type="submit" value="絞り込む" />
-<% end %>
 
-<% if search.selected_memos.nil? %>
-  <h2>スライド検索の使い方</h2>
-  <p>
-    <span>
-      画面上記の絞り込み一覧から、
-      <br />
-      検索したいメモの項目を選択してください。
-      <br />
-      関連するメモの絞り込み検索ができます。
-    </span>
-  </p>
-<% elsif search.selected_memos.present? %>
-  <h3>検索結果</h3>
-  <p><%= search.selected_memos_count %>件</p>
-  <p><%= search.selected_search_memo_type %></p>
-  <div>
-    <% search.selected_memos.each do |search| %>
-      <%= search.memo_created_at %><br />
-      <%= search.memo_content %><br />
-      <%= link_to(search.book_title, "/books/#{search.book_id}") %>
-      <%= search.book_author %><br />
-      <%= search.book_reading_progress %><br />
-    <% end %>
+  <div class="search-result-bk">
+    <div class="search-result-inner">
+      <% if search.selected_memos.nil? %>
+        <div class="search-result-item">
+          <h2 class="search-result-title">スライド検索の使い方</h2>
+          <p class="search-result-text">
+            <span>
+              画面上記の絞り込み一覧から、
+              <br />
+              検索したいメモの項目を選択してください。
+              <br />
+              関連するメモの絞り込み検索ができます。
+            </span>
+          </p>
+        </div>
+      <% elsif search.selected_memos.present? %>
+        <div class="search-header">
+          <p class="search-text">検索結果</p>
+          <p>
+            <span class="search-selected-count"><%= search.selected_memos_count %></span>
+            <span class="search-memo-unit">件</span>
+          </p>
+        </div>
+
+        <% search.selected_memos.each do |searched| %>
+          <div class="search-memo-content">
+            <div class="tabbed-memo-content">
+              <!--昇順-->
+              <!-- memo-header -->
+              <div class="memo-content-header">
+                <p class="memo-created-at"><%= searched.memo_created_at %></p>
+                <p class="memo-edit-btn navi-trigger-btn-js">
+                  <i class="fa-solid fa-ellipsis memo-ellipsis "></i>
+                </p>
+              </div>
+              <!-- navi-menu -->
+              <div class="memo-edit-navi navi-panel-js">
+                <ul class="edit-menus">
+                  <li class="edit-menu">
+                    <%= link_to('編集', '#', class: 'button') %>
+                  </li>
+                  <li class="edit-menu">
+                    <%= link_to('削除', '#', class: 'button') %>
+                  </li>
+                </ul>
+              </div>
+              <p class="memo-content-type"># <%= search.selected_search_memo_type %></p>
+              <p class="memo-content-text"><%= searched.memo_content %></p>
+            </div>
+            <div class="search-memo-info">
+              <p>
+                <%= link_to(searched.book_title, "/books/#{searched.book_id}") %> / <%= searched.book_author %> /
+                <%= searched.book_reading_progress %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="search-text">検索結果</p>
+        <p class="search-selected-count">0件</p>
+        <p class="search-result-text">ヒットしませんでした</p>
+      <% end %>
+    </div>
   </div>
-<% else %>
-  <h3>検索結果</h3>
-  <p>0件</p>
-  <p>ヒットしませんでした</p>
-<% end %>
+</body>
