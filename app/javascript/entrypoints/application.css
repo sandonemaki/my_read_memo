@@ -2,9 +2,13 @@
 
 /* モーダルウィンドウ */
 @import 'swiper/swiper-bundle.css';
-/*@import './styles/common.css';*/
+@import './styles/index_common.css';
+@import './styles/common.css';
 @import './styles/index.css';
 @import './styles/slide.css';
+@import './styles/book_new.css';
 @import './styles/flash.css';
 @import './styles/show.css';
-@import './styles/book_new.css';
+@import './styles/memos_index.css';
+@import './styles/memo_new.css';
+@import './styles/memo_search__result.css';
