@@ -1,5 +1,5 @@
 import '@/entrypoints/js/upload_btn.js';
-import '@/entrypoints/js/input_validation.js';
+//import '@/entrypoints/js/input_validation.js';
 import '@/entrypoints/js/book_input_validation.js';
 import '@/entrypoints/js/memo_input_validation.js';
 import '@/entrypoints/js/modal.js';
