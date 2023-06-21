@@ -1,7 +1,7 @@
 module ViewModel
 
   class BooksSeidokuMemosIndex
-    attr_reader :id, :title, :author, :total_page, :reading_progress,
+    attr_reader :id, :title, :author, :total_page, :reading_progress, :seidoku_memo_key,
       :publisher, :seidoku_memo_author_opinion_count, :seidoku_memo_my_opinion_count,
       :seidoku_memos_all_count, :seidoku_memos
 
@@ -19,6 +19,8 @@ module ViewModel
         else
           "通読"
         end
+      (book.seidoku_memo_key = false) if @reading_progress == "精読"
+      @seidoku_memo_key = book.seidoku_memo_key
       @publisher = book.publisher
 
       author_opinion_index = State::SEIDOKU_MEMO_TYPE.key("著者の意見")
