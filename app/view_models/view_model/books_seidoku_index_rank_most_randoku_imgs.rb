@@ -15,7 +15,7 @@ module ViewModel
       @books_index_rank =
         most_randoku_memos_desc_of_seidoku_state_books.map do |book|
           {
-            titile: book.title,
+            title: book.title,
             randoku_imgs_count: book.randoku_imgs.count,
             seidoku_memos_count: book.seidoku_memos.count
           }
