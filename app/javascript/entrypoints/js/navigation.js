@@ -25,4 +25,17 @@ document.addEventListener('DOMContentLoaded', function () {
       e.stopPropagation(); // windowまで伝播しない
     });
   });
+
+  // ページ全体をクリックしたときの処理
+  window.addEventListener('click', () => {
+    closeNaviPanles(); // すべてのパネルを閉じる
+  });
+
+  const closeNaviPanles = () => {
+    naviPanels.forEach((naviPanel) => {
+      if (naviPanel.classList.contains('active')) {
+        naviPanel.classList.remove('active');
+      }
+    });
+  };
 });
