@@ -318,6 +318,9 @@
 *:before {
   box-sizing: border-box;
 }
+.modal-totl-page * {
+  color: #2b546a;
+}
 
 .ModalOverlay,
 .ModalWrapper {
