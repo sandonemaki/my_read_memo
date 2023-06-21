@@ -116,6 +116,17 @@
                     >
                       <%= slide_img.alreadyread == 0 ? '読んだ!' : '完了済み' %>
                     </button>
+                    <button
+                      class="sw_bookmark_btn"
+                      data-bookmark-id="<%= slide_img.bookmark_flag %>"
+                      data-img-id="<%= slide_img.id %>"
+                      data-book-id="<%= book.id %>"
+                    >
+                      <!-- bookmark_on : bookmark_off -->
+                      <i
+                        class="fa-bookmark bookmark-icon <%= slide_img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"
+                      ></i>
+                    </button>
                     <div
                       class="sw_bookmark_btn"
                       data-bookmark-id="<%= slide_img.bookmark_flag %>"
