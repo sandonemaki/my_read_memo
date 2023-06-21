@@ -26,7 +26,7 @@ module ViewModel
       # 「前回の続き」用
       # TODO: ハッシュをクラスにする
       @randoku_history =
-        { titile: randoku_history.title,
+        { title: randoku_history.title,
           randoku_imgs_count: randoku_history.randoku_imgs.count,
           randoku_memos_count: randoku_history.randoku_memos.count,
           seidoku_memos_count: randoku_history.seidoku_memos.count,
