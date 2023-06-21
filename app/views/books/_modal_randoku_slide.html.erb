@@ -76,7 +76,10 @@
 
         <!-- 本の状態を表示 -->
         <div class="modal_header">
-          <div class="book_reading_progress"><%= book.reading_progress %></div>
+          <div class="book-progress">
+            <div class="book-progress-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+            <div class="book_reading_progress"><%= book.reading_progress %></div>
+          </div>
           <p class="sw_book_title"><%= book.title %></p>
           <button id="sw-close-btn" class="sw-close-button">&times;</button>
         </div>
