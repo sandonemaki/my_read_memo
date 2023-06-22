@@ -47,7 +47,14 @@ class Books::ImgsController < ApplicationController
       if book_state_updated_info == '精読'
         book.seidoku_memo_key = false
         unless book.save
-          render json: { status: 500, message: '本の状態が更新されませんでした。もう一度お試しください' }
+          render json: {
+                   status: 500,
+                   book_state_updated_info: book_state_updated_info,
+                   img_reading_state_result: img_reading_state_result,
+                   img_already_read_count: img_already_read_count,
+                   img_unread_count: img_unread_count,
+                   message: '最後まで処理できませんでした。もう一度お試しください',
+                 }
           return
         end
 
