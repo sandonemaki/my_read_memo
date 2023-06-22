@@ -53,3 +53,12 @@ const book_update_total_page = (responseData) => {
     }
   });
 };
+
+book_update_seidoku_standard = (responseData) => {
+  const current_total_page_list = document.querySelectorAll('.randoku_imgs_unread_count');
+  current_total_page_list.forEach((current_total_page) => {
+    if (responseData.total_page_update_result) {
+      current_total_page.textContent = responseData.total_page_update_result;
+    }
+  });
+};
