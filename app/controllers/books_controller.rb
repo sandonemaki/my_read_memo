@@ -3,7 +3,7 @@ class BooksController < ApplicationController
 
   def update_total_page
     book = Book.find_by(id: params[:id])
-    book.total_page = img_params[:input_total_page]
+    book.total_page = book_params[:input_total_page]
     if !book.save
       render json: { status: 500, message: '情報が更新されませんでした。もう一度お試しください' }
       return
@@ -17,14 +17,23 @@ class BooksController < ApplicationController
     if book_reading_state_result[:updated] == true
       # 本の状態
       book_state_updated_info = State::READING_STATE[book.reading_state]
-      json_response = { status: :ok, book_state_updated_info: book_state_updated_info }
+      json_response = {
+        status: :ok,
+        book_state_updated_info: book_state_updated_info,
+        total_page_update_result: total_page_update_result,
+      }
 
       # 更新された本の状態が"精読"であれば精読メモのタブの鍵を外す
       # 一度falseになると変更されない
       if book_state_updated_info == '精読'
         book.seidoku_memo_key = false
         unless book.save
-          render json: { status: 500, message: '本の状態が更新されませんでした。もう一度お試しください' }
+          render json: {
+                   status: 500,
+                   book_state_updated_info: book_state_updated_info,
+                   total_page_update_result: total_page_update_result,
+                   message: '最後まで処理できませんでした。もう一度お試しください',
+                 }
           return
         end
 
@@ -33,9 +42,13 @@ class BooksController < ApplicationController
       end
       render json: json_response
     elsif book_reading_state_result[:updated] == false
-      render json: { status: 502, message: '本のステータスの更新ができませんでした。もう一度お試しください' }
+      render json: {
+               status: 502,
+               total_page_update_result: total_page_update_result,
+               message: '本のステータスの更新ができませんでした。もう一度お試しください',
+             }
     else
-      render json: { status: :ok }
+      render json: { status: :ok, total_page_update_result: total_page_update_result }
     end
   end
 
@@ -222,7 +235,7 @@ class BooksController < ApplicationController
     render('show', locals: { book: book_view_model })
   end
 
-  def img_params
+  def book_params
     params.permit(:input_total_page)
   end
 end
