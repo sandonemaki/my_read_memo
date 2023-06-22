@@ -13,7 +13,7 @@
             <h1><%= book.title %></h1>
             <p>著者：<%= book.author %></p>
             <p>出版社：<%= book.publisher %></p>
-            <p>読むページ数：<%= book.total_page %></p>
+            <p>読むページ数：<span id="current-total-page"><%= book.total_page %><span></p>
           </div>
         </div>
         <div class="book-cover">
