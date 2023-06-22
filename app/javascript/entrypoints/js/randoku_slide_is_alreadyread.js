@@ -70,12 +70,12 @@ export const book_reading_progress_update = (responseData) => {
 
 // 乱読画像の状態が update される -> 乱読画像の未読/既読の数を更新
 const img_read_status_count_update = (responseData) => {
-  const img_read_status_count = document.querySelector('#img_read_status_count');
+  const img_read_status_count = document.querySelector('#randoku_imgs_unread_count');
   // responseDataから変数を取り出す
   const img_unread_count = responseData.img_unread_count;
-  const img_already_read_count = responseData.img_already_read_count;
-  if (img_unread_count !== undefined && img_already_read_count !== undefined) {
-    img_read_status_count.textContent = `未読：${img_unread_count}, 読了：${img_already_read_count}`;
+  // const img_already_read_count = responseData.img_already_read_count;
+  if (img_unread_count !== undefined) {
+    img_read_status_count.textContent = `${img_unread_count}`;
   }
 };
 
