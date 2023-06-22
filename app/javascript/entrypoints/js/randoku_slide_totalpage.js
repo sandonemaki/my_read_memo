@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
       book_seidoku_memo_key(responseData);
       book_update_total_page(responseData);
       book_update_seidoku_standard(responseData);
+    }
   };
 });
 
@@ -54,7 +55,7 @@ const book_update_total_page = (responseData) => {
   });
 };
 
-book_update_seidoku_standard = (responseData) => {
+const book_update_seidoku_standard = (responseData) => {
   const book_seidoku_line_1_list = document.querySelectorAll('.book_seidoku_line_1');
   book_seidoku_line_1_list.forEach((book_seidoku_line_1) => {
     if (responseData.seidoku_line_1) {
