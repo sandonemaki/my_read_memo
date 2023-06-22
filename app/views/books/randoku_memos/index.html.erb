@@ -46,9 +46,9 @@
     <div class="tabbed-content tabbed-content-memos-inner">
       <div>
         <p id="img_read_status_count">
-          乱読画像メモ：未読<%= book.randoku_imgs_unread_count %>枚 （精読基準：メモ数<%=
+          乱読画像メモ：未読<%= book.randoku_imgs_unread_count %>枚 （精読基準：総画像メモ<%=
             book.seidoku_line_1
-          %>以上、未読数<%= book.seidoku_line_2 %>未満）
+          %>枚以上、未読画像メモ<%= book.seidoku_line_2 %>枚未満）
         </p>
         <% if book.first_post_img_path.present? %>
           <%=
