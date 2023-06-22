@@ -28,14 +28,11 @@
           <li class="tab-show-book-progress">乱読メモ</li>
           <li class="tab-show-book-progress">
             精読メモ
-
-            <p class="seidoku_memo_key">
-              <!-- レイアウトの便利上逆にしている -->
-              <i
-                class="fa-solid fa-lock lock-key 
-            <%= book.seidoku_memo_key == false ? '' : 'memo_key_hidde' %>"
-              ></i>
-            </p>
+            <% if book.seidoku_memo_key == true %>
+              <p class="seidoku_memo_key">
+                <i class="fa-solid fa-lock lock-key"></i>
+              </p>
+            <% end %>
           </li>
         </ul>
       </div>

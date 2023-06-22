@@ -49,11 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // 乱読画像の状態が / トータルページが
 // update される -> 乱読画像の未読・既読の数が変わる -> 精読なら精読メモタブの鍵を外す
 export const book_seidoku_memo_key = (responseData) => {
-  const seidokuMemoKeyIcon = document.querySelector('.seidoku_memo_key .fa-lock');
   const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
-  if (responseData.book_seidoku_memo_key === 'key_false') {
-    //seidokuMemoKeyIcon.classList.add('memo_key_hidden');
-    seidokuMemoKeyWord.textContent = '精読メモタブ開錠';
+  if (responseData.book_seidoku_memo_key === 'key_false' && seidokuMemoKeyWord) {
+    seidokuMemoKeyWord.remove();
   }
 };
 
