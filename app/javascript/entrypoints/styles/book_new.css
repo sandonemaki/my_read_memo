@@ -33,7 +33,7 @@
 }
 /**** 本の情報入力欄 ****/
 .book-profile-form {
-  width: 380px;
+  width: 70%;
   margin: auto;
   margin-bottom: 30px;
 }
@@ -61,7 +61,8 @@
 .book-profile-totalpage {
   background-color: #d4dce4;
   border-radius: 20px;
-  width: 380px;
+  width: 70%;
+  /*width: 380px;*/
   margin: auto;
   padding: 24px 20px;
   text-align: center;
@@ -92,7 +93,7 @@
   text-decoration: none;
   margin: auto;
   display: flex;
-  width: 380px;
+  width: 70%;
   justify-content: center;
   align-items: center;
   height: 45px;
