@@ -12,6 +12,10 @@ class BooksController < ApplicationController
     # total_pageの保存が成功した後に実行
     total_page_update_result = book.total_page
     book_reading_state_result = book.try_update_reading_state
+    randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
+    randoku_imgs_unread_count = randoku_imgs_group_count[0] ||= 0 # 未読の数
+    seidoku_line_1 = (book.total_page * (1.0 / 8.0)).floor
+    seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor
 
     # 本の状態の更新があった場合
     if book_reading_state_result[:updated] == true
@@ -21,6 +25,9 @@ class BooksController < ApplicationController
         status: :ok,
         book_state_updated_info: book_state_updated_info,
         total_page_update_result: total_page_update_result,
+        randoku_imgs_unread_count: randoku_imgs_unread_count,
+        seidoku_line_1: seidoku_line_1,
+        seidoku_line_2: seidoku_line_2,
       }
 
       # 更新された本の状態が"精読"であれば精読メモのタブの鍵を外す
@@ -32,6 +39,9 @@ class BooksController < ApplicationController
                    status: 500,
                    book_state_updated_info: book_state_updated_info,
                    total_page_update_result: total_page_update_result,
+                   randoku_imgs_unread_count: randoku_imgs_unread_count,
+                   seidoku_line_1: seidoku_line_1,
+                   seidoku_line_2: seidoku_line_2,
                    message: '最後まで処理できませんでした。もう一度お試しください',
                  }
           return
@@ -45,10 +55,19 @@ class BooksController < ApplicationController
       render json: {
                status: 502,
                total_page_update_result: total_page_update_result,
+               randoku_imgs_unread_count: randoku_imgs_unread_count,
+               seidoku_line_1: seidoku_line_1,
+               seidoku_line_2: seidoku_line_2,
                message: '本のステータスの更新ができませんでした。もう一度お試しください',
              }
     else
-      render json: { status: :ok, total_page_update_result: total_page_update_result }
+      render json: {
+               status: :ok,
+               total_page_update_result: total_page_update_result,
+               randoku_imgs_unread_count: randoku_imgs_unread_count,
+               seidoku_line_1: seidoku_line_1,
+               seidoku_line_2: seidoku_line_2,
+             }
     end
   end
 

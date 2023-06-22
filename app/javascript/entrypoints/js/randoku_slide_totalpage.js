@@ -55,10 +55,24 @@ const book_update_total_page = (responseData) => {
 };
 
 book_update_seidoku_standard = (responseData) => {
-  const current_total_page_list = document.querySelectorAll('.randoku_imgs_unread_count');
-  current_total_page_list.forEach((current_total_page) => {
-    if (responseData.total_page_update_result) {
-      current_total_page.textContent = responseData.total_page_update_result;
+  const randoku_imgs_unread_count_list = document.querySelectorAll('.randoku_imgs_unread_count');
+  randoku_imgs_unread_count_list.forEach((randoku_imgs_unread_count) => {
+    if (responseData.randoku_imgs_unread_count) {
+      randoku_imgs_unread_count.textContent = responseData.randoku_imgs_unread_count;
+    }
+  });
+
+  const book_seidoku_line_1_list = document.querySelectorAll('.book_seidoku_line_1');
+  book_seidoku_line_1_list.forEach((book_seidoku_line_1) => {
+    if (responseData.seidoku_line_1) {
+      book_seidoku_line_1.textContent = responseData.seidoku_line_1;
+    }
+  });
+
+  const book_seidoku_line_2_list = document.querySelectorAll('.book_seidoku_line_2');
+  book_seidoku_line_2_list.forEach((book_seidoku_line_2) => {
+    if (responseData.seidoku_line_2) {
+      book_seidoku_line_2.textContent = responseData.seidoku_line_2;
     }
   });
 };
