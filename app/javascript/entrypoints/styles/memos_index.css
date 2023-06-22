@@ -13,6 +13,11 @@
   background-color: white;
   padding: 4px 6.75px;
 }
+.seidoku_status_count span {
+  border-radius: 50%;
+  background-color: white;
+  padding: 4px 6.75px;
+}
 .show-memo-plus-count {
   display: flex;
   align-items: center;

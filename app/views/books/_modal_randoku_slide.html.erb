@@ -38,7 +38,22 @@
                 value="<%= book.total_page.present? && book.total_page != 0 ? book.total_page : 20 %>"
               />
               <p id="total_page_valid_error"></p>
+              <div class="cirremt-total-page-wrap">
+                <p class="current-total-page-text">現在読む予定</p>
+                <p class="current-total-page">
+                  <span class="js-update-current-total-page"><%= book.total_page %></span>
+                  <span class="total-page-unit">P</span>
+                </p>
+              </div>
+              <p id="img_read_status_count_modal">
+                <span
+                  >（精読基準：画像メモ <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読
+                  <span class="book_seidoku_line2"><%= book.seidoku_line_2 %></span>枚未満）</span
+                ><br />現在の乱読画像メモの未読は
+                <span class="randoku_imgs_unread_count"><%= book.randoku_imgs_unread_count %></span>枚
+              </p>
             </div>
+
             <input id="total_page_submit_btn" data-book-id="<%= book.id %>" type="submit" value="更新する" />
             <!--<% end %>-->
           </div>

@@ -40,6 +40,33 @@ document.addEventListener('DOMContentLoaded', function () {
       js_flash('保存しました');
       book_reading_progress_update(responseData);
       book_seidoku_memo_key(responseData);
+      book_update_total_page(responseData);
+      book_update_seidoku_standard(responseData);
     }
   };
 });
+
+const book_update_total_page = (responseData) => {
+  const current_total_page_list = document.querySelectorAll('.js-update-current-total-page');
+  current_total_page_list.forEach((current_total_page) => {
+    if (responseData.total_page_update_result) {
+      current_total_page.textContent = responseData.total_page_update_result;
+    }
+  });
+};
+
+const book_update_seidoku_standard = (responseData) => {
+  const book_seidoku_line_1_list = document.querySelectorAll('.book_seidoku_line_1');
+  book_seidoku_line_1_list.forEach((book_seidoku_line_1) => {
+    if (responseData.seidoku_line_1) {
+      book_seidoku_line_1.textContent = responseData.seidoku_line_1;
+    }
+  });
+
+  const book_seidoku_line_2_list = document.querySelectorAll('.book_seidoku_line_2');
+  book_seidoku_line_2_list.forEach((book_seidoku_line_2) => {
+    if (responseData.seidoku_line_2) {
+      book_seidoku_line_2.textContent = responseData.seidoku_line_2;
+    }
+  });
+};

@@ -28,14 +28,11 @@
           <li class="tab-show-book-progress">乱読メモ</li>
           <li class="tab-show-book-progress">
             精読メモ
-
-            <p class="seidoku_memo_key">
-              <!-- レイアウトの便利上逆にしている -->
-              <i
-                class="fa-solid fa-lock lock-key 
-            <%= book.seidoku_memo_key == false ? '' : 'memo_key_hidde' %>"
-              ></i>
-            </p>
+            <% if book.seidoku_memo_key == true %>
+              <p class="seidoku_memo_key">
+                <i class="fa-solid fa-lock lock-key"></i>
+              </p>
+            <% end %>
           </li>
         </ul>
       </div>
@@ -46,9 +43,10 @@
     <div class="tabbed-content tabbed-content-memos-inner">
       <div>
         <p id="img_read_status_count">
-          乱読画像メモ：未読<%= book.randoku_imgs_unread_count %>枚 （精読基準：総画像メモ<%=
-            book.seidoku_line_1
-          %>枚以上、未読画像メモ<%= book.seidoku_line_2 %>枚未満）
+          乱読画像メモ：未読
+          <span class="randoku_imgs_unread_count"><%= book.randoku_imgs_unread_count %></span>枚 （精読基準：総画像メモ
+          <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読画像メモ
+          <span class="book_seidoku_line_2"><%= book.seidoku_line_2 %></span>枚未満）
         </p>
         <% if book.first_post_img_path.present? %>
           <%=

@@ -49,11 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // 乱読画像の状態が / トータルページが
 // update される -> 乱読画像の未読・既読の数が変わる -> 精読なら精読メモタブの鍵を外す
 export const book_seidoku_memo_key = (responseData) => {
-  const seidokuMemoKeyIcon = document.querySelector('.seidoku_memo_key .fa-lock');
   const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
-  if (responseData.book_seidoku_memo_key === 'key_false') {
-    //seidokuMemoKeyIcon.classList.add('memo_key_hidden');
-    seidokuMemoKeyWord.textContent = '精読メモタブ開錠';
+  if (responseData.book_seidoku_memo_key === 'key_false' && seidokuMemoKeyWord) {
+    seidokuMemoKeyWord.remove();
   }
 };
 
@@ -70,12 +68,12 @@ export const book_reading_progress_update = (responseData) => {
 
 // 乱読画像の状態が update される -> 乱読画像の未読/既読の数を更新
 const img_read_status_count_update = (responseData) => {
-  const img_read_status_count = document.querySelector('#img_read_status_count');
+  const img_read_status_count = document.querySelector('.randoku_imgs_unread_count');
   // responseDataから変数を取り出す
   const img_unread_count = responseData.img_unread_count;
-  const img_already_read_count = responseData.img_already_read_count;
-  if (img_unread_count !== undefined && img_already_read_count !== undefined) {
-    img_read_status_count.textContent = `未読：${img_unread_count}, 読了：${img_already_read_count}`;
+  // const img_already_read_count = responseData.img_already_read_count;
+  if (img_unread_count !== undefined) {
+    img_read_status_count.textContent = `${img_unread_count}`;
   }
 };
 
