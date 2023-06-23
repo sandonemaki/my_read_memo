@@ -1,0 +1,97 @@
+<body class="book-show-bk">
+  <div class="tabbed-content-bk">
+    <div class="tabbed-content tabbed-content-memos-inner">
+      <div>
+        <p id="img_read_status_count">
+          乱読画像メモ：未読
+          <span class="randoku_imgs_unread_count"><%= book.randoku_imgs_unread_count %></span>枚 （精読基準：総画像メモ
+          <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読画像メモ
+          <span class="book_seidoku_line_2"><%= book.seidoku_line_2 %></span>枚未満）
+        </p>
+        <% if book.first_post_img_path.present? %>
+          <%=
+            link_to '初めての乱読画像',
+                    'javascript:void(0)',
+                    class: 'sw_modal_trigger',
+                    'data-slide-index': 0,
+                    'data-src': "#{book.first_post_img_path}"
+          %>
+        <% end %>
+      </div>
+
+      <div class="upload-file-form">
+        <!--画像アップロードフォームを表示-->
+        <%= form_tag("/books/#{book.id}/imgs", multipart: true, id: 'upload-form') do %>
+          <input
+            id="file-field"
+            name="page_imgs[]"
+            type="file"
+            multiple="true"
+            accept=".jpg, .jpeg, .png, .heic, .pdf"
+            style="display: none;"
+            onchange="form.submit()"
+          />
+          <label for="file-field" class="">画像をアップロード</label>
+        <% end %>
+
+        <p class="upload-description">
+          jpg/jpeg/png/heic/1pageのpdfが投稿できます。<br />
+          同じ名前の画像は上書きされます。複数枚投稿できます。
+        </p>
+      </div>
+
+      <div>
+        <p class="imgs-count">Total <%= book.randoku_imgs_all_count %>枚</p>
+        <!--画像メモ一覧を表示-->
+        <% if book.randoku_imgs_all.empty? %>
+          "画像がありません"
+        <% else %>
+          <ul class="img-thumbnails">
+            <% book.randoku_imgs_all.each_with_index do |img, i| %>
+              <li class="img-thumbnail">
+                <!--
+              <div
+                class="thumbnail-wide"
+                data-slide-index="<%= i %>"
+                style="background-image: url(<%= "#{img.thumbnail_path}" %>?#{Time.now.to_i})"
+              ></div>
+              -->
+
+                <img
+                  src="<%= "#{img.thumbnail_path}" %>?#{Time.now.to_i}"
+                  alt=" "
+                  class="sw_modal_trigger"
+                  data-slide-index="<%= i %>"
+                />
+
+                <div class="img-info">
+                  <div class="img-item-name">
+                    <p class="img-name"><%= img.name %></p>
+                    <p class="img-updated"><%= img.updated_at %></p>
+                  </div>
+                  <div class="img-item-icon">
+                    <p class="is_already_read_check" data-img-id="<%= img.id %>">
+                      <%=
+                        if img.alreadyread == 0
+                          '<i class="fa-regular fa-square-check thumb-nocheck"></i>'.html_safe
+                        else
+                          '<i class="fa-solid fa-square-check  thumb-check"></i>'.html_safe
+                        end
+                      %>
+                    </p>
+                    <p class="img_bookmark_check" data-img-id="<%= img.id %>">
+                      <i class="fa-bookmark <%= img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"></i>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 乱読画像を表示するためのモーダル -->
+    <%= render partial: 'books/modal_randoku_slide', locals: { book: book } %>
+  </div>
+</body>

@@ -1,0 +1,68 @@
+<body class="book-show-bk">
+  <div class="tabbed-content-bk">
+    <div class="tabbed-content tabbed-content-memos-inner">
+      <div>
+        <p id="img_read_status_count">
+          乱読画像メモ：未読
+          <span class="randoku_imgs_unread_count"><%= book.randoku_imgs_unread_count %></span>枚 （精読基準：総画像メモ
+          <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読画像メモ
+          <span class="book_seidoku_line_2"><%= book.seidoku_line_2 %></span>枚未満）
+        </p>
+        <% if book.first_post_img_path.present? %>
+          <%=
+            link_to '初めての乱読画像',
+                    'javascript:void(0)',
+                    class: 'sw_modal_trigger',
+                    'data-slide-index': 0,
+                    'data-src': "#{book.first_post_img_path}"
+          %>
+        <% end %>
+      </div>
+
+      <!--<div class="memo-count-info">-->
+      <div class="show-memo-plus-count">
+        <p>Total <%= book.randoku_memos_all_count %>枚</p>
+        <div class="show-memo-plus-btn">
+          <%=
+            link_to(
+              '<i class="fa-solid fa-circle-plus fa-2xl memo-plus-btn"></i>'.html_safe,
+              "/books/#{book.id}/randoku_memos/new",
+            )
+          %>
+        </div>
+      </div>
+
+      <div class="tabbed-memos-content">
+        <% if book.randoku_memos.empty? %>
+          <p>"まだ乱読メモがありません"</p>
+        <% else %>
+          <% book.randoku_memos.each_with_index do |memo| %>
+            <div class="tabbed-memo-content">
+              <!--昇順-->
+              <!-- memo-header -->
+              <div class="memo-content-header">
+                <p class="memo-created-at"><%= memo.created_at %></p>
+                <p class="memo-edit-btn navi-trigger-btn-js">
+                  <i class="fa-solid fa-ellipsis memo-ellipsis "></i>
+                </p>
+              </div>
+              <!-- navi-menu -->
+              <div class="memo-edit-navi navi-panel-js">
+                <ul class="edit-menus">
+                  <li class="edit-menu">
+                    <%= link_to('編集', '#', class: 'button') %>
+                  </li>
+                  <li class="edit-menu">
+                    <%= link_to('削除', '#', class: 'button') %>
+                  </li>
+                </ul>
+              </div>
+              <p class="memo-content-type"># <%= memo.content_type %></p>
+              <p class="memo-content-text"><%= memo.content %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</body>
