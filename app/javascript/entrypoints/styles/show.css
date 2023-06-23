@@ -57,22 +57,7 @@
   margin-top: 16px;
   display: flex;
 }
-.tab-book-progress {
-  border: 1px solid rgb(48, 200, 214);
-  border-bottom: none;
-  border-radius: 8px 8px 0 0;
-  padding: 14px 24px;
-  background-color: #d4dce4;
-  cursor: pointer;
-  position: relative;
-  font-size: 12px;
-  text-align: center;
-  /*width: 20%;*/
-  line-height: 24px;
-  border-top-right-radius: 100px 250px;
-  border-top-left-radius: 100px 250px;
-  /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);*/
-}
+
 .seidoku_memo_key {
   position: absolute;
   top: 0;
@@ -83,16 +68,15 @@
   transform: translate(30%, -40%);
 }
 
-.tab-book-progress.active {
+/*.tab-book-progress.is-active {
   background-color: #f0f4f9;
   z-index: 2;
-}
-.book-progress.active .book_reading_progress {
+}*/
+/*.book-progress .book_reading_progress {
   background-color: rgb(35, 164, 176);
 }
 .book-progress .book_reading_progress {
-  background-color: rgb(48, 200, 214);
-}
+  backgro*/
 .sw_modal_trigger {
   color: gray;
   font-size: 12px;
@@ -187,4 +171,65 @@
 }
 .img-name {
   margin-bottom: 4px;
+}
+/*** テンプレタブ ***/
+.tab__menu {
+}
+
+.tab__menu-item {
+  transition: all 0.3s; /* アニメーション */
+}
+
+/* is-activeがついている時のスタイル */
+.tab__menu-item.is-active {
+  background-color: #f0f4f9;
+  cursor: auto;
+  z-index: 2;
+}
+
+/* タブパネル */
+.tab__panel {
+  width: 100%;
+}
+
+.tab__panel-box {
+  display: none;
+}
+
+/* is-showがついている時のスタイル */
+.tab__panel-box.is-show {
+  display: block;
+}
+
+.tabbed-show-work-area {
+  display: flex;
+  padding: 0 10px;
+}
+
+.tabbled-book-show {
+  display: flex;
+  justify-content: space-between;
+  /*border-bottom: 1px solid rgb(48, 200, 214);*/
+  margin-top: 60px;
+}
+
+.tabbled-book-show .tabbed-show-work-area {
+  width: 50%;
+}
+
+.tab-book-progress {
+  border: 1px solid rgb(48, 200, 214);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 14px 24px;
+  background-color: #d4dce4;
+  cursor: pointer;
+  position: relative;
+  font-size: 12px;
+  text-align: center;
+  /*width: 20%;*/
+  line-height: 24px;
+  border-top-right-radius: 100px 250px;
+  border-top-left-radius: 100px 250px;
+  /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);*/
 }

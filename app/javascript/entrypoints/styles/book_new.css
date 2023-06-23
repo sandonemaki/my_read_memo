@@ -78,7 +78,7 @@
   border: 1px solid #d0d5d8;
   height: 70px;
   color: #555;
-  font-size: 23px;
+  font-size: 32px;
   cursor: pointer;
 }
 #book_info_submit {
@@ -126,13 +126,30 @@
 }
 
 /****モーダルのトータルページ更新****/
-.ModalContent {
-  padding: 32px;
+.ModalContent.slide {
+  padding: 50px 0px;
+  width: 650px;
+  padding: 60px 0;
+  text-align: center;
 }
-.modal-totl-page {
+.modal-total-page.slide {
   text-align: center;
   margin-bottom: 24px;
 }
+.total-page-title.slide {
+  font-size: 28px;
+  letter-spacing: 1.4px;
+  line-height: 1.5;
+  margin-bottom: 13px;
+}
+.total-page-description.slide {
+  margin-bottom: 20px;
+}
+.input-total-page.slide {
+  width: 60%;
+  height: 85px;
+}
+
 #total_page_submit_btn {
   font-size: 0.875rem;
   /*display: inline-block;*/
@@ -150,6 +167,10 @@
   align-items: center;
   height: 45px;
 }
+.total-page-submit-btn.slide {
+  height: 60px;
+  width: 60%;
+}
 #total_page_submit_btn:hover {
   background-color: rgb(35, 164, 176);
 }
@@ -157,4 +178,20 @@
   transition: all 0.3s ease-in-out 0s;
   color: rgba(186, 198, 211, 0.6);
   background-color: rgb(240, 244, 249);
+}
+.js-update-current-total-page {
+  font-size: 18px;
+}
+.total-page-unit {
+  font-size: 14px;
+}
+#img_read_status_count_modal {
+  font-size: 14px;
+  margin-top: 4px;
+  line-height: 1.75;
+}
+.current-total-page-text {
+  font-size: 12px;
+  margin-top: 20px;
+  margin-bottom: 2px;
 }

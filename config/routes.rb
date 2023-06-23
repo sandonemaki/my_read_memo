@@ -14,10 +14,14 @@ Rails
     get 'books/seidoku_rank_most_randoku_imgs' => 'books#seidoku_rank_most_randoku_imgs'
 
     get 'home/search'
+
+    # showページのタブ
+    get 'books/:id/' => 'books#show_tabs'
     get 'books/new' => 'books#new' # new_book_page_path
     post 'books/create' => 'books#create' # book_pages_path
     get 'books/create' => 'books#new' # book_pages_path
-    get 'books/:id' => 'books#show' # book_page_path
+
+    #get 'books/:id' => 'books#show' # book_page_path
     post 'books/:id/update_total_page' => 'books#update_total_page'
 
     #randoku_img

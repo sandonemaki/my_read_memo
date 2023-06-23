@@ -1,4 +1,4 @@
-.sw-modal * {
+.sw-modal {
   color: #35b7e4;
 }
 /**** seidoku-tab ****/
@@ -14,6 +14,7 @@
   left: 0;
   right: 0;
   margin: 8px;
+  margin-left: 600px;
   padding: 32px;
   box-sizing: border-box;
   background-color: #f9fbfe;
@@ -317,9 +318,6 @@
 /**** トータルページモーダル ****/
 *:before {
   box-sizing: border-box;
-}
-.modal-totl-page * {
-  color: #2b546a;
 }
 
 .ModalOverlay,
