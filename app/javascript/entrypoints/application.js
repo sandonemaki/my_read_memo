@@ -14,6 +14,7 @@ import '@/entrypoints/js/randoku_slide.js';
 import '@/entrypoints/js/randoku_slide_download_btn.js';
 import '@/entrypoints/js/panzoom.js';
 import '@/entrypoints/js/navigation.js';
+import '@/entrypoints/js/tabbed.js';
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //
