@@ -248,6 +248,31 @@ class BooksController < ApplicationController
     render('show', locals: { book: book_view_model })
   end
 
+  def show_tabs
+    book = Book.find_by(id: params[:id])
+    new_path = "books/#{book.id}"
+
+    # 学習履歴を保存
+    if %w[0 2].include?(book.reading_state.to_s)
+      RandokuHistory.set(new_path, book.id)
+    else
+      SeidokuHistory.set(new_path, book.id)
+    end
+
+    book_imgs_view_model = ViewModel::BooksShow.new(book: book)
+    randoku_memos_view_model = ViewModel::BooksRandokuMemosIndex.new(book: book)
+    seidoku_memos_view_model = ViewModel::BooksSeidokuMemosIndex.new(book: book)
+
+    render(
+      'show_tabs',
+      locals: {
+        book: book_imgs_view_model,
+        book_randoku_memos: randoku_memos_view_model,
+        book_seidoku_memos: seidoku_memos_view_model,
+      },
+    )
+  end
+
   def book_params
     params.permit(:input_total_page)
   end
