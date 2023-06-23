@@ -18,18 +18,19 @@
         <!-- トータルページモーダル -->
         <div class="ModalOverlay"></div>
         <div class="ModalWrapper">
-          <div class="ModalContent">
+          <div class="ModalContent slide">
             <i class="ModalCloseButton fa-solid fa-xmark" aria-hidden="true"></i>
             <!--<%= form_tag("/books/total_page_update", method: :post) do %>-->
-            <div class="modal-totl-page">
-              <p class="total-page-title">読む予定のページ数を<br />入力してください</p>
-              <p class="total-page-description">
+            <div class="modal-total-page slide">
+              <p class="total-page-title slide">読む予定のページ数を<br />入力してください</p>
+              <p class="total-page-description slide">
                 読む予定とは本のページ数のことです。<br />
                 「乱読」と「精読」の評価に使われる数字です。<br />
                 <span>（20-999の整数のみ入力できます）</span>
               </p>
               <input
                 id="input_total_page"
+                class="input-total-page slide"
                 type="number"
                 name="total_page"
                 min="20"
@@ -54,7 +55,13 @@
               </p>
             </div>
 
-            <input id="total_page_submit_btn" data-book-id="<%= book.id %>" type="submit" value="更新する" />
+            <input
+              id="total_page_submit_btn"
+              class="total-page-submit-btn slide"
+              data-book-id="<%= book.id %>"
+              type="submit"
+              value="更新する"
+            />
             <!--<% end %>-->
           </div>
         </div>
