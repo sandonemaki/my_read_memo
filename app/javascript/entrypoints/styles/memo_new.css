@@ -92,3 +92,43 @@
   margin: auto;
   right: 16px;
 }
+
+/**** memos-new ****/
+@media screen and (max-width: 600px) {
+  .memo-new-content-inner {
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .memo-type-select {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .memo-search-bk.mob {
+    background-color: #fff;
+  }
+  .memo-content-type-selectbox {
+    margin: 20px 0px;
+    width: 100%;
+  }
+  .memo-content-header {
+    display: block;
+  }
+  .memo-submit-button {
+    margin: auto;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .memo-new-content-input-area {
+    padding-bottom: 20px;
+  }
+  .memo-input-textarea {
+    display: block;
+  }
+  .memo-content-type-selectbox::after {
+    transform: translate(50%, -50%) rotate(45deg);
+  }
+  .memo-content-header-info {
+    justify-content: space-between;
+  }
+}

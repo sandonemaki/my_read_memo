@@ -91,3 +91,9 @@ li {
 .user-menu:hover {
   background-color: #f3f4f5;
 }
+
+@media screen and (max-width: 600px) {
+  .header-menus-wrapper {
+    display: none;
+  }
+}
