@@ -3,6 +3,10 @@ Rails
   .routes
   .draw do
     get 'test/index' => 'test#index'
+    get 'books/new' => 'books#new' # new_book_page_path
+    post 'books/create' => 'books#create' # book_pages_path
+    get 'books/create' => 'books#new' # book_pages_path
+    get 'books/:id/' => 'books#show_tabs'
 
     # randoku_inex_ランキング
     get 'books/randoku_rank_created_books' => 'books#randoku_rank_created_books'
@@ -15,12 +19,6 @@ Rails
 
     get 'home/search'
 
-    # showページのタブ
-    get 'books/:id/' => 'books#show_tabs'
-    get 'books/new' => 'books#new' # new_book_page_path
-    post 'books/create' => 'books#create' # book_pages_path
-    get 'books/create' => 'books#new' # book_pages_path
-
     #get 'books/:id' => 'books#show' # book_page_path
     post 'books/:id/update_total_page' => 'books#update_total_page'
 
@@ -30,12 +28,12 @@ Rails
     put 'books/:book_id/imgs/:id/toggle_bookmark' => 'books/imgs#toggle_bookmark'
 
     #randoku_memo
-    get 'books/:book_id/randoku_memos/index' => 'books/randoku_memos#index'
+    # get 'books/:book_id/randoku_memos/index' => 'books/randoku_memos#index'
     get 'books/:book_id/randoku_memos/new' => 'books/randoku_memos#new'
     post 'books/:book_id/randoku_memos/create' => 'books/randoku_memos#create'
 
     #seidoku_memo
-    get 'books/:book_id/seidoku_memos/index' => 'books/seidoku_memos#index'
+    # get 'books/:book_id/seidoku_memos/index' => 'books/seidoku_memos#index'
     get 'books/:book_id/seidoku_memos/new' => 'books/seidoku_memos#new'
     post 'books/:book_id/seidoku_memos/create' => 'books/seidoku_memos#create'
 
