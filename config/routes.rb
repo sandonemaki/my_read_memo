@@ -2,11 +2,10 @@ Rails
   .application
   .routes
   .draw do
-    get 'test/index' => 'test#index'
     get 'books/new' => 'books#new' # new_book_page_path
     post 'books/create' => 'books#create' # book_pages_path
     get 'books/create' => 'books#new' # book_pages_path
-    get 'books/:id/' => 'books#show_tabs'
+    get 'books/:id/' => 'books#show_tabs', :constraints => { id: /\d+/ }
 
     # randoku_inex_ランキング
     get 'books/randoku_rank_created_books' => 'books#randoku_rank_created_books'
@@ -23,7 +22,7 @@ Rails
     post 'books/:id/update_total_page' => 'books#update_total_page'
 
     #randoku_img
-    post 'books/:book_id/imgs' => 'books/imgs#create' # book_page_imgs_path
+    post 'books/:book_id/imgs' => 'books/imgs#create'
     put 'books/:book_id/imgs/:id/toggle_already_read' => 'books/imgs#toggle_already_read'
     put 'books/:book_id/imgs/:id/toggle_bookmark' => 'books/imgs#toggle_bookmark'
 
