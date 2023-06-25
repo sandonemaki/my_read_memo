@@ -91,3 +91,89 @@ li {
 .user-menu:hover {
   background-color: #f3f4f5;
 }
+/***** 共通ボタン *****/
+.submit-button {
+  font-size: 0.875rem;
+  display: flex;
+  padding: 0px 16px;
+  background-color: #30c8d6;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+}
+.submit-button:hover {
+  background-color: rgb(35, 164, 176);
+}
+.submit-button:disabled {
+  transition: all 0.3s ease-in-out 0s;
+  color: rgba(186, 198, 211, 0.6);
+  background-color: rgb(240, 244, 249);
+}
+
+.upload-button {
+  font-size: 0.875rem;
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #30c8d6;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: none;
+  margin: auto;
+}
+.upload-button:hover {
+  background-color: rgb(35, 164, 176);
+}
+.submit-button-radius {
+  width: 120px;
+  height: 40px;
+  border: 3px solid #35b7e4;
+  color: #35b7e4;
+  border-radius: 100vh;
+  transition: 0.5s;
+  margin: 0 20px;
+  letter-spacing: 1px;
+}
+.submit-button-radius:hover {
+  border: 3px solid #2090b6;
+  color: #2090b6;
+}
+.submit-button-radius.completion {
+  color: #fff;
+  background: #35b7e4;
+}
+
+/**** 円のボタン ****/
+.circle-btn {
+  position: absolute;
+  border-radius: 50%;
+  bottom: -5px;
+  right: -13px;
+  background-color: rgb(48, 200, 214);
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+
+/**** 背景色 *****/
+.bk-color-darkgray {
+  background-color: #2b546a;
+}
+.bk-color-white {
+  background-color: #fff;
+}
+
+/**** カラー *****/
+.color-darkgray {
+  color: #2b546a;
+}
+.color-darkgreen {
+  color: rgb(28, 142, 153);
+}

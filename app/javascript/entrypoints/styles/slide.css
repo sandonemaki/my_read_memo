@@ -182,20 +182,7 @@
   justify-content: center;
   width: 100%;
 }
-.sw-read-btn {
-  width: 120px;
-  height: 40px;
-  border: 3px solid #35b7e4;
-  color: #35b7e4;
-  border-radius: 100vh;
-  transition: 0.5s;
-  margin: 0 20px;
-  letter-spacing: 1px;
-}
-.sw-read-btn.completion {
-  color: #fff;
-  background: #35b7e4;
-}
+
 /**** bookmark ****/
 .sw_bookmark_btn {
   display: flex;
@@ -259,7 +246,6 @@
   border: none;
   outline: none;
   background: transparent;
-  color: #35b7e4;
 }
 .swiper-button-prev {
   left: 40px;
@@ -531,10 +517,7 @@
 .totalpage-btn:hover {
   background-color: #2090b6;
 }
-.sw-read-btn:hover {
-  border: 3px solid #2090b6;
-  color: #2090b6;
-}
+
 .slide-while {
   margin: 0 8px;
 }
