@@ -1,8 +1,10 @@
 <%= render partial: 'layouts/header' %>
 <div class="book-index">
-  <!-- seidoku_indexの共通部分 -->
-  <%= render partial: 'books/seidoku_index_common', locals: { books: books } %>
+  <!-- randoku_indexの共通部分 -->
+  <%= render partial: 'books/index_tabs/randoku_index_common', locals: { books: books } %>
 
+  <!-- タブの下 -->
+  <%= render partial: 'books/index_tabs/randoku_index_pre_lesson_common', locals: { books: books } %>
   <div class="index-user-book-table">
     <div class="index-user-lesson-label">
       <p><i class="fa-solid fa-book fa-lg index-lesson-label-icon"></i></p>
@@ -43,11 +45,11 @@
           </div>
 
           <div class="index-user-book-memo-count">
-            <p><span class="index-book-label">精読メモ数</span></p>
+            <p><span class="index-book-label">乱読メモ数</span></p>
             <div class="index-book-memo">
               <i class="fa-regular fa-note-sticky fa-lg index-memo-icon"></i>
               <p>
-                <span class="index-book-memo-count"><%= book[:seidoku_memos_count] %></span>
+                <span class="index-book-memo-count"><%= book[:randoku_memos_count] %></span>
                 <span class="index-book-memo-unit">枚</span>
               </p>
             </div>
