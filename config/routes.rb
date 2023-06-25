@@ -40,5 +40,5 @@ Rails
     get 'memo_search' => 'home#memo_search'
     post 'memo_search_result' => 'home#memo_search_result'
 
-    root to: 'books#randoku_index'
+    root to: 'books#index_tabs'
   end

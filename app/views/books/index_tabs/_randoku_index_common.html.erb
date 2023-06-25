@@ -1,0 +1,30 @@
+<div class="user-profile">
+  <div class="user-profile-item user-status">
+    <img src="https://placehold.jp/50x70.png" alt="ユーザーアイコン" />
+    <p clas="user-profile-name">maki</p>
+  </div>
+  <div class="user-profile__separator"></div>
+  <div class="user-profile-item book-count">
+    <div class="user-profile-cleard-count">
+      <p><i class="fa-solid fa-image fa-lg"></i></p>
+      <p class="user-profile-cleard-count"><%= books.all_randoku_imgs_count %></p>
+    </div>
+    <p class="user-profile-cleared-text">乱読画像数</p>
+  </div>
+  <div class="user-profile__separator"></div>
+  <div class="user-profile-item book-count">
+    <div class="user-profile-cleard-count">
+      <p><i class="fa-solid fa-book fa-lg"></i></p>
+      <p class="user-profile-cleard-count"><%= books.all_count %></p>
+    </div>
+    <p class="user-profile-cleared-text">登録本数</p>
+  </div>
+  <div class="user-profile__separator"></div>
+  <div class="user-profile-item clear-lessons">
+    <div class="user-profile-cleard-count">
+      <p><i class="fa-solid fa-medal fa-lg"></i></p>
+      <p class="user-profile-cleard-count"><%= books.all_seidoku_state_count %></p>
+    </div>
+    <p class="user-profile-cleared-text">精読本数</p>
+  </div>
+</div>
