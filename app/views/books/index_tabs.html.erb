@@ -25,13 +25,13 @@
           <%= raw svg_ranking_sort %>
           <div class="ranking-sort-navi navi-panel-js">
             <ul class="ranking-menus">
-              <li class="ranking-menu">
-                <%= link_to('乱読画像の多い順', :root, class: 'button') %>
+              <li class="ranking-menu randoku_rank_01">
+                <%= link_to('乱読画像の多い順', '/books/randoku_index', class: 'button') %>
               </li>
-              <li class="ranking-menu">
+              <li class="ranking-menu randoku_rank_02">
                 <%= link_to('乱読本の投稿順', '/books/randoku_rank_created_books', class: 'button') %>
               </li>
-              <li class="ranking-menu">
+              <li class="ranking-menu randoku_rank_03">
                 <%= link_to('乱読画像の投稿順', '/books/randoku_rank_created_randoku_imgs', class: 'button') %>
               </li>
             </ul>

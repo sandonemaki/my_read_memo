@@ -12,6 +12,7 @@ module ViewModel
       @books_index_rank =
         created_books_desc_of_randoku_state_books.map do |book|
           {
+            id: book.id,
             title: book.title,
             randoku_imgs_count: book.randoku_imgs.count,
             randoku_memos_count: book.randoku_memos.count

@@ -5,23 +5,24 @@
   </div>
 
   <% if books_rank.books_index_rank.empty? %>
-    <p>乱読本がありません</p>
-  <% elsif books_rank.books_index_rank.empty? %>
-    <p>乱読画像が投稿されていません</p>
+    <p class="no-rank-book">乱読中の本がありません</p>
   <% end %>
 
-  <% books_rank.books_index_rank.each do |book| %>
-    <div class="index-user-book-info">
+  <% books_rank.books_index_rank.each_with_index do |book, i| %>
+    <div class="index-user-book-info book-<%= i %> book-<%= book[:id] %>">
       <div class="index-user-book">
         <div class="index-user-book-cover">
           <% if book[:randoku_ranking].present? %>
-            <i class="fa-solid fa-crown fa-lg index-crown"></i>
+            <i class="fa-solid fa-crown fa-lg index-crown rank"></i>
           <% end %>
           <img src="https://placehold.jp/80x110.png" width="100%" alt="ブックカバー" class="index-book-cover-img" />
         </div>
         <div class="index-user-book-title">
-          <p class="index-book-title"><%= book[:title] %></p>
-          <span class="index-book-progress"><%= book[:reading_state] %></span>
+          <p class="index-book-title rank"><%= book[:title] %></p>
+          <p>book-<%= i %></p>
+          <p>book-<%= book[:id] %></p>
+
+          <span class="index-book-progress rank"><%= book[:reading_state] %></span>
         </div>
       </div>
 
@@ -31,7 +32,7 @@
           <div class="index-book-memo">
             <i class="fa-regular fa-image fa-lg index-memo-icon"></i>
             <p>
-              <span class="index-book-memo-count"><%= book[:randoku_imgs_count] %></span>
+              <span class="index-book-memo-count imgs rank"><%= book[:randoku_imgs_count] %></span>
               <span class="index-book-memo-unit">枚</span>
             </p>
           </div>
@@ -42,7 +43,7 @@
           <div class="index-book-memo">
             <i class="fa-regular fa-note-sticky fa-lg index-memo-icon"></i>
             <p>
-              <span class="index-book-memo-count"><%= book[:randoku_memos_count] %></span>
+              <span class="index-book-memo-count memos rank book-${book[:id]"><%= book[:randoku_memos_count] %></span>
               <span class="index-book-memo-unit">枚</span>
             </p>
           </div>

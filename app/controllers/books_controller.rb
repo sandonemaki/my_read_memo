@@ -116,13 +116,11 @@ class BooksController < ApplicationController
       )
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
-    render(
-      'randoku_index',
-      locals: {
-        books: randoku_index_common_view_models,
-        books_rank: randoku_index_rank_view_models,
-      },
-    )
+    render json: {
+             status: :ok,
+             randoku_books: randoku_index_common_view_models,
+             randoku_rank: randoku_index_rank_view_models,
+           }
   end
 
   # ランキング：randoku_indexの乱読本の投稿順
@@ -139,13 +137,11 @@ class BooksController < ApplicationController
       )
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankCreatedBooks.new(all_randoku_state_books: all_randoku_state_books)
-    render(
-      'randoku_index',
-      locals: {
-        books: randoku_index_common_view_models,
-        books_rank: randoku_index_rank_view_models,
-      },
-    )
+    render json: {
+             status: :ok,
+             randoku_books: randoku_index_common_view_models,
+             randoku_rank: randoku_index_rank_view_models,
+           }
   end
 
   # ランキング：randoku_indexの乱読画像の投稿順
@@ -162,13 +158,11 @@ class BooksController < ApplicationController
       )
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankCreatedImgs.new(all_randoku_state_books: all_randoku_state_books)
-    render(
-      'randoku_index',
-      locals: {
-        books: randoku_index_common_view_models,
-        books_rank: randoku_index_rank_view_models,
-      },
-    )
+    render json: {
+             status: :ok,
+             randoku_books: randoku_index_common_view_models,
+             randoku_rank: randoku_index_rank_view_models,
+           }
   end
 
   # 精読メモの多い順
@@ -189,8 +183,8 @@ class BooksController < ApplicationController
     render(
       'seidoku_index',
       locals: {
-        books: seidoku_index_common_view_models,
-        books_rank: seidoku_index_rank_view_models,
+        seidoku_books: seidoku_index_common_view_models,
+        seidoku_rank: seidoku_index_rank_view_models,
       },
     )
   end
@@ -213,8 +207,8 @@ class BooksController < ApplicationController
     render(
       'seidoku_index',
       locals: {
-        books: seidoku_index_common_view_models,
-        books_rank: seidoku_index_rank_view_models,
+        seidoku_books: seidoku_index_common_view_models,
+        seidoku_rank: seidoku_index_rank_view_models,
       },
     )
   end
@@ -237,8 +231,8 @@ class BooksController < ApplicationController
     render(
       'seidoku_index',
       locals: {
-        books: seidoku_index_common_view_models,
-        books_rank: seidoku_index_rank_view_models,
+        seidoku_books: seidoku_index_common_view_models,
+        seidoku_rank: seidoku_index_rank_view_models,
       },
     )
   end
