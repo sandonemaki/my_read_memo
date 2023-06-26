@@ -57,7 +57,7 @@
 
             <input
               id="total_page_submit_btn"
-              class="total-page-submit-btn slide"
+              class="submit-button slide-total-page-submit-btn"
               data-book-id="<%= book.id %>"
               type="submit"
               value="更新する"
@@ -105,7 +105,7 @@
           </div>
           <p class="sw_book_title"><%= book.title %></p>
           <button id="sw-close-btn" class="sw-close-button">
-            <i class="fa-solid fa-circle-xmark"></i>
+            <i class="fa-solid fa-circle-xmark color-darkgreen"></i>
           </button>
         </div>
 
@@ -132,7 +132,7 @@
                   <div class="sw_img_footer">
                     <button
                       id="sw_read_btn"
-                      class="sw-read-btn <%= slide_img.alreadyread == 0 ? '' : 'completion' %>"
+                      class="submit-button-radius <%= slide_img.alreadyread == 0 ? '' : 'completion' %>"
                       data-reading-id="<%= slide_img.alreadyread %>"
                       data-img-id="<%= slide_img.id %>"
                       data-book-id="<%= book.id %>"

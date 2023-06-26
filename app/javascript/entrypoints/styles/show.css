@@ -1,10 +1,6 @@
 .book-show {
   margin: 40px auto 0;
 }
-.book-show-upper-inner {
-  width: 980px;
-  margin: 40px auto 0;
-}
 .book-info-wrapp {
   display: flex;
   justify-content: space-between;
@@ -92,21 +88,7 @@
 .upload-file-form {
   margin-top: 24px;
 }
-.upload-button {
-  font-size: 0.875rem;
-  display: inline-block;
-  padding: 10px 16px;
-  background-color: rgb(48, 200, 214);
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 3px;
-  text-decoration: none;
-  margin: auto;
-}
-.upload-button:hover {
-  background-color: rgb(35, 164, 176);
-}
+
 #upload-form {
   text-align: center;
 }
@@ -195,9 +177,15 @@
 .tab__panel-box {
   display: none;
 }
+.tab__panel-btn {
+  display: none;
+}
 
 /* is-showがついている時のスタイル */
 .tab__panel-box.is-show {
+  display: block;
+}
+.tab__panel-btn.is-show {
   display: block;
 }
 

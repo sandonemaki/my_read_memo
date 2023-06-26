@@ -1,6 +1,5 @@
 .book-profile {
   width: 612px;
-  margin: 0 auto;
   margin-top: 40px;
 }
 .book-cover-upload-form {
@@ -14,16 +13,7 @@
   user-select: none;
   cursor: pointer;
 }
-.settable_profile_image {
-  position: absolute;
-  border-radius: 50%;
-  bottom: -5px;
-  right: -13px;
-  background-color: rgb(48, 200, 214);
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-}
+
 .book-cover-camera-icon {
   vertical-align: -4px;
   color: white;
@@ -45,19 +35,7 @@
   font-size: 0.75rem;
   margin-bottom: 8px;
 }
-.input-book-value {
-  width: 100%;
-  padding: 0px 16px;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(186, 198, 211);
-  border-radius: 3px;
-  color: rgb(22, 50, 92);
-  font-size: 0.75rem;
-  height: 48px;
-}
-.input-book-value::placeholder {
-  color: lightgray;
-}
+
 .book-profile-totalpage {
   background-color: #d4dce4;
   border-radius: 20px;
@@ -81,30 +59,9 @@
   font-size: 32px;
   cursor: pointer;
 }
-#book_info_submit {
-  font-size: 0.875rem;
-  /*display: inline-block;*/
-  padding: 0px 16px;
-  background-color: #30c8d6;
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 3px;
-  text-decoration: none;
+.submit-button.book-info-submit {
   margin: auto;
-  display: flex;
   width: 70%;
-  justify-content: center;
-  align-items: center;
-  height: 45px;
-}
-#book_info_submit:hover {
-  background-color: rgb(35, 164, 176);
-}
-#book_info_submit:disabled {
-  transition: all 0.3s ease-in-out 0s;
-  color: rgba(186, 198, 211, 0.6);
-  background-color: rgb(240, 244, 249);
 }
 .total-page-title {
   font-size: 18px;
@@ -150,35 +107,13 @@
   height: 85px;
 }
 
-#total_page_submit_btn {
-  font-size: 0.875rem;
-  /*display: inline-block;*/
-  padding: 0px 16px;
-  background-color: #30c8d6;
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 3px;
-  text-decoration: none;
+.slide-total-page-submit-btn {
   margin: auto;
-  display: flex;
   width: 40%;
-  justify-content: center;
   align-items: center;
-  height: 45px;
-}
-.total-page-submit-btn.slide {
   height: 60px;
-  width: 60%;
 }
-#total_page_submit_btn:hover {
-  background-color: rgb(35, 164, 176);
-}
-#total_page_submit_btn:disabled {
-  transition: all 0.3s ease-in-out 0s;
-  color: rgba(186, 198, 211, 0.6);
-  background-color: rgb(240, 244, 249);
-}
+
 .js-update-current-total-page {
   font-size: 18px;
 }

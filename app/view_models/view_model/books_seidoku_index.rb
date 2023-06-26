@@ -55,7 +55,7 @@ module ViewModel
       @seidoku_memos_desc_of_seidoku_state_books =
         seidoku_memos_desc_of_seidoku_state_books.map do |book|
           {
-            titile: book.title,
+            title: book.title,
             randoku_imgs_count: book.randoku_imgs.count,
             seidoku_memos_count: book.seidoku_memos.count
           }
@@ -72,7 +72,7 @@ module ViewModel
       @created_seidoku_memos_desc_of_seidoku_state_books =
         created_seidoku_memos_desc_of_seidoku_state_books.map do |book|
           {
-            titile: book.title,
+            title: book.title,
             randoku_imgs_count: book.randoku_imgs.count,
             seidoku_memos_count: book.seidoku_memos.count
           }
@@ -86,7 +86,7 @@ module ViewModel
       @created_books_desc_of_seidoku_state_books =
         created_books_desc_of_seidoku_state_books.map do |book|
           {
-            titile: book.title,
+            title: book.title,
             randoku_imgs_count: book.randoku_imgs.count,
             seidoku_memos_count: book.seidoku_memos.count
           }

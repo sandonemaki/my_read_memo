@@ -7,7 +7,7 @@
     <i class="fa-solid fa-xmark c-flash-close" id="close-flash"></i>
   </div>
 
-  <div class="book-profile">
+  <div class="inner book-profile">
     <h1>本のプロフィール</h1>
 
     <div class="book-cover-upload-form">
@@ -25,7 +25,7 @@
         <label for="book-cover-field" class="upload-cover-button">
           <div class="book-cover-img">
             <img src="https://placehold.jp/100x140.png" alt="ブックカバー" />
-            <div label="画像を変更" class="settable_profile_image">
+            <div label="画像を変更" class="circle-btn">
               <i class="fa-solid fa-camera fa-lg book-cover-camera-icon"></i>
             </div>
           </div>
@@ -39,7 +39,7 @@
           <p class="input-book-label">タイトル</p>
           <input
             id="input_title"
-            class="input-book-value"
+            class="form-oneline"
             type="text"
             name="title"
             placeholder="タイトル"
@@ -52,7 +52,7 @@
           <p class="input-book-label">著者名</p>
           <input
             id="input_author"
-            class="input-book-value"
+            class="form-oneline"
             type="text"
             name="author"
             placeholder="著者"
@@ -63,13 +63,7 @@
 
         <div class="input-book-info">
           <p class="input-book-label">出版社</p>
-          <input
-            class="input-book-value"
-            type="text"
-            name="publisher"
-            placeholder="出版社"
-            value="<%= book.publisher %>"
-          />
+          <input class="form-oneline" type="text" name="publisher" placeholder="出版社" value="<%= book.publisher %>" />
         </div>
       </div>
 
@@ -91,8 +85,7 @@
         />
         <p id="total_page_valid_error"></p>
       </div>
-
-      <input id="book_info_submit" type="submit" value="送信" />
+      <input class="submit-button book-info-submit" type="submit" value="送信" />
     <% end %>
   </div>
 </body>

@@ -21,8 +21,7 @@
     <% end %>
   </div>
   -->
-  <!--<div class="memo-search-result-inner">-->
-  <div class="memo-new-content-inner">
+  <div class="inner memo-new-content-inner">
     <div class="memo-new-content-header">
       <p class="memo-new-book-title"><%= book.title %></p>
       <p class="memo-new-time-now"><%= book.seidoku_memo_time_now %></p>
@@ -53,10 +52,11 @@
               ></i>
             </div>
           </div>
-          <input type="submit" value="保存" class="memo-submit-button" disabled />
+          <input type="submit" value="保存" class="submit-button" disabled />
         </div>
         <!-- <p id="memo_valid_error"></p> -->
         <textarea
+          id="memo-submit-button"
           name="seidoku_memo_content"
           class="memo-input-textarea"
           rows="20"
