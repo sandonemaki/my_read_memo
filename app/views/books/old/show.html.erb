@@ -1,0 +1,137 @@
+<body class="book-show-bk">
+  <div class="book-show-white">
+    <%= render partial: 'layouts/header' %>
+    <div class="book-show-upper-inner">
+      <div class="book-info-wrapp">
+        <div class="book-info-detail">
+          <!--本の情報-->
+          <div class="book-status">
+            <div class="book_reading_progress"><%= book.reading_progress %></div>
+            <div><i class="fa-regular fa-circle-question"></i></div>
+          </div>
+          <div class="book-input-info">
+            <h1><%= book.title %></h1>
+            <p>著者：<%= book.author %></p>
+            <p>出版社：<%= book.publisher %></p>
+            <p>読むページ数：<span class="js-update-current-total-page"><%= book.total_page %><span></p>
+          </div>
+        </div>
+        <div class="book-cover">
+          <img src="https://placehold.jp/140x180.png" width="100%" height="auto" />
+          <i class="fa-solid fa-image fa-xl"></i>
+        </div>
+      </div>
+
+      <div class="tabbled-book-show">
+        <ul class="tabbed-show-work-area">
+          <li class="tab-show-book-progress active">乱読画像メモ</li>
+          <li class="tab-show-book-progress">乱読メモ</li>
+          <li class="tab-show-book-progress">
+            精読メモ
+            <% if book.seidoku_memo_key == true %>
+              <p class="seidoku_memo_key">
+                <i class="fa-solid fa-lock lock-key"></i>
+              </p>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbed-content-bk">
+    <div class="tabbed-content tabbed-content-memos-inner">
+      <div>
+        <p id="img_read_status_count">
+          乱読画像メモ：未読
+          <span class="randoku_imgs_unread_count"><%= book.randoku_imgs_unread_count %></span>枚 （精読基準：総画像メモ
+          <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読画像メモ
+          <span class="book_seidoku_line_2"><%= book.seidoku_line_2 %></span>枚未満）
+        </p>
+        <% if book.first_post_img_path.present? %>
+          <%=
+            link_to '初めての乱読画像',
+                    'javascript:void(0)',
+                    class: 'sw_modal_trigger',
+                    'data-slide-index': 0,
+                    'data-src': "#{book.first_post_img_path}"
+          %>
+        <% end %>
+      </div>
+
+      <div class="upload-file-form">
+        <!--画像アップロードフォームを表示-->
+        <%= form_tag("/books/#{book.id}/imgs", multipart: true, id: 'upload-form') do %>
+          <input
+            id="file-field"
+            name="page_imgs[]"
+            type="file"
+            multiple="true"
+            accept=".jpg, .jpeg, .png, .heic, .pdf"
+            style="display: none;"
+            onchange="form.submit()"
+          />
+          <label for="file-field" class="">画像をアップロード</label>
+        <% end %>
+
+        <p class="upload-description">
+          jpg/jpeg/png/heic/1pageのpdfが投稿できます。<br />
+          同じ名前の画像は上書きされます。複数枚投稿できます。
+        </p>
+      </div>
+
+      <div>
+        <p class="imgs-count">Total <%= book.randoku_imgs_all_count %>枚</p>
+        <!--画像メモ一覧を表示-->
+        <% if book.randoku_imgs_all.empty? %>
+          "画像がありません"
+        <% else %>
+          <ul class="img-thumbnails">
+            <% book.randoku_imgs_all.each_with_index do |img, i| %>
+              <li class="img-thumbnail">
+                <!--
+              <div
+                class="thumbnail-wide"
+                data-slide-index="<%= i %>"
+                style="background-image: url(<%= "#{img.thumbnail_path}" %>?#{Time.now.to_i})"
+              ></div>
+              -->
+
+                <img
+                  src="<%= "#{img.thumbnail_path}" %>?#{Time.now.to_i}"
+                  alt=" "
+                  class="sw_modal_trigger"
+                  data-slide-index="<%= i %>"
+                />
+
+                <div class="img-info">
+                  <div class="img-item-name">
+                    <p class="img-name"><%= img.name %></p>
+                    <p class="img-updated"><%= img.updated_at %></p>
+                  </div>
+                  <div class="img-item-icon">
+                    <p class="is_already_read_check" data-img-id="<%= img.id %>">
+                      <%=
+                        if img.alreadyread == 0
+                          '<i class="fa-regular fa-square-check thumb-nocheck"></i>'.html_safe
+                        else
+                          '<i class="fa-solid fa-square-check  thumb-check"></i>'.html_safe
+                        end
+                      %>
+                    </p>
+                    <p class="img_bookmark_check" data-img-id="<%= img.id %>">
+                      <i class="fa-bookmark <%= img.bookmark_flag == 0 ? 'fa-regular' : 'fa-solid' %>"></i>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 乱読画像を表示するためのモーダル -->
+    <%= render partial: 'books/modal_randoku_slide', locals: { book: book } %>
+  </div>
+</body>
