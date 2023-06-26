@@ -1,10 +1,6 @@
 .book-show {
   margin: 40px auto 0;
 }
-.book-show-upper-inner {
-  width: 980px;
-  margin: 40px auto 0;
-}
 .book-info-wrapp {
   display: flex;
   justify-content: space-between;

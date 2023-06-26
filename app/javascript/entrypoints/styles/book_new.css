@@ -1,6 +1,5 @@
 .book-profile {
   width: 612px;
-  margin: 0 auto;
   margin-top: 40px;
 }
 .book-cover-upload-form {
@@ -36,19 +35,7 @@
   font-size: 0.75rem;
   margin-bottom: 8px;
 }
-.input-book-value {
-  width: 100%;
-  padding: 0px 16px;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(186, 198, 211);
-  border-radius: 3px;
-  color: rgb(22, 50, 92);
-  font-size: 0.75rem;
-  height: 48px;
-}
-.input-book-value::placeholder {
-  color: lightgray;
-}
+
 .book-profile-totalpage {
   background-color: #d4dce4;
   border-radius: 20px;

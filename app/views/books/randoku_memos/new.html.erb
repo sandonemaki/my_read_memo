@@ -1,4 +1,4 @@
-<body class="memo-search-bk">
+<body class="memo-search-bk mob">
 
   <div class="memo-search-result-white">
     <%= render partial: 'layouts/header' %>
@@ -22,8 +22,7 @@
     <% end %>
   </div>
   -->
-  <!--<div class="memo-search-result-inner">-->
-  <div class="memo-new-content-inner">
+  <div class="inner memo-new-content-inner">
 
     <div class="memo-new-content-header">
       <p class="memo-new-book-title"><%= book.title %></p>
@@ -58,7 +57,7 @@
             </div>
             <div><i class="fa-regular fa-circle-question new-memo-i"></i></div>
           </div>
-          <input type="submit" value="保存" class="submit-button" disabled />
+          <input type="submit" value="保存" id="memo-submit-button" class="submit-button" disabled />
         </div>
         <p id="memo_valid_error"></p>
         <textarea name="randoku_memo_content" class="memo-input-textarea" 

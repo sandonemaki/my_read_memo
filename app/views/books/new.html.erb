@@ -7,7 +7,7 @@
     <i class="fa-solid fa-xmark c-flash-close" id="close-flash"></i>
   </div>
 
-  <div class="book-profile">
+  <div class="inner book-profile">
     <h1>本のプロフィール</h1>
 
     <div class="book-cover-upload-form">
@@ -39,7 +39,7 @@
           <p class="input-book-label">タイトル</p>
           <input
             id="input_title"
-            class="input-book-value"
+            class="form-oneline"
             type="text"
             name="title"
             placeholder="タイトル"
@@ -52,7 +52,7 @@
           <p class="input-book-label">著者名</p>
           <input
             id="input_author"
-            class="input-book-value"
+            class="form-oneline"
             type="text"
             name="author"
             placeholder="著者"
@@ -63,13 +63,7 @@
 
         <div class="input-book-info">
           <p class="input-book-label">出版社</p>
-          <input
-            class="input-book-value"
-            type="text"
-            name="publisher"
-            placeholder="出版社"
-            value="<%= book.publisher %>"
-          />
+          <input class="form-oneline" type="text" name="publisher" placeholder="出版社" value="<%= book.publisher %>" />
         </div>
       </div>
 
