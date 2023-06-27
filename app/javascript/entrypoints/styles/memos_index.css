@@ -5,7 +5,6 @@
   background-color: white;
 }
 .book-show-upper-inner {
-  width: 980px;
   margin: 40px auto 0;
 }
 #img_read_status_count span {
@@ -83,8 +82,6 @@
   position: relative;
   /*border-top: 2px solid #e9edf1;*/
   z-index: 2;
-  width: 980px;
-  margin: 0 auto;
 }
 .tabbed-content-bk {
   background-color: #f2f4f7;

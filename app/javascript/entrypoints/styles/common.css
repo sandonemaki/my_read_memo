@@ -91,6 +91,7 @@ li {
 .user-menu:hover {
   background-color: #f3f4f5;
 }
+
 /***** 共通ボタン *****/
 .submit-button {
   font-size: 0.875rem;
@@ -177,3 +178,39 @@ li {
 .color-darkgreen {
   color: rgb(28, 142, 153);
 }
+
+/**** フォーム ****/
+.form-oneline {
+  width: 100%;
+  padding: 0px 16px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(186, 198, 211);
+  border-radius: 3px;
+  color: rgb(22, 50, 92);
+  font-size: 0.75rem;
+  height: 48px;
+}
+.form-oneline::placeholder {
+  color: lightgray;
+}
+.memo-input-textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #d0d5d8;
+  padding: 24px 20px;
+}
+.memo-input-textarea::placeholder {
+  color: lightgray;
+}
+
+/**** 画面の横幅 ****/
+.inner {
+  width: 960px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 600px) {
+  .header-menus-wrapper {
+    display: none;
+  }
+}
+

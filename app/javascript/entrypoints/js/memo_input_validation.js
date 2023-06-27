@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const memoContentSubmit = document.querySelector('.memo-submit-button');
+  const memoContentSubmit = document.querySelector('#memo-submit-button');
 
   const checkValidation = () => {
     if (isInputMemoLengthValid(inputMemo) === false) {

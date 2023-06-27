@@ -2,6 +2,7 @@ module ViewModel
 
   class BooksRandokuIndexRankMostImgs
     attr_reader :books_index_rank
+    puts "view_models>viewmodel>"
 
     def initialize(all_randoku_state_books:)
       # 現在乱読ステータス中の本の中から乱読画像が多い順に並べる
