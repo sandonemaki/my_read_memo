@@ -1,5 +1,4 @@
 import '@/entrypoints/js/upload_btn.js';
-//import '@/entrypoints/js/input_validation.js';
 import '@/entrypoints/js/book_input_validation.js';
 import '@/entrypoints/js/memo_input_validation.js';
 import '@/entrypoints/js/modal.js';
@@ -15,7 +14,9 @@ import '@/entrypoints/js/randoku_slide_download_btn.js';
 import '@/entrypoints/js/panzoom.js';
 import '@/entrypoints/js/navigation.js';
 import '@/entrypoints/js/tabbed.js';
-import '@/entrypoints/js/ranking_randoku_index.js';
+// ランキングをfetchで取得したくなった時に改良して使用する
+// import '@/entrypoints/js/ranking_randoku_index.js';
+
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //

@@ -8,7 +8,8 @@ Rails
     get 'books/:id/' => 'books#show_tabs', :constraints => { id: /\d+/ }
 
     # randoku_inex_ランキング
-    get 'books/randoku_index' => 'books#randoku_index'
+    #get 'books/randoku_index' => 'books#randoku_index'
+    get 'books/randoku_index' => 'books#index_tabs'
     get 'books/randoku_rank_created_books' => 'books#randoku_rank_created_books'
     get 'books/randoku_rank_created_randoku_imgs' => 'books#randoku_rank_created_randoku_imgs'
 
