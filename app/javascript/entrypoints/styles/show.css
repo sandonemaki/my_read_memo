@@ -7,15 +7,14 @@
 }
 .book-info-detail {
   width: 70%;
+  margin-left: 30px;
 }
 .book-status {
   display: flex;
   align-items: center;
-  margin-left: 30px;
 }
 .book-input-info {
   margin-top: 16px;
-  margin-left: 30px;
 }
 .book-input-info > h1 {
   margin-bottom: 10px;
@@ -27,7 +26,6 @@
   width: 15%;
   position: relative;
 }
-.book-cover img,
 .book-cover i {
   position: absolute;
   top: 50%;
@@ -220,4 +218,23 @@
   border-top-right-radius: 100px 250px;
   border-top-left-radius: 100px 250px;
   /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);*/
+}
+/**** モバイル版 *****/
+/***** show-upper ****/
+@media screen and (max-width: 600px) {
+  .memo-new-content-inner {
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .book-info-wrapp {
+    align-items: end;
+  }
+  .book-info-detail {
+    width: 50%;
+    margin-left: 0px;
+  }
+  .book-cover {
+    width: 30%;
+    margin-bottom: 10px;
+  }
 }

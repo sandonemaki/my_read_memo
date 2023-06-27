@@ -215,4 +215,8 @@ li {
   .submit-button {
     width: 100%;
   }
+  .inner {
+    width: 100%;
+    padding: 0px 20px;
+  }
 }

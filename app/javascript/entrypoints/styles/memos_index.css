@@ -155,3 +155,30 @@
 .edit-menu:hover {
   background-color: #f3f4f5;
 }
+/**** モバイル版 *****/
+/***** memos-new ****/
+@media screen and (max-width: 600px) {
+  #img_read_status_count {
+    font-size: 12px;
+  }
+  .show-memo-plus-count {
+    margin-top: 20px;
+    text-align: right;
+  }
+  .sw_modal_trigger {
+    margin-top: 12px;
+    display: inline-block;
+  }
+  .show-memo-plus-btn {
+    position: fixed;
+    right: 18px;
+    bottom: 32px;
+    z-index: 1;
+    font-size: 1.75em;
+    justify-content: end;
+    text-shadow: 0px 1px 20px rgba(0, 0, 0, 0.15);
+  }
+  .tabbed-memo-content {
+    margin-top: 12px;
+  }
+}
