@@ -9,7 +9,7 @@
   <% end %>
 
   <% books_rank.books_index_rank.each_with_index do |book, i| %>
-    <div class="index-user-book-info book-<%= i %> book-<%= book[:id] %>">
+    <div class="index-user-book-info">
       <div class="index-user-book">
         <div class="index-user-book-cover">
           <% if book[:randoku_ranking].present? %>
@@ -19,8 +19,6 @@
         </div>
         <div class="index-user-book-title">
           <p class="index-book-title rank"><%= book[:title] %></p>
-          <p>book-<%= i %></p>
-          <p>book-<%= book[:id] %></p>
           <span class="index-book-progress rank"><%= book[:reading_state] %></span>
         </div>
       </div>
