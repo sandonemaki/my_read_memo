@@ -215,8 +215,10 @@ class BooksController < ApplicationController
     seidoku_index_rank_view_models =
       ViewModel::BooksSeidokuIndexRankMostSeidokuMemos.new(all_seidoku_state_books: all_seidoku_state_books)
     render(
-      'seidoku_index',
+      'index_seidoku_tabs',
       locals: {
+        randoku_books: randoku_index_common_view_models,
+        randoku_rank: randoku_index_rank_view_models,
         seidoku_books: seidoku_index_common_view_models,
         seidoku_rank: seidoku_index_rank_view_models,
       },
@@ -248,7 +250,7 @@ class BooksController < ApplicationController
     seidoku_index_rank_view_models =
       ViewModel::BooksSeidokuIndexRankCreatedBooks.new(all_seidoku_state_books: all_seidoku_state_books)
     render(
-      'index_tabs',
+      'index_seidoku_tabs',
       locals: {
         randoku_books: randoku_index_common_view_models,
         randoku_rank: randoku_index_rank_view_models,
@@ -282,7 +284,7 @@ class BooksController < ApplicationController
     seidoku_index_rank_view_models =
       ViewModel::BooksSeidokuIndexRankMostRandokuImgs.new(all_seidoku_state_books: all_seidoku_state_books)
     render(
-      'index_tabs',
+      'index_seidoku_tabs',
       locals: {
         randoku_books: randoku_index_common_view_models,
         randoku_rank: randoku_index_rank_view_models,
