@@ -103,25 +103,26 @@ class BooksController < ApplicationController
   end
 
   # ランキング：randoku_indexの乱読画像の多い順
-  def randoku_index
-    all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
-    all_books_count = Book.all.count
+  # fetchでランキングを取得する時に利用する
+  # def randoku_index
+  #   all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
+  #   all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
+  #   all_books_count = Book.all.count
 
-    randoku_index_common_view_models =
-      ViewModel::BooksRandokuIndexCommon.new(
-        all_randoku_state_books: all_randoku_state_books,
-        all_seidoku_state_books: all_seidoku_state_books,
-        all_books_count: all_books_count,
-      )
-    randoku_index_rank_view_models =
-      ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
-    render json: {
-             status: :ok,
-             randoku_books: randoku_index_common_view_models,
-             randoku_rank: randoku_index_rank_view_models,
-           }
-  end
+  #   randoku_index_common_view_models =
+  #     ViewModel::BooksRandokuIndexCommon.new(
+  #       all_randoku_state_books: all_randoku_state_books,
+  #       all_seidoku_state_books: all_seidoku_state_books,
+  #       all_books_count: all_books_count,
+  #     )
+  #   randoku_index_rank_view_models =
+  #     ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
+  #   render json: {
+  #            status: :ok,
+  #            randoku_books: randoku_index_common_view_models,
+  #            randoku_rank: randoku_index_rank_view_models,
+  #          }
+  # end
 
   # ランキング：randoku_indexの乱読本の投稿順
   def randoku_rank_created_books
@@ -135,13 +136,25 @@ class BooksController < ApplicationController
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
       )
+    seidoku_index_common_view_models =
+      ViewModel::BooksSeidokuIndexCommon.new(
+        all_randoku_state_books: all_randoku_state_books,
+        all_seidoku_state_books: all_seidoku_state_books,
+        all_books_count: all_books_count,
+      )
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankCreatedBooks.new(all_randoku_state_books: all_randoku_state_books)
-    render json: {
-             status: :ok,
-             randoku_books: randoku_index_common_view_models,
-             randoku_rank: randoku_index_rank_view_models,
-           }
+    seidoku_index_rank_view_models =
+      ViewModel::BooksSeidokuIndexRankMostSeidokuMemos.new(all_seidoku_state_books: all_seidoku_state_books)
+    render(
+      'index_tabs',
+      locals: {
+        randoku_books: randoku_index_common_view_models,
+        randoku_rank: randoku_index_rank_view_models,
+        seidoku_books: seidoku_index_common_view_models,
+        seidoku_rank: seidoku_index_rank_view_models,
+      },
+    )
   end
 
   # ランキング：randoku_indexの乱読画像の投稿順
@@ -156,13 +169,26 @@ class BooksController < ApplicationController
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
       )
+    seidoku_index_common_view_models =
+      ViewModel::BooksSeidokuIndexCommon.new(
+        all_randoku_state_books: all_randoku_state_books,
+        all_seidoku_state_books: all_seidoku_state_books,
+        all_books_count: all_books_count,
+      )
+
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankCreatedImgs.new(all_randoku_state_books: all_randoku_state_books)
-    render json: {
-             status: :ok,
-             randoku_books: randoku_index_common_view_models,
-             randoku_rank: randoku_index_rank_view_models,
-           }
+    seidoku_index_rank_view_models =
+      ViewModel::BooksSeidokuIndexRankMostSeidokuMemos.new(all_seidoku_state_books: all_seidoku_state_books)
+    render(
+      'index_tabs',
+      locals: {
+        randoku_books: randoku_index_common_view_models,
+        randoku_rank: randoku_index_rank_view_models,
+        seidoku_books: seidoku_index_common_view_models,
+        seidoku_rank: seidoku_index_rank_view_models,
+      },
+    )
   end
 
   # 精読メモの多い順
@@ -172,12 +198,20 @@ class BooksController < ApplicationController
     all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
     all_books_count = Book.all.count
 
+    randoku_index_common_view_models =
+      ViewModel::BooksRandokuIndexCommon.new(
+        all_randoku_state_books: all_randoku_state_books,
+        all_seidoku_state_books: all_seidoku_state_books,
+        all_books_count: all_books_count,
+      )
     seidoku_index_common_view_models =
       ViewModel::BooksSeidokuIndexCommon.new(
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
       )
+    randoku_index_rank_view_models =
+      ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
     seidoku_index_rank_view_models =
       ViewModel::BooksSeidokuIndexRankMostSeidokuMemos.new(all_seidoku_state_books: all_seidoku_state_books)
     render(
@@ -205,8 +239,10 @@ class BooksController < ApplicationController
     seidoku_index_rank_view_models =
       ViewModel::BooksSeidokuIndexRankCreatedBooks.new(all_seidoku_state_books: all_seidoku_state_books)
     render(
-      'seidoku_index',
+      'index_tabs',
       locals: {
+        randoku_books: randoku_index_common_view_models,
+        randoku_rank: randoku_index_rank_view_models,
         seidoku_books: seidoku_index_common_view_models,
         seidoku_rank: seidoku_index_rank_view_models,
       },
@@ -220,17 +256,27 @@ class BooksController < ApplicationController
     all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
     all_books_count = Book.all.count
 
+    randoku_index_common_view_models =
+      ViewModel::BooksRandokuIndexCommon.new(
+        all_randoku_state_books: all_randoku_state_books,
+        all_seidoku_state_books: all_seidoku_state_books,
+        all_books_count: all_books_count,
+      )
     seidoku_index_common_view_models =
       ViewModel::BooksSeidokuIndexCommon.new(
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
       )
+    randoku_index_rank_view_models =
+      ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
     seidoku_index_rank_view_models =
       ViewModel::BooksSeidokuIndexRankMostRandokuImgs.new(all_seidoku_state_books: all_seidoku_state_books)
     render(
-      'seidoku_index',
+      'index_tabs',
       locals: {
+        randoku_books: randoku_index_common_view_models,
+        randoku_rank: randoku_index_rank_view_models,
         seidoku_books: seidoku_index_common_view_models,
         seidoku_rank: seidoku_index_rank_view_models,
       },
