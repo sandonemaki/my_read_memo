@@ -181,4 +181,16 @@
   .tabbed-memo-content {
     margin-top: 12px;
   }
+  .tab-show-book-progress {
+    letter-spacing: 1px;
+    padding: 17px;
+    margin-right: 4px;
+    background-color: #fff;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  .tabbed-show-work-area {
+    display: flex;
+    padding: 0px;
+  }
 }
