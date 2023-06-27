@@ -230,12 +230,21 @@ class BooksController < ApplicationController
     all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
     all_books_count = Book.all.count
 
+    randoku_index_common_view_models =
+      ViewModel::BooksRandokuIndexCommon.new(
+        all_randoku_state_books: all_randoku_state_books,
+        all_seidoku_state_books: all_seidoku_state_books,
+        all_books_count: all_books_count,
+      )
+
     seidoku_index_common_view_models =
       ViewModel::BooksSeidokuIndexCommon.new(
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
       )
+    randoku_index_rank_view_models =
+      ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
     seidoku_index_rank_view_models =
       ViewModel::BooksSeidokuIndexRankCreatedBooks.new(all_seidoku_state_books: all_seidoku_state_books)
     render(
