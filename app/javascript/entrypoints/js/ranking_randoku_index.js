@@ -1,3 +1,4 @@
+// ランキングをfetchで取得したくなった時に使用する
 import { getCsrfToken } from './get_csrf_token.js';
 import { js_flash, js_flash_alert } from './flash.js';
 
