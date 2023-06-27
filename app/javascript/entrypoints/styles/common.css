@@ -212,5 +212,7 @@ li {
   .header-menus-wrapper {
     display: none;
   }
+  .submit-button {
+    width: 100%;
+  }
 }
-
