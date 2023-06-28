@@ -31,40 +31,7 @@
 .memo-plus-btn {
   vertical-align: middle;
 }
-.tabbed-show-work-area {
-  display: flex;
-  padding: 0 10px;
-}
-.tab-show-book-progress {
-  border-bottom: none;
-  padding: 14px 42px;
 
-  float: left;
-  text-align: center;
-  background-color: #d4dce4;
-  border-top-right-radius: 100px 250px;
-  border-top-left-radius: 100px 250px;
-  font-size: 12px;
-  cursor: pointer;
-  position: relative;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.tab-show-book-progress.active {
-  background-color: #f0f4f9;
-  cursor: auto;
-  z-index: 2;
-}
-.tabbled-book-show {
-  display: flex;
-  justify-content: space-between;
-  /*border-bottom: 1px solid rgb(48, 200, 214);*/
-  margin-top: 60px;
-}
-
-.tabbled-book-show .tabbed-show-work-area {
-  width: 50%;
-}
 .seidoku_memo_key {
   position: absolute;
   top: 0;
@@ -166,7 +133,7 @@
     text-align: right;
   }
   .sw_modal_trigger {
-    margin-top: 12px;
+    /*margin-top: 12px;*/
     display: inline-block;
   }
   .show-memo-plus-btn {
@@ -181,16 +148,8 @@
   .tabbed-memo-content {
     margin-top: 12px;
   }
-  .tab-show-book-progress {
-    letter-spacing: 1px;
-    padding: 17px;
-    margin-right: 4px;
-    background-color: #fff;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  }
-  .tabbed-show-work-area {
-    display: flex;
-    padding: 0px;
+  /******* ナビゲーション ********/
+  .memo-edit-navi {
+    right: 0px;
   }
 }
