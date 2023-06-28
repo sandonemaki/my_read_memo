@@ -96,4 +96,7 @@
   .memo-content-header-info {
     justify-content: space-between;
   }
+  .memo-content-header {
+    display: block;
+  }
 }
