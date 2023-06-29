@@ -2,7 +2,7 @@ module ViewModel
 
   class BooksRandokuMemosIndex
     attr_reader :id, :title, :author, :total_page, :reading_progress,
-      :seidoku_memo_key,
+      :seidoku_memo_key, :remaining,
       :publisher, :randoku_memos_all_count, :randoku_memos,
       :randoku_imgs_unread_count, :seidoku_line_1, :seidoku_line_2, :first_post_img_path
 
@@ -41,6 +41,16 @@ module ViewModel
               else
                 ""
               end
+      
+      # 精読まであと何枚
+      if @seidoku_line_1 <= @randoku_imgs_unread_count && @randoku_imgs_unread_count <= @seidoku_line_2
+        @remaining = 0
+      elsif @randoku_imgs_unread_count < @seidoku_line_1
+        @remaining = @seidoku_line_1 - @randoku_imgs_unread_count
+      elsif @randoku_imgs_unread_count > @seidoku_line_2
+        @remaining = @seidoku_line_2 - @randoku_imgs_unread_count
+      end
+
     end #initialize
   end
 
