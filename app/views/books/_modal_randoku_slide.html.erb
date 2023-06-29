@@ -46,6 +46,7 @@
                   <span class="total-page-unit">P</span>
                 </p>
               </div>
+              <p class="seidoku-remaining-js total-modal">精読まで<span><%= book.remaining %>枚</span></p>
               <p id="img_read_status_count_modal">
                 <span
                   >（精読基準：画像メモ <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読
@@ -99,9 +100,15 @@
 
         <!-- 本の状態を表示 -->
         <div class="modal_header">
-          <div class="book-progress">
-            <div class="book-progress-icon"><i class="fa-solid fa-book-bookmark"></i></div>
-            <div class="book_reading_progress_modal"><%= book.reading_progress %></div>
+          <div>
+            <div class="book-progress slide">
+              <div class="book-progress-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+              <!-- jsで利用 -->
+              <div class="book_reading_progress slide"><%= book.reading_progress %></div>
+            </div>
+            <p class="seidoku-remaining-js slide">
+              精読まで<span><%= book.remaining %></span>枚
+            </p>
           </div>
           <p class="sw_book_title"><%= book.title %></p>
           <button id="sw-close-btn" class="sw-close-button">

@@ -5,9 +5,10 @@
       <div class="book-info-wrapp">
         <div class="book-info-detail">
           <!--本の情報-->
-          <div class="book-status">
-            <div class="book_reading_progress"><%= book.reading_progress %></div>
-            <div><i class="fa-regular fa-circle-question"></i></div>
+          <div class="book-progress">
+            <div class="book-progress-icon show-tabs"><i class="fa-solid fa-book-bookmark"></i></div>
+            <div class="book_reading_progress show-tabs"><%= book.reading_progress %></div>
+            <div><i class="fa-regular fa-circle-question show-tabs"></i></div>
           </div>
           <div class="book-input-info">
             <h1><%= book.title %></h1>
