@@ -150,21 +150,23 @@
   margin: 0;
   font-size: 10px;
 }
-.book-progress {
-  display: flex;
-  align-items: center;
-  margin-left: 24px;
-  color: #35b7e4;
+.book-progress.slide {
+  margin-left: 50px;
 }
-.book-progress-icon {
-  font-size: 25px;
+.book-progress.slide .book-progress-icon i {
+  font-size: 35px;
+  line-height: 1.5;
 }
-.book_reading_progress_modal {
+
+.book_reading_progress.slide {
+  font-size: 34px;
   margin-left: 12px;
-  letter-spacing: 3.4px;
-  font-size: 27px;
-  margin-left: 12px;
+  letter-spacing: 4px;
 }
+.seidoku-remaining-js.slide {
+  margin-left: 50px;
+}
+
 .sw_book_title {
   font-size: 14px;
   color: #35b7e4;

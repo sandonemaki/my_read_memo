@@ -36,14 +36,28 @@
   width: 100%;
   height: auto;
 }
-
-.book_reading_progress {
-  border-radius: 8px;
-  background-color: rgb(48, 200, 214);
-  padding: 8px 20px;
-  margin-right: 10px;
+.book-progress {
+  display: flex;
+  align-items: center;
+}
+.book-progress-icon.show-tabs i {
+  font-size: 38px;
+  line-height: 1.5;
+}
+.book_reading_progress.show-tabs {
+  margin-left: 12px;
+  letter-spacing: 3.4px;
+  font-size: 36px;
+  margin-left: 12px;
+}
+.fa-circle-question.show-tabs {
   font-size: 20px;
-  color: #fff;
+  margin-left: 6px;
+}
+.seidoku-remaining-js {
+  letter-spacing: 4px;
+}
+.seidoku-remaining-js span {
   letter-spacing: 3px;
 }
 .tabbed-work-area {
