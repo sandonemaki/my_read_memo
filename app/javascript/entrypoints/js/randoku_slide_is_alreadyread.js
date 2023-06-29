@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
       img_read_status_count_update(responseData);
       book_reading_progress_update(responseData);
       book_seidoku_memo_key(responseData);
+      book_seidoku_remaining(responseData);
     }
   };
 });
@@ -63,6 +64,15 @@ export const book_reading_progress_update = (responseData) => {
     if (responseData.book_state_updated_info) {
       book_reading_progress.textContent = responseData.book_state_updated_info;
     }
+  });
+};
+
+// 乱読画像の状態が / トータルページが
+// update される -> 精読までの枚数を更新
+export const book_seidoku_remaining = (responseData) => {
+  const seidoku_remainings = document.querySelectorAll('.seidoku-remaining-js span');
+  seidoku_remainings.forEach((seidoku_remaining) => {
+    seidoku_remaining.textContent = responseData.remaining;
   });
 };
 
