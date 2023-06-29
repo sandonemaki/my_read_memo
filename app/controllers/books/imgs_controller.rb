@@ -30,6 +30,17 @@ class Books::ImgsController < ApplicationController
     img_reading_state_result = randoku_img.reading_state
     img_already_read_count = book.randoku_imgs.where(reading_state: '1').count # 既読の数
     img_unread_count = book.randoku_imgs.where(reading_state: '0').count # 未読の数
+    seidoku_line_1 = (book.total_page * (1.0 / 8.0)).floor
+    seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor
+
+    # 精読まであと何枚
+    if seidoku_line_1 <= img_unread_count && img_unread_count <= seidoku_line_2
+      remaining = 0
+    elsif img_unread_count < seidoku_line_1
+      remaining = seidoku_line_1 - img_unread_count
+    elsif img_unread_count > seidoku_line_2
+      remaining = seidoku_line_2 - img_unread_count
+    end
 
     # 本の状態の更新があった場合
     if book_reading_state_result[:updated] == true
@@ -40,6 +51,7 @@ class Books::ImgsController < ApplicationController
         img_reading_state_result: img_reading_state_result,
         img_already_read_count: img_already_read_count,
         img_unread_count: img_unread_count,
+        remaining: remaining,
       }
 
       # 更新された本の状態が"精読"であれば精読メモのタブの鍵を外す
@@ -53,6 +65,7 @@ class Books::ImgsController < ApplicationController
                    img_reading_state_result: img_reading_state_result,
                    img_already_read_count: img_already_read_count,
                    img_unread_count: img_unread_count,
+                   remaining: remaining,
                    message: '最後まで処理できませんでした。もう一度お試しください',
                  }
           return
@@ -68,6 +81,7 @@ class Books::ImgsController < ApplicationController
                img_reading_state_result: img_reading_state_result,
                img_already_read_count: img_already_read_count,
                img_unread_count: img_unread_count,
+               remaining: remaining,
                message: '本のステータスの更新ができませんでした。もう一度お試しください',
              }
     else
@@ -76,6 +90,7 @@ class Books::ImgsController < ApplicationController
                img_reading_state_result: img_reading_state_result,
                img_already_read_count: img_already_read_count,
                img_unread_count: img_unread_count,
+               remaining: remaining,
              }
     end
   end
