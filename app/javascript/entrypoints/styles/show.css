@@ -7,15 +7,14 @@
 }
 .book-info-detail {
   width: 70%;
+  margin-left: 30px;
 }
 .book-status {
   display: flex;
   align-items: center;
-  margin-left: 30px;
 }
 .book-input-info {
   margin-top: 16px;
-  margin-left: 30px;
 }
 .book-input-info > h1 {
   margin-bottom: 10px;
@@ -27,7 +26,6 @@
   width: 15%;
   position: relative;
 }
-.book-cover img,
 .book-cover i {
   position: absolute;
   top: 50%;
@@ -168,6 +166,39 @@
   cursor: auto;
   z-index: 2;
 }
+.tabbed-show-work-area {
+  display: flex;
+  padding: 0 10px;
+}
+.tab-show-book-progress {
+  border-bottom: none;
+  padding: 14px 42px;
+
+  text-align: center;
+  background-color: #d4dce4;
+  border-top-right-radius: 100px 250px;
+  border-top-left-radius: 100px 250px;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tab-show-book-progress.active {
+  background-color: #f0f4f9;
+  cursor: auto;
+  z-index: 2;
+}
+.tabbled-book-show {
+  display: flex;
+  justify-content: space-between;
+  /*border-bottom: 1px solid rgb(48, 200, 214);*/
+  margin-top: 60px;
+}
+
+.tabbled-book-show .tabbed-show-work-area {
+  width: 50%;
+}
 
 /* タブパネル */
 .tab__panel {
@@ -220,4 +251,82 @@
   border-top-right-radius: 100px 250px;
   border-top-left-radius: 100px 250px;
   /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);*/
+}
+/**** モバイル版 *****/
+/***** show-upper ****/
+@media screen and (max-width: 600px) {
+  .memo-new-content-inner {
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .book-info-wrapp {
+    align-items: end;
+  }
+  .book-info-detail {
+    width: 50%;
+    margin-left: 0px;
+  }
+  .book-cover {
+    width: 30%;
+    margin-bottom: 10px;
+  }
+  /****タブ****/
+  .tabbed-show-work-area {
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .tab__menu-item {
+    width: 240px;
+  }
+  .tab-show-book-progress {
+    letter-spacing: 1px;
+    padding: 17px;
+    margin-right: 4px;
+    background-color: #fff;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 200px;
+  }
+  .tabbed-show-work-area {
+    display: flex;
+    padding: 0px;
+  }
+  .tabbled-book-show .tabbed-show-work-area {
+    width: 100%;
+  }
+  .tab-width {
+    width: 90px;
+  }
+
+  /****アップロードボタンの下****/
+  .upload-description {
+    font-size: 2.5vw;
+  }
+  .imgs-count {
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+
+  /****サムネイル****/
+  .img-thumbnails {
+    justify-content: center;
+  }
+  .img-thumbnail {
+    width: 100%;
+    margin-top: 0px;
+  }
+  .img-item-name {
+    margin-top: 12px 0 8px 0;
+  }
+  .img-name {
+    font-size: 4.5vw;
+  }
+  .is_already_read_check {
+    margin-right: 14px;
+    font-size: 7.5vw;
+  }
+  .img_bookmark_check {
+    font-size: 7.5vw;
+  }
 }

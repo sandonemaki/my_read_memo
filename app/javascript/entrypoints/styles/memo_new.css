@@ -59,7 +59,8 @@
   right: 16px;
 }
 
-/**** memos-new ****/
+/**** モバイル版 *****/
+/***** memos-new ****/
 @media screen and (max-width: 600px) {
   .memo-new-content-inner {
     width: 100%;
@@ -77,9 +78,6 @@
     margin: 20px 0px;
     width: 100%;
   }
-  .memo-content-header {
-    display: block;
-  }
   .memo-submit-button {
     margin: auto;
     width: 100%;
@@ -90,11 +88,15 @@
   }
   .memo-input-textarea {
     display: block;
+    margin-top: 20px;
   }
   .memo-content-type-selectbox::after {
     transform: translate(50%, -50%) rotate(45deg);
   }
   .memo-content-header-info {
     justify-content: space-between;
+  }
+  .memo-content-header {
+    display: block;
   }
 }

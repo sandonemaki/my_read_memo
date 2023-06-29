@@ -212,5 +212,15 @@ li {
   .header-menus-wrapper {
     display: none;
   }
+  .submit-button {
+    width: 100%;
+  }
+  .inner {
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .upload-button {
+    padding: 20px 20px;
+    width: 100%;
+  }
 }
-

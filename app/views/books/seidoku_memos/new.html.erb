@@ -1,4 +1,4 @@
-<body class="memo-search-bk">
+<body class="memo-search-bk mob">
   <div class="memo-search-result-white">
     <%= render partial: 'layouts/header' %>
   </div>
@@ -52,11 +52,10 @@
               ></i>
             </div>
           </div>
-          <input type="submit" value="保存" class="submit-button" disabled />
+          <input type="submit" value="保存" id="memo-submit-button" class="submit-button" disabled />
         </div>
         <!-- <p id="memo_valid_error"></p> -->
         <textarea
-          id="memo-submit-button"
           name="seidoku_memo_content"
           class="memo-input-textarea"
           rows="20"
