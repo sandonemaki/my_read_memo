@@ -530,6 +530,12 @@
 .sp-display {
   display: none;
 }
+.sp_modal_header {
+  display: none;
+}
+.sp_sw_img_footer {
+  display: none;
+}
 
 /**** モバイル版 *****/
 /***** slideページ ****/
@@ -556,6 +562,12 @@
   .swiper-button-next {
     display: none;
   }
+  .img_delete_btn {
+    display: none;
+  }
+  .download-btn {
+    display: none;
+  }
 
   /****精読乱読のジャッジpopup ****/
   .judge-popup {
@@ -565,5 +577,67 @@
     left: 8px;
     right: 8px;
     width: auto;
+  }
+
+  /**** スライドの水色背景 ****/
+  .sw-reveal-wrapper {
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+  }
+
+  /**** slideヘッダー ****/
+  .modal_header {
+    display: none;
+  }
+  .sp_modal_header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .book-progress.slide {
+    display: block;
+    margin-left: 20px;
+    margin-top: 30px;
+  }
+  .sw_book_title {
+    font-size: 12px;
+    position: inherit;
+    top: 100%;
+    left: 100%;
+    transform: inherit;
+  }
+  .book_reading_progress.slide {
+    font-size: 16px;
+    margin-left: 0px;
+    letter-spacing: 4px;
+  }
+  .seidoku-remaining-js.slide {
+    margin-left: 0px;
+    font-size: 12px;
+  }
+  .sw-reveal-inner {
+    align-items: inherit;
+  }
+  .sw-close-button {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .sw_img_footer {
+    display: none;
+  }
+  .sp_sw_img_footer {
+    display: block;
+  }
+  /**** 画像の下 footer ****/
+  .container {
+    align-items: initial;
+  }
+  .sw_bookmark_btn {
+    margin-left: auto;
+    font-size: 30px;
+  }
+  .swiper-slide {
+    /*align-items: inherit;*/
   }
 }
