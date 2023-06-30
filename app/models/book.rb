@@ -65,7 +65,7 @@ class Book < ApplicationRecord
     elsif randoku_imgs_count < seidoku_line_1
       "精読まで乱読メモがあと#{seidoku_line_1 - randoku_imgs_count}枚"
       # 通読中
-    elsif randoku_imgs_unread_count >= @seidoku_line_2
+    elsif randoku_imgs_unread_count >= seidoku_line_2
       "精読まで未読があと#{(seidoku_line_2 - 1) - randoku_imgs_unread_count}枚"
     end
   end
