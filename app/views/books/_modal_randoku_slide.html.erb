@@ -47,7 +47,7 @@
                 </p>
               </div>
               <p class="seidoku-remaining-js total-modal">
-                精読まで<span><%= book.remaining %>枚</span>
+                <%= book.remaining %>
               </p>
               <p id="img_read_status_count_modal">
                 <span
@@ -109,7 +109,7 @@
               <div class="book_reading_progress slide"><%= book.reading_progress %></div>
             </div>
             <p class="seidoku-remaining-js slide">
-              精読まで<span><%= book.remaining %></span>枚
+              <%= book.remaining %>
             </p>
           </div>
           <p class="sw_book_title"><%= book.title %></p>
