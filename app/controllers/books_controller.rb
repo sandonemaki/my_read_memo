@@ -17,14 +17,13 @@ class BooksController < ApplicationController
     seidoku_line_1 = (book.total_page * (1.0 / 8.0)).floor
     seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor
 
-    # 精読まであと何枚
-    if seidoku_line_1 <= randoku_imgs_unread_count && randoku_imgs_unread_count <= seidoku_line_2
-      remaining = 0
-    elsif randoku_imgs_unread_count < seidoku_line_1
-      remaining = seidoku_line_1 - randoku_imgs_unread_count
-    elsif randoku_imgs_unread_count > seidoku_line_2
-      remaining = seidoku_line_2 - randoku_imgs_unread_count
-    end
+    # 精読まで未読をあと何枚
+    remaining =
+      book.countdown_remaining_seidoku(
+        randoku_imgs_unread_count: randoku_imgs_unread_count,
+        seidoku_line_1: seidoku_line_1,
+        seidoku_line_2: seidoku_line_2,
+      )
 
     # 本の状態の更新があった場合
     if book_reading_state_result[:updated] == true

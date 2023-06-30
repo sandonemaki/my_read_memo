@@ -41,15 +41,13 @@ module ViewModel
       @randoku_imgs_unread_count = randoku_imgs_group_count[0] ||= 0 # 未読の数
       @randoku_imgs_alreadyread_count = randoku_imgs_group_count[1] ||= 0 # 既読の数
 
-      # 精読まであと何枚
-      if @seidoku_line_1 <= @randoku_imgs_unread_count && @randoku_imgs_unread_count <= @seidoku_line_2
-        @remaining = 0
-      elsif @randoku_imgs_unread_count < @seidoku_line_1
-        @remaining = @seidoku_line_1 - @randoku_imgs_unread_count
-      elsif @randoku_imgs_unread_count > @seidoku_line_2
-        @remaining = @seidoku_line_2 - @randoku_imgs_unread_count
-      end
-
+      # 精読まで未読をあと何枚       
+      @remaining = book.countdown_remaining_seidoku(
+        randoku_imgs_unread_count: @randoku_imgs_unread_count, 
+        seidoku_line_1: @seidoku_line_1, 
+        seidoku_line_2: @seidoku_line_2
+      ) 
+      
       # モーダル上で乱読画像を読むためのデータ
       @randoku_imgs_all_count = book.randoku_imgs.all.size
       @randoku_imgs_all =
