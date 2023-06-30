@@ -60,9 +60,6 @@
 .seidoku-remaining-js.show-tab {
   margin-bottom: 16px;
 }
-.seidoku-remaining-js span {
-  letter-spacing: 3px;
-}
 .tabbed-work-area {
   border-bottom: 1px solid rgb(48, 200, 214);
   margin-top: 16px;

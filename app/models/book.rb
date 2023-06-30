@@ -54,4 +54,19 @@ class Book < ApplicationRecord
       nil
     end
   end
+
+  # 精読まで未読をあと何枚
+  def countdown_remaining_seidoku(randoku_imgs_unread_count:, seidoku_line_1:, seidoku_line_2:)
+    # 精読中
+    randoku_imgs_count = self.randoku_imgs.size
+    if seidoku_line_1 <= randoku_imgs_count && randoku_imgs_unread_count < seidoku_line_2
+      '精読突破!'
+      # 乱読中
+    elsif randoku_imgs_count < seidoku_line_1
+      "精読まで乱読メモがあと#{seidoku_line_1 - randoku_imgs_count}枚"
+      # 通読中
+    elsif randoku_imgs_unread_count >= @seidoku_line_2
+      "精読まで未読があと#{(seidoku_line_2 - 1) - randoku_imgs_unread_count}枚"
+    end
+  end
 end
