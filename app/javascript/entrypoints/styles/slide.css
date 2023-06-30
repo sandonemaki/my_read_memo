@@ -10,11 +10,9 @@
 .judge-popup {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 8px;
-  margin-left: 1000px;
+  width: 600px;
+  bottom: 8px;
+  right: 8px;
   padding: 32px;
   box-sizing: border-box;
   background-color: #f9fbfe;
@@ -55,10 +53,6 @@
   color: #647288;
   font-size: 0.875rem;
   line-height: 1.5;
-}
-
-.judge-popup__message--seidoku {
-  padding-right: 230px;
 }
 
 /**** swiper ****/
@@ -135,6 +129,7 @@
 .swiper-pagination-current {
   margin-right: -4px;
 }
+
 .swiper-pagination-total {
   margin-left: -5px;
 }
@@ -364,7 +359,13 @@
   opacity: 1;
   transform: translateY(0);
 }
-
+.seidoku-remaining-js.total-modal {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+.current-total-page {
+  margin-bottom: 12px;
+}
 /**** ふきだし *****/
 .balloon {
   position: relative;
@@ -525,4 +526,44 @@
 }
 .zoom-while {
   margin: 0 10px;
+}
+.sp-display {
+  display: none;
+}
+
+/**** モバイル版 *****/
+/***** slideページ ****/
+@media screen and (max-width: 600px) {
+  .swiper-wrapper {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+  }
+
+  /***スライドの画像****/
+  .sw_img.container {
+    height: 100%; /*上下枠ぴったりに収まる。とると目一杯上下広がる*/
+  }
+  .outer {
+    width: 100%; /*とると隣の画像と重なる*/
+  }
+  .zoom-controls {
+    display: none;
+  }
+  .swiper-button-prev {
+    display: none;
+  }
+  .swiper-button-next {
+    display: none;
+  }
+
+  /****精読乱読のジャッジpopup ****/
+  .judge-popup {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    position: fixed;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    width: auto;
+  }
 }

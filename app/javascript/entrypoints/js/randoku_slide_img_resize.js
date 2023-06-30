@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const onload = () => {
+    //if (window.innerWidth <= 768) return;
     const images = document.querySelectorAll('.sw_slide_img img');
 
     images.forEach((img) => {

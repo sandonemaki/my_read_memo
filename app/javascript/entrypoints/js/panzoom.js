@@ -1,5 +1,7 @@
 // panzoomの初期設定
 export const initializePanzoom = (panzoomEl) => {
+  if (window.innerWidth <= 768) return null;
+
   return panzoom(panzoomEl, {
     bounds: true,
     boundsPadding: 0.5, // Allow the image to overflow a little bit
@@ -17,6 +19,8 @@ export const zoomInOut = (panzoomEl, instance, isIn) => {
 
 // zoom_reset関数
 export const zoomReset = (instance) => {
+  if (window.innerWidth <= 768) return;
+
   // Reset the panzoom element to its initial position and scale
   instance.moveTo(0, 0);
   instance.zoomAbs(0, 0, 1); // 1 is the initial scale
@@ -24,6 +28,8 @@ export const zoomReset = (instance) => {
 
 // zoom in/out, reset関数をclick時、touchend時に呼び出す
 export const setupZoomEvents = (panzoomEl, instance, zoomInEl, zoomOutEl, zoomResetEl) => {
+  if (window.innerWidth <= 768) return;
+
   zoomInEl.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('Zoom in button clicked');
@@ -44,6 +50,8 @@ export const setupZoomEvents = (panzoomEl, instance, zoomInEl, zoomOutEl, zoomRe
 
 // 拡大率を表示する関数
 export const outputZoomString = (instance, printZoomEl) => {
+  if (window.innerWidth <= 768) return;
+
   const formatZoom = () => {
     // パーセンテージに変換
     let scalePercentage = instance.getTransform().scale * 100;

@@ -5,7 +5,8 @@ import { initializePanzoom, zoomInOut, setupZoomEvents, outputZoomString } from 
 
 document.addEventListener('DOMContentLoaded', function () {
   const swiper = new Swiper('.swiper', {
-    slidesPerView: 'auto',
+    slidesPerView: 1,
+    zoom: true,
     centeredSlides: true,
     resizeObserver: true,
     simulateTouch: false, // disable swiper's drag and drop

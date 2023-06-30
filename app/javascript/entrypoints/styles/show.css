@@ -57,6 +57,9 @@
 .seidoku-remaining-js {
   letter-spacing: 4px;
 }
+.seidoku-remaining-js.show-tab {
+  margin-bottom: 16px;
+}
 .seidoku-remaining-js span {
   letter-spacing: 3px;
 }
@@ -277,12 +280,15 @@
     align-items: end;
   }
   .book-info-detail {
-    width: 50%;
+    width: 60%;
     margin-left: 0px;
   }
   .book-cover {
     width: 30%;
     margin-bottom: 10px;
+  }
+  .seidoku-remaining-js.show-tab {
+    margin-bottom: 16px;
   }
   /****タブ****/
   .tabbed-show-work-area {
