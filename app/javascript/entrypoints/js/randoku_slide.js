@@ -52,11 +52,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // モーダルを閉じる
-  const closeButton = document.querySelector('#sw-close-btn');
-
-  closeButton.addEventListener('click', () => {
-    modal.classList.remove('active');
-    hideJudgePopupMessages(); // すべての judge_popup_message を非表示にする
-    closeFlash();
+  //const closeButton = document.querySelector('#sw-close-btn');
+  const closeButtons = document.querySelectorAll('.sw-close-btn-js');
+  closeButtons.forEach((closeButton) => {
+    closeButton.addEventListener('click', () => {
+      modal.classList.remove('active');
+      hideJudgePopupMessages(); // すべての judge_popup_message を非表示にする
+      closeFlash();
+    });
   });
 });
