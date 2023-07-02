@@ -95,7 +95,7 @@
 .sw_slide_img {
   height: calc(100% - 100px);
 }
-.sw_img_footer {
+.pc_sw_img_footer {
   display: flex;
   margin-top: 10px;
   height: 70px;
@@ -452,7 +452,6 @@
   position: relative;
   width: 800px;
   overflow: hidden;
-  border-radius: 5px;
 }
 .panzoom {
   display: flex;
@@ -533,8 +532,12 @@
 .sp_modal_header {
   display: none;
 }
-.sp_sw_img_footer {
+.sp_sw_img_footer_1 {
   display: none;
+}
+.sp_sw_img_footer_2 {
+  display: none;
+  margin: 0px auto;
 }
 
 /**** モバイル版 *****/
@@ -623,13 +626,14 @@
     margin-right: 10px;
     margin-top: 10px;
   }
-  .sw_img_footer {
+  /**** 画像の下 footer ****/
+  .pc_sw_img_footer {
     display: none;
   }
-  .sp_sw_img_footer {
+  .sp_sw_img_footer_1 {
     display: block;
   }
-  /**** 画像の下 footer ****/
+
   .container {
     align-items: initial;
   }
@@ -639,5 +643,58 @@
   }
   .swiper-slide {
     /*align-items: inherit;*/
+  }
+
+  .sp_sw_img_footer_2 {
+    display: block;
+    margin: 0px auto;
+    margin-top: 24px;
+  }
+  /****フッター****/
+  .total-page-btn {
+    display: none;
+  }
+  .swiper-pagination {
+    align-items: center;
+    position: absolute;
+    font-size: 14px;
+  }
+  .slide_menu_btn {
+    margin-right: inherit;
+  }
+  /**** スマホ版スライドメニュー ****/
+  .sp-slide-menu {
+    position: absolute;
+  }
+  .modal_footer {
+    position: relative;
+  }
+  /****ブックマーク****/
+  .sp_sw_img_footer_1 {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+  }
+  .sw_slide_img {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: auto;
+  }
+  .panzoom {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: 100%;
+  }
+  .sw_bookmark_btn {
+    margin: 0;
+  }
+  /**** 画像のmaxの高さを決める***/
+  .sw_img {
+    margin-top: 24px;
+  }
+  .swiper-slide {
+    max-height: 74vh;
   }
 }
