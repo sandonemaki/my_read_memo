@@ -6,6 +6,7 @@ import '@/entrypoints/js/search_select.js';
 import '@/entrypoints/js/randoku_slide_img_resize.js';
 import '@/entrypoints/js/get_csrf_token.js';
 import '@/entrypoints/js/flash.js';
+import '@/entrypoints/js/touch.js';
 import '@/entrypoints/js/randoku_slide_is_alreadyread.js';
 import '@/entrypoints/js/randoku_slide_bookmark.js';
 import '@/entrypoints/js/randoku_slide_totalpage.js';
@@ -14,6 +15,7 @@ import '@/entrypoints/js/randoku_slide_download_btn.js';
 import '@/entrypoints/js/panzoom.js';
 import '@/entrypoints/js/navigation.js';
 import '@/entrypoints/js/tabbed.js';
+
 // ランキングをfetchで取得したくなった時に改良して使用する
 // import '@/entrypoints/js/ranking_randoku_index.js';
 
