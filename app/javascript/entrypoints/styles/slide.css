@@ -539,6 +539,9 @@
   display: none;
   margin: 0px auto;
 }
+.sp-hamburger-menu {
+  display: none;
+}
 
 /**** モバイル版 *****/
 /***** slideページ ****/
