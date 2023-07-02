@@ -158,9 +158,6 @@
   margin-left: 12px;
   letter-spacing: 4px;
 }
-.seidoku-remaining-js.slide {
-  margin-left: 50px;
-}
 
 .sw_book_title {
   font-size: 14px;
@@ -359,10 +356,7 @@
   opacity: 1;
   transform: translateY(0);
 }
-.seidoku-remaining-js.total-modal {
-  margin-bottom: 12px;
-  font-size: 20px;
-}
+
 .current-total-page {
   margin-bottom: 12px;
 }
@@ -436,6 +430,62 @@
   width: 20px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
   margin-right: 4px;
+}
+
+/****モーダルのトータルページ更新****/
+.ModalContent.slide {
+  padding: 50px 0px;
+  width: 650px;
+  padding: 60px 0;
+  text-align: center;
+}
+.modal-total-page.slide {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.total-page-title.slide {
+  font-size: 28px;
+  letter-spacing: 1.4px;
+  line-height: 1.5;
+  margin-bottom: 13px;
+}
+.total-page-description.slide {
+  margin-bottom: 20px;
+}
+.input-total-page.slide {
+  width: 60%;
+  height: 85px;
+}
+
+.slide-total-page-submit-btn {
+  margin: auto;
+  width: 40%;
+  align-items: center;
+  height: 60px;
+}
+
+.js-update-current-total-page {
+  font-size: 18px;
+}
+.total-page-unit {
+  font-size: 14px;
+}
+#img_read_status_count_modal {
+  font-size: 14px;
+  margin-top: 4px;
+  line-height: 1.75;
+}
+.current-total-page-text {
+  font-size: 12px;
+  margin-top: 20px;
+  margin-bottom: 2px;
+}
+.seidoku-remaining-js.slide {
+  margin-left: 50px;
+}
+.seidoku-remaining-js.total-modal {
+  margin-bottom: 12px;
+  font-size: 20px;
 }
 
 /**** panzoomで使う枠 ****/
@@ -600,6 +650,7 @@
   .sp_modal_header {
     display: flex;
     justify-content: space-between;
+    min-height: 90px; /*要素が消えても高さを固定*/
   }
   .book-progress.slide {
     display: block;
@@ -655,7 +706,7 @@
   }
   /****フッター****/
   .total-page-btn {
-    display: none;
+    display: none; /*作業のため一時的にnoneを消す*/
   }
   .swiper-pagination {
     align-items: center;
@@ -710,5 +761,38 @@
   }
   .swiper-slide {
     max-height: 74vh;
+  }
+
+  /**** トータルページのモーダル ****/
+  .ModalContent {
+    width: 88%;
+  }
+  .ModalCloseButton {
+    top: 16px;
+    right: 16px;
+    font-size: 1.5em;
+  }
+  .total-page-title.slide {
+    font-size: 6vw;
+    margin-bottom: 20px;
+  }
+  .total-page-description.slide {
+    font-size: 3.5vw;
+  }
+  #input_total_page {
+    padding: 0;
+    width: 60%;
+  }
+  .js-update-current-total-page {
+    font-size: 15px;
+  }
+  .seidoku-remaining-js.total-modal {
+    font-size: 4vw;
+  }
+  #img_read_status_count_modal {
+    font-size: 3vw;
+  }
+  .slide-total-page-submit-btn {
+    width: 60%;
   }
 }
