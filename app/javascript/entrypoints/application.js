@@ -12,6 +12,7 @@ import '@/entrypoints/js/randoku_slide_bookmark.js';
 import '@/entrypoints/js/randoku_slide_totalpage.js';
 import '@/entrypoints/js/randoku_slide.js';
 import '@/entrypoints/js/randoku_slide_download_btn.js';
+import '@/entrypoints/js/randoku_slide_sp_menu.js';
 import '@/entrypoints/js/panzoom.js';
 import '@/entrypoints/js/navigation.js';
 import '@/entrypoints/js/tabbed.js';
