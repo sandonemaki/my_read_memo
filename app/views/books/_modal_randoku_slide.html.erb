@@ -122,10 +122,10 @@
         <div class="sp_modal_header">
           <div>
             <div class="book-progress slide">
-              <p class="sw_book_title tap-none-js"><%= book.title %></p>
+              <p class="sw_book_title tap-none-js tap-none-js"><%= book.title %></p>
               <!-- jsで利用 -->
-              <div class="book_reading_progress slide"><%= book.reading_progress %></div>
-              <p class="seidoku-remaining-js slide">
+              <div class="book_reading_progress slide tap-none-js"><%= book.reading_progress %></div>
+              <p class="seidoku-remaining-js slide tap-none-js">
                 <%= book.remaining %>
               </p>
             </div>
@@ -215,11 +215,11 @@
           <button id="sw-button-prev" class="swiper-button-prev"></button>
           <button id="sw-button-next" class="swiper-button-next"></button>
         </div>
-
+        <div class="modal-menu-background"></div>
         <div class="modal_footer">
           <!-- トータルページモーダルトリガーボタン -->
           <div class="total-page-btn baloon-hover">
-            <button id="open-totalpage-modal" class="totalpage-btn">
+            <button id="open-totalpage-modal" class="totalpage-btn open-totalpage-modal-js">
               <img
                 src="https://prog-8.com/assets/packs/dist/images/footer-slides-button-icon-5422fe1e516d2055acb4..svg"
               />
@@ -258,6 +258,14 @@
           <div id="sp-slide-humberger" class="sp-hamburger-menu tap-none-js">
             <i class="fa-solid fa-ellipsis sp-slide"></i>
           </div>
+        </div>
+        <!-- modal_footer -->
+        <!-- spスライドのメニューコンテンツ -->
+        <div class="sp-slide-menu-content">
+          <ul id="menu">
+            <li><p class="open-totalpage-modal-js">読むページを更新</p></li>
+            <li><p>画像の削除</p></li>
+          </ul>
         </div>
       </div>
     </div>
