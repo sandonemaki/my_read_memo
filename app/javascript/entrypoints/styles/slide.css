@@ -435,7 +435,7 @@
 /****モーダルのトータルページ更新****/
 .ModalContent.slide {
   padding: 50px 0px;
-  width: 650px;
+  width: 88%;
   padding: 60px 0;
   text-align: center;
 }
@@ -592,6 +592,9 @@
 .sp-hamburger-menu {
   display: none;
 }
+.sp-slide-menu-content {
+  display: none;
+}
 
 /**** モバイル版 *****/
 /***** slideページ ****/
@@ -600,6 +603,7 @@
     width: 80%;
     height: 100%;
     margin: auto;
+    align-items: inherit;
   }
 
   /***スライドの画像****/
@@ -646,6 +650,7 @@
   /**** slideヘッダー ****/
   .modal_header {
     display: none;
+    height: 90px; /*2*/
   }
   .sp_modal_header {
     display: flex;
@@ -658,27 +663,28 @@
     margin-top: 30px;
   }
   .sw_book_title {
-    font-size: 12px;
+    font-size: 3vw; /*2*/
     position: inherit;
     top: 100%;
     left: 100%;
     transform: inherit;
   }
   .book_reading_progress.slide {
-    font-size: 16px;
     margin-left: 0px;
     letter-spacing: 4px;
+    font-size: 4vw;
   }
   .seidoku-remaining-js.slide {
     margin-left: 0px;
-    font-size: 12px;
+    font-size: 3vw;
   }
   .sw-reveal-inner {
     align-items: inherit;
   }
   .sw-close-button {
-    margin-right: 10px;
-    margin-top: 10px;
+    margin-right: 8px;
+    margin-top: 8px;
+    font-size: 7.5vw;
   }
   /**** 画像の下 footer ****/
   .pc_sw_img_footer {
@@ -692,9 +698,10 @@
     align-items: initial;
   }
   .sw_bookmark_btn {
-    margin-left: auto;
-    font-size: 30px;
+    font-size: 24px;
+    margin: 0;
   }
+
   .swiper-slide {
     /*align-items: inherit;*/
   }
@@ -702,7 +709,7 @@
   .sp_sw_img_footer_2 {
     display: block;
     margin: 0px auto;
-    margin-top: 24px;
+    margin-top: 16px;
   }
   /****フッター****/
   .total-page-btn {
@@ -711,7 +718,8 @@
   .swiper-pagination {
     align-items: center;
     position: absolute;
-    font-size: 14px;
+    font-size: 3.5vw;
+    letter-spacing: 1.5vw;
   }
   .slide_footer_menu_btn {
     margin-right: inherit;
@@ -728,16 +736,69 @@
     align-items: center;
   }
   /**** スマホ版スライドメニュー ****/
-  .sp-slide-menu {
+  .sp-hamburger-menu {
     position: absolute;
   }
   .modal_footer {
     position: relative;
+    z-index: 140;
+  }
+  /**** スマホ版スライドメニューコンテンツ ****/
+  .sp-slide-menu-content {
+    display: block;
+    list-style: none;
+    position: fixed;
+    padding-top: 12px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    transform: translateY(100%);
+    transition: transform 400ms ease;
+    background: #2e3944;
+    margin: 0;
+    z-index: 150;
+  }
+  .sp-slide-menu-content li {
+    border-top: 1px solid rgb(75, 75, 75);
+    padding: 16px 0;
+    margin: 0 54px;
+  }
+  .sp-slide-menu-content p {
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 4vw;
+    color: #fff;
+    letter-spacing: 0.1em;
+    line-height: 30px;
+  }
+  .modal-menu-background {
+    background-color: rgba(0, 0, 0, 0.54);
+    opacity: 0;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: opacity 0.3s ease-out;
+    z-index: 120; /* modal-menu-background < sp-slide-menu-content < modal_footer */
+  }
+  .modal-menu-background.show {
+    opacity: 1;
+    display: block;
+  }
+  /****読んだボタン****/
+  .submit-button-radius {
+    width: 110px;
+    height: 38px;
+    border: 2px solid #35b7e4;
+    color: #35b7e4;
   }
   /****ブックマーク****/
   .sp_sw_img_footer_1 {
     position: absolute;
-    right: 14px;
+    right: 20px;
     bottom: 14px;
   }
   .sw_slide_img {
@@ -752,25 +813,21 @@
     width: auto;
     height: 100%;
   }
-  .sw_bookmark_btn {
-    margin: 0;
-  }
+
   /**** 画像のmaxの高さを決める***/
-  .sw_img {
-    margin-top: 24px;
-  }
   .swiper-slide {
-    max-height: 74vh;
+    max-height: 80vh;
   }
 
   /**** トータルページのモーダル ****/
   .ModalContent {
-    width: 88%;
+    /*width: 88%;*/
+    border-radius: 16px;
   }
   .ModalCloseButton {
     top: 16px;
     right: 16px;
-    font-size: 1.5em;
+    font-size: 1em;
   }
   .total-page-title.slide {
     font-size: 6vw;
