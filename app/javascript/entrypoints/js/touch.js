@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let isPinching = false;
 
     panzooms.forEach((panzoom) => {
-      console.log('いいい');
       // タップでの表示・非表示
       panzoom.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
-          console.log('うううう');
           // シングルタップのみ
           toggleTapNoneJsDisplay();
         }
