@@ -243,3 +243,17 @@
 .index-book-memo-unit {
   font-size: 18px;
 }
+
+/**** モバイル版 *****/
+/***** slideページ ****/
+@media screen and (max-width: 600px) {
+  .user-profile {
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-profile__separator {
+    margin: 16px 0px;
+    width: 120px;
+    height: 1px;
+  }
+}
