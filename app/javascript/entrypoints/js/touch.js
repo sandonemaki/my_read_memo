@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-  if (document.querySelector('.panzoom')) {
-    const panzooms = document.querySelectorAll('.panzoom');
+  if (document.querySelector('.touchpoint')) {
+    const touchpoints = document.querySelectorAll('.touchpoint');
+    //const panzooms = document.querySelectorAll('.panzoom');
     // ユーザーがピンチ操作（2本の指で拡大縮小）を行っているかどうかを管理
     // touchstartイベントで2本以上のタッチがある場合にtrue、touchendイベントでfalse
     let isPinching = false;
 
-    panzooms.forEach((panzoom) => {
+    touchpoints.forEach((touchpoint) => {
       // タップでの表示・非表示
-      panzoom.addEventListener('touchstart', (e) => {
+      touchpoint.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
           // シングルタップのみ
           toggleTapNoneJsDisplay();
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       // 拡大縮小中の表示・非表示
-      panzoom.addEventListener('touchstart', (e) => {
+      touchpoint.addEventListener('touchstart', (e) => {
         if (e.touches.length > 1) {
           // ピンチ操作開始
           isPinching = true;
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      panzoom.addEventListener('touchend', () => {
+      touchpoint.addEventListener('touchend', () => {
         if (isPinching) {
           // ピンチ操作終了
           isPinching = false;
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      panzoom.addEventListener('touchmove', (e) => {
+      touchpoint.addEventListener('touchmove', (e) => {
         if (!isPinching && e.touches.length > 1) {
           // ピンチ操作開始
           isPinching = true;
