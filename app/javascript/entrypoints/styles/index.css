@@ -86,4 +86,55 @@
   .PC-index-ranking-btn {
     display: none;
   }
+  /* タブの下 */
+  /*  前回の続き */
+  .index-user-book-info {
+    display: inherit;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .index-user-book-table {
+    flex-direction: column;
+    /*display: flex;*/
+    justify-content: space-between;
+    /*width: 90%;*/
+    margin: 0 auto;
+  }
+  .index-user-book {
+    margin-bottom: 12px;
+  }
+  .index-user-book-cover {
+    width: 70%;
+    margin-right: 24px;
+  }
+  .index-book-progress {
+    font-size: 3vw;
+  }
+  .index-user-book-memo {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 36px;
+  }
+  .index-book-label {
+    font-size: 3vw;
+  }
+
+  .index-user-book-memo-count p {
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .index-book-memo-count {
+    font-size: 6vw;
+  }
+  .index-book-memo-unit {
+    font-size: 4vw;
+  }
+  .index_memo__separator {
+    margin: 0px 24px;
+    width: 1px;
+    height: 60px;
+    background-color: #e9edf4;
+    display: flex;
+  }
 }

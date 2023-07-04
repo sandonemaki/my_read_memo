@@ -198,7 +198,6 @@
 }
 .index-user-book-memo {
   display: flex;
-  justify-content: space-between;
   width: 28%;
 }
 .index-user-book-cover {
@@ -234,6 +233,8 @@
 }
 .index-user-book-memo {
   align-items: center;
+  justify-content: center;
+  display: flex;
 }
 .index-book-memo-count {
   font-size: 32px;
