@@ -55,6 +55,7 @@
 .user-profile-cleard-count i {
   font-size: 22px;
   vertical-align: middle;
+  line-height: 1.5;
 }
 .user-profile-cleard-count .fa-book {
   margin-right: 4px;
@@ -252,8 +253,22 @@
     align-items: center;
   }
   .user-profile__separator {
-    margin: 16px 0px;
+    margin: 20px 0px;
     width: 120px;
     height: 1px;
+  }
+  .user-profile-name {
+    font-size: 4vw;
+  }
+  .user-profile-cleard-count {
+    font-size: 7vw;
+  }
+  .user-profile-cleard-count i {
+    font-size: 5vw;
+  }
+  .user-profile-cleared-text {
+    font-size: 3.5vw;
+    margin-top: -2px;
+    letter-spacing: 1px;
   }
 }
