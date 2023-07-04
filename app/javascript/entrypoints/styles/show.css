@@ -94,7 +94,7 @@
   background-color: #fff;
   z-index: 1;
   position: relative;
-  border-top: 2px solid #e9edf1;
+  /*border-top: 2px solid #e9edf1;*/
   z-index: 2;
 }
 .upload-file-form {
@@ -222,7 +222,7 @@
 .tab__panel-box {
   display: none;
 }
-.tab__panel-btn {
+.index_tab__panel-btn-js {
   display: none;
 }
 
@@ -230,7 +230,7 @@
 .tab__panel-box.is-show {
   display: block;
 }
-.tab__panel-btn.is-show {
+.index_tab__panel-btn-js.is-show {
   display: block;
 }
 

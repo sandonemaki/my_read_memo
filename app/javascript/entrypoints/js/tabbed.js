@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const tabMenuItems = document.querySelectorAll('.tab__menu-item');
   const tabPanelItems = document.querySelectorAll('.tab__panel-box');
-  const tabPanelBtns = document.querySelectorAll('.tab__panel-btn');
+  const tabPanelBtns = document.querySelectorAll('.index_tab__panel-btn-js');
 
   function clearActiveStates() {
     tabMenuItems.forEach((item) => item.classList.remove('is-active'));
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     e.currentTarget.classList.add('is-active');
     const panel = document.querySelector(`.tab__panel-box[data-panel="${tabTargetData}"]`);
-    const btn = document.querySelector(`.tab__panel-btn[data-btn="${tabTargetData}"]`);
+    const btn = document.querySelector(`.index_tab__panel-btn-js[data-btn="${tabTargetData}"]`);
 
     if (panel) panel.classList.add('is-show');
     if (btn) btn.classList.add('is-show');
