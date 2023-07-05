@@ -208,6 +208,14 @@ li {
   width: 960px;
   margin: 0 auto;
 }
+/**** SPグローバルスライドメニュー ****/
+.open-slide-menu-js {
+  display: none;
+}
+.global-sidebar {
+  display: none;
+}
+
 @media screen and (max-width: 600px) {
   .header-menus-wrapper {
     display: none;
@@ -222,5 +230,44 @@ li {
   .upload-button {
     padding: 20px 20px;
     width: 100%;
+  }
+
+  /* グローバルスライドメニュー */
+  .global-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: block;
+    transition: background-color 0.4s ease-out;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 14px;
+    background-color: #2e3944;
+    min-width: 280px;
+    padding: 10px;
+  }
+  .sb-right {
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+  }
+  .global-sidebar__menu li {
+    color: #ddd;
+  }
+  .user-menu-navigation {
+    display: none;
+  }
+  .open-slide-menu-js {
+    display: block;
+  }
+  /* メニューバーを出すためにheadrとmainコンテンツに背景色をつけてjsで左に動かす*/
+  #main-background {
+    transition: transform 400ms ease;
+    background-color: #fff; /* 背景色を指定 */
+    padding-bottom: 40px;
+  }
+  #header-content-js {
+    transition: transform 400ms ease;
+    background-color: #fff; /* 背景色を指定 */
   }
 }

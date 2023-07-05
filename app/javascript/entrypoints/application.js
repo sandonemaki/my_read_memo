@@ -16,6 +16,7 @@ import '@/entrypoints/js/randoku_slide_sp_menu.js';
 import '@/entrypoints/js/panzoom.js';
 import '@/entrypoints/js/navigation.js';
 import '@/entrypoints/js/tabbed.js';
+import '@/entrypoints/js/sp_slide_menu.js';
 
 // ランキングをfetchで取得したくなった時に改良して使用する
 // import '@/entrypoints/js/ranking_randoku_index.js';
