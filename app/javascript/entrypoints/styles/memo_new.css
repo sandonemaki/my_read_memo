@@ -99,4 +99,7 @@
   .memo-content-header {
     display: block;
   }
+  .search-result-bk.main-content-js {
+    background-color: inherit;
+  }
 }
