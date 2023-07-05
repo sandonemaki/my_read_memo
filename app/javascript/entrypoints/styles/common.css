@@ -16,6 +16,8 @@ li {
   justify-content: space-between;
   box-shadow: 0 1px 3px rgba(160, 166, 179, 0.3);
   font-size: 0.75rem;
+  position: relative; /* ポジションをrelativeまたはabsoluteに設定 */
+  z-index: 1000; /* z-indexを高い値に設定 */
 }
 .header-menus {
   display: flex;
