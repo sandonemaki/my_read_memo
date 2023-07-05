@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
         //globalSlider.style.opacity = '0';
         //globalSlider.style.visibility = 'hidden';
-        //globalSlider.style.zIndex = -100;
+        globalSlider.style.zIndex = -100;
       } else {
         header.style.transform = 'translate(-280px)';
         mains.forEach((main) => {
@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
         globalSlider.style.opacity = '1';
         globalSlider.style.visibility = 'visible';
+        globalSlider.style.zIndex = 10000;
       }
     });
   });
