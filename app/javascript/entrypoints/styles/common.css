@@ -253,9 +253,6 @@ li {
     bottom: 0px;
     top: 0px;
   }
-  .global-sidebar__menu li {
-    color: #ddd;
-  }
   .user-menu-navigation {
     display: none;
   }
@@ -271,5 +268,36 @@ li {
   #header-content-js {
     transition: transform 400ms ease;
     background-color: #fff; /* 背景色を指定 */
+  }
+  /* グローバルメニュー */
+  .global-sidebar__user-info li {
+    display: flex;
+    align-items: center; /* オプション：要素を縦方向の中央に配置 */
+  }
+  .global-sidebar__user-image {
+    display: inline-block;
+    margin: 20px 10px;
+  }
+  .profile-image {
+    display: inline-block;
+    vertical-align: middle;
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    border: 1px solid rgba(209, 211, 223, 0.44);
+    background-size: cover;
+    background-position: center;
+  }
+  .global-sidebar__user-info a {
+    display: inline-block;
+    padding: 0;
+  }
+  .global-sidebar a {
+    transition: all 0.2s ease;
+    display: block;
+    color: #fff;
+    padding: 10px;
+    line-height: 30px;
+    letter-spacing: 0.1em;
   }
 }
