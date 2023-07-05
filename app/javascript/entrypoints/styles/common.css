@@ -260,10 +260,9 @@ li {
     display: block;
   }
   /* メニューバーを出すためにheadrとmainコンテンツに背景色をつけてjsで左に動かす*/
-  #main-background {
+  .main-content-js {
     transition: transform 400ms ease;
     background-color: #fff; /* 背景色を指定 */
-    padding-bottom: 40px;
   }
   #header-content-js {
     transition: transform 400ms ease;
