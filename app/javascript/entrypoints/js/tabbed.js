@@ -15,10 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     e.currentTarget.classList.add('is-active');
     const panel = document.querySelector(`.tab__panel-box[data-panel="${tabTargetData}"]`);
-    const btn = document.querySelector(`.index_tab__panel-btn-js[data-btn="${tabTargetData}"]`);
+    const btns = document.querySelectorAll(`.index_tab__panel-btn-js[data-btn="${tabTargetData}"]`);
 
     if (panel) panel.classList.add('is-show');
-    if (btn) btn.classList.add('is-show');
+    btns.forEach((btn) => {
+      if (btn) btn.classList.add('is-show');
+    });
   }
 
   tabMenuItems.forEach((tabMenuItem) => {

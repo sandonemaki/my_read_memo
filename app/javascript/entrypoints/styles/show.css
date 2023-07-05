@@ -314,6 +314,7 @@
   }
   .tab-width {
     width: 90px;
+    margin: 0 auto;
   }
 
   /****アップロードボタンの下****/
@@ -346,4 +347,11 @@
   .img_bookmark_check {
     font-size: 7.5vw;
   }
+  /* ボタンの表示、非表示 */
+  /* .index_tab__panel-btn-js {
+    display: none;
+  }
+  .index_tab__panel-btn-js.is-show {
+    display: block;
+  }*/
 }

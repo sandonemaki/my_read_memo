@@ -1,15 +1,13 @@
 <%= render partial: 'layouts/header' %>
-<div class="inner book-index">
+<div id="main-content-js" class="inner book-index">
   <!-- randoku_indexの共通ヘッダー -->
   <%= render partial: 'books/index_tabs/randoku_index_common', locals: { books: randoku_books } %>
 
   <!-- randoku_indexの共通タブ -->
   <div class="tab tabbled-sort-area">
     <ul class="tab__menu tabbed-index-work-area border-none">
-      <li class="tab__menu-item tab-index-book-progress is-active" data-tab="01">
-        <p class="tab-width">乱読中の本</p>
-      </li>
-      <li class="tab__menu-item tab-index-book-progress" data-tab="02"><p class="tab-width">精読中の本</p></li>
+      <li class="tab__menu-item tab-index-book-progress is-active" data-tab="01">乱読中の本</li>
+      <li class="tab__menu-item tab-index-book-progress" data-tab="02">精読中の本</li>
     </ul>
 
     <!-- PC版のランキングボタン -->
@@ -77,7 +75,7 @@
   <div class="tabbed-line"></div>
   <!-- SP版のランキングボタン -->
   <div class="SP-index-ranking-btn">
-    <!---PC_タブを切り替えた時に変わる---->
+    <!---SP_タブを切り替えた時に変わる---->
     <div class="index_tab__panel-btn-js tab__panel-btn001 is-show" data-btn="01">
       <div class="index-book-ranking">
         <p>Total <%= randoku_books.all_randoku_state_count %>冊</p>
@@ -106,7 +104,8 @@
         </div>
       </div>
     </div>
-    <!---PC_タブを切り替えた時に変わる---->
+
+    <!---SP_タブを切り替えた時に変わる---->
     <div class="index_tab__panel-btn-js tab__panel-btn002" data-btn="02">
       <div class="index-book-ranking">
         <p>Total <%= seidoku_books.all_seidoku_state_count %>冊</p>
