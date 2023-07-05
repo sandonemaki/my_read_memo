@@ -266,6 +266,10 @@
   border-top-left-radius: 100px 250px;
   /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);*/
 }
+/* commonでつけたmain-content-jsの高さを無効にする */
+.main-content-js.book-show-upper-inner {
+  min-height: inherit;
+}
 /**** モバイル版 *****/
 /***** show-upper ****/
 @media screen and (max-width: 600px) {
