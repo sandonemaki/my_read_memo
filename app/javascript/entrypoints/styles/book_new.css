@@ -1,6 +1,6 @@
 .book-profile {
   width: 612px;
-  margin-top: 40px;
+  padding-top: 40px;
 }
 .book-cover-upload-form {
   margin-top: 16px;
@@ -20,6 +20,7 @@
   text-align: center;
   cursor: pointer;
   user-select: none;
+  letter-spacing: 0;
 }
 /**** 本の情報入力欄 ****/
 .book-profile-form {
@@ -80,4 +81,28 @@
   color: rgb(231, 82, 82);
   font-size: 0.75rem;
   margin-top: 8px;
+}
+@media screen and (max-width: 600px) {
+  .book-profile {
+    width: 100%;
+  }
+  /* 本の情報入力 */
+  .book-profile-form {
+    width: 90%;
+  }
+  .book-profile h1 {
+    font-size: 5vw;
+  }
+  .book-profile-totalpage {
+    width: 90%;
+  }
+  .total-page-title {
+    font-size: 4.5vw;
+  }
+  .total-page-description {
+    font-size: 1.5vw;
+  }
+  .submit-button.book-info-submit {
+    width: 90%;
+  }
 }
