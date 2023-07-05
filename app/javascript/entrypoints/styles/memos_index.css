@@ -1,11 +1,12 @@
 .book-show-bk {
   background-color: #f2f4f7;
 }
-.book-show-white {
+/*.book-show-white {
   background-color: white;
-}
+}*/
 .book-show-upper-inner {
-  margin: 40px auto 0;
+  padding-top: 40px;
+  margin: 0 auto;
 }
 #img_read_status_count span {
   border-radius: 50%;

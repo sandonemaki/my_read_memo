@@ -19,11 +19,18 @@
 .c-flash--notice {
   background-color: #30c8d6;
 }
+.c-flash--notice.slide {
+  background-color: #30c8d6;
+  top: 0;
+}
 
 .c-flash--alert {
   background-color: #e75252;
   opacity: 0; /* 初期状態では透明 */
   right: -1000px; /* 元々は見えない位置にある */
+}
+.c-flash--alert {
+  top: 0;
 }
 
 .c-flash-text {

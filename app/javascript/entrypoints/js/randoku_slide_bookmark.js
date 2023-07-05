@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // bookmark/toggle-button
   bookmarkBtnList.forEach((bookmarkBtn) => {
-    bookmarkBtn.addEventListener('click', async () => {
+    bookmarkBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
       await ToggleImgBookmarkStatus(bookmarkBtn);
     });
   });

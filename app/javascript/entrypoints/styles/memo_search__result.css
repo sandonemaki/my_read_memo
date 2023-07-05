@@ -64,7 +64,7 @@
 .search-header {
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  padding-top: 40px;
   font-size: 20px;
 }
 .search-memo-info {
@@ -77,4 +77,39 @@
 }
 .search-memo-unit {
   font-size: 14px;
+}
+/* 検索結果画面の結果部分を背景色で埋める */
+.main-search {
+  display: flex;
+  flex-direction: column;
+}
+.memo-search-bk {
+  flex: 1;
+}
+@media screen and (max-width: 600px) {
+  .memo-search-bk {
+    width: 100%;
+  }
+  #search-select {
+    width: 100%;
+    font-size: 3vw;
+  }
+  /*.search-selectbox {
+    width: 100%;
+  }*/
+  .search-selectbox::after {
+    transform: translate(50%, -50%) rotate(45deg);
+    top: 2px;
+    right: 20px;
+  }
+  .search-result-title {
+    font-size: 5vw;
+  }
+  .search-result-text {
+    font-size: 3.5vw;
+  }
+  /* 検索結果 */
+  .search-text {
+    font-size: 5vw;
+  }
 }

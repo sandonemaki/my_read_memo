@@ -8,7 +8,7 @@
   padding: 16px 100px;
   /*border: 1px solid #000;*/
   border-radius: 8px;
-  margin-top: 40px;
+  padding-top: 40px;
 }
 .user-profile-item {
   flex-grow: 1;
@@ -55,6 +55,7 @@
 .user-profile-cleard-count i {
   font-size: 22px;
   vertical-align: middle;
+  line-height: 1.5;
 }
 .user-profile-cleard-count .fa-book {
   margin-right: 4px;
@@ -177,7 +178,7 @@
   background-color: white;
   z-index: 1;
   position: relative;
-  border-top: 2px solid #e9edf1;
+  /*border-top: 2px solid #e9edf1;*/
   z-index: 2;
 }
 .index-lesson-label {
@@ -197,9 +198,10 @@
 }
 .index-user-book-memo {
   display: flex;
-  justify-content: space-between;
   width: 28%;
+  align-items: center;
 }
+
 .index-user-book-cover {
   width: 18.5%;
   position: relative;
@@ -231,15 +233,149 @@
 .index-memo-icon {
   margin-right: 8px;
 }
-.index-user-book-memo {
-  align-items: center;
-}
+
 .index-book-memo-count {
   font-size: 32px;
+}
+.index_memo__separator {
+  margin: 0 20px;
 }
 .index-book-label {
   font-size: 12px;
 }
 .index-book-memo-unit {
   font-size: 18px;
+}
+/* インデックスのランキング */
+/* ランキングボタン */
+.SP-index-ranking-btn {
+  display: none;
+}
+.tabbed-line {
+  width: 100%;
+  height: 2px;
+  margin: 0;
+  background-color: #e9edf1;
+  display: flex;
+}
+
+/**** モバイル版 *****/
+/***** slideページ ****/
+@media screen and (max-width: 600px) {
+  .user-profile {
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-profile__separator {
+    margin: 20px 0px;
+    width: 120px;
+    height: 1px;
+  }
+  .user-profile-name {
+    font-size: 4vw;
+  }
+  .user-profile-cleard-count {
+    font-size: 7vw;
+  }
+  .user-profile-cleard-count i {
+    font-size: 5vw;
+  }
+  .user-profile-cleared-text {
+    font-size: 3.5vw;
+    margin-top: -2px;
+    letter-spacing: 1px;
+  }
+  /****タブ****/
+  .tabbed-index-work-area {
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .tab__menu-item {
+    width: 240px;
+  }
+  .tab-index-book-progress {
+    letter-spacing: 1px;
+    padding: 17px;
+    margin-right: 4px;
+    background-color: #fff;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 200px;
+  }
+  .tabbled-sort-area {
+    display: flex;
+    padding: 0px;
+  }
+  .tabbled-sort-area .tabbed-index-work-area {
+    width: 100%;
+  }
+  .tab-width {
+    width: 90px;
+    margin: 0 auto;
+  }
+  /* ランキングボタン */
+  .SP-index-ranking-btn {
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+  }
+
+  .PC-index-ranking-btn {
+    display: none;
+  }
+  /**** タブの下 ****/
+  /*  前回の続き */
+  .index-user-book-info {
+    display: inherit;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .index-user-book-table {
+    flex-direction: column;
+    /*display: flex;*/
+    justify-content: space-between;
+    /*width: 90%;*/
+    margin: 0 auto;
+  }
+  .index-user-book {
+    margin-bottom: 12px;
+  }
+  .index-user-book-cover {
+    width: 70%;
+    margin-right: 24px;
+  }
+  .index-book-title {
+    font-size: 3.5vw;
+  }
+  .index-book-progress {
+    font-size: 3vw;
+  }
+  .index-user-book-memo {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 36px;
+  }
+  .index-book-label {
+    font-size: 3vw;
+  }
+
+  .index-user-book-memo-count p {
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .index-book-memo-count {
+    font-size: 6vw;
+  }
+  .index-book-memo-unit {
+    font-size: 3.5vw;
+  }
+  .index_memo__separator {
+    margin: 0px 24px;
+    width: 1px;
+    height: 60px;
+    background-color: #e9edf4;
+    display: flex;
+  }
 }

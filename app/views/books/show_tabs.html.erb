@@ -1,61 +1,54 @@
-<body class="book-show-bk">
-  <div class="book-show-white">
-    <%= render partial: 'layouts/header' %>
-    <div class="inner book-show-upper-inner">
-      <div class="book-info-wrapp">
-        <div class="book-info-detail">
-          <!--本の情報-->
-          <div class="book-progress">
-            <div class="book-progress-icon show-tabs"><i class="fa-solid fa-book-bookmark"></i></div>
-            <div class="book_reading_progress show-tabs"><%= book.reading_progress %></div>
-            <div><i class="fa-regular fa-circle-question show-tabs"></i></div>
-          </div>
-          <div class="book-input-info">
-            <h1><%= book.title %></h1>
-            <p>著者：<%= book.author %></p>
-            <p>出版社：<%= book.publisher %></p>
-            <p>読むページ数：<span class="js-update-current-total-page"><%= book.total_page %><span></p>
-          </div>
-        </div>
-        <div class="book-cover">
-          <img src="https://placehold.jp/140x180.png" width="100%" height="auto" />
-          <i class="fa-solid fa-image fa-xl"></i>
-        </div>
+<%= render partial: 'layouts/header' %>
+<div class="main-content-js inner book-show-upper-inner">
+  <div class="book-info-wrapp">
+    <div class="book-info-detail">
+      <!--本の情報-->
+      <div class="book-progress">
+        <div class="book-progress-icon show-tabs"><i class="fa-solid fa-book-bookmark"></i></div>
+        <div class="book_reading_progress show-tabs"><%= book.reading_progress %></div>
+        <div><i class="fa-regular fa-circle-question show-tabs"></i></div>
       </div>
-
-
-
-      <!-- 自分のアプリのclassに置き換える -->
-      <div class="tab tabbled-book-show">
-        <ul class="tab__menu tabbed-show-work-area">
-          <li class="tab__menu-item tab-show-book-progress is-active" data-tab="01"><p class="tab-width">乱読画像メモ</p></li>
-          <li class="tab__menu-item tab-show-book-progress" data-tab="02"><p class="tab-width">乱読メモ</p></li>
-          <li class="tab__menu-item tab-show-book-progress" data-tab="03">
-            <p class="tab-width">精読メモ</p>
-            <% if book.seidoku_memo_key == true %>
-              <p class="seidoku_memo_key">
-                <i class="fa-solid fa-lock lock-key"></i>
-              </p>
-            <% end %>
-          </li>
-        </ul>
+      <div class="book-input-info">
+        <h1><%= book.title %></h1>
+        <p>著者：<%= book.author %></p>
+        <p>出版社：<%= book.publisher %></p>
+        <p>読むページ数：<span class="js-update-current-total-page"><%= book.total_page %><span></p>
       </div>
     </div>
-  </div>
-
-  <div class="tab__panel">
-    <div class="tab__panel-box tab__panel-box001 is-show" data-panel="01">
-      <!-- 乱読画像メモのパーシャル -->
-      <%= render partial: 'books/show_tabs/imgs', locals: { book: book } %>
-    </div>
-    <div class="tab__panel-box tab__panel-box002" data-panel="02">
-      <!-- 乱読画像メモのパーシャル -->
-      <%= render partial: 'books/show_tabs/randoku_memos', locals: { book: book_randoku_memos } %>
-    </div>
-    <div class="tab__panel-box tab__panel-box003" data-panel="03">
-      <!-- 精読メモのパーシャル -->
-      <%= render partial: 'books/show_tabs/seidoku_memos', locals: { book: book_seidoku_memos } %>
+    <div class="book-cover">
+      <img src="https://placehold.jp/140x180.png" width="100%" height="auto" />
+      <i class="fa-solid fa-image fa-xl"></i>
     </div>
   </div>
-  <!-- tab__panel -->
-</body>
+  <!-- 自分のアプリのclassに置き換える -->
+  <div class="tab tabbled-book-show">
+    <ul class="tab__menu tabbed-show-work-area">
+      <li class="tab__menu-item tab-show-book-progress is-active" data-tab="01"><p class="tab-width">乱読画像メモ</p></li>
+      <li class="tab__menu-item tab-show-book-progress" data-tab="02"><p class="tab-width">乱読メモ</p></li>
+      <li class="tab__menu-item tab-show-book-progress" data-tab="03">
+        <p class="tab-width">精読メモ</p>
+        <% if book.seidoku_memo_key == true %>
+          <p class="seidoku_memo_key">
+            <i class="fa-solid fa-lock lock-key"></i>
+          </p>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <div class="tabbed-line"></div>
+</div>
+<div class="tab__panel">
+  <div class="tab__panel-box tab__panel-box001 is-show" data-panel="01">
+    <!-- 乱読画像メモのパーシャル -->
+    <%= render partial: 'books/show_tabs/imgs', locals: { book: book } %>
+  </div>
+  <div class="tab__panel-box tab__panel-box002" data-panel="02">
+    <!-- 乱読画像メモのパーシャル -->
+    <%= render partial: 'books/show_tabs/randoku_memos', locals: { book: book_randoku_memos } %>
+  </div>
+  <div class="tab__panel-box tab__panel-box003" data-panel="03">
+    <!-- 精読メモのパーシャル -->
+    <%= render partial: 'books/show_tabs/seidoku_memos', locals: { book: book_seidoku_memos } %>
+  </div>
+</div>
+<!-- tab__panel -->
