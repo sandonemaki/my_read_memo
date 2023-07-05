@@ -217,7 +217,9 @@ li {
 .global-sidebar {
   display: none;
 }
-
+.main-content-js {
+  min-height: calc(100vh - 48px);
+}
 @media screen and (max-width: 600px) {
   .header-menus-wrapper {
     display: none;
@@ -263,6 +265,7 @@ li {
   .main-content-js {
     transition: transform 400ms ease;
     background-color: #fff; /* 背景色を指定 */
+    min-height: calc(100vh - 48px);
   }
   #header-content-js {
     transition: transform 400ms ease;

@@ -78,6 +78,14 @@
 .search-memo-unit {
   font-size: 14px;
 }
+/* 検索結果画面の結果部分を背景色で埋める */
+.main-search {
+  display: flex;
+  flex-direction: column;
+}
+.memo-search-bk {
+  flex: 1;
+}
 @media screen and (max-width: 600px) {
   .memo-search-bk {
     width: 100%;
