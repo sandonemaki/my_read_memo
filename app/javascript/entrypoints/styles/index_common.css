@@ -68,36 +68,6 @@
   display: flex;
 }
 /*** テンプレタブ ***/
-.tabbed-index-work-area {
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-  padding: 0;
-  border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
-  position: relative;
-}
-/* tab__menu-itemと同じ
-.tab-index-book-progress {
-  border-bottom: none;
-  padding: 14px 42px;
-
-  float: left;
-  text-align: center;
-  background-color: #d4dce4;
-  border-top-right-radius: 100px 250px;
-  border-top-left-radius: 100px 250px;
-  font-size: 12px;
-  cursor: pointer;
-  position: relative;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}*/
-
-/* tab__menu-item.is-active と同じ
-.tab-index-book-progress.active {
-  background-color: #f0f4f9;
-  cursor: auto;
-  z-index: 2;
-}*/
 #underline.index-page {
   width: 50%;
 }
@@ -110,7 +80,6 @@
   margin: 20px 0px 0px;
   position: relative;
 }
-
 .tabbed-index-work-area {
   display: flex;
   justify-content: space-between;
@@ -119,11 +88,7 @@
   border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
   position: relative;
 }
-.ranking-sort {
-  width: 44px;
-  height: auto;
-  margin-left: 12px;
-}
+/* ランキングボタン */
 .index-book-ranking {
   display: flex;
   align-items: center;
@@ -131,6 +96,11 @@
 .ranking-sort-btn {
   position: relative;
   cursor: pointer;
+}
+.ranking-sort {
+  width: 44px;
+  height: auto;
+  margin-left: 12px;
 }
 .ranking-sort-navi {
   position: absolute;
@@ -144,9 +114,8 @@
   visibility: hidden;
   opacity: 0;
   transition: transform 0.2s ease-out;
-  /*z-index: 4;*/
 }
-
+/* ランキングのプルダウン */
 .ranking-sort-navi.active {
   visibility: visible;
   opacity: 1;
@@ -162,14 +131,11 @@
   transition: all 0.2s ease 0s;
 }
 .ranking-menu {
-  /*margin-bottom: 14px;*/
   display: block;
 }
-
 .ranking-menu:hover {
   background-color: #f3f4f5;
 }
-
 .fa-image,
 .fa-book,
 .fa-note-sticky {
@@ -309,33 +275,15 @@
     padding: 0px;
   }
   .tab__menu-item {
-    width: 240px;
+    /*width: 240px;*/
   }
-  /* tab__menu-item と同じ
-  .tab-index-book-progress {
-    letter-spacing: 1px;
-    padding: 17px;
-    margin-right: 4px;
-    background-color: #fff;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    width: 200px;
-  }*/
-  .tabbled-book-index {
-    /*display: flex;
-    padding: 0px;0706消すか迷う*/
-  }
-  .tab-width {
-    width: 90px;
-    margin: 0 auto;
-  }
+
   /* ランキングボタン */
   .SP-index-ranking-btn {
     display: flex;
     justify-content: end;
     margin-top: 20px;
   }
-
   .PC-index-ranking-btn {
     display: none;
   }
