@@ -5,11 +5,15 @@
     <%= render partial: 'books/index_tabs/randoku_index_common', locals: { books: randoku_books } %>
 
     <!-- randoku_indexの共通タブ -->
-    <div class="tab tabbled-sort-area">
-      <ul class="tab__menu tabbed-index-work-area border-none">
-        <li class="tab__menu-item tab-index-book-progress" data-tab="01">乱読中の本</li>
-        <li class="tab__menu-item tab-index-book-progress is-active" data-tab="02">精読中の本</li>
-      </ul>
+    <div class="tab tabbled-book-index">
+      <div class="tab__underline">
+        <ul class="tab__menu tabbed-index-work-area">
+          <li class="tab__menu-item index-page" data-tab="01"><p class="tab-width">乱読中の本</p></li>
+          <li class="tab__menu-item index-page is-active" data-tab="02"><p class="tab-width">精読中の本</p></li>
+        </ul>
+        <div id="underline" class="index-page"></div>
+        <!-- 追加 -->
+      </div>
 
       <!-- PC版のランキングボタン -->
       <div class="PC-index-ranking-btn">
@@ -73,81 +77,81 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="tabbed-line"></div>
-    <!-- SPs版のランキングボタン -->
-    <div class="SP-index-ranking-btn">
-      <!---タブを切り替えた時に変わる---->
-      <div class="index_tab__panel-btn-js tab__panel-btn001" data-btn="01">
-        <div class="index-book-ranking">
-          <p>Total <%= randoku_books.all_randoku_state_count %>冊</p>
-          <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
-          <div class="ranking-sort-btn">
-            <%
-              svg_ranking_sort =
-                File
-                  .read(Rails.root.join('public', 'sort.svg'))
-                  .gsub('<svg ', '<svg class="ranking-sort navi-trigger-btn-js"')
-            %>
-            <%= raw svg_ranking_sort %>
-            <div class="ranking-sort-navi navi-panel-js">
-              <ul class="ranking-menus">
-                <li class="ranking-menu randoku_rank_01">
-                  <%= link_to('乱読画像の多い順', '/books/randoku_index', class: 'button') %>
-                </li>
-                <li class="ranking-menu randoku_rank_02">
-                  <%= link_to('乱読本の投稿順', '/books/randoku_rank_created_books', class: 'button') %>
-                </li>
-                <li class="ranking-menu randoku_rank_03">
-                  <%= link_to('乱読画像の投稿順', '/books/randoku_rank_created_randoku_imgs', class: 'button') %>
-                </li>
-              </ul>
+
+      <!-- SPs版のランキングボタン -->
+      <div class="SP-index-ranking-btn">
+        <!---タブを切り替えた時に変わる---->
+        <div class="index_tab__panel-btn-js tab__panel-btn001" data-btn="01">
+          <div class="index-book-ranking">
+            <p>Total <%= randoku_books.all_randoku_state_count %>冊</p>
+            <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
+            <div class="ranking-sort-btn">
+              <%
+                svg_ranking_sort =
+                  File
+                    .read(Rails.root.join('public', 'sort.svg'))
+                    .gsub('<svg ', '<svg class="ranking-sort navi-trigger-btn-js"')
+              %>
+              <%= raw svg_ranking_sort %>
+              <div class="ranking-sort-navi navi-panel-js">
+                <ul class="ranking-menus">
+                  <li class="ranking-menu randoku_rank_01">
+                    <%= link_to('乱読画像の多い順', '/books/randoku_index', class: 'button') %>
+                  </li>
+                  <li class="ranking-menu randoku_rank_02">
+                    <%= link_to('乱読本の投稿順', '/books/randoku_rank_created_books', class: 'button') %>
+                  </li>
+                  <li class="ranking-menu randoku_rank_03">
+                    <%= link_to('乱読画像の投稿順', '/books/randoku_rank_created_randoku_imgs', class: 'button') %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!---タブを切り替えた時に変わる---->
+        <div class="index_tab__panel-btn-js tab__panel-btn002 is-show" data-btn="02">
+          <div class="index-book-ranking">
+            <p>Total <%= seidoku_books.all_seidoku_state_count %>冊</p>
+            <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
+            <div class="ranking-sort-btn">
+              <%
+                svg_ranking_sort =
+                  File
+                    .read(Rails.root.join('public', 'sort.svg'))
+                    .gsub('<svg ', '<svg class="ranking-sort navi-trigger-btn-js"')
+              %>
+              <%= raw svg_ranking_sort %>
+              <div class="ranking-sort-navi navi-panel-js">
+                <ul class="ranking-menus">
+                  <li class="ranking-menu">
+                    <%= link_to('精読メモの多い順', '/books/seidoku_index', class: 'button') %>
+                  </li>
+                  <li class="ranking-menu">
+                    <%= link_to('精読本の投稿順', '/books/seidoku_rank_created_books', class: 'button') %>
+                  </li>
+                  <li class="ranking-menu">
+                    <%= link_to('乱読メモの多い順', '/books/seidoku_rank_most_randoku_imgs', class: 'button') %>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!---タブを切り替えた時に変わる---->
-      <div class="index_tab__panel-btn-js tab__panel-btn002 is-show" data-btn="02">
-        <div class="index-book-ranking">
-          <p>Total <%= seidoku_books.all_seidoku_state_count %>冊</p>
-          <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
-          <div class="ranking-sort-btn">
-            <%
-              svg_ranking_sort =
-                File
-                  .read(Rails.root.join('public', 'sort.svg'))
-                  .gsub('<svg ', '<svg class="ranking-sort navi-trigger-btn-js"')
-            %>
-            <%= raw svg_ranking_sort %>
-            <div class="ranking-sort-navi navi-panel-js">
-              <ul class="ranking-menus">
-                <li class="ranking-menu">
-                  <%= link_to('精読メモの多い順', '/books/seidoku_index', class: 'button') %>
-                </li>
-                <li class="ranking-menu">
-                  <%= link_to('精読本の投稿順', '/books/seidoku_rank_created_books', class: 'button') %>
-                </li>
-                <li class="ranking-menu">
-                  <%= link_to('乱読メモの多い順', '/books/seidoku_rank_most_randoku_imgs', class: 'button') %>
-                </li>
-              </ul>
-            </div>
-          </div>
+      <div class="tab__panel">
+        <div class="tab__panel-box tab__panel-box001" data-panel="01">
+          <!-- タブの下 乱読index -->
+          <%= render partial: 'books/index_tabs/randoku_index_pre_lesson_common', locals: { books: randoku_books } %>
+          <%= render partial: 'books/index_tabs/randoku_index_rank_common', locals: { books_rank: randoku_rank } %>
         </div>
-      </div>
-    </div>
-
-    <div class="tab__panel">
-      <div class="tab__panel-box tab__panel-box001" data-panel="01">
-        <!-- タブの下 乱読index -->
-        <%= render partial: 'books/index_tabs/randoku_index_pre_lesson_common', locals: { books: randoku_books } %>
-        <%= render partial: 'books/index_tabs/randoku_index_rank_common', locals: { books_rank: randoku_rank } %>
-      </div>
-      <div class="tab__panel-box tab__panel-box002 is-show" data-panel="02">
-        <!-- タブの下 精読index -->
-        <%= render partial: 'books/index_tabs/seidoku_index_pre_lesson_common', locals: { books: seidoku_books } %>
-        <%= render partial: 'books/index_tabs/seidoku_index_rank_common', locals: { books_rank: seidoku_rank } %>
+        <div class="tab__panel-box tab__panel-box002 is-show" data-panel="02">
+          <!-- タブの下 精読index -->
+          <%= render partial: 'books/index_tabs/seidoku_index_pre_lesson_common', locals: { books: seidoku_books } %>
+          <%= render partial: 'books/index_tabs/seidoku_index_rank_common', locals: { books_rank: seidoku_rank } %>
+        </div>
       </div>
     </div>
   </div>

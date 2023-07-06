@@ -67,12 +67,17 @@
   height: 96px;
   display: flex;
 }
+/*** テンプレタブ ***/
 .tabbed-index-work-area {
   display: flex;
-  padding: 0 10px;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
+  position: relative;
 }
+/* tab__menu-itemと同じ
 .tab-index-book-progress {
-  /*border: 1px solid rgb(48, 200, 214);*/
   border-bottom: none;
   padding: 14px 42px;
 
@@ -85,23 +90,34 @@
   cursor: pointer;
   position: relative;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
+}*/
 
+/* tab__menu-item.is-active と同じ
 .tab-index-book-progress.active {
   background-color: #f0f4f9;
-  /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);*/
   cursor: auto;
   z-index: 2;
+}*/
+#underline.index-page {
+  width: 50%;
 }
-.tabbled-sort-area {
-  display: flex;
-  justify-content: space-between;
-  /*border-bottom: 1px solid rgb(48, 200, 214);*/
-  margin-top: 80px;
+.tab__menu-item.index-page {
+  width: 50%;
+}
+.tabbled-book-index {
+  width: 100%;
+  /* 3つめはimgsエリアからの距離 */
+  margin: 20px 0px 0px;
+  position: relative;
 }
 
-.tabbled-sort-area .tabbed-index-work-area {
-  width: 50%;
+.tabbed-index-work-area {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
+  position: relative;
 }
 .ranking-sort {
   width: 44px;
@@ -290,10 +306,12 @@
     display: flex;
     width: 100%;
     overflow-x: scroll;
+    padding: 0px;
   }
   .tab__menu-item {
     width: 240px;
   }
+  /* tab__menu-item と同じ
   .tab-index-book-progress {
     letter-spacing: 1px;
     padding: 17px;
@@ -302,13 +320,10 @@
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     width: 200px;
-  }
-  .tabbled-sort-area {
-    display: flex;
-    padding: 0px;
-  }
-  .tabbled-sort-area .tabbed-index-work-area {
-    width: 100%;
+  }*/
+  .tabbled-book-index {
+    /*display: flex;
+    padding: 0px;0706消すか迷う*/
   }
   .tab-width {
     width: 90px;
