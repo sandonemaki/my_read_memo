@@ -108,6 +108,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-bottom: 60px;
 }
 .img-thumbnail {
   width: 31%;
@@ -256,9 +257,6 @@
 .tab__panel-box {
   display: none;
 }
-.index_tab__panel-btn-js {
-  display: none;
-}
 
 /* is-showがついている時のスタイル */
 .tab__panel-box.is-show {
@@ -339,6 +337,9 @@
   }
   .tab__menu-item {
     /*width: 240px;0706*/
+  }
+  .tab__menu-item.show-page p {
+    font-size: 4vw;
   }
   /*.tab-show-book-progress {
     width: 33.33%;

@@ -56,6 +56,9 @@
 }
 
 /******* メモ ********/
+.tabbed-memos-content {
+  padding-bottom: 60px;
+}
 .tabbed-memo-content {
   /*border: 1px solid gray;*/
   border-radius: 8px;
