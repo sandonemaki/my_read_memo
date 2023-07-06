@@ -1,67 +1,70 @@
-<body class="memo-search-bk mob">
-  <div class="memo-search-result-white">
-    <%= render partial: 'layouts/header' %>
-  </div>
-
-  <!-- フラッシュを表示 -->
-  <div class="c-flash c-flash--notice">
-    <div class="c-flash-icon">
-      <div class="c-flash-text"></div>
+<main>
+  <body class="memo-search-bk mob">
+    <div class="memo-search-result-white">
+      <%= render partial: 'layouts/header' %>
     </div>
-  </div>
-  <!-- フラッシュアラートを表示 -->
-  <div class="c-flash c-flash--alert">
-    <div class="c-flash-text"></div>
-    <i class="fa-solid fa-xmark c-flash-close" id="close-flash"></i>
-  </div>
-  <!--
+
+    <!-- フラッシュを表示 -->
+    <div class="c-flash c-flash--notice">
+      <div class="c-flash-icon">
+        <div class="c-flash-text"></div>
+      </div>
+    </div>
+    <!-- フラッシュアラートを表示 -->
+    <div class="c-flash c-flash--alert">
+      <div class="c-flash-text"></div>
+      <i class="fa-solid fa-xmark c-flash-close" id="close-flash"></i>
+    </div>
+    <!--
   <div>
     <% book.seidoku_memo_errors[:content].each do |message| %>
       [object Object]
     <% end %>
   </div>
   -->
-  <div class="inner memo-new-content-inner">
-    <div class="memo-new-content-header">
-      <p class="memo-new-book-title"><%= book.title %></p>
-      <p class="memo-new-time-now"><%= book.seidoku_memo_time_now %></p>
-    </div>
+    <div class="inner memo-new-content-inner">
+      <div class="memo-new-content-header">
+        <p class="memo-new-book-title"><%= book.title %></p>
+        <p class="memo-new-time-now"><%= book.seidoku_memo_time_now %></p>
+      </div>
 
-    <div class="memo-new-content-input-area">
-      <%= form_tag("/books/#{book.id}/seidoku_memos/create", method: :post) do %>
-        <!--<div class="search-selectbox">-->
-        <div class="memo-content-header">
-          <div class="memo-content-header-info">
-            <div class="memo-content-type-selectbox">
-              <select class="memo-type-select" name="selectbox_value[]">
-                <option value="0">- メモの内容を選択する -</option>
-                <% book.seidoku_memo_type.each_with_index do |(k, value), i| %>
-                  <% if book.seidoku_memo_selected_content_type == k %>
-                    <option value="<%= k %>" selected>
-                      <%= value %>
-                    </option>
-                  <% else %><option value="<%= i + 1 %>"><%= value %></option>
+      <div class="memo-new-content-input-area">
+        <%= form_tag("/books/#{book.id}/seidoku_memos/create", method: :post) do %>
+          <!--<div class="search-selectbox">-->
+          <div class="memo-content-header memo-new">
+            <div class="memo-content-header-info">
+              <div class="memo-content-type-selectbox">
+                <select class="memo-type-select" name="selectbox_value[]">
+                  <option value="0">- メモの内容を選択する -</option>
+                  <% book.seidoku_memo_type.each_with_index do |(k, value), i| %>
+                    <% if book.seidoku_memo_selected_content_type == k %>
+                      <option value="<%= k %>" selected>
+                        <%= value %>
+                      </option>
+                    <% else %><option value="<%= i + 1 %>"><%= value %></option>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </select>
-            </div>
-            <div>
-              <i
-                class="fa-regular
+                </select>
+              </div>
+              <div>
+                <i
+                  class="fa-regular
             fa-circle-question new-memo-i"
-              ></i>
+                ></i>
+              </div>
             </div>
+            <input type="submit" value="保存" id="memo-submit-button" class="submit-button" disabled />
           </div>
-          <input type="submit" value="保存" id="memo-submit-button" class="submit-button" disabled />
-        </div>
-        <!-- <p id="memo_valid_error"></p> -->
-        <textarea
-          name="seidoku_memo_content"
-          class="memo-input-textarea"
-          rows="20"
-          placeholder="本を読んで気になった箇所はありますか？"
-        ></textarea>
-      <% end %>
+          <!-- <p id="memo_valid_error"></p> -->
+          <textarea
+            name="seidoku_memo_content"
+            class="memo-input-textarea"
+            rows="20"
+            placeholder="本を読んで気になった箇所はありますか？"
+          ></textarea>
+        <% end %>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
+</main>
+<div class="common-footer">copywrite</div>
