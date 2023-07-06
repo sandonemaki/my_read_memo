@@ -183,6 +183,7 @@
 #underline.show-page {
   width: 33.33%;
 }
+
 /*1*/
 .tabbled-book-show {
   width: 100%; /*50->100 0706*/
@@ -224,6 +225,7 @@
 .tab__menu-item.show-page {
   width: 33.33%;
 }
+
 .tab__menu-item.is-active p {
   color: rgb(48, 200, 214);
 }
@@ -333,6 +335,7 @@
     display: flex;
     width: 100%;
     overflow-x: scroll;
+    padding: 0px;
   }
   .tab__menu-item {
     /*width: 240px;0706*/
@@ -348,11 +351,6 @@
     border-top-left-radius: 10px;
     width: 200px;
   }0706*/
-
-  .tabbed-show-work-area {
-    display: flex;
-    padding: 0px;
-  }
 
   .tab-width {
     width: 90px;
