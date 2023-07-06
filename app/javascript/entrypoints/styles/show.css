@@ -60,21 +60,11 @@
 .seidoku-remaining-js.show-tab {
   margin-bottom: 16px;
 }
-.tabbed-work-area {
+/*.tabbed-work-area {
   border-bottom: 1px solid rgb(48, 200, 214);
   margin-top: 16px;
   display: flex;
-}
-
-.seidoku_memo_key {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #d4dce4;
-  border-radius: 50%;
-  padding: 8px 11.6px;
-  transform: translate(30%, -40%);
-}
+}*/
 
 /*.tab-book-progress.is-active {
   background-color: #f0f4f9;
@@ -166,8 +156,61 @@
 .img-name {
   margin-bottom: 4px;
 }
-/*** テンプレタブ ***/
 
+/* 以前のデザインフォルダ風
+.tab-show-book-progress {
+  border-bottom: none;
+  padding: 14px 42px;
+
+  text-align: center;
+  background-color: #d4dce4;
+  border-top-right-radius: 100px 250px;
+  border-top-left-radius: 100px 250px;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}0706*/
+
+#underline {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 2px;
+  background: rgb(48, 200, 214);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#underline.show-page {
+  width: 33.33%;
+}
+/*1*/
+.tabbled-book-show {
+  width: 100%; /*50->100 0706*/
+  /* 3つめはimgsエリアからの距離 */
+  margin: 20px 0px 0px; /* 20px auto; 0706*/
+  position: relative;
+  /*display: flex;
+  justify-content: space-between;
+  margin-top: 60px;0706*/
+}
+
+.tab__underline {
+  position: relative;
+}
+/*** テンプレタブ ***/
+.tabbed-show-work-area {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
+  position: relative;
+  /*display: flex;
+  padding: 0 10px;0706*/
+}
+.tabbled-book-show .tabbed-show-work-area {
+  width: 100%;
+}
 .tab__menu-item {
   transition: all 0.3s; /* アニメーション */
   text-align: center;
@@ -192,59 +235,15 @@
   z-index: 2;
   opacity: 1;
 }
-.tabbed-show-work-area {
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-  padding: 0;
-  border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
-  position: relative;
-  /*display: flex;
-  padding: 0 10px;0706*/
-}
-/* 以前のデザインフォルダ風
-.tab-show-book-progress {
-  border-bottom: none;
-  padding: 14px 42px;
-
-  text-align: center;
-  background-color: #d4dce4;
-  border-top-right-radius: 100px 250px;
-  border-top-left-radius: 100px 250px;
-  font-size: 12px;
-  cursor: pointer;
-  position: relative;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}0706*/
-
-.tab__underline {
-  position: relative;
-}
-#underline {
+.seidoku_memo_key {
   position: absolute;
-  left: 0;
-  bottom: 0px;
-  height: 2px;
-  background: rgb(48, 200, 214);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  top: 0;
+  right: 0;
+  background-color: #d4dce4;
+  border-radius: 50%;
+  padding: 8px 11.6px;
+  transform: translate(30%, -40%);
 }
-#underline.show-page {
-  width: 33.33%;
-}
-
-.tabbled-book-show {
-  width: 100%; /*50->100 0706*/
-  /* 3つめはimgsエリアからの距離 */
-  margin: 20px 0px 0px; /* 20px auto; 0706*/
-  position: relative;
-  /*display: flex;
-  justify-content: space-between;
-  margin-top: 60px;0706*/
-}
-
-/*.tabbled-book-show .tabbed-show-work-area {
-  width: 50%;
-}0706*/
 
 /* タブパネル */
 .tab__panel {
@@ -266,6 +265,9 @@
 .index_tab__panel-btn-js.is-show {
   display: block;
 }
+/*.tabbled-book-show .tabbed-show-work-area {
+  width: 50%;
+}0706*/
 
 /*tab__menuのこと
 .tabbed-show-work-area {
@@ -351,9 +353,7 @@
     display: flex;
     padding: 0px;
   }
-  .tabbled-book-show .tabbed-show-work-area {
-    width: 100%;
-  }
+
   .tab-width {
     width: 90px;
     margin: 0 auto;
