@@ -67,47 +67,28 @@
   height: 96px;
   display: flex;
 }
-.tabbed-index-work-area {
-  display: flex;
-  padding: 0 10px;
-}
-.tab-index-book-progress {
-  /*border: 1px solid rgb(48, 200, 214);*/
-  border-bottom: none;
-  padding: 14px 42px;
-
-  float: left;
-  text-align: center;
-  background-color: #d4dce4;
-  border-top-right-radius: 100px 250px;
-  border-top-left-radius: 100px 250px;
-  font-size: 12px;
-  cursor: pointer;
-  position: relative;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.tab-index-book-progress.active {
-  background-color: #f0f4f9;
-  /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);*/
-  cursor: auto;
-  z-index: 2;
-}
-.tabbled-sort-area {
-  display: flex;
-  justify-content: space-between;
-  /*border-bottom: 1px solid rgb(48, 200, 214);*/
-  margin-top: 80px;
-}
-
-.tabbled-sort-area .tabbed-index-work-area {
+/*** テンプレタブ ***/
+#underline.index-page {
   width: 50%;
 }
-.ranking-sort {
-  width: 44px;
-  height: auto;
-  margin-left: 12px;
+.tab__menu-item.index-page {
+  width: 50%;
 }
+.tabbled-book-index {
+  width: 100%;
+  /* 3つめはimgsエリアからの距離 */
+  margin: 20px 0px 0px;
+  position: relative;
+}
+.tabbed-index-work-area {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
+  position: relative;
+}
+/* ランキングボタン */
 .index-book-ranking {
   display: flex;
   align-items: center;
@@ -115,6 +96,11 @@
 .ranking-sort-btn {
   position: relative;
   cursor: pointer;
+}
+.ranking-sort {
+  width: 44px;
+  height: auto;
+  margin-left: 12px;
 }
 .ranking-sort-navi {
   position: absolute;
@@ -128,9 +114,8 @@
   visibility: hidden;
   opacity: 0;
   transition: transform 0.2s ease-out;
-  /*z-index: 4;*/
 }
-
+/* ランキングのプルダウン */
 .ranking-sort-navi.active {
   visibility: visible;
   opacity: 1;
@@ -146,14 +131,11 @@
   transition: all 0.2s ease 0s;
 }
 .ranking-menu {
-  /*margin-bottom: 14px;*/
   display: block;
 }
-
 .ranking-menu:hover {
   background-color: #f3f4f5;
 }
-
 .fa-image,
 .fa-book,
 .fa-note-sticky {
@@ -290,37 +272,18 @@
     display: flex;
     width: 100%;
     overflow-x: scroll;
-  }
-  .tab__menu-item {
-    width: 240px;
-  }
-  .tab-index-book-progress {
-    letter-spacing: 1px;
-    padding: 17px;
-    margin-right: 4px;
-    background-color: #fff;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    width: 200px;
-  }
-  .tabbled-sort-area {
-    display: flex;
     padding: 0px;
   }
-  .tabbled-sort-area .tabbed-index-work-area {
-    width: 100%;
+  .tab__menu-item {
+    /*width: 240px;*/
   }
-  .tab-width {
-    width: 90px;
-    margin: 0 auto;
-  }
+
   /* ランキングボタン */
   .SP-index-ranking-btn {
     display: flex;
     justify-content: end;
     margin-top: 20px;
   }
-
   .PC-index-ranking-btn {
     display: none;
   }

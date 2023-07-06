@@ -20,33 +20,36 @@
       <i class="fa-solid fa-image fa-xl"></i>
     </div>
   </div>
-  <!-- 自分のアプリのclassに置き換える -->
+  <!-- showページのタブ -->
   <div class="tab tabbled-book-show">
-    <ul class="tab__menu tabbed-show-work-area">
-      <li class="tab__menu-item tab-show-book-progress is-active" data-tab="01"><p class="tab-width">乱読画像メモ</p></li>
-      <li class="tab__menu-item tab-show-book-progress" data-tab="02"><p class="tab-width">乱読メモ</p></li>
-      <li class="tab__menu-item tab-show-book-progress" data-tab="03">
-        <p class="tab-width">精読メモ</p>
-        <% if book.seidoku_memo_key == true %>
-          <p class="seidoku_memo_key">
-            <i class="fa-solid fa-lock lock-key"></i>
-          </p>
-        <% end %>
-      </li>
-    </ul>
+    <div class="tab__underline">
+      <ul class="tab__menu tabbed-show-work-area">
+        <li class="tab__menu-item show-page is-active" data-tab="01"><p class="tab-width">乱読画像メモ</p></li>
+        <li class="tab__menu-item show-page" data-tab="02"><p class="tab-width">乱読メモ</p></li>
+        <li class="tab__menu-item show-page" data-tab="03">
+          <p class="tab-width">精読メモ</p>
+          <% if book.seidoku_memo_key == true %>
+            <p class="seidoku_memo_key">
+              <i class="fa-solid fa-lock lock-key"></i>
+            </p>
+          <% end %>
+        </li>
+      </ul>
+      <div id="underline" class="show-page"></div><!-- 追加 -->
+    </div>
   </div>
-  <div class="tabbed-line"></div>
+  <!--<div class="tabbed-line"></div>0706-->
 </div>
 <div class="tab__panel">
-  <div class="tab__panel-box tab__panel-box001 is-show" data-panel="01">
+  <div class="tab__panel-box show-page tab__panel-box001 is-show" data-panel="01">
     <!-- 乱読画像メモのパーシャル -->
     <%= render partial: 'books/show_tabs/imgs', locals: { book: book } %>
   </div>
-  <div class="tab__panel-box tab__panel-box002" data-panel="02">
+  <div class="tab__panel-box show-page tab__panel-box002" data-panel="02">
     <!-- 乱読画像メモのパーシャル -->
     <%= render partial: 'books/show_tabs/randoku_memos', locals: { book: book_randoku_memos } %>
   </div>
-  <div class="tab__panel-box tab__panel-box003" data-panel="03">
+  <div class="tab__panel-box show-page tab__panel-box003" data-panel="03">
     <!-- 精読メモのパーシャル -->
     <%= render partial: 'books/show_tabs/seidoku_memos', locals: { book: book_seidoku_memos } %>
   </div>
