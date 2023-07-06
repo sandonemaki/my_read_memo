@@ -88,10 +88,16 @@
   border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
   position: relative;
 }
+.tab__panel.index-page {
+  background-color: #fff;
+}
+
 /* ランキングボタン */
 .index-book-ranking {
   display: flex;
   align-items: center;
+  justify-content: end;
+  margin-top: 32px;
 }
 .ranking-sort-btn {
   position: relative;
@@ -240,7 +246,9 @@
   background-color: #e9edf1;
   display: flex;
 }
-
+.index_tab__panel-btn-js {
+  display: none;
+}
 /**** モバイル版 *****/
 /***** slideページ ****/
 @media screen and (max-width: 600px) {

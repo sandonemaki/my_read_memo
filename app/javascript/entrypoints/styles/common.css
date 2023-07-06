@@ -3,7 +3,15 @@
   letter-spacing: 0.04em;
   font: 100%/1.5 'Lato', 'Hiragino Maru Gothic Pro', 'Meiryo UI', Meiryo, 'MS PGothic', sans-serif;
 }
-
+main {
+  padding-bottom: 60px;
+}
+.common-footer {
+  border-top: 1px solid #eee;
+  padding: 12px 0 40px 0;
+  font-size: 0.625rem;
+  text-align: center;
+}
 h1 {
   font-size: 1.5em;
 }
