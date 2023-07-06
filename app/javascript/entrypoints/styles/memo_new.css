@@ -96,8 +96,9 @@
   .memo-content-header-info {
     justify-content: space-between;
   }
-  .memo-content-header {
+  .memo-content-header.memo-new {
     display: block;
+    margin-bottom: 12px;
   }
   .search-result-bk.main-content-js {
     background-color: inherit;
