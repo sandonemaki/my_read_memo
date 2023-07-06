@@ -41,15 +41,15 @@
   <!--<div class="tabbed-line"></div>0706-->
 </div>
 <div class="tab__panel">
-  <div class="tab__panel-box tab__panel-box001 is-show" data-panel="01">
+  <div class="tab__panel-box show-page tab__panel-box001 is-show" data-panel="01">
     <!-- 乱読画像メモのパーシャル -->
     <%= render partial: 'books/show_tabs/imgs', locals: { book: book } %>
   </div>
-  <div class="tab__panel-box tab__panel-box002" data-panel="02">
+  <div class="tab__panel-box show-page tab__panel-box002" data-panel="02">
     <!-- 乱読画像メモのパーシャル -->
     <%= render partial: 'books/show_tabs/randoku_memos', locals: { book: book_randoku_memos } %>
   </div>
-  <div class="tab__panel-box tab__panel-box003" data-panel="03">
+  <div class="tab__panel-box show-page tab__panel-box003" data-panel="03">
     <!-- 精読メモのパーシャル -->
     <%= render partial: 'books/show_tabs/seidoku_memos', locals: { book: book_seidoku_memos } %>
   </div>

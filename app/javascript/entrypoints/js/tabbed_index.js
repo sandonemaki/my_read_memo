@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const tabMenuItems = document.querySelectorAll('.tab__menu-item');
-  const underline_show = document.querySelector('#underline.show-page');
+  const tabMenuItems = document.querySelectorAll('.tab__menu-item.index-page');
   const underline_index = document.querySelector('#underline.index-page');
-  const tabPanelItems = document.querySelectorAll('.tab__panel-box');
+  const tabPanelItems = document.querySelectorAll('.tab__panel-box.index-page');
   const tabPanelBtns = document.querySelectorAll('.index_tab__panel-btn-js');
 
   function clearActiveStates() {
@@ -14,19 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function tabSwitch(e, index) {
     clearActiveStates();
 
-    let underline;
-    let underline_length;
-
-    if (underline_show) {
-      underline_length = 33.33;
-      underline = underline_show;
-    } else if (underline_index) {
-      underline_length = 50.0;
-      underline = underline_index;
-    } else return;
-
-    if (underline) {
-      underline.style.left = `${index * underline_length}%`;
+    if (underline_index) {
+      underline_index.style.left = `${index * 50}%`;
     }
 
     const tabTargetData = e.currentTarget.dataset.tab;
@@ -41,9 +29,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  tabMenuItems.forEach((item, index) => {
-    item.addEventListener('click', function (e) {
-      tabSwitch(e, index);
+  if (underline_index) {
+    tabMenuItems.forEach((item, index) => {
+      item.addEventListener('click', function (e) {
+        tabSwitch(e, index);
+      });
     });
-  });
+  }
+
+  // Initial underline position based on active class
+  const initialActiveTab = document.querySelector('.tab__menu-item.index-page.is-active');
+
+  if (underline_index && initialActiveTab) {
+    const initialActiveIndex = initialActiveTab.dataset.tab - 1;
+    underline_index.style.left = `${initialActiveIndex * 50}%`;
+  }
 });

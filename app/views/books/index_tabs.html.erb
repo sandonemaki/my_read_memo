@@ -8,8 +8,8 @@
     <div class="tab tabbled-book-index">
       <div class="tab__underline">
         <ul class="tab__menu tabbed-index-work-area">
-          <li class="tab__menu-item index-page is-active" data-tab="01"><p class="tab-width">乱読中の本</p></li>
-          <li class="tab__menu-item index-pages" data-tab="02"><p class="tab-width">精読中の本</p></li>
+          <li class="tab__menu-item index-page is-active" data-tab="1"><p class="tab-width">乱読中の本</p></li>
+          <li class="tab__menu-item index-page" data-tab="2"><p class="tab-width">精読中の本</p></li>
         </ul>
         <div id="underline" class="index-page"></div>
         <!-- 追加 -->
@@ -18,7 +18,7 @@
       <!-- PC版のランキングボタン -->
       <div class="PC-index-ranking-btn">
         <!---PC_タブを切り替えた時に変わる---->
-        <div class="index_tab__panel-btn-js tab__panel-btn001 is-show" data-btn="01">
+        <div class="index_tab__panel-btn-js tab__panel-btn001 is-show" data-btn="1">
           <div class="index-book-ranking">
             <p>Total <%= randoku_books.all_randoku_state_count %>冊</p>
             <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
@@ -47,7 +47,7 @@
           </div>
         </div>
         <!---PC_タブを切り替えた時に変わる---->
-        <div class="index_tab__panel-btn-js tab__panel-btn002" data-btn="02">
+        <div class="index_tab__panel-btn-js tab__panel-btn002" data-btn="2">
           <div class="index-book-ranking">
             <p>Total <%= seidoku_books.all_seidoku_state_count %>冊</p>
             <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
@@ -80,7 +80,7 @@
       <!-- SP版のランキングボタン -->
       <div class="SP-index-ranking-btn">
         <!---SP_タブを切り替えた時に変わる---->
-        <div class="index_tab__panel-btn-js tab__panel-btn001 is-show" data-btn="01">
+        <div class="index_tab__panel-btn-js tab__panel-btn001 is-show" data-btn="1">
           <div class="index-book-ranking">
             <p>Total <%= randoku_books.all_randoku_state_count %>冊</p>
             <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
@@ -110,7 +110,7 @@
         </div>
 
         <!---SP_タブを切り替えた時に変わる---->
-        <div class="index_tab__panel-btn-js tab__panel-btn002" data-btn="02">
+        <div class="index_tab__panel-btn-js tab__panel-btn002" data-btn="2">
           <div class="index-book-ranking">
             <p>Total <%= seidoku_books.all_seidoku_state_count %>冊</p>
             <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
@@ -141,12 +141,12 @@
       </div>
 
       <div class="tab__panel">
-        <div class="tab__panel-box tab__panel-box001 is-show" data-panel="01">
+        <div class="tab__panel-box index-page tab__panel-box001 is-show" data-panel="1">
           <!-- タブの下 乱読index -->
           <%= render partial: 'books/index_tabs/randoku_index_pre_lesson_common', locals: { books: randoku_books } %>
           <%= render partial: 'books/index_tabs/randoku_index_rank_common', locals: { books_rank: randoku_rank } %>
         </div>
-        <div class="tab__panel-box tab__panel-box002" data-panel="02">
+        <div class="tab__panel-box index-page tab__panel-box002" data-panel="2">
           <!-- タブの下 精読index -->
           <%= render partial: 'books/index_tabs/seidoku_index_pre_lesson_common', locals: { books: seidoku_books } %>
           <%= render partial: 'books/index_tabs/seidoku_index_rank_common', locals: { books_rank: seidoku_rank } %>
