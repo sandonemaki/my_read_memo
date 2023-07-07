@@ -33,8 +33,8 @@ module ViewModel
         else
           ""
         end
-      @seidoku_line_1 = (book.total_page*(1.0/8.0)).floor
-      @seidoku_line_2 = (book.total_page*(1.0/4.0)).floor
+      @seidoku_line_1 = (book.total_page * (1.0 / 8.0)).ceil # 切り上げ
+      @seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor # 切り捨て 
 
       # Hash { 未読 => count, 既読 => count }
       randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
@@ -42,11 +42,7 @@ module ViewModel
       @randoku_imgs_alreadyread_count = randoku_imgs_group_count[1] ||= 0 # 既読の数
 
       # 精読まで未読をあと何枚       
-      @remaining = book.countdown_remaining_seidoku(
-        randoku_imgs_unread_count: @randoku_imgs_unread_count, 
-        seidoku_line_1: @seidoku_line_1, 
-        seidoku_line_2: @seidoku_line_2
-      ) 
+      @remaining = book.countdown_remaining_seidoku
       
       # モーダル上で乱読画像を読むためのデータ
       @randoku_imgs_all_count = book.randoku_imgs.all.size

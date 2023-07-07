@@ -37,7 +37,7 @@ module ViewModel
           end,
           path: SeidokuHistory.last.path,
           seidoku_history_ranking: seidoku_memo_ranking.include?(seidoku_history.id) ?
-          seidoku_memo_ranking.index(seidoku_history.id)+1 : ""
+          seidoku_memo_ranking.index(seidoku_history.id)+1 : "",
         }
 
     end

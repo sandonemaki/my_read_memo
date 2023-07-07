@@ -12,8 +12,8 @@ class HomeController < ApplicationController
 
   def memo_search_result
     # TODO: 1の部分に文字列"乱読"を入れる。text -> int に詰め替えるメソッド呼び出しにする
-    all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
+    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
     book_view_models =
       ViewModel::HomeMemoSearchResult.new(
         all_books: Book.all,

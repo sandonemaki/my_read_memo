@@ -23,6 +23,10 @@ module ViewModel
       
       
       randoku_history = Book.find_by(id: RandokuHistory.last.book_id) if RandokuHistory.last.present?
+      #img_unread_count = randoku_history.randoku_imgs.where(reading_state: '0').count # 未読の数
+      #seidoku_line_1 = (randoku_history.total_page * (1.0 / 8.0)).ceil # 切り上げ
+      #seidoku_line_2 = (randoku_history.total_page * (1.0 / 4.0)).floor # 切り捨て
+      
       # 「前回の続き」用
       # TODO: ハッシュをクラスにする
       @randoku_history =
@@ -40,7 +44,9 @@ module ViewModel
           end,
           path: RandokuHistory.last.path,
           randoku_history_ranking: randoku_img_ranking.include?(randoku_history.id) ?
-          randoku_img_ranking.index(randoku_history.id)+1 : ""
+          randoku_img_ranking.index(randoku_history.id)+1 : "",
+          # 精読まで未読をあと何枚
+          remaining: randoku_history.countdown_remaining_seidoku
         }
     end
   end

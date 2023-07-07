@@ -30,16 +30,12 @@ class Books::ImgsController < ApplicationController
     img_reading_state_result = randoku_img.reading_state
     img_already_read_count = book.randoku_imgs.where(reading_state: '1').count # 既読の数
     img_unread_count = book.randoku_imgs.where(reading_state: '0').count # 未読の数
-    seidoku_line_1 = (book.total_page * (1.0 / 8.0)).floor
-    seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor
+
+    #seidoku_line_1 = (book.total_page * (1.0 / 8.0)).ceil # 切り上げ
+    #seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor # 切り捨て
 
     # 精読まで未読をあと何枚
-    remaining =
-      book.countdown_remaining_seidoku(
-        randoku_imgs_unread_count: img_unread_count,
-        seidoku_line_1: seidoku_line_1,
-        seidoku_line_2: seidoku_line_2,
-      )
+    remaining = book.countdown_remaining_seidoku
 
     # 本の状態の更新があった場合
     if book_reading_state_result[:updated] == true

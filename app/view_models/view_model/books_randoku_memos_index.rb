@@ -33,8 +33,8 @@ module ViewModel
       # 精読基準に必要な変数
       randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
       @randoku_imgs_unread_count = randoku_imgs_group_count[0] ||= 0 # 未読の数
-      @seidoku_line_1 = (book.total_page*(1.0/8.0)).floor
-      @seidoku_line_2 = (book.total_page*(1.0/4.0)).floor
+      @seidoku_line_1 = (book.total_page * (1.0 / 8.0)).ceil # 切り上げ
+      @seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor # 切り捨て 
       @first_post_img_path =
               if book.randoku_imgs.exists?(first_post_flag: 1)
                 "/#{book.id}/#{book.randoku_imgs.find_by(first_post_flag: 1).name}"
@@ -43,11 +43,7 @@ module ViewModel
               end
 
       # 精読まで未読をあと何枚       
-      @remaining = book.countdown_remaining_seidoku(
-        randoku_imgs_unread_count: @randoku_imgs_unread_count, 
-        seidoku_line_1: @seidoku_line_1, 
-        seidoku_line_2: @seidoku_line_2
-      ) 
+      @remaining = book.countdown_remaining_seidoku
     end #initialize
   end
 

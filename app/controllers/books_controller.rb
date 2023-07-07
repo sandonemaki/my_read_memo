@@ -12,18 +12,14 @@ class BooksController < ApplicationController
     # total_pageの保存が成功した後に実行
     total_page_update_result = book.total_page
     book_reading_state_result = book.try_update_reading_state
-    randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
-    randoku_imgs_unread_count = randoku_imgs_group_count[0] ||= 0 # 未読の数
-    seidoku_line_1 = (book.total_page * (1.0 / 8.0)).floor
-    seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor
+
+    #randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
+    #randoku_imgs_unread_count = randoku_imgs_group_count[0] ||= 0 # 未読の数
+    seidoku_line_1 = (book.total_page * (1.0 / 8.0)).ceil # 切り上げ
+    seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor # 切り捨て
 
     # 精読まで未読をあと何枚
-    remaining =
-      book.countdown_remaining_seidoku(
-        randoku_imgs_unread_count: randoku_imgs_unread_count,
-        seidoku_line_1: seidoku_line_1,
-        seidoku_line_2: seidoku_line_2,
-      )
+    remaining = book.countdown_remaining_seidoku
 
     # 本の状態の更新があった場合
     if book_reading_state_result[:updated] == true
@@ -81,8 +77,8 @@ class BooksController < ApplicationController
 
   # ランキング：randoku_indexの乱読画像の多い順
   def index_tabs
-    all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
+    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
     all_books_count = Book.all.count
 
     randoku_index_common_view_models =
@@ -140,8 +136,8 @@ class BooksController < ApplicationController
 
   # ランキング：randoku_indexの乱読本の投稿順
   def randoku_rank_created_books
-    all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
+    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
     all_books_count = Book.all.count
 
     randoku_index_common_view_models =
@@ -173,8 +169,8 @@ class BooksController < ApplicationController
 
   # ランキング：randoku_indexの乱読画像の投稿順
   def randoku_rank_created_randoku_imgs
-    all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
+    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
     all_books_count = Book.all.count
 
     randoku_index_common_view_models =
@@ -208,8 +204,8 @@ class BooksController < ApplicationController
   # 精読メモの多い順
   def seidoku_index
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
-    all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
+    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
     all_books_count = Book.all.count
 
     randoku_index_common_view_models =
@@ -242,8 +238,8 @@ class BooksController < ApplicationController
   # 精読本の投稿順
   def seidoku_rank_created_books
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
-    all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
+    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
     all_books_count = Book.all.count
 
     randoku_index_common_view_models =
@@ -277,8 +273,8 @@ class BooksController < ApplicationController
   # 乱読メモの多い順
   def seidoku_rank_most_randoku_imgs
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
-    all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
+    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
     all_books_count = Book.all.count
 
     randoku_index_common_view_models =

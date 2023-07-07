@@ -38,7 +38,7 @@ class Book < ApplicationRecord
       else
         raise TypeError, '無効の型が判定されました'
       end
-    is_updated = self.reading_satate_update?(new_reading_state)
+    is_updated = self.reading_state_update?(new_reading_state)
     { updated: is_updated }
   end
 
@@ -46,7 +46,7 @@ class Book < ApplicationRecord
   # bookテーブルのreading_stateカラムをupdateするか判定するメソッド
   # dbの値と差異があれば新規の値を保存する
   # 戻り値：true（更新成功）、false（更新失敗）、nil（変化がないため更新なし）
-  def reading_satate_update?(new_reading_state)
+  def reading_state_update?(new_reading_state)
     if self.reading_state != new_reading_state
       self.reading_state = new_reading_state
       self.save
@@ -56,17 +56,24 @@ class Book < ApplicationRecord
   end
 
   # 精読まで未読をあと何枚
-  def countdown_remaining_seidoku(randoku_imgs_unread_count:, seidoku_line_1:, seidoku_line_2:)
-    # 精読中
-    randoku_imgs_count = self.randoku_imgs.size
-    if seidoku_line_1 <= randoku_imgs_count && randoku_imgs_unread_count < seidoku_line_2
+  def countdown_remaining_seidoku
+    img_unread_count = self.randoku_imgs.where(reading_state: '0').count # 未読の数
+    already_read_count = self.randoku_imgs.where(reading_state: '1').count # 未読の数
+
+    seidoku_line_1 = (self.total_page * (1.0 / 8.0)).ceil
+    randoku_imgs_count = img_unread_count + already_read_count
+    current_state = self.reading_state
+
+    case current_state
+    when State::READING_STATE.key('乱読')
+      remaining_to_seidoku = seidoku_line_1 - randoku_imgs_count
+      "精読まで乱読メモがあと#{remaining_to_seidoku == 0 ? sprintf('%.1f', remaining_to_seidoku) : remaining_to_seidoku.to_i}枚"
+    when State::READING_STATE.key('精読')
       '精読突破!'
-      # 乱読中
-    elsif randoku_imgs_count < seidoku_line_1
-      "精読まで乱読メモがあと#{seidoku_line_1 - randoku_imgs_count}枚"
-      # 通読中
-    elsif randoku_imgs_unread_count >= seidoku_line_2
-      "精読まで未読があと#{(seidoku_line_2 - 1) - randoku_imgs_unread_count}枚"
+    when State::READING_STATE.key('通読')
+      seidoku_line_2 = (self.total_page * (1.0 / 4.0)).floor
+      remaining_to_unread = (seidoku_line_2 - 1) - img_unread_count
+      "精読まで未読があと#{remaining_to_unread == 0 ? sprintf('%.1f', remaining_to_unread) : remaining_to_unread.to_i}枚"
     end
   end
 end
