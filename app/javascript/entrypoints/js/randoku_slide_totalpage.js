@@ -4,47 +4,48 @@ import { book_reading_progress_update } from './randoku_slide_is_alreadyread.js'
 import { getCsrfToken } from './get_csrf_token.js';
 
 document.addEventListener('DOMContentLoaded', function () {
-  const totalPageSubmitBtn = document.querySelector('#total_page_submit_btn') || [];
-
-  totalPageSubmitBtn.addEventListener('click', async () => {
-    await UpdateTotalPage(totalPageSubmitBtn);
-  });
-
-  const UpdateTotalPage = async (totalPageSubmitBtn) => {
-    const bookId = parseInt(totalPageSubmitBtn.getAttribute('data-book-id'));
-    const inputTotalPage = document.querySelector('#input_total_page').value;
-    const updateData = {
-      input_total_page: inputTotalPage,
-    };
-
-    const response = await fetch(`/books/${bookId}/update_total_page`, {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': getCsrfToken(),
-      },
-      body: JSON.stringify(updateData),
+  const totalPageSubmitBtn = document.querySelector('#total_page_submit_btn_js');
+  if (totalPageSubmitBtn) {
+    totalPageSubmitBtn.addEventListener('click', async () => {
+      await UpdateTotalPage(totalPageSubmitBtn);
     });
-    const responseData = await response.json();
 
-    // フラッシュメッセージの要素を取得
-    const flashMessage = document.querySelector('.c-flash');
+    const UpdateTotalPage = async (totalPageSubmitBtn) => {
+      const bookId = parseInt(totalPageSubmitBtn.getAttribute('data-book-id'));
+      const inputTotalPage = document.querySelector('#input_total_page_slide_js').value;
+      const updateData = {
+        input_total_page: inputTotalPage,
+      };
 
-    if (!response.ok) {
-      js_flash_alert(responseData.message);
-      throw new Error(`${response.status} ${responseData.message}`);
-    }
+      const response = await fetch(`/books/${bookId}/update_total_page`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': getCsrfToken(),
+        },
+        body: JSON.stringify(updateData),
+      });
+      const responseData = await response.json();
 
-    if (response.ok) {
-      js_flash('保存しました');
-      book_reading_progress_update(responseData);
-      book_seidoku_memo_key(responseData);
-      book_update_total_page(responseData);
-      book_update_seidoku_standard(responseData);
-      book_seidoku_remaining(responseData);
-    }
-  };
+      // フラッシュメッセージの要素を取得
+      const flashMessage = document.querySelector('.c-flash');
+
+      if (!response.ok) {
+        js_flash_alert(responseData.message);
+        throw new Error(`${response.status} ${responseData.message}`);
+      }
+
+      if (response.ok) {
+        js_flash('保存しました');
+        book_reading_progress_update(responseData);
+        book_seidoku_memo_key(responseData);
+        book_update_total_page(responseData);
+        book_update_seidoku_standard(responseData);
+        book_seidoku_remaining(responseData);
+      }
+    };
+  }
 });
 
 // 乱読画像の状態が / トータルページが

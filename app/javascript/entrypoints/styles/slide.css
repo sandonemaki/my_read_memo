@@ -457,7 +457,7 @@
   height: 85px;
 }
 
-.slide-total-page-submit-btn {
+.submit-button.slide {
   margin: auto;
   width: 40%;
   align-items: center;
@@ -836,7 +836,7 @@
   .total-page-description.slide {
     font-size: 3.5vw;
   }
-  #input_total_page {
+  .input-total-page {
     padding: 0;
     width: 60%;
   }
@@ -849,7 +849,7 @@
   #img_read_status_count_modal {
     font-size: 3vw;
   }
-  .slide-total-page-submit-btn {
+  .submit-button.slide {
     width: 60%;
   }
   .sp-touchpoint {

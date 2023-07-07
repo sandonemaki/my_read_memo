@@ -9,7 +9,7 @@
             <div class="c-flash-text"></div>
           </div>
         </div>
-        
+
         <!-- フラッシュアラートを表示 -->
         <div class="c-flash c-flash--alert slide">
           <div class="c-flash-text"></div>
@@ -21,7 +21,6 @@
         <div class="ModalWrapper">
           <div class="ModalContent slide">
             <i class="ModalCloseButton fa-solid fa-xmark" aria-hidden="true"></i>
-            <!--<%= form_tag("/books/total_page_update", method: :post) do %>-->
             <div class="modal-total-page slide">
               <p class="total-page-title slide">読む予定のページ数を<br />入力してください</p>
               <p class="total-page-description slide">
@@ -30,7 +29,7 @@
                 <span>（20-999の整数のみ入力できます）</span>
               </p>
               <input
-                id="input_total_page"
+                id="input_total_page_slide_js"
                 class="input-total-page slide"
                 type="number"
                 name="total_page"
@@ -39,7 +38,7 @@
                 placeholder="20"
                 value="<%= book.total_page.present? && book.total_page != 0 ? book.total_page : 20 %>"
               />
-              <p id="total_page_valid_error"></p>
+              <p id="total_page_valid_error_slide"></p>
               <div class="cirremt-total-page-wrap">
                 <p class="current-total-page-text">現在読む予定</p>
                 <p class="current-total-page">
@@ -60,13 +59,13 @@
             </div>
 
             <input
-              id="total_page_submit_btn"
-              class="submit-button slide-total-page-submit-btn"
+              id="total_page_submit_btn_js"
+              class="submit-button slide"
               data-book-id="<%= book.id %>"
               type="submit"
               value="更新する"
             />
-            <!--<% end %>-->
+            <!--idはfetchで取得するため, validationに使用-->
           </div>
         </div>
 

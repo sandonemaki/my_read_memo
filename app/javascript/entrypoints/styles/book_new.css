@@ -47,7 +47,7 @@
   text-align: center;
   margin-bottom: 30px;
 }
-#input_total_page {
+.input-total-page {
   background-color: white;
   width: 40%;
   border-radius: 12px;
@@ -60,7 +60,7 @@
   font-size: 32px;
   cursor: pointer;
 }
-.submit-button.book-info-submit {
+.submit-button.book-info-submit-js {
   margin: auto;
   width: 70%;
 }
@@ -76,7 +76,8 @@
 }
 #title_valid_error,
 #author_valid_error,
-#total_page_valid_error {
+#total_page_valid_error,
+#total_page_valid_error_slide {
   display: block;
   color: rgb(231, 82, 82);
   font-size: 0.75rem;
@@ -102,7 +103,7 @@
   .total-page-description {
     font-size: 1.5vw;
   }
-  .submit-button.book-info-submit {
+  .submit-button.book-info-submit-js {
     width: 90%;
   }
 }
