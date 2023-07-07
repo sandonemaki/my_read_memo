@@ -303,9 +303,26 @@ li {
   .user-menu-navigation {
     display: none;
   }
+
+  /* spスライド用 ハンバーガーメニュー */
   .open-slide-menu-js {
-    display: block;
+    display: flex;
+    float: right;
   }
+  .sb-toggle-right {
+    font-size: 2.2em;
+    float: right;
+    cursor: pointer;
+    line-height: 48px;
+    color: #2b546a;
+    padding: 0 10px;
+    transition: background-color 0.2s;
+  }
+  .header-bars {
+    display: inline-block;
+    text-rendering: auto;
+  }
+
   /* メニューバーを出すためにheadrとmainコンテンツに背景色をつけてjsで左に動かす*/
   .main-content-js {
     transition: transform 400ms ease;
