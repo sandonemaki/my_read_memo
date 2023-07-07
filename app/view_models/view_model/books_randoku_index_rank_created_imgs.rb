@@ -24,11 +24,7 @@ module ViewModel
             randoku_imgs_count: book.randoku_imgs.count,
             randoku_memos_count: book.randoku_memos.count,
             # 精読まで未読をあと何枚
-            remaining: book.countdown_remaining_seidoku(
-              randoku_imgs_unread_count: img_unread_count,
-              seidoku_line_1: seidoku_line_1,
-              seidoku_line_2: seidoku_line_2,
-            )
+            remaining: book.countdown_remaining_seidoku
           }
         end
 
