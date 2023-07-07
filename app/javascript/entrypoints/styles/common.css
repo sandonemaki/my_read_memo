@@ -13,23 +13,50 @@ main {
   text-align: center;
 }
 h1 {
-  font-size: 1.5em;
+  font-size: 20px;
 }
 
 li {
   list-style: none;
 }
-.user-icon {
-  display: block; /* 下の余白を消す */
-  background-color: #fff;
-  width: 60px;
+.pc-user-info-btn {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  height: 100%;
+  transition: background-color 0.2s ease 0s;
 }
-
+.user-menu-navigation {
+  position: relative;
+  padding: 0px 15px;
+}
+.user-menu-navigation:hover {
+  background-color: rgb(240, 244, 249);
+}
+.user-dropdown {
+  display: flex;
+  align-items: center;
+}
 .default-user-icon-img {
-  display: block; /* 下の余白を消す */
   border-radius: 50%;
   border: 1px solid rgba(209, 211, 223, 0.44);
+  margin-right: 10px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+.user-name-dropdown {
+  display: flex;
+}
+.fa-sort-down.dropdown {
+  margin-left: 10px;
+  display: inline-block;
+  text-rendering: auto;
+}
+
 .header-wrapper {
   display: flex;
   justify-content: space-between;
@@ -67,15 +94,7 @@ li {
   justify-content: space-between;
   align-items: center;
 }
-.user-icon {
-  width: 72px;
-  border: none;
-  padding: 4px;
-}
-.user-menu-navigation {
-  position: relative;
-  background-color: gray;
-}
+
 /****ユーザーアイコンプルダウン****/
 .user-navi {
   position: absolute;
