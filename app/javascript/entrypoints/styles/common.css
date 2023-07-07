@@ -19,6 +19,17 @@ h1 {
 li {
   list-style: none;
 }
+.user-icon {
+  display: block; /* 下の余白を消す */
+  background-color: #fff;
+  width: 60px;
+}
+
+.default-user-icon-img {
+  display: block; /* 下の余白を消す */
+  border-radius: 50%;
+  border: 1px solid rgba(209, 211, 223, 0.44);
+}
 .header-wrapper {
   display: flex;
   justify-content: space-between;
@@ -59,6 +70,7 @@ li {
 .user-icon {
   width: 72px;
   border: none;
+  padding: 4px;
 }
 .user-menu-navigation {
   position: relative;
