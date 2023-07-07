@@ -260,6 +260,12 @@ li {
   min-height: calc(100vh - 48px);
 }
 @media screen and (max-width: 600px) {
+  main {
+    background-color: #fff;
+  }
+  .common-footer {
+    background-color: #fff;
+  }
   .header-menus-wrapper {
     display: none;
   }
