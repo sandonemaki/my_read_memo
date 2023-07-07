@@ -3,7 +3,7 @@
   <ul class="global-sidebar__user-info">
     <li>
       <div class="global-sidebar__user-image">
-        <div class="profile-image" style="background-image: url('#')"></div>
+        <div class="profile-image" style="background-image: url('/default_user_image.jpg')"></div>
       </div>
       <a>maki</a>
     </li>
@@ -30,11 +30,26 @@
         %>
       </li>
     </ul>
-    <div class="search-icon">検索アイコン</div>
+    <div class="search-icon">
+      <div><i class="fa-solid fa-magnifying-glass header-search-icon"></i></div>
+      <div class="user-menu__vertical-line"></div>
+    </div>
   </div>
 
   <div class="user-menu-navigation">
-    <button class="user-icon navi-trigger-btn-js">ユーザーアイコン</button>
+    <button class="pc-user-info-btn navi-trigger-btn-js">
+      <div class="user-dropdown">
+        <img
+          src="/default_user_image.jpg"
+          width="33"
+          height="33"
+          alt="ユーザーアイコン"
+          class="default-user-icon-img"
+        />
+        <div class="user-name-dropdown">maki</div>
+        <i class="fa-solid fa-sort-down dropdown"></i>
+      </div>
+    </button>
     <div class="user-navi navi-panel-js">
       <ul class="user-menus">
         <li class="user-menu">
@@ -52,5 +67,9 @@
       </ul>
     </div>
   </div>
-  <div class="open-slide-menu-js">menu</div>
+  <div class="open-slide-menu-js">
+    <div class="sb-toggle-right">
+      <i class="fa-solid fa-bars header-bars"></i>
+    </div>
+  </div>
 </header>

@@ -60,31 +60,16 @@
 .seidoku-remaining-js.show-tab {
   margin-bottom: 16px;
 }
-/*.tabbed-work-area {
-  border-bottom: 1px solid rgb(48, 200, 214);
-  margin-top: 16px;
-  display: flex;
-}*/
 
-/*.tab-book-progress.is-active {
-  background-color: #f0f4f9;
-  z-index: 2;
-}*/
-/*.book-progress .book_reading_progress {
-  background-color: rgb(35, 164, 176);
-}
-.book-progress .book_reading_progress {
-  backgro*/
 .sw_modal_trigger {
   color: gray;
   font-size: 12px;
 }
 .tabbed-content {
   padding-top: 24px;
-  /*background-color: #fff;*/
   z-index: 1;
   position: relative;
-  /*border-top: 2px solid #e9edf1;*/
+
   z-index: 2;
 }
 .upload-file-form {
@@ -158,21 +143,6 @@
   margin-bottom: 4px;
 }
 
-/* 以前のデザインフォルダ風
-.tab-show-book-progress {
-  border-bottom: none;
-  padding: 14px 42px;
-
-  text-align: center;
-  background-color: #d4dce4;
-  border-top-right-radius: 100px 250px;
-  border-top-left-radius: 100px 250px;
-  font-size: 12px;
-  cursor: pointer;
-  position: relative;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}0706*/
-
 #underline {
   position: absolute;
   left: 0;
@@ -187,13 +157,10 @@
 
 /*1*/
 .tabbled-book-show {
-  width: 100%; /*50->100 0706*/
+  width: 100%;
   /* 3つめはimgsエリアからの距離 */
-  margin: 20px 0px 0px; /* 20px auto; 0706*/
+  margin: 20px 0px 0px;
   position: relative;
-  /*display: flex;
-  justify-content: space-between;
-  margin-top: 60px;0706*/
 }
 
 .tab__underline {
@@ -207,8 +174,6 @@
   padding: 0;
   border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
   position: relative;
-  /*display: flex;
-  padding: 0 10px;0706*/
 }
 .tabbled-book-show .tabbed-show-work-area {
   width: 100%;
@@ -251,7 +216,7 @@
 /* タブパネル */
 .tab__panel {
   width: 100%;
-  background-color: #f2f4f7;
+  /*background-color: #f2f4f7;*/
 }
 
 .tab__panel-box {
@@ -265,43 +230,6 @@
 .index_tab__panel-btn-js.is-show {
   display: block;
 }
-/*.tabbled-book-show .tabbed-show-work-area {
-  width: 50%;
-}0706*/
-
-/*tab__menuのこと
-.tabbed-show-work-area {
-  display: flex;
-  padding: 0 10px;
-}0706*/
-
-/* tabのこと
-.tabbled-book-show {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 60px;
-}*/
-
-/* tab__menuのこと
-.tabbled-book-show .tabbed-show-work-area {
-  width: 50%;
-}0706*/
-
-/* 未使用
-.tab-book-progress {
-  border: 1px solid rgb(48, 200, 214);
-  border-bottom: none;
-  border-radius: 8px 8px 0 0;
-  padding: 14px 24px;
-  background-color: #d4dce4;
-  cursor: pointer;
-  position: relative;
-  font-size: 12px;
-  text-align: center;
-  line-height: 24px;
-  border-top-right-radius: 100px 250px;
-  border-top-left-radius: 100px 250px;
-}0706*/
 
 /* commonでつけたmain-content-jsの高さを無効にする */
 .main-content-js.book-show-upper-inner {
@@ -341,17 +269,6 @@
   .tab__menu-item.show-page p {
     font-size: 4vw;
   }
-  /*.tab-show-book-progress {
-    width: 33.33%;
-    text-align: center;0706--*/
-  /*letter-spacing: 1px;
-    padding: 17px;
-    margin-right: 4px;
-    background-color: #fff;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    width: 200px;
-  }0706*/
 
   .tab-width {
     width: 90px;
@@ -388,11 +305,4 @@
   .img_bookmark_check {
     font-size: 7.5vw;
   }
-  /* ボタンの表示、非表示 */
-  /* .index_tab__panel-btn-js {
-    display: none;
-  }
-  .index_tab__panel-btn-js.is-show {
-    display: block;
-  }*/
 }

@@ -13,7 +13,9 @@
   user-select: none;
   cursor: pointer;
 }
-
+.book-new-cover {
+  object-fit: contain; /*枠の中に絶対表示させる。余白は残す*/
+}
 .book-cover-camera-icon {
   vertical-align: -4px;
   color: white;
