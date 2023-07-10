@@ -21,17 +21,17 @@
         </div>
         <div class="index-user-book-title">
           <p class="index-book-title"><%= book[:title] %></p>
-          <span class="index-book-progress"><%= book[:reading_state] %></span>
+          <span class="index-book-progress font-small-12"><%= book[:reading_state] %></span>
         </div>
       </div>
 
       <div class="index-user-book-memo">
         <div class="index-user-book-memo-count">
-          <p><span class="index-book-label">乱読画像数</span></p>
+          <p><span class="index-book-label font-small-12">乱読画像数</span></p>
           <div class="index-book-memo">
             <i class="fa-regular fa-image index-memo-icon"></i>
             <p>
-              <span class="index-book-memo-count"><%= book[:randoku_imgs_count] %></span>
+              <span class="index-book-memo-count font-large"><%= book[:randoku_imgs_count] %></span>
               <span class="index-book-memo-unit">枚</span>
             </p>
           </div>
@@ -39,11 +39,11 @@
 
         <div class="index_memo__separator"></div>
         <div class="index-user-book-memo-count">
-          <p><span class="index-book-label">精読メモ数</span></p>
+          <p><span class="index-book-label font-small-12">精読メモ数</span></p>
           <div class="index-book-memo">
             <i class="fa-regular fa-note-sticky index-memo-icon"></i>
             <p>
-              <span class="index-book-memo-count"><%= book[:seidoku_memos_count] %></span>
+              <span class="index-book-memo-count font-large"><%= book[:seidoku_memos_count] %></span>
               <span class="index-book-memo-unit">枚</span>
             </p>
           </div>

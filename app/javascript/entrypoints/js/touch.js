@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  if (document.querySelector('.touchpoint')) {
-    const touchpoints = document.querySelectorAll('.touchpoint');
+  if (document.querySelector('.sp-touchpoint-js')) {
+    const touchpoints = document.querySelectorAll('.sp-touchpoint-js');
     //const panzooms = document.querySelectorAll('.panzoom');
     // ユーザーがピンチ操作（2本の指で拡大縮小）を行っているかどうかを管理
     // touchstartイベントで2本以上のタッチがある場合にtrue、touchendイベントでfalse

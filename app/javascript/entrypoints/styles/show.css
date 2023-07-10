@@ -41,13 +41,12 @@
   align-items: center;
 }
 .book-progress-icon.show-tabs i {
-  font-size: 38px;
+  font-size: 32px;
   line-height: 1.5;
 }
 .book_reading_progress.show-tabs {
   margin-left: 12px;
   letter-spacing: 3.4px;
-  font-size: 36px;
   margin-left: 12px;
 }
 .fa-circle-question.show-tabs {
@@ -216,7 +215,7 @@
 /* タブパネル */
 .tab__panel {
   width: 100%;
-  /*background-color: #f2f4f7;*/
+  background-color: #f2f4f7;
 }
 
 .tab__panel-box {
@@ -273,6 +272,9 @@
   .tab-width {
     width: 90px;
     margin: 0 auto;
+  }
+  .tab__panel {
+    background-color: inherit;
   }
 
   /****アップロードボタンの下****/
