@@ -8,7 +8,7 @@
   </div>
   <div class="main-content-js">
     <div class="inner book-profile">
-      <h1>本のプロフィール</h1>
+      <h1 class="font-large">本のプロフィール</h1>
 
       <div class="book-cover-upload-form">
         <!--画像アップロードフォームを表示-->
@@ -37,7 +37,7 @@
       <%= form_tag("/books/create", method: :post) do %>
         <div class="book-profile-form">
           <div class="input-book-info">
-            <p class="input-book-label">タイトル</p>
+            <p class="input-book-label font-small-12">タイトル</p>
             <input
               id="input_title"
               class="form-oneline"
@@ -50,7 +50,7 @@
           </div>
 
           <div class="input-book-info">
-            <p class="input-book-label">著者名</p>
+            <p class="input-book-label font-small-12">著者名</p>
             <input
               id="input_author"
               class="form-oneline"
@@ -63,7 +63,7 @@
           </div>
 
           <div class="input-book-info">
-            <p class="input-book-label">出版社</p>
+            <p class="input-book-label font-small-12">出版社</p>
             <input
               class="form-oneline"
               type="text"

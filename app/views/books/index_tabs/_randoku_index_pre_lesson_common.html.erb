@@ -17,33 +17,33 @@
       </div>
       <div class="index-user-book-title">
         <p>
-          <p class="index-book-title-label">タイトル</p>
+          <p class="index-book-title-label font-small-10">タイトル</p>
           <span class="index-book-title pre"><%= books.randoku_history[:title] %></span>
         </p>
-        <span class="index-book-progress pre"><%= books.randoku_history[:reading_state] %></span>
+        <span class="index-book-progress pre font-small-12"><%= books.randoku_history[:reading_state] %></span>
         <p>
-          <span class="index-book-remaining"><%= books.randoku_history[:remaining] %></span>
+          <span class="index-book-remaining font-small-12"><%= books.randoku_history[:remaining] %></span>
         </p>
       </div>
     </div>
     <div class="index-user-book-memo">
       <div class="index-user-book-memo-count">
-        <p><span class="index-book-label">乱読画像数</span></p>
+        <p><span class="index-book-label font-small-12">乱読画像数</span></p>
         <div class="index-book-memo">
           <i class="fa-regular fa-image index-memo-icon"></i>
           <p>
-            <span class="index-book-memo-count imgs pre"><%= books.randoku_history[:randoku_imgs_count] %></span>
+            <span class="index-book-memo-count imgs pre font-large"><%= books.randoku_history[:randoku_imgs_count] %></span>
             <span class="index-book-memo-unit">枚</span>
           </p>
         </div>
       </div>
       <div class="index_memo__separator"></div>
       <div class="index-user-book-memo-count">
-        <p><span class="index-book-label">乱読メモ数</span></p>
+        <p><span class="index-book-label font-small-12">乱読メモ数</span></p>
         <div class="index-book-memo">
           <i class="fa-regular fa-note-sticky index-memo-icon"></i>
           <p>
-            <span class="index-book-memo-count memos pre"><%= books.randoku_history[:randoku_memos_count] %></span>
+            <span class="index-book-memo-count memos pre font-large"><%= books.randoku_history[:randoku_memos_count] %></span>
             <span class="index-book-memo-unit">枚</span>
           </p>
         </div>
