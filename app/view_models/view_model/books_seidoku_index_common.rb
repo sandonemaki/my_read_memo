@@ -23,22 +23,26 @@ module ViewModel
 
       #「前回の続き」用
       @seidoku_history =
-        { title: seidoku_history.title,
-          randoku_imgs_count: seidoku_history.randoku_imgs.count,
-          randoku_memos_count: seidoku_history.randoku_memos.count,
-          seidoku_memos_count: seidoku_history.seidoku_memos.count,
-          reading_state: case seidoku_history.reading_state
-          when State::READING_STATE.key("乱読")
-            "乱読"
-          when State::READING_STATE.key("精読")
-            "精読"
-          else
-            "通読"
-          end,
-          path: SeidokuHistory.last.path,
-          seidoku_history_ranking: seidoku_memo_ranking.include?(seidoku_history.id) ?
-          seidoku_memo_ranking.index(seidoku_history.id)+1 : "",
-        }
+        if seidoku_history
+          { title: seidoku_history.title,
+            randoku_imgs_count: seidoku_history.randoku_imgs.count,
+            randoku_memos_count: seidoku_history.randoku_memos.count,
+            seidoku_memos_count: seidoku_history.seidoku_memos.count,
+            reading_state: case seidoku_history.reading_state
+            when State::READING_STATE.key("乱読")
+              "乱読"
+            when State::READING_STATE.key("精読")
+              "精読"
+            else
+              "通読"
+            end,
+            path: SeidokuHistory.last.path,
+            seidoku_history_ranking: seidoku_memo_ranking.include?(seidoku_history.id) ?
+            seidoku_memo_ranking.index(seidoku_history.id)+1 : "",
+          }
+        else
+          []
+        end
 
     end
   end
