@@ -59,6 +59,10 @@ tags
 
 # 230226一旦git管理からはずした
 public/
+!public/default_user_image.jpg
+!public/dummy_book.png
+!public/key-lock.svg
+!public/sort.svg
 app/views/tmp
 app/controllers/test_controller.rb
 app/controllers/tmp_controller.rb
