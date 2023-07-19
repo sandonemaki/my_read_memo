@@ -50,7 +50,7 @@ module ViewModel
             remaining: randoku_history.countdown_remaining_seidoku
           }
         else
-          []
+          {}
         end
     end
   end

@@ -3,48 +3,51 @@
     <p><i class="fa-solid fa-book index-lesson-label-icon"></i></p>
     <p class="index-lesson-label">前回の続き</p>
   </div>
-  <% if !books.seidoku_history.present? %>
+  <% if books.seidoku_history.empty? %>
     <p>乱読画像を投稿してメモを再読する必要性を伝える</p>
   <% end %>
-  <div class="index-user-book-info">
-    <div class="index-user-book">
-      <div class="index-user-book-cover">
-        <% if books.seidoku_history[:seidoku_history_ranking].present? %>
-          <!--<%= books.seidoku_history[:seidoku_history_ranking] %>位</p>-->
-          <i class="fa-solid fa-crown index-crown"></i>
-        <% end %>
-        <img src="https://placehold.jp/80x110.png" width="100%" alt="ブックカバー" class="index-book-cover-img" />
-      </div>
-      <div class="index-user-book-title">
-        <p>
-          <p class="index-book-title-label">タイトル</p>
-          <span class="index-book-title"><%= books.seidoku_history[:title] %></span>
-        </p>
-        <span class="index-book-progress font-small-12"><%= books.seidoku_history[:reading_state] %></span>
-      </div>
-    </div>
-    <div class="index-user-book-memo">
-      <div class="index-user-book-memo-count">
-        <p><span class="index-book-label font-small-12">乱読画像数</span></p>
-        <div class="index-book-memo">
-          <i class="fa-regular fa-image index-memo-icon"></i>
+
+  <% if !books.seidoku_history.empty? %>
+    <div class="index-user-book-info">
+      <div class="index-user-book">
+        <div class="index-user-book-cover">
+          <% if books.seidoku_history[:seidoku_history_ranking].present? %>
+            <!--<%= books.seidoku_history[:seidoku_history_ranking] %>位</p>-->
+            <i class="fa-solid fa-crown index-crown"></i>
+          <% end %>
+          <img src="https://placehold.jp/80x110.png" width="100%" alt="ブックカバー" class="index-book-cover-img" />
+        </div>
+        <div class="index-user-book-title">
           <p>
-            <span class="index-book-memo-count font-large"><%= books.seidoku_history[:randoku_imgs_count] %></span>
-            <span class="index-book-memo-unit">枚</span>
+            <p class="index-book-title-label">タイトル</p>
+            <span class="index-book-title"><%= books.seidoku_history[:title] %></span>
           </p>
+          <span class="index-book-progress font-small-12"><%= books.seidoku_history[:reading_state] %></span>
         </div>
       </div>
-      <div class="index_memo__separator"></div>
-      <div class="index-user-book-memo-count">
-        <p><span class="index-book-label font-small-12">精読メモ数</span></p>
-        <div class="index-book-memo">
-          <i class="fa-regular fa-note-sticky index-memo-icon"></i>
-          <p>
-            <span class="index-book-memo-count font-large"><%= books.seidoku_history[:seidoku_memos_count] %></span>
-            <span class="index-book-memo-unit">枚</span>
-          </p>
+      <div class="index-user-book-memo">
+        <div class="index-user-book-memo-count">
+          <p><span class="index-book-label font-small-12">乱読画像数</span></p>
+          <div class="index-book-memo">
+            <i class="fa-regular fa-image index-memo-icon"></i>
+            <p>
+              <span class="index-book-memo-count font-large"><%= books.seidoku_history[:randoku_imgs_count] %></span>
+              <span class="index-book-memo-unit">枚</span>
+            </p>
+          </div>
+        </div>
+        <div class="index_memo__separator"></div>
+        <div class="index-user-book-memo-count">
+          <p><span class="index-book-label font-small-12">精読メモ数</span></p>
+          <div class="index-book-memo">
+            <i class="fa-regular fa-note-sticky index-memo-icon"></i>
+            <p>
+              <span class="index-book-memo-count font-large"><%= books.seidoku_history[:seidoku_memos_count] %></span>
+              <span class="index-book-memo-unit">枚</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

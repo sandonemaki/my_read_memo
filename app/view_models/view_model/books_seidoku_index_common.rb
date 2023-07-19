@@ -41,7 +41,7 @@ module ViewModel
             seidoku_memo_ranking.index(seidoku_history.id)+1 : "",
           }
         else
-          []
+          {}
         end
 
     end
