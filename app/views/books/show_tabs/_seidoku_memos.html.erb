@@ -23,7 +23,7 @@
 
   <div class="tabbed-memos-content">
     <% if !book.seidoku_memos.present? %>
-      <p>"まだ乱読メモがありません"</p>
+      <p>"まだ精読メモがありません"</p>
     <% else %>
       <% book.seidoku_memos.each_with_index do |memo| %>
         <div class="tabbed-memo-content">
