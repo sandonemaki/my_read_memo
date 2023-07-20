@@ -22,6 +22,7 @@ export const js_flash_alert = (message) => {
 
 // application.html.erbから呼び出すため関数をグローバルスコープに公開する
 window.js_flash_alert = js_flash_alert;
+window.js_flash = js_flash;
 
 // メッセージを設定する関数
 const setFlashMessage = ({ flashElement, message }) => {

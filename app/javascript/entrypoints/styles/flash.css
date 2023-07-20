@@ -2,9 +2,9 @@
 .c-flash {
   opacity: 0; /* 元々は透明 */
   position: fixed;
-  top: 70px;
+  top: 0px;
   right: -1000px; /* 元々は見えない位置にある */
-  z-index: 200;
+  z-index: 10000000;
   text-align: center;
   color: #fff;
   font-size: 0.75rem;
@@ -20,8 +20,7 @@
   background-color: #30c8d6;
 }
 .c-flash--notice.slide {
-  background-color: #30c8d6;
-  top: 0;
+  top: 0px;
 }
 
 .c-flash--alert {
@@ -29,8 +28,8 @@
   opacity: 0; /* 初期状態では透明 */
   right: -1000px; /* 元々は見えない位置にある */
 }
-.c-flash--alert {
-  top: 0;
+.c-flash--alert.slide {
+  top: 0px;
 }
 
 .c-flash-text {

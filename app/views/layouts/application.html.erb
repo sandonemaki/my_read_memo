@@ -38,6 +38,12 @@
           js_flash_alert(flash);
         }
       });
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const flash = <%= flash[:notice].blank? ? 'null' : flash[:notice].to_json.html_safe %>;
+        if (flash) {
+          js_flash(flash);
+        }
+      });
     </script>
   </body>
 </html>

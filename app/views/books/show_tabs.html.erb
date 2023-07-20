@@ -1,4 +1,15 @@
 <%= render partial: 'layouts/header' %>
+    <!-- フラッシュを表示 -->
+    <div class="c-flash c-flash--notice slide">
+      <div class="c-flash-icon">
+        <div class="c-flash-text"></div>
+      </div>
+    </div>
+    <!-- フラッシュアラートを表示 -->
+    <div class="c-flash c-flash--alert slide">
+      <div class="c-flash-text"></div>
+      <i class="fa-solid fa-xmark c-flash-close" id="close-flash"></i>
+    </div>
 <div class="main-content-js inner book-show-upper-inner">
   <div class="book-info-wrapp">
     <div class="book-info-detail">
