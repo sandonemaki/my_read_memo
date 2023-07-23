@@ -15,7 +15,8 @@ services:
     # 無くても動くが指定しておくとコンテナ停止時にサービスが再起動してくれる
     # https://docs.docker.jp/v19.03/config/container/start-containers-automatically.html
     restart: always
-  my_read_memo_web:
+
+ my_read_memo_web:
     build: .
     # tmp/pids/server.pidが残ってたら `A server is already running. ~~` のエラーでrailsを起動できないので事前に消してから、`rails sever` する
     command: bash -c "rm -f tmp/pids/server.pid && bundle install && bundle exec rails s -p 3000 -b '0.0.0.0' && bin/vite dev"
@@ -34,5 +35,20 @@ services:
     stdin_open: true # サービス コンテナに標準入力を割り当てて実行するよう設定(https://docs.docker.jp/compose/compose-file/index.html#stdin-open)。
     depends_on:
       - my_read_memo_db
+
+  my_read_memo_webserver:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - .docker/nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./etc/letsencrypt/live/localhost.yondeco.site:/etc/letsencrypt/live/localhost.yondeco.site
+    # my_read_memo_webserver が my_read_memo_web に依存するように設定
+    # Railsアプリケーションが完全に起動してからNginxが起動
+    depends_on:
+      - my_read_memo_web
+
 volumes:
   postgres_volume:

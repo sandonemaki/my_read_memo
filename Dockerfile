@@ -57,10 +57,19 @@ RUN wget https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.1-9.ta
     rm -rf ImageMagick-7.1.1-9 7.1.1-9.tar.gz
 
 # 必要なライブラリのインストール
-RUN apt-get update && apt-get install -y libpq-dev npm nodejs && \
+RUN set -x && apt-get update -qq && \
+    apt-get update && apt-get install -y libpq-dev npm && \
     curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs && \
     curl -L https://install.meilisearch.com | sh && \
     rm -rf /var/lib/apt/lists/*
+
+# npmを使ってyarnをインストール
+RUN npm install -g yarn
+# yarnがインストールされたパスを環境変数に追加
+ENV PATH /usr/local/share/.config/yarn/global/node_modules/.bin:$PATH
+RUN yarn -v | tee /dev/stderr || echo "yarn install failed"
+RUN which yarn || echo "yarn is not installed"
 
 WORKDIR /myapp
 
