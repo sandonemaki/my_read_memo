@@ -68,8 +68,8 @@ RUN set -x && apt-get update -qq && \
 RUN npm install -g yarn
 # yarnがインストールされたパスを環境変数に追加
 ENV PATH /usr/local/share/.config/yarn/global/node_modules/.bin:$PATH
-RUN yarn -v | tee /dev/stderr || echo "yarn install failed"
-RUN which yarn || echo "yarn is not installed"
+#RUN yarn -v | tee /dev/stderr || echo "yarn install failed"
+#RUN which yarn || echo "yarn is not installed"
 
 WORKDIR /myapp
 
