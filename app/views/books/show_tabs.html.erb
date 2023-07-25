@@ -38,12 +38,14 @@
         <li class="tab__menu-item show-page is-active" data-tab="01"><p class="tab-width">乱読画像メモ</p></li>
         <li class="tab__menu-item show-page" data-tab="02"><p class="tab-width">乱読メモ</p></li>
         <li class="tab__menu-item show-page" data-tab="03">
-          <p class="tab-width">精読メモ</p>
+          <div class="seidoku-key-wrapper tab-width">
           <% if book.seidoku_memo_key == true %>
             <p class="seidoku_memo_key">
               <i class="fa-solid fa-lock lock-key"></i>
             </p>
           <% end %>
+          <p>精読メモ</p>
+          </div>
         </li>
       </ul>
       <div id="underline" class="show-page"></div><!-- 追加 -->

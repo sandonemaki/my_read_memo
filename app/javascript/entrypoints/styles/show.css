@@ -202,16 +202,13 @@
   z-index: 2;
   opacity: 1;
 }
-.seidoku_memo_key {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #d4dce4;
-  border-radius: 50%;
-  padding: 8px 11.6px;
-  transform: translate(30%, -40%);
+.seidoku_memo_key .lock-key {
+  color: #bac6d3;
+  padding-right: 6px;
 }
-
+.seidoku-key-wrapper {
+  display: flex;
+}
 /* タブパネル */
 .tab__panel {
   width: 100%;
@@ -275,6 +272,9 @@
   }
   .tab__panel {
     background-color: inherit;
+  }
+  .seidoku_memo_key .lock-key {
+    padding-right: 4px;
   }
 
   /****アップロードボタンの下****/

@@ -33,15 +33,6 @@
   vertical-align: middle;
 }
 
-.seidoku_memo_key {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #d4dce4;
-  border-radius: 50%;
-  padding: 8px 11.6px;
-  transform: translate(30%, -40%);
-}
 .tabbed-content {
   padding-top: 24px;
   /*background-color: #fff;*/
