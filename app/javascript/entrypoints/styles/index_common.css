@@ -181,15 +181,6 @@
 }
 .rank-title {
   font-size: 20px;
-  margin-bottom: 32px;
-  color: #7e8792;
-}
-.rank-title .fa-solid {
-  color: #7e8792;
-  font-size: 16px;
-}
-.rank-title .fa-solid::before {
-  vertical-align: unset;
 }
 .index-lesson-label {
   font-size: 16px;
@@ -265,6 +256,12 @@
 }
 /* インデックスのランキング */
 /* ランキングボタン */
+.index__btn-around {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: baseline;
+}
 .SP-index-ranking-btn {
   display: none;
 }
@@ -312,6 +309,9 @@
     padding: 0px;
   }
   /* ランキングボタン */
+  .rank-title {
+    font-size: 16px;
+  }
   .SP-index-ranking-btn {
     display: flex;
     justify-content: end;
@@ -321,9 +321,6 @@
     display: none;
   }
   /**** タブの下 ****/
-  .rank-title {
-    font-size: 16px;
-  }
   /*  前回の続き */
   .index-user-book-info {
     display: inherit;

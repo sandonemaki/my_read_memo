@@ -225,6 +225,7 @@
 }
 .index_tab__panel-btn-js.is-show {
   display: block;
+  width: 100%;
 }
 
 /* commonでつけたmain-content-jsの高さを無効にする */
