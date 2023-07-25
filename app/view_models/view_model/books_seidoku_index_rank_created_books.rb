@@ -1,9 +1,10 @@
 module ViewModel
 
   class BooksSeidokuIndexRankCreatedBooks
-    attr_reader :books_index_rank
+    attr_reader :books_index_rank, :rank_title
 
     def initialize(all_seidoku_state_books:)
+      @rank_title = "精読本の投稿順"
       # 精読本の投稿順
       created_books_desc_of_seidoku_state_books =
         all_seidoku_state_books.order(created_at: :desc)

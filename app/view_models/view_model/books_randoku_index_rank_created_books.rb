@@ -1,9 +1,10 @@
 module ViewModel
 
   class BooksRandokuIndexRankCreatedBooks
-    attr_reader :books_index_rank
+    attr_reader :books_index_rank, :rank_title
 
     def initialize(all_randoku_state_books:)
+      @rank_title = "乱読本の投稿順"
 
       # 乱読本の投稿順
       created_books_desc_of_randoku_state_books =

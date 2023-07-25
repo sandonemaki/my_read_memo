@@ -1,9 +1,10 @@
 module ViewModel
 
   class BooksSeidokuIndexRankMostRandokuImgs
-    attr_reader :books_index_rank
+    attr_reader :books_index_rank, :rank_title
 
     def initialize(all_seidoku_state_books:)
+      @rank_title = "乱読画像の多い順"
       # 現在精読ステータス中の本の中から精読メモの数が多い順に並べる
       most_randoku_memos_desc_of_seidoku_state_books =
         all_seidoku_state_books.joins(:randoku_imgs)

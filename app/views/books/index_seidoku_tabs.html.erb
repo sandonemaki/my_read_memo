@@ -144,12 +144,24 @@
       <div class="tab__panel index-page">
         <div class="tab__panel-box index-page tab__panel-box001" data-panel="1">
           <!-- タブの下 乱読index -->
-          <%= render partial: 'books/index_tabs/randoku_index_pre_lesson_common', locals: { books: randoku_books } %>
+          <%=
+            render partial: 'books/index_tabs/randoku_index_pre_lesson_common',
+                   locals: {
+                     books: randoku_books,
+                     books_rank: randoku_rank,
+                   }
+          %>
           <%= render partial: 'books/index_tabs/randoku_index_rank_common', locals: { books_rank: randoku_rank } %>
         </div>
         <div class="tab__panel-box index-page tab__panel-box002 is-show" data-panel="2">
           <!-- タブの下 精読index -->
-          <%= render partial: 'books/index_tabs/seidoku_index_pre_lesson_common', locals: { books: seidoku_books } %>
+          <%=
+            render partial: 'books/index_tabs/seidoku_index_pre_lesson_common',
+                   locals: {
+                     books: seidoku_books,
+                     books_rank: seidoku_rank,
+                   }
+          %>
           <%= render partial: 'books/index_tabs/seidoku_index_rank_common', locals: { books_rank: seidoku_rank } %>
         </div>
       </div>

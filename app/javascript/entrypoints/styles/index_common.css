@@ -179,6 +179,18 @@
   /*border-top: 2px solid #e9edf1;*/
   z-index: 2;
 }
+.rank-title {
+  font-size: 20px;
+  margin-bottom: 32px;
+  color: #7e8792;
+}
+.rank-title .fa-solid {
+  color: #7e8792;
+  font-size: 16px;
+}
+.rank-title .fa-solid::before {
+  vertical-align: unset;
+}
 .index-lesson-label {
   font-size: 16px;
   margin-left: 8px;
@@ -309,6 +321,9 @@
     display: none;
   }
   /**** タブの下 ****/
+  .rank-title {
+    font-size: 16px;
+  }
   /*  前回の続き */
   .index-user-book-info {
     display: inherit;

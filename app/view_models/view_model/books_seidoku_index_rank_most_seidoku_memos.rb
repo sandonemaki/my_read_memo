@@ -1,9 +1,10 @@
 module ViewModel
 
   class BooksSeidokuIndexRankMostSeidokuMemos
-    attr_reader :books_index_rank
+    attr_reader :books_index_rank, :rank_title
 
     def initialize(all_seidoku_state_books:)
+      @rank_title = "精読メモの多い順"
       # 現在精読ステータス中の本の中から精読メモの数が多い順に並べる
       most_seidoku_memos_desc_of_seidoku_state_books =
         all_seidoku_state_books.left_joins(:seidoku_memos)
