@@ -10,20 +10,22 @@
   <% if !books.seidoku_history.empty? %>
     <div class="index-user-book-info">
       <div class="index-user-book">
-        <div class="index-user-book-cover">
-          <% if books.seidoku_history[:seidoku_history_ranking].present? %>
-            <!--<%= books.seidoku_history[:seidoku_history_ranking] %>位</p>-->
-            <i class="fa-solid fa-crown index-crown"></i>
-          <% end %>
-          <img src="https://placehold.jp/80x110.png" width="100%" alt="ブックカバー" class="index-book-cover-img" />
-        </div>
-        <div class="index-user-book-title">
-          <p>
-            <p class="index-book-title-label">タイトル</p>
-            <span class="index-book-title"><%= books.seidoku_history[:title] %></span>
-          </p>
-          <span class="index-book-progress font-small-12"><%= books.seidoku_history[:reading_state] %></span>
-        </div>
+        <%= link_to "/books/#{books.seidoku_history[:id]}" do %>
+          <div class="index-user-book-cover">
+            <% if books.seidoku_history[:seidoku_history_ranking].present? %>
+              <!--<%= books.seidoku_history[:seidoku_history_ranking] %>位</p>-->
+              <i class="fa-solid fa-crown index-crown"></i>
+            <% end %>
+            <img src="https://placehold.jp/80x110.png" width="100%" alt="ブックカバー" class="index-book-cover-img" />
+          </div>
+          <div class="index-user-book-title">
+            <p>
+              <p class="index-book-title-label">タイトル</p>
+              <span class="index-book-title"><%= books.seidoku_history[:title] %></span>
+            </p>
+            <span class="index-book-progress font-small-12"><%= books.seidoku_history[:reading_state] %></span>
+          </div>
+        <% end %>
       </div>
       <div class="index-user-book-memo">
         <div class="index-user-book-memo-count">

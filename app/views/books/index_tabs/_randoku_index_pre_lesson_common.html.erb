@@ -10,23 +10,25 @@
   <% if !books.randoku_history.empty? %>
     <div class="index-user-book-info">
       <div class="index-user-book">
-        <div class="index-user-book-cover">
-          <% if books.randoku_history[:randoku_history_ranking].present? %>
-            <!--<%= books.randoku_history[:randoku_history_ranking] %>位</p>-->
-            <i class="fa-solid fa-crown index-crown pre"></i>
-          <% end %>
-          <img src="https://placehold.jp/80x110.png" width="100%" alt="ブックカバー" class="index-book-cover-img" />
-        </div>
-        <div class="index-user-book-title">
-          <p>
-            <p class="index-book-title-label font-small-10">タイトル</p>
-            <span class="index-book-title pre"><%= books.randoku_history[:title] %></span>
-          </p>
-          <span class="index-book-progress pre font-small-12"><%= books.randoku_history[:reading_state] %></span>
-          <p>
-            <span class="index-book-remaining font-small-12"><%= books.randoku_history[:remaining] %></span>
-          </p>
-        </div>
+        <%= link_to "/books/#{books.randoku_history[:id]}" do %>
+          <div class="index-user-book-cover">
+            <% if books.randoku_history[:randoku_history_ranking].present? %>
+              <!--<%= books.randoku_history[:randoku_history_ranking] %>位</p>-->
+              <i class="fa-solid fa-crown index-crown pre"></i>
+            <% end %>
+            <img src="https://placehold.jp/80x110.png" width="100%" alt="ブックカバー" class="index-book-cover-img" />
+          </div>
+          <div class="index-user-book-title">
+            <p>
+              <p class="index-book-title-label font-small-10">タイトル</p>
+              <span class="index-book-title pre"><%= books.randoku_history[:title] %></span>
+            </p>
+            <span class="index-book-progress pre font-small-12"><%= books.randoku_history[:reading_state] %></span>
+            <p>
+              <span class="index-book-remaining font-small-12"><%= books.randoku_history[:remaining] %></span>
+            </p>
+          </div>
+        <% end %>
       </div>
       <div class="index-user-book-memo">
         <div class="index-user-book-memo-count">

@@ -189,10 +189,14 @@
   margin-bottom: 24px;
 }
 .index-user-book {
-  display: flex;
-  justify-content: space-between;
   width: 70%;
+  cursor: pointer;
+}
+.index-user-book a {
+  display: flex;
   align-items: center;
+  text-decoration: none;
+  justify-content: space-between;
 }
 .index-user-book-memo {
   display: flex;
@@ -323,7 +327,7 @@
     width: 100%;
   }
   .index-user-book-cover {
-    width: 70%;
+    width: 50%;
     margin-right: 24px;
   }
   .index-book-title {

@@ -31,7 +31,8 @@ module ViewModel
       # TODO: ハッシュをクラスにする
       @randoku_history =
         if randoku_history
-          { title: randoku_history.title,
+          { id: randoku_history.id,
+            title: randoku_history.title,
             randoku_imgs_count: randoku_history.randoku_imgs.count,
             randoku_memos_count: randoku_history.randoku_memos.count,
             seidoku_memos_count: randoku_history.seidoku_memos.count,
