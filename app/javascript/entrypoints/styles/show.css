@@ -185,7 +185,7 @@
   padding-bottom: 10px;
 }
 .tab__menu-item p {
-  color: rgb(186, 198, 211);
+  color: rgb(166, 177, 190);
 }
 .tab__menu-item.show-page {
   width: 33.33%;
@@ -276,7 +276,10 @@
   .seidoku_memo_key .lock-key {
     padding-right: 4px;
   }
-
+  .tab-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
   /****アップロードボタンの下****/
   .upload-description {
     font-size: 2.5vw;

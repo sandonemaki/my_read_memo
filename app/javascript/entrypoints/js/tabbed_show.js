@@ -25,9 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (underline_show) {
     tabMenuItems.forEach((item, index) => {
-      item.addEventListener('click', function (e) {
-        tabSwitch(e, index);
-      });
+      if (!item.classList.contains('tab-disabled')) {
+        item.addEventListener('click', function (e) {
+          tabSwitch(e, index);
+        });
+      }
     });
   }
 });
