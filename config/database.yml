@@ -86,5 +86,7 @@ test:
 production:
   <<: *default
   database: my_read_memo_production
-  username: my_read_memo
+  username: <%= ENV['MY_READ_MEMO_DATABASE_USERNAME'] %>
   password: <%= ENV['MY_READ_MEMO_DATABASE_PASSWORD'] %>
+  host: <%= ENV['MY_READ_MEMO_DATABASE_HOST'] %>
+  port: 5432
