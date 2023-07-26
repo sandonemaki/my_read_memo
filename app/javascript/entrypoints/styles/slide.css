@@ -292,7 +292,7 @@
   height: 60px;
   align-items: center;
   position: relative;
-  align-items: end;
+  align-items: flex-end;
 }
 
 /**** トータルページモーダル ****/

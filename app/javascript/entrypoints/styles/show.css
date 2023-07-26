@@ -240,7 +240,7 @@
     padding: 0px 20px;
   }
   .book-info-wrapp {
-    align-items: end;
+    align-items: flex-end;
   }
   .book-info-detail {
     width: 60%;
