@@ -2,6 +2,10 @@
 up:
 	bundle exec rails s -b 0.0.0.0
 
+.PHONY: production_up
+production_up:
+	bundle exec rails s -b 0.0.0.0 -e production
+
 .PHONY: kill-server-and-start-server-as-daemon
 kill-server-and-start-server-as-daemon:
 	# Rails サーバーのプロセスIDを取得し、サーバーを停止
@@ -9,9 +13,12 @@ kill-server-and-start-server-as-daemon:
 	kill $(cat tmp/pids/server.pid) 2>/dev/null || echo "Server is not running or Failed to kill server process"
 	bundle exec rails s -b 0.0.0.0 -d
 
-.PHONY: aws_db_cp
-aws_db_cp:
-	cd config && cp -f aws_database.yml database.yml
+.PHONY: kill-server-and-start-production-server-as-daemon
+kill-server-and-start-production-server-as-daemon:
+	# Rails サーバーのプロセスIDを取得し、サーバーを停止
+	# 標準エラーに出力されるエラーメッセージが、/dev/null にリダイレクトされる -> 標準エラー出力に書き込まれる内容を捨てる
+	kill $(cat tmp/pids/server.pid) 2>/dev/null || echo "Server is not running or Failed to kill server process"
+	bundle exec rails s -b 0.0.0.0 -e production -d
 
 .PHONY: pull
 pull:
@@ -20,6 +27,18 @@ pull:
 .PHONY: db_migrate
 db_migrate:
 	bundle exec rails db:migrate
+
+.PHONY: db_create
+db_create:
+	bundle exec rails db:create
+
+.PHONY: db_production_migrate
+db_migrate:
+	RAILS_ENV=production bundle exec rails db:migrate
+
+.PHONY: db_production_create
+db_create:
+	RAILS_ENV=production bundle exec rails db:create
 
 .PHONY: release-for-aws
 release-for-aws:
