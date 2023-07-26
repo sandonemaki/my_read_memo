@@ -201,10 +201,18 @@
   text-decoration: none;
   justify-content: space-between;
 }
+.index-user-book-memo-wrapper {
+  width: 28%;
+}
 .index-user-book-memo {
   display: flex;
-  width: 28%;
+  width: 100%;
   align-items: center;
+}
+.link-button.index-user-book-memo-btn {
+  margin-top: 10px;
+  width: 88%;
+  text-decoration: none;
 }
 
 .index-user-book-cover {
@@ -254,6 +262,7 @@
 .index-book-memo-unit {
   font-size: 18px;
 }
+
 /* インデックスのランキング */
 /* ランキングボタン */
 .index__btn-around {
@@ -326,6 +335,7 @@
     display: inherit;
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 60px;
   }
   .index-user-book-table {
     flex-direction: column;
@@ -336,6 +346,11 @@
   }
   .index-user-book {
     margin-bottom: 12px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .link-button.index-user-book-memo-btn {
+    margin-top: 0px;
     width: 100%;
   }
   .index-user-book-cover {
@@ -355,10 +370,13 @@
     width: 100%;
     justify-content: center;
     display: flex;
-    margin-bottom: 36px;
+    margin-bottom: 10px;
   }
   .index-book-label {
     font-size: 3vw;
+  }
+  .index-user-book-memo-wrapper {
+    width: 100%;
   }
 
   .index-user-book-memo-count p {

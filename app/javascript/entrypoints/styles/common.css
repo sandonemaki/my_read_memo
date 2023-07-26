@@ -163,6 +163,22 @@ li {
 }
 
 /***** 共通ボタン *****/
+.link-button {
+  user-select: none;
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 0.8125rem;
+  text-align: center;
+  min-width: 140px;
+  height: 45px;
+  line-height: 45px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
 .submit-button {
   font-size: 0.875rem;
   display: flex;
@@ -177,6 +193,14 @@ li {
   justify-content: center;
   align-items: center;
   height: 45px;
+}
+.line-button-detail {
+  color: #4ccfc9;
+  border-color: #4ccfc9;
+}
+.line-button-detail:hover {
+  color: #31b7b1;
+  border-color: #31b7b1;
 }
 .submit-button:hover {
   background-color: rgb(35, 164, 176);

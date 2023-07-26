@@ -27,28 +27,33 @@
           </div>
         <% end %>
       </div>
-      <div class="index-user-book-memo">
-        <div class="index-user-book-memo-count">
-          <p><span class="index-book-label font-small-12">乱読画像数</span></p>
-          <div class="index-book-memo">
-            <i class="fa-regular fa-image index-memo-icon"></i>
-            <p>
-              <span class="index-book-memo-count font-large"><%= books.seidoku_history[:randoku_imgs_count] %></span>
-              <span class="index-book-memo-unit">枚</span>
-            </p>
+      
+      <div class="index-user-book-memo-wrapper">
+        <div class="index-user-book-memo">
+          <div class="index-user-book-memo-count">
+            <p><span class="index-book-label font-small-12">乱読画像数</span></p>
+            <div class="index-book-memo">
+              <i class="fa-regular fa-image index-memo-icon"></i>
+              <p>
+                <span class="index-book-memo-count font-large"><%= books.seidoku_history[:randoku_imgs_count] %></span>
+                <span class="index-book-memo-unit">枚</span>
+              </p>
+            </div>
+          </div>
+          <div class="index_memo__separator"></div>
+          <div class="index-user-book-memo-count">
+            <p><span class="index-book-label font-small-12">精読メモ数</span></p>
+            <div class="index-book-memo">
+              <i class="fa-regular fa-note-sticky index-memo-icon"></i>
+              <p>
+                <span class="index-book-memo-count font-large"><%= books.seidoku_history[:seidoku_memos_count] %></span>
+                <span class="index-book-memo-unit">枚</span>
+              </p>
+            </div>
           </div>
         </div>
-        <div class="index_memo__separator"></div>
-        <div class="index-user-book-memo-count">
-          <p><span class="index-book-label font-small-12">精読メモ数</span></p>
-          <div class="index-book-memo">
-            <i class="fa-regular fa-note-sticky index-memo-icon"></i>
-            <p>
-              <span class="index-book-memo-count font-large"><%= books.seidoku_history[:seidoku_memos_count] %></span>
-              <span class="index-book-memo-unit">枚</span>
-            </p>
-          </div>
-        </div>
+        <%= link_to '本の詳細へ', "/books/#{books.seidoku_history[:id]}", class: "link-button line-button-detail index-user-book-memo-btn" %>
+
       </div>
     </div>
   <% end %>

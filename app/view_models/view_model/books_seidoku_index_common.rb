@@ -24,7 +24,8 @@ module ViewModel
       #「前回の続き」用
       @seidoku_history =
         if seidoku_history
-          { title: seidoku_history.title,
+          { id: seidoku_history.id,
+            title: seidoku_history.title,
             randoku_imgs_count: seidoku_history.randoku_imgs.count,
             randoku_memos_count: seidoku_history.randoku_memos.count,
             seidoku_memos_count: seidoku_history.seidoku_memos.count,
