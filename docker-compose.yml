@@ -3,9 +3,9 @@ services:
   my_read_memo_db:
     image: postgres:13
     # dbのユーザー名とパスワードでこれが無いとdbが起動できなかった
-    # environment:
-    # POSTGRES_USER: ${POSTGRES_USER}
-    # POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     # POSTGRES_USER: root
     # POSTGRES_PASSWORD: password
     # 無くても動くけど指定しておくとdocker-composeを停止してもdbの内容が永続化されるため、指定することが多いと思われる
@@ -22,8 +22,8 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle install && bundle exec rails s -p 3000 -b '0.0.0.0' && bin/vite dev"
     # 上記のdbイメージで指定したユーザー名とパスワードをrails側でも指定するため環境変数に設定。
     environment:
-      # POSTGRES_USER: ${POSTGRES_USER}
-      # POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     # ホストのカレントディレクトリ(.)とイメージ内の/myappディレクトリを同期させている
     volumes:
       - .:/myapp
@@ -45,6 +45,8 @@ services:
     volumes:
       - ./docker/nginx/conf/dev/:/etc/nginx/conf.d/
       - /etc/letsencrypt/live/localhost.yondeco.site:/etc/letsencrypt/live/localhost.yondeco.site
+      - /etc/letsencrypt/archive/localhost.yondeco.site:/etc/letsencrypt/archive/localhost.yondeco.site
+
     # my_read_memo_webserver が my_read_memo_web に依存するように設定
     # Railsアプリケーションが完全に起動してからNginxが起動
     depends_on:
