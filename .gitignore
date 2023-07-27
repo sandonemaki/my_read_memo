@@ -75,3 +75,6 @@ app/views/test/hoge.html.erb
 src/
 test/
 app/views/book_pages/imgs/
+
+# EC2のssl証明 230727
+/docker/yondeco.site
