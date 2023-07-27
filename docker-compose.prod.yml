@@ -15,6 +15,7 @@ services:
       MY_READ_MEMO_DATABASE_USERNAME: ${MY_READ_MEMO_DATABASE_USERNAME}
       MY_READ_MEMO_DATABASE_PASSWORD: ${MY_READ_MEMO_DATABASE_PASSWORD}
       MY_READ_MEMO_DATABASE_HOST: ${MY_READ_MEMO_DATABASE_HOST}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
     # ホストのカレントディレクトリ(.)とイメージ内の/myappディレクトリを同期させている
     volumes:
       - .:/myapp
