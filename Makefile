@@ -40,6 +40,10 @@ db_migrate:
 db_create:
 	RAILS_ENV=production bundle exec rails db:create
 
+.PHONY: precompile
+precompile:
+	RAILS_ENV=production bundle exec rails assets:precompile
+
 .PHONY: release-for-aws
 release-for-aws:
 	scp -i ${SECRET_KEY_PATH_V2} -p /home/vagrant/my_read_memo/command-in-aws.sh ${USER_NAME_V2}@${HOST_V2}:/home/ubuntu/
