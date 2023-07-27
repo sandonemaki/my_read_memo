@@ -76,7 +76,6 @@ jobs:
           bundle install
           git pull origin main
           RAILS_ENV=production bundle exec rails assets:precompile
-          RAILS_ENV=production bundle exec rails db:create
           RAILS_ENV=production bundle exec rails db:migrate
           kill $(cat tmp/pids/server.pid) 2>/dev/null || echo "Server is not running or Failed to kill server process"
           bundle exec rails s -b 0.0.0.0 -e production -d

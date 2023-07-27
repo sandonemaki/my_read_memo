@@ -8,14 +8,12 @@ services:
         rm -f tmp/pids/server.pid && 
         bundle install && 
         RAILS_ENV=production bundle exec rails assets:precompile && 
-        RAILS_ENV=production bundle exec rails db:create && 
-        RAILS_ENV=production bundle exec rails db:migrate && 
         bundle exec rails s -p 3000 -b '0.0.0.0' -e production
       "
     # 上記のdbイメージで指定したユーザー名とパスワードをrails側でも指定するため環境変数に設定。
     environment:
       MY_READ_MEMO_DATABASE_USERNAME: ${MY_READ_MEMO_DATABASE_USERNAME}
-      MY_READ_MEMO_DATABASE_PASSWOR: ${MY_READ_MEMO_DATABASE_PASSWORD}
+      MY_READ_MEMO_DATABASE_PASSWORD: ${MY_READ_MEMO_DATABASE_PASSWORD}
       MY_READ_MEMO_DATABASE_HOST: ${MY_READ_MEMO_DATABASE_HOST}
     # ホストのカレントディレクトリ(.)とイメージ内の/myappディレクトリを同期させている
     volumes:
