@@ -33,7 +33,8 @@ services:
     restart: always
     volumes:
       - ./docker/nginx/conf/prod/:/etc/nginx/conf.d/
-      - ./docker/yondeco.site:/etc/letsencrypt/live/yondeco.site
+      - /etc/letsencrypt/live/yondeco.site:/etc/letsencrypt/live/yondeco.site
+      - /etc/letsencrypt/archive/yondeco.site:/etc/letsencrypt/archive/yondeco.site
     # my_read_memo_webserver が my_read_memo_web に依存するように設定
     # Railsアプリケーションが完全に起動してからNginxが起動
     depends_on:

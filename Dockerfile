@@ -78,5 +78,5 @@ COPY package*.json ./
 RUN npm install
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle config set --local path 'vendor/bundle' && bundle install
+RUN gem install bundler:2.3.21 && bundle config set --local path 'vendor/bundle' && bundle install
 COPY . .
