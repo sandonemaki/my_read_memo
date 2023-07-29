@@ -82,4 +82,4 @@ RUN gem install bundler:2.3.21 && bundle config set --local path 'vendor/bundle'
 COPY . .
 
 # viteのインストール
-RUN bundle exec vite install
+#RUN bundle exec vite install

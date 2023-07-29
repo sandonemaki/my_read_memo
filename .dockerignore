@@ -78,7 +78,6 @@ app/ID
 tags
 
 # 230226一旦git管理からはずした
-public/
 app/views/tmp
 app/controllers/test_controller.rb
 app/controllers/tmp_controller.rb
