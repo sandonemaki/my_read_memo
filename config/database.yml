@@ -20,10 +20,10 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: password
-  host: localhost
-  #host: my_read_memo_db
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  #host: localhost
+  host: my_read_memo_db
 
 development:
   <<: *default
@@ -85,8 +85,7 @@ test:
 #
 production:
   <<: *default
-  database: my_read_memo_production
-  username: <%= ENV['MY_READ_MEMO_DATABASE_USERNAME'] %>
-  password: <%= ENV['MY_READ_MEMO_DATABASE_PASSWORD'] %>
-  host: <%= ENV['MY_READ_MEMO_DATABASE_HOST'] %>
-  port: 5432
+  database: <%= ENV['RDS_DB_NAME'] %> 
+  username: <%= ENV['RDS_DB_USER'] %> 
+  password: <%= ENV['RDS_DB_PASSWORD'] %> 
+  host: <%= ENV['RDS_DB_HOST'] %> 

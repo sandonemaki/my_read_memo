@@ -1,37 +1,32 @@
-# version: '3'
 services:
   my_read_memo_web:
     build: .
-    # tmp/pids/server.pidが残ってたら `A server is already running. ~~` のエラーでrailsを起動できないので事前に消してから、`rails sever` する
     command: |
       bash -c "
         rm -f tmp/pids/server.pid && 
         bundle install && 
+        npm install && 
         RAILS_ENV=production bundle exec rails assets:precompile && 
         bundle exec rails s -p 3000 -b '0.0.0.0' -e production
       "
     # 上記のdbイメージで指定したユーザー名とパスワードをrails側でも指定するため環境変数に設定。
     environment:
-      MY_READ_MEMO_DATABASE_USERNAME: ${MY_READ_MEMO_DATABASE_USERNAME}
-      MY_READ_MEMO_DATABASE_PASSWORD: ${MY_READ_MEMO_DATABASE_PASSWORD}
-      MY_READ_MEMO_DATABASE_HOST: ${MY_READ_MEMO_DATABASE_HOST}
+      RDS_DB_USER: ${MY_READ_MEMO_DATABASE_USERNAME}
+      RDS_DB_PASSWORD: ${MY_READ_MEMO_DATABASE_PASSWORD}
+      RDS_DB_HOST: ${MY_READ_MEMO_DATABASE_HOST}
+      RDS_DB_NAME: ${MY_READ_MEMO_DATABASE_NAME}
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
-    # ホストのカレントディレクトリ(.)とイメージ内の/myappディレクトリを同期させている
-    volumes:
-      - .:/myapp
+      RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: 'true'
     ports:
       - '3000:3000' # rails用
       - '3036:3036' # vite-rails用
-    restart: always # コンテナが停止すると常に再起動
-    tty: true # 疑似ターミナル (pseudo-TTY) を割り当て。https://docs.docker.jp/compose/compose-file/index.html#tty
-    stdin_open: true # サービス コンテナに標準入力を割り当てて実行するよう設定(https://docs.docker.jp/compose/compose-file/index.html#stdin-open)。
 
   my_read_memo_webserver:
     image: nginx:latest
     ports:
       - 80:80
       - 443:443
-    restart: always
     volumes:
       - ./docker/nginx/conf/prod/:/etc/nginx/conf.d/
       - /etc/letsencrypt/live/yondeco.site:/etc/letsencrypt/live/yondeco.site
