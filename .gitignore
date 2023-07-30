@@ -78,3 +78,6 @@ app/views/book_pages/imgs/
 
 # EC2のssl証明 230727
 /docker/yondeco.site
+# dockerのlog 230730追加
+build.log
+compose.log
