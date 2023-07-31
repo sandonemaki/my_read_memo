@@ -68,6 +68,13 @@ jobs:
           git pull origin main
           RAILS_ENV=production bundle exec rails assets:precompile
           RAILS_ENV=production bundle exec rails db:migrate
-          kill $(cat tmp/pids/server.pid) 2>/dev/null || echo "Server is not running or Failed to kill server process"
+          if [ -f tmp/pids/server.pid ]; then
+            kill -INT $(cat tmp/pids/server.pid) || echo "Failed to gracefully stop the server"
+            sleep 5
+            if [ -f tmp/pids/server.pid ]; then
+              kill -9 $(cat tmp/pids/server.pid) || echo "Failed to kill the server process"
+              rm -f tmp/pids/server.pid
+            fi
+          fi
           bundle exec rails s -p 3000 -b '0.0.0.0' -e production -d
           EOF
