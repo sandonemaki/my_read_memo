@@ -11,10 +11,10 @@ services:
       "
     # 上記のdbイメージで指定したユーザー名とパスワードをrails側でも指定するため環境変数に設定。
     environment:
-      RDS_DB_USER: ${MY_READ_MEMO_DATABASE_USERNAME}
-      RDS_DB_PASSWORD: ${MY_READ_MEMO_DATABASE_PASSWORD}
-      RDS_DB_HOST: ${MY_READ_MEMO_DATABASE_HOST}
-      RDS_DB_NAME: ${MY_READ_MEMO_DATABASE_NAME}
+      RDS_DB_USER: ${RDS_DB_USER}
+      RDS_DB_PASSWORD: ${RDS_DB_PASSWORD}
+      RDS_DB_HOST: ${RDS_DB_HOST}
+      RDS_DB_NAME: ${RDS_DB_NAME}
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
       RAILS_ENV: production
       RAILS_LOG_TO_STDOUT: 'true'
