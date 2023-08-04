@@ -326,6 +326,30 @@ class BooksController < ApplicationController
     end
   end
 
+  def cover_update
+    book = Book.find(params[:id])
+    if params[:book_cover].present?
+      uploaded_file = params[:book_cover]
+      content_type = Marcel::MimeType.for(uploaded_file)
+      if content_type.in? %w[image/jpeg image/jpg image/png image/gif]
+        dir_path = "public/#{book.id}/book_cover"
+
+        # ディレクトリが存在しない場合、新たに作成する
+        FileUtils.mkdir_p(dir_path) unless File.directory?(dir_path)
+
+        new_file_path = "#{dir_path}/cover.#{content_type.extension}"
+        File.binwrite(new_file_path, uploaded_file.read)
+
+        book.book_cover = new_file_path.gsub(/^public/, '')
+        book.save
+      else
+        flash[:error] = 'jpeg, jpg, png, gif形式のファイルを選択してください'
+      end
+      book_view_model = ViewModel::BooksEdit.new(book: book)
+      render('edit', locals: { book: book_view_model })
+    end
+  end
+
   # 用途
   # 乱読画像の状態を表示
   # - 状態：また読みたい、読了
