@@ -356,7 +356,7 @@ class BooksController < ApplicationController
 
     book.cover_path = new_file_path.gsub(/^public/, '')
     if book.save
-      redirect_to("/books/#{book.id}")
+      redirect_to("/books/#{book.id}/edit")
     else
       flash[:error] = '表紙が保存できませんでした'
       render('edit', locals: { book: book_view_model })
