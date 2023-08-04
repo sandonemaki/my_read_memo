@@ -340,6 +340,9 @@ class BooksController < ApplicationController
         new_file_path = "#{dir_path}/cover.#{content_type.extension}"
         File.binwrite(new_file_path, uploaded_file.read)
 
+        # ImageMagickを使用してリサイズ
+        system("convert #{new_file_path} -resize 500x #{new_file_path}")
+
         book.book_cover = new_file_path.gsub(/^public/, '')
         book.save
       else
