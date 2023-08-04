@@ -328,27 +328,37 @@ class BooksController < ApplicationController
 
   def cover_update
     book = Book.find(params[:id])
-    if params[:book_cover].present?
-      uploaded_file = params[:book_cover]
-      content_type = Marcel::MimeType.for(uploaded_file)
-      if content_type.in? %w[image/jpeg image/jpg image/png image/gif]
-        dir_path = "public/#{book.id}/book_cover"
+    book_view_model = ViewModel::BooksEdit.new(book: book)
+    unless params[:book_cover].present?
+      render('edit', locals: { book: book_view_model })
+      return
+    end
 
-        # ディレクトリが存在しない場合、新たに作成する
-        FileUtils.mkdir_p(dir_path) unless File.directory?(dir_path)
+    uploaded_file = params[:book_cover]
+    content_type = Marcel::MimeType.for(uploaded_file)
 
-        new_file_path = "#{dir_path}/cover.#{content_type.extension}"
-        File.binwrite(new_file_path, uploaded_file.read)
+    unless content_type.in? %w[image/jpeg image/jpg image/png image/gif]
+      flash[:error] = 'jpeg, jpg, png, gif形式のファイルを選択してください'
+      render('edit', locals: { book: book_view_model })
+      return
+    end
 
-        # ImageMagickを使用してリサイズ
-        system("convert #{new_file_path} -resize 500x #{new_file_path}")
+    dir_path = "public/#{book.id}/book_cover"
 
-        book.book_cover = new_file_path.gsub(/^public/, '')
-        book.save
-      else
-        flash[:error] = 'jpeg, jpg, png, gif形式のファイルを選択してください'
-      end
-      book_view_model = ViewModel::BooksEdit.new(book: book)
+    # ディレクトリが存在しない場合、新たに作成する
+    FileUtils.mkdir_p(dir_path) unless File.directory?(dir_path)
+
+    new_file_path = "#{dir_path}/cover.#{content_type.extension}"
+    File.binwrite(new_file_path, uploaded_file.read)
+
+    # ImageMagickを使用してリサイズ
+    system("convert #{new_file_path} -resize 500x #{new_file_path}")
+
+    book.book_cover = new_file_path.gsub(/^public/, '')
+    if book.save
+      redirect_to("/books/#{book.id}")
+    else
+      flash[:error] = '表紙が保存できませんでした'
       render('edit', locals: { book: book_view_model })
     end
   end
