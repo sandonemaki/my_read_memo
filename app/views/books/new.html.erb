@@ -10,30 +10,6 @@
     <div class="inner book-profile">
       <h1 class="font-large">本のプロフィール</h1>
 
-      <div class="book-cover-upload-form">
-        <!--画像アップロードフォームを表示-->
-        <%= form_tag("/books/#{book.id}/cover_create", id: 'upload-form', multipart: true) do %>
-          <input
-            id="book-cover-field"
-            name="page_img"
-            type="file"
-            accept=".jpg, .jpeg, .png, .heic"
-            style="display: none;"
-            onchange="this.form.submit()"
-          />
-
-          <label for="book-cover-field" class="upload-cover-button">
-            <div class="book-cover-img">
-              <img src="/dummy_book.png" width="100" height="140" alt="ブックカバー" class="book-new-cover" />
-              <!--<img src="https://placehold.jp/100x140.png" alt="ブックカバー" />-->
-              <div label="画像を変更" class="circle-btn">
-                <i class="fa-solid fa-camera fa-lg book-cover-camera-icon"></i>
-              </div>
-            </div>
-          </label>
-        <% end %>
-      </div>
-
       <%= form_tag("/books/create", method: :post) do %>
         <div class="book-profile-form">
           <div class="input-book-info">

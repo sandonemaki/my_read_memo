@@ -5,11 +5,12 @@
 .book-cover-upload-form {
   margin-top: 16px;
 }
+
 .book-cover-img {
   position: relative;
   width: 100px;
   margin: auto;
-  margin-bottom: 24px;
+
   user-select: none;
   cursor: pointer;
 }
@@ -29,6 +30,7 @@
   width: 70%;
   margin: auto;
   margin-bottom: 30px;
+  margin-top: 40px;
 }
 .input-book-info {
   margin-top: 24px;
