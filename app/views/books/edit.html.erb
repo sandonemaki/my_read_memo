@@ -33,7 +33,7 @@
         <% end %>
       </div>
 
-      <%= form_tag("/books/create", method: :post) do %>
+      <%= form_tag("/books/update", method: :put) do %>
         <div class="book-profile-form">
           <div class="input-book-info">
             <p class="input-book-label font-small-12">タイトル</p>
@@ -92,8 +92,9 @@
           />
           <p id="total_page_valid_error"></p>
         </div>
-        <input class="submit-button book-info-submit-js" type="submit" value="送信" />
+        <input class="submit-button book-info-submit-js" type="submit" value="更新" />
       <% end %>
+      <%= link_to '本の詳細へ', "/books/#{book.id}", class: 'link-button line-button-detail index-user-book-memo-btn' %>
     </div>
   </div>
 </main>
