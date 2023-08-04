@@ -354,7 +354,7 @@ class BooksController < ApplicationController
     # ImageMagickを使用してリサイズ
     system("convert #{new_file_path} -resize 500x #{new_file_path}")
 
-    book.book_cover = new_file_path.gsub(/^public/, '')
+    book.cover_path = new_file_path.gsub(/^public/, '')
     if book.save
       redirect_to("/books/#{book.id}")
     else
