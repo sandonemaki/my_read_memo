@@ -326,6 +326,20 @@ class BooksController < ApplicationController
     end
   end
 
+  def update
+    book = Book.find(params[:id])
+    book.title = params[:title]
+    book.author_1 = params[:author]
+    book.publisher = params[:publisher]
+    book.total_page = params[:total_page]
+    if book.save
+      redirect_to("/books/#{book.id}")
+    else
+      book_view_model = ViewModel::BooksEdit.new(book: book)
+      render('new', locals: { book: book_view_model })
+    end
+  end
+
   def cover_update
     book = Book.find(params[:id])
     book_view_model = ViewModel::BooksEdit.new(book: book)
