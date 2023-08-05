@@ -12,7 +12,7 @@
 
       <div class="book-cover-upload-form">
         <!--画像アップロードフォームを表示-->
-        <%= form_tag("/books/#{book.id}/cover_update", id: 'upload-form', multipart: true) do %>
+        <%= form_tag("/books/#{book.id}/cover_update", method: :put,id: 'upload-form', multipart: true) do %>
           <input
             id="book-cover-field"
             name="book_cover"
@@ -33,7 +33,7 @@
         <% end %>
       </div>
 
-      <%= form_tag("/books/update", method: :put) do %>
+      <%= form_tag("/books/#{book.id}/update", method: :put) do %>
         <div class="book-profile-form">
           <div class="input-book-info">
             <p class="input-book-label font-small-12">タイトル</p>
@@ -94,7 +94,9 @@
         </div>
         <input class="submit-button book-info-submit-js" type="submit" value="更新" />
       <% end %>
-      <%= link_to '本の詳細へ', "/books/#{book.id}", class: 'link-button line-button-detail index-user-book-memo-btn' %>
+      <div>
+        <%= link_to '本の詳細へ戻る', "/books/#{book.id}", class: 'link-text-button' %>
+      </div>
     </div>
   </div>
 </main>
