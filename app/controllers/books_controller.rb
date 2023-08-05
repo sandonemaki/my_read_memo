@@ -368,11 +368,11 @@ class BooksController < ApplicationController
     # ディレクトリが存在しない場合、新たに作成する
     FileUtils.mkdir_p(dir_path) unless File.directory?(dir_path)
 
-    new_file_path = "#{dir_path}/cover.#{content_type.extension}"
+    new_file_path = "#{dir_path}/cover.#{content_type.split('/').last}"
     File.binwrite(new_file_path, uploaded_file.read)
 
     # ImageMagickを使用してリサイズ
-    system("convert #{new_file_path} -resize 500x #{new_file_path}")
+    system("convert #{new_file_path} -resize 185x185^ #{new_file_path}")
 
     book.cover_path = new_file_path.gsub(/^public/, '')
     if book.save
