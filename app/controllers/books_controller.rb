@@ -326,6 +326,12 @@ class BooksController < ApplicationController
     end
   end
 
+  def edit
+    book = Book.find(params[:id])
+    book_view_model = ViewModel::BooksEdit.new(book: book)
+    render('edit', locals: { book: book_view_model })
+  end
+
   def update
     book = Book.find(params[:id])
     book.title = params[:title]
@@ -336,7 +342,7 @@ class BooksController < ApplicationController
       redirect_to("/books/#{book.id}")
     else
       book_view_model = ViewModel::BooksEdit.new(book: book)
-      render('new', locals: { book: book_view_model })
+      render('edit', locals: { book: book_view_model })
     end
   end
 
