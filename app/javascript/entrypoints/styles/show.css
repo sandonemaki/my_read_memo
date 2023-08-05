@@ -4,6 +4,7 @@
 .book-info-wrapp {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 .book-info-detail {
   width: 70%;
@@ -21,6 +22,9 @@
 }
 .book-input-info > p {
   margin-bottom: 10px;
+}
+.book-input-info > p:last-child {
+  margin-bottom: 0;
 }
 .book-cover {
   width: 15%;
@@ -160,6 +164,7 @@
   /* 3つめはimgsエリアからの距離 */
   margin: 20px 0px 0px;
   position: relative;
+  margin-top: 80px;
 }
 
 .tab__underline {
@@ -240,8 +245,8 @@
     width: 100%;
     padding: 0px 20px;
   }
-  .book-info-wrapp {
-    align-items: flex-end;
+  .tabbled-book-show {
+    margin-top: 60px;
   }
   .book-info-detail {
     width: 60%;
@@ -249,7 +254,6 @@
   }
   .book-cover {
     width: 30%;
-    margin-bottom: 10px;
   }
   .seidoku-remaining-js.show-tab {
     margin-bottom: 16px;
