@@ -377,21 +377,21 @@ class BooksController < ApplicationController
   # 乱読画像の状態を表示
   # - 状態：また読みたい、読了
 
-  def show
-    book = Book.find_by(id: params[:id])
-    new_path = "books/#{book.id}"
+  #def show
+  #  book = Book.find_by(id: params[:id])
+  #  new_path = "books/#{book.id}"
 
-    # 学習履歴を保存
-    # TODO: 数字ではなくモデリング名を使用する
-    if %w[0 2].include?(book.reading_state.to_s)
-      RandokuHistory.set(new_path, book.id)
-    else
-      SeidokuHistory.set(new_path, book.id)
-    end
+  #  # 学習履歴を保存
+  #  # TODO: 数字ではなくモデリング名を使用する
+  #  if %w[0 2].include?(book.reading_state.to_s)
+  #    RandokuHistory.set(new_path, book.id)
+  #  else
+  #    SeidokuHistory.set(new_path, book.id)
+  #  end
 
-    book_view_model = ViewModel::BooksShow.new(book: book)
-    render('show', locals: { book: book_view_model })
-  end
+  #  book_view_model = ViewModel::BooksShow.new(book: book)
+  #  render('show', locals: { book: book_view_model })
+  #end
 
   def show_tabs
     book = Book.find_by(id: params[:id])
