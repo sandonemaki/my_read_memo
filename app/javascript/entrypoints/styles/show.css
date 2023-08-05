@@ -208,6 +208,7 @@
 }
 .seidoku-key-wrapper {
   display: flex;
+  justify-content: center;
 }
 /* タブパネル */
 .tab__panel {
