@@ -311,13 +311,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    book =
-      Book.new(
-        title: params[:title],
-        author_1: params[:author],
-        publisher: params[:publisher],
-        total_page: params[:total_page],
-      )
+    book = Book.new(book_params)
     if book.save
       redirect_to("/books/#{book.id}")
     else
@@ -334,11 +328,7 @@ class BooksController < ApplicationController
 
   def update
     book = Book.find(params[:id])
-    book.title = params[:title]
-    book.author_1 = params[:author]
-    book.publisher = params[:publisher]
-    book.total_page = params[:total_page]
-    if book.save
+    if book.update(book_params)
       redirect_to("/books/#{book.id}")
     else
       book_view_model = ViewModel::BooksEdit.new(book: book)
@@ -349,12 +339,12 @@ class BooksController < ApplicationController
   def cover_update
     book = Book.find(params[:id])
     book_view_model = ViewModel::BooksEdit.new(book: book)
-    unless params[:book_cover].present?
+    unless book_params[:book_cover].present?
       render('edit', locals: { book: book_view_model })
       return
     end
 
-    uploaded_file = params[:book_cover]
+    uploaded_file = book_params[:book_cover]
     content_type = Marcel::MimeType.for(uploaded_file)
 
     unless content_type.in? %w[image/jpeg image/jpg image/png image/gif]
@@ -429,6 +419,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.permit(:input_total_page)
+    params.permit(:input_total_page, :title, :author, :publisher, :total_page, :book_cover)
   end
 end
