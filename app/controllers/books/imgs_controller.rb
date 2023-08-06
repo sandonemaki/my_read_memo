@@ -228,8 +228,8 @@ class Books::ImgsController < ApplicationController
       error_messages = []
       randoku_img_record = book.randoku_imgs.find_or_initialize_by(name: page_img_name)
       if randoku_img_record.new_record?
-        randoku_img_record.path = "public/#{book.id}/#{page_img_name}"
-        randoku_img_record.thumbnail_path = "public/#{book.id}/thumb/sm_#{page_img_name}"
+        randoku_img_record.path = "/#{book.id}/#{page_img_name}"
+        randoku_img_record.thumbnail_path = "/#{book.id}/thumb/sm_#{page_img_name}"
         error_messages << img_name unless randoku_img_record.save
 
         flash.now[:notice] = "#{img_name}のアップロード完了"
