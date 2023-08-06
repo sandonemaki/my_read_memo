@@ -17,8 +17,22 @@
 .book-input-info {
   margin-top: 16px;
 }
+
 .book-input-info > h1 {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.book-input-info h1:hover {
+  color: #30c8d6;
+}
+
+.book-input-info h1:hover .fa-pen-to-square {
+  color: #30c8d6;
+}
+
+.fa-pen-to-square {
+  margin-left: 24px;
 }
 .book-input-info > p {
   margin-bottom: 10px;
@@ -248,6 +262,17 @@
   .book-info-detail {
     width: 60%;
     margin-left: 0px;
+  }
+  .book-input-info h1 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .book-input-info h1:active {
+    color: desiredColor; /* 例えば、#ff0000 など、希望の色に置き換えてください */
+  }
+
+  .book-input-info h1:active .fa-solid {
+    color: desiredColor; /* こちらも、希望の色に置き換えてください */
   }
   .book-cover {
     width: 30%;
