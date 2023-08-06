@@ -321,13 +321,18 @@ class BooksController < ApplicationController
   end
 
   def edit
-    book = Book.find(params[:id])
+    book = Book.find_by(id: params[:id])
+    unless book
+      flash[:error] = 'ページが見つかりませんでした'
+      redirect_to '/books/randoku_index'
+      return
+    end
     book_view_model = ViewModel::BooksEdit.new(book: book)
     render('edit', locals: { book: book_view_model })
   end
 
   def update
-    book = Book.find(params[:id])
+    book = Book.find_by(id: params[:id])
     if book.update(book_params)
       redirect_to("/books/#{book.id}")
     else
@@ -337,7 +342,7 @@ class BooksController < ApplicationController
   end
 
   def cover_update
-    book = Book.find(params[:id])
+    book = Book.find_by(id: params[:id])
     book_view_model = ViewModel::BooksEdit.new(book: book)
     unless book_params[:book_cover].present?
       render('edit', locals: { book: book_view_model })
@@ -395,6 +400,11 @@ class BooksController < ApplicationController
 
   def show_tabs
     book = Book.find_by(id: params[:id])
+    unless book
+      flash[:error] = 'ページが見つかりませんでした'
+      redirect_to '/books/randoku_index'
+      return
+    end
     new_path = "books/#{book.id}"
 
     # 学習履歴を保存
