@@ -18,11 +18,13 @@
   margin-top: 16px;
 }
 
-.book-input-info > h1 {
+.book-input-info h1 {
   margin-bottom: 12px;
   cursor: pointer;
 }
-
+.book-input-info a {
+  text-decoration: none;
+}
 .book-input-info h1:hover {
   color: #30c8d6;
 }

@@ -20,7 +20,9 @@
         <div><i class="fa-regular fa-circle-question show-tabs"></i></div>
       </div>
       <div class="book-input-info">
-        <h1><%= book.title %><i class="fa-solid fa-pen-to-square"></i></h1>
+        <%= link_to "/books/#{book.id}/edit", class: 'no-underline' do %>
+          <h1><%= book.title %><i class="fa-solid fa-pen-to-square"></i></h1>
+        <% end %>
 
         <p>著者：<%= book.author %></p>
         <p>出版社：<%= book.publisher %></p>
@@ -28,10 +30,12 @@
       </div>
     </div>
     <div class="book-cover">
-      <img src="<%= book.cover_path %>" width="100%" height="auto" alt="ブックカバー" class="book-cover-show" />
-      <div class="overlay-icon">
-        <i class="fa-solid fa-pen-to-square"></i>
-      </div>
+      <%= link_to "/books/#{book.id}/edit" do %>
+        <img src="<%= book.cover_path %>" width="100%" height="auto" alt="ブックカバー" class="book-cover-show" />
+        <div class="overlay-icon">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+      <% end %>
     </div>
   </div>
   <!-- showページのタブ -->
