@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const uploadInput = document.querySelector('#upload');
   const submitBtn = document.querySelector('#submit-btn');
 
-  uploadInput.addEventListener('change', function () {
-    if (this.files.length) {
-      submitBtn.disabled = false;
-    } else {
-      submitBtn.disabled = true;
-    }
-  });
+  if (uploadInput) {
+    uploadInput.addEventListener('change', function () {
+      if (this.files.length) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+    });
+  }
 });

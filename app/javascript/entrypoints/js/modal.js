@@ -26,8 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Attach event listener to the close button
-  document.querySelector('.ModalCloseButton').addEventListener('click', closeModal);
-
+  const modalCloseButton = document.querySelector('.ModalCloseButton');
+  if (modalCloseButton) {
+    modalCloseButton.addEventListener('click', closeModal);
+  }
   const modal = document.querySelector('.ModalWrapper');
   if (modal !== null) {
     modal.addEventListener('click', (event) => {

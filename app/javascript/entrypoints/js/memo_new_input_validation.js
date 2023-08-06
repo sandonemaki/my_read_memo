@@ -18,12 +18,14 @@ document.addEventListener('DOMContentLoaded', function () {
     return inputMemo.value.length > minLength;
   };
 
-  inputMemo.addEventListener('input', () => {
-    // if (isInputMemoLengthValid(inputMemo) === false) {
-    //   memoValidError.textContent = '';
-    // } else {
-    //   memoValidError.textContent = '';
-    // }
-    checkValidation();
-  });
+  if (inputMemo) {
+    inputMemo.addEventListener('input', () => {
+      // if (isInputMemoLengthValid(inputMemo) === false) {
+      //   memoValidError.textContent = '';
+      // } else {
+      //   memoValidError.textContent = '';
+      // }
+      checkValidation();
+    });
+  }
 });
