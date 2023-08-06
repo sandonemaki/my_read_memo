@@ -27,18 +27,15 @@
   margin-bottom: 0;
 }
 .book-cover {
-  width: 15%;
+  width: 13%;
   position: relative;
 }
-.book-cover i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
 .book-cover img {
   width: 100%;
   height: auto;
+  position: absolute;
+  bottom: 0;
 }
 .book-progress {
   display: flex;
