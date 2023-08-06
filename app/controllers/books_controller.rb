@@ -352,22 +352,46 @@ class BooksController < ApplicationController
     uploaded_file = book_params[:book_cover]
     content_type = Marcel::MimeType.for(uploaded_file)
 
-    unless content_type.in? %w[image/jpeg image/jpg image/png image/gif]
+    unless content_type.in? %w[image/jpeg image/jpg image/png image/gif image/heic]
       flash[:error] = 'jpeg, jpg, png, gif形式のファイルを選択してください'
       render('edit', locals: { book: book_view_model })
       return
     end
 
-    dir_path = "public/#{book.id}/book_cover"
+    dir_path = "public/#{book.id}/book_cover/"
 
     # ディレクトリが存在しない場合、新たに作成する
     FileUtils.mkdir_p(dir_path) unless File.directory?(dir_path)
 
-    new_file_path = "#{dir_path}/cover.#{content_type.split('/').last}"
+    # ディレクトリ内の全ファイルを取得
+    Dir.foreach(dir_path) do |filename|
+      file_path = File.join(dir_path, filename)
+
+      # ファイルを削除
+      File.delete(file_path) if File.file?(file_path)
+    end
+
+    new_file_path = "#{dir_path}/cover.#{extension_from_content_type(content_type)}"
     File.binwrite(new_file_path, uploaded_file.read)
 
     # ImageMagickを使用してリサイズ
-    system("convert #{new_file_path} -resize 185x185^ #{new_file_path}")
+    system('convert', new_file_path, '-resize', '185x185^', new_file_path) # 品質指定する場合, '-quality', '90%',
+
+    # Exif情報を削除
+    system('mogrify', '-strip', new_file_path)
+
+    # heicをjpgに変換
+    if content_type == 'image/heic'
+      jpg_path = new_file_path.gsub(/\.heic\z/, '.jpg')
+
+      system('magick', 'mogrify', '-format', 'jpg', new_file_path)
+
+      # 既存のHEICファイルを削除
+      File.delete(new_file_path) if File.exist?(new_file_path)
+
+      # ファイルパスをJPGに更新
+      new_file_path = jpg_path
+    end
 
     book.cover_path = new_file_path.gsub(/^public/, '')
     if book.save
@@ -375,6 +399,15 @@ class BooksController < ApplicationController
     else
       flash[:error] = '表紙が保存できませんでした'
       render('edit', locals: { book: book_view_model })
+    end
+  end
+
+  def extension_from_content_type(content_type)
+    case content_type
+    when 'image/jpeg'
+      'jpg'
+    else
+      content_type.split('/').last
     end
   end
 
