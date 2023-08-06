@@ -78,9 +78,7 @@
   line-height: 1.75;
   margin-bottom: 16px;
 }
-#title_valid_error,
-#author_valid_error,
-#total_page_valid_error,
+.valid_error,
 #total_page_valid_error_slide {
   display: block;
   color: rgb(231, 82, 82);

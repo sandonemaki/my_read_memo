@@ -1,5 +1,6 @@
 import '@/entrypoints/js/upload_btn.js';
 import '@/entrypoints/js/book_new_input_validation.js';
+import '@/entrypoints/js/book_edit_input_validation.js';
 import '@/entrypoints/js/memo_new_input_validation.js';
 import '@/entrypoints/js/totalpage_update_input_validation.js';
 import '@/entrypoints/js/modal.js';
