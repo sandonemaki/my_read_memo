@@ -31,7 +31,7 @@
   color: #30c8d6;
 }
 
-.fa-pen-to-square {
+h1 .fa-pen-to-square {
   margin-left: 24px;
 }
 .book-input-info > p {
@@ -51,6 +51,25 @@
   position: absolute;
   bottom: 0;
 }
+/**/
+.book-cover:hover .book-cover-show {
+  filter: brightness(0.6); /* 値を調整して暗さのレベルを変更 */
+}
+.book-cover:hover .overlay-icon {
+  visibility: visible;
+}
+
+.overlay-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -440%);
+  visibility: hidden;
+}
+.overlay-icon .fa-pen-to-square {
+  color: white;
+}
+/**/
 .book-progress {
   display: flex;
   align-items: center;
