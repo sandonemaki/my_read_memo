@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const titleValidError = document.querySelector('#title_valid_error');
   const inputAuthor = document.querySelector('#input_author');
   const authorValidError = document.querySelector('#author_valid_error');
+  const inputPublisher = document.querySelector('#input_publisher');
+  const publisherValidError = document.querySelector('#publisher_valid_error');
   const inputTotalPage = document.querySelector('#input_total_page');
   const totalPageValidError = document.querySelector('#total_page_valid_error');
 
@@ -14,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
     titleValidError &&
     inputAuthor &&
     authorValidError &&
+    inputPublisher &&
+    publisherValidError &&
     inputTotalPage &&
     totalPageValidError
   ) {
@@ -21,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (
         isInputTotalPageValid(inputTotalPage) === false ||
         isInputTitleLengthValid(inputTitle) === false ||
-        isInputAuthorLengthValid(inputAuthor) === false
+        isInputAuthorLengthValid(inputAuthor) === false ||
+        isInputPublisherLengthValid(inputPublisher)
       ) {
         bookInfoSubmit.disabled = true;
       } else {
@@ -59,6 +64,23 @@ document.addEventListener('DOMContentLoaded', function () {
           authorValidError.textContent = '著者名は20文字以内で入力してください';
         } else {
           authorValidError.textContent = '';
+        }
+        checkValidation();
+      });
+    }
+
+    const isInputPublisherLengthValid = (inputPublisher, minLength = 0, maxLength = 20) => {
+      if (inputPublisher) {
+        return inputPublisher.value.length >= minLength && inputPublisher.value.length <= maxLength;
+      }
+    };
+
+    if (inputPublisher) {
+      inputPublisher.addEventListener('input', () => {
+        if (isInputPublisherLengthValid(inputPublisher) === false) {
+          publisherValidError.textContent = '著者名は20文字以内で入力してください';
+        } else {
+          publisherValidError.textContent = '';
         }
         checkValidation();
       });

@@ -22,7 +22,7 @@
               placeholder="タイトル"
               value="<%= book.title %>"
             />
-            <p id="title_valid_error"></p>
+            <p id="title_valid_error" class="valid_error"></p>
           </div>
 
           <div class="input-book-info">
@@ -35,18 +35,20 @@
               placeholder="著者"
               value="<%= book.author %>"
             />
-            <p id="author_valid_error"></p>
+            <p id="author_valid_error" class="valid_error"></p>
           </div>
 
           <div class="input-book-info">
             <p class="input-book-label font-small-12">出版社</p>
             <input
+              id="input_publisher"
               class="form-oneline"
               type="text"
               name="publisher"
               placeholder="出版社"
               value="<%= book.publisher %>"
             />
+            <p id="publisher_valid_error" class="valid_error"></p>
           </div>
         </div>
 
@@ -67,7 +69,7 @@
             placeholder="20"
             value="<%= book.total_page.present? && book.total_page != 0 ? book.total_page : 20 %>"
           />
-          <p id="total_page_valid_error"></p>
+          <p id="total_page_valid_error" class="valid_error"></p>
         </div>
         <input class="submit-button book-info-submit-js" type="submit" value="送信" />
       <% end %>
