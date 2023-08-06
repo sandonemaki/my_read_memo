@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
       };
 
       const response = await fetch(`/books/${bookId}/update_total_page`, {
-        method: 'POST',
+        method: 'PUT',
         credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',

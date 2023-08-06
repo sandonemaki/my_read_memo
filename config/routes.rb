@@ -23,7 +23,7 @@ Rails
     get 'home/search'
 
     #get 'books/:id' => 'books#show' # book_page_path
-    post 'books/:id/update_total_page' => 'books#update_total_page'
+    put 'books/:id/update_total_page' => 'books#update_total_page'
 
     #randoku_img
     post 'books/:book_id/imgs' => 'books/imgs#create'
