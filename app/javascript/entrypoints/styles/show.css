@@ -4,6 +4,7 @@
 .book-info-wrapp {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 .book-info-detail {
   width: 70%;
@@ -16,26 +17,61 @@
 .book-input-info {
   margin-top: 16px;
 }
-.book-input-info > h1 {
-  margin-bottom: 10px;
+
+.book-input-info h1 {
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.book-input-info a {
+  text-decoration: none;
+}
+.book-input-info h1:hover {
+  color: #30c8d6;
+}
+
+.book-input-info h1:hover .fa-pen-to-square {
+  color: #30c8d6;
+}
+
+h1 .fa-pen-to-square {
+  margin-left: 24px;
 }
 .book-input-info > p {
   margin-bottom: 10px;
 }
+.book-input-info > p:last-child {
+  margin-bottom: 0;
+}
 .book-cover {
-  width: 15%;
+  width: 13%;
   position: relative;
 }
-.book-cover i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
 .book-cover img {
   width: 100%;
   height: auto;
+  position: absolute;
+  bottom: 0;
 }
+/**/
+.book-cover:hover .book-cover-show {
+  filter: brightness(0.6); /* 値を調整して暗さのレベルを変更 */
+}
+.book-cover:hover .overlay-icon {
+  visibility: visible;
+}
+
+.overlay-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -440%);
+  visibility: hidden;
+}
+.overlay-icon .fa-pen-to-square {
+  color: white;
+}
+/**/
 .book-progress {
   display: flex;
   align-items: center;
@@ -160,6 +196,7 @@
   /* 3つめはimgsエリアからの距離 */
   margin: 20px 0px 0px;
   position: relative;
+  margin-top: 80px;
 }
 
 .tab__underline {
@@ -208,6 +245,7 @@
 }
 .seidoku-key-wrapper {
   display: flex;
+  justify-content: center;
 }
 /* タブパネル */
 .tab__panel {
@@ -239,16 +277,26 @@
     width: 100%;
     padding: 0px 20px;
   }
-  .book-info-wrapp {
-    align-items: flex-end;
+  .tabbled-book-show {
+    margin-top: 60px;
   }
   .book-info-detail {
     width: 60%;
     margin-left: 0px;
   }
+  .book-input-info h1 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .book-input-info h1:active {
+    color: desiredColor; /* 例えば、#ff0000 など、希望の色に置き換えてください */
+  }
+
+  .book-input-info h1:active .fa-solid {
+    color: desiredColor; /* こちらも、希望の色に置き換えてください */
+  }
   .book-cover {
     width: 30%;
-    margin-bottom: 10px;
   }
   .seidoku-remaining-js.show-tab {
     margin-bottom: 16px;

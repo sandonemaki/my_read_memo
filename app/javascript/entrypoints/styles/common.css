@@ -179,6 +179,23 @@ li {
   border: 1px solid transparent;
   border-radius: 2px;
 }
+/*枠なしのボタン*/
+.link-text-button {
+  font-size: 0.8125rem;
+  text-align: center;
+  min-width: 140px;
+  height: 45px;
+  line-height: 45px;
+  cursor: pointer;
+  color: #4ccfc9;
+  text-decoration: none;
+  display: block;
+  margin: 0 auto;
+  margin-top: 12px;
+}
+.link-text-button:hover {
+  color: #31b7b1;
+}
 .submit-button {
   font-size: 0.875rem;
   display: flex;

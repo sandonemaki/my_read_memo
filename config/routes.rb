@@ -4,8 +4,10 @@ Rails
   .draw do
     get 'books/new' => 'books#new' # new_book_page_path
     post 'books/create' => 'books#create' # book_pages_path
-    get 'books/create' => 'books#new' # book_pages_path
     get 'books/:id/' => 'books#show_tabs', :constraints => { id: /\d+/ }
+    get 'books/:id/edit' => 'books#edit', :constraints => { id: /\d+/ }
+    put 'books/:id/cover_update' => 'books#cover_update', :constraints => { id: /\d+/ }
+    put 'books/:id/update' => 'books#update', :constraints => { id: /\d+/ }
 
     # randoku_inex_ランキング
     #get 'books/randoku_index' => 'books#randoku_index'

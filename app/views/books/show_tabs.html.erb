@@ -1,15 +1,15 @@
 <%= render partial: 'layouts/header' %>
-    <!-- フラッシュを表示 -->
-    <div class="c-flash c-flash--notice slide">
-      <div class="c-flash-icon">
-        <div class="c-flash-text"></div>
-      </div>
-    </div>
-    <!-- フラッシュアラートを表示 -->
-    <div class="c-flash c-flash--alert slide">
-      <div class="c-flash-text"></div>
-      <i class="fa-solid fa-xmark c-flash-close" id="close-flash"></i>
-    </div>
+<!-- フラッシュを表示 -->
+<div class="c-flash c-flash--notice slide">
+  <div class="c-flash-icon">
+    <div class="c-flash-text"></div>
+  </div>
+</div>
+<!-- フラッシュアラートを表示 -->
+<div class="c-flash c-flash--alert slide">
+  <div class="c-flash-text"></div>
+  <i class="fa-solid fa-xmark c-flash-close" id="close-flash"></i>
+</div>
 <div class="main-content-js inner book-show-upper-inner">
   <div class="book-info-wrapp">
     <div class="book-info-detail">
@@ -20,15 +20,22 @@
         <div><i class="fa-regular fa-circle-question show-tabs"></i></div>
       </div>
       <div class="book-input-info">
-        <h1><%= book.title %></h1>
+        <%= link_to "/books/#{book.id}/edit", class: 'no-underline' do %>
+          <h1><%= book.title %><i class="fa-solid fa-pen-to-square"></i></h1>
+        <% end %>
+
         <p>著者：<%= book.author %></p>
         <p>出版社：<%= book.publisher %></p>
-        <p>読むページ数：<span class="js-update-current-total-page"><%= book.total_page %><span></p>
+        <p>読むページ数：<%= book.total_page %></p>
       </div>
     </div>
     <div class="book-cover">
-      <img src="https://placehold.jp/140x180.png" width="100%" height="auto" />
-      <i class="fa-solid fa-image fa-xl"></i>
+      <%= link_to "/books/#{book.id}/edit" do %>
+        <img src="<%= book.cover_path %>" width="100%" height="auto" alt="ブックカバー" class="book-cover-show" />
+        <div class="overlay-icon">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+      <% end %>
     </div>
   </div>
   <!-- showページのタブ -->
@@ -48,13 +55,13 @@
             </div>
           </li>
         <% else %>
-          <li class="tab__menu-item show-page" data-tab="03"><p class="tab-width">精読メモ</p></li>        
+          <li class="tab__menu-item show-page" data-tab="03"><p class="tab-width">精読メモ</p></li>
         <% end %>
       </ul>
-      <div id="underline" class="show-page"></div><!-- 追加 -->
+      <div id="underline" class="show-page"></div>
+      <!-- 追加 -->
     </div>
   </div>
-  <!--<div class="tabbed-line"></div>0706-->
 </div>
 <div class="tab__panel">
   <div class="tab__panel-box show-page tab__panel-box001 is-show" data-panel="01">

@@ -3,17 +3,18 @@
   padding-top: 40px;
 }
 .book-cover-upload-form {
-  margin-top: 16px;
+  margin-top: 40px;
 }
+
 .book-cover-img {
   position: relative;
   width: 100px;
   margin: auto;
-  margin-bottom: 24px;
+
   user-select: none;
   cursor: pointer;
 }
-.book-new-cover {
+.book-cover-show {
   object-fit: contain; /*枠の中に絶対表示させる。余白は残す*/
 }
 .book-cover-camera-icon {
@@ -29,6 +30,7 @@
   width: 70%;
   margin: auto;
   margin-bottom: 30px;
+  margin-top: 40px;
 }
 .input-book-info {
   margin-top: 24px;

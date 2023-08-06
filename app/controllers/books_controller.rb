@@ -311,13 +311,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    book =
-      Book.new(
-        title: params[:title],
-        author_1: params[:author],
-        publisher: params[:publisher],
-        total_page: params[:total_page],
-      )
+    book = Book.new(book_params)
     if book.save
       redirect_to("/books/#{book.id}")
     else
@@ -326,25 +320,78 @@ class BooksController < ApplicationController
     end
   end
 
+  def edit
+    book = Book.find(params[:id])
+    book_view_model = ViewModel::BooksEdit.new(book: book)
+    render('edit', locals: { book: book_view_model })
+  end
+
+  def update
+    book = Book.find(params[:id])
+    if book.update(book_params)
+      redirect_to("/books/#{book.id}")
+    else
+      book_view_model = ViewModel::BooksEdit.new(book: book)
+      render('edit', locals: { book: book_view_model })
+    end
+  end
+
+  def cover_update
+    book = Book.find(params[:id])
+    book_view_model = ViewModel::BooksEdit.new(book: book)
+    unless book_params[:book_cover].present?
+      render('edit', locals: { book: book_view_model })
+      return
+    end
+
+    uploaded_file = book_params[:book_cover]
+    content_type = Marcel::MimeType.for(uploaded_file)
+
+    unless content_type.in? %w[image/jpeg image/jpg image/png image/gif]
+      flash[:error] = 'jpeg, jpg, png, gif形式のファイルを選択してください'
+      render('edit', locals: { book: book_view_model })
+      return
+    end
+
+    dir_path = "public/#{book.id}/book_cover"
+
+    # ディレクトリが存在しない場合、新たに作成する
+    FileUtils.mkdir_p(dir_path) unless File.directory?(dir_path)
+
+    new_file_path = "#{dir_path}/cover.#{content_type.split('/').last}"
+    File.binwrite(new_file_path, uploaded_file.read)
+
+    # ImageMagickを使用してリサイズ
+    system("convert #{new_file_path} -resize 185x185^ #{new_file_path}")
+
+    book.cover_path = new_file_path.gsub(/^public/, '')
+    if book.save
+      redirect_to("/books/#{book.id}/edit")
+    else
+      flash[:error] = '表紙が保存できませんでした'
+      render('edit', locals: { book: book_view_model })
+    end
+  end
+
   # 用途
   # 乱読画像の状態を表示
   # - 状態：また読みたい、読了
 
-  def show
-    book = Book.find_by(id: params[:id])
-    new_path = "books/#{book.id}"
+  #def show
+  #  book = Book.find_by(id: params[:id])
+  #  new_path = "books/#{book.id}"
 
-    # 学習履歴を保存
-    # TODO: 数字ではなくモデリング名を使用する
-    if %w[0 2].include?(book.reading_state.to_s)
-      RandokuHistory.set(new_path, book.id)
-    else
-      SeidokuHistory.set(new_path, book.id)
-    end
+  #  # 学習履歴を保存
+  #  # TODO: 数字ではなくモデリング名を使用する
+  #  if %w[0 2].include?(book.reading_state.to_s)
+  #    RandokuHistory.set(new_path, book.id)
+  #  else
+  #    SeidokuHistory.set(new_path, book.id)
+  #  end
 
-    book_view_model = ViewModel::BooksShow.new(book: book)
-    render('show', locals: { book: book_view_model })
-  end
+  #  book_view_model = ViewModel::BooksShow.new(book: book)
+  #  render('show', locals: { book: book_view_model })
+  #end
 
   def show_tabs
     book = Book.find_by(id: params[:id])
@@ -372,6 +419,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.permit(:input_total_page)
+    params.permit(:input_total_page, :title, :author, :publisher, :total_page, :book_cover)
   end
 end

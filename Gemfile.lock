@@ -270,6 +270,7 @@ DEPENDENCIES
   debug (= 1.6.3)
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  marcel (~> 1.0, >= 1.0.2)
   meilisearch (~> 0.20.0)
   pg (~> 1.1)
   prettier_print
