@@ -18,7 +18,7 @@
             <% if book[:randoku_ranking].present? %>
               <i class="fa-solid fa-crown index-crown"></i>
             <% end %>
-            <img src="https://placehold.jp/80x110.png" width="100%" alt="ブックカバー" class="index-book-cover-img" />
+            <img src="<%= book[:cover_path] %>" width="100%" alt="ブックカバー" class="index-book-cover-img" />
           </div>
           <div class="index-user-book-title">
             <p class="index-book-title"><%= book[:title] %></p>

@@ -25,6 +25,7 @@ module ViewModel
           {
             id: book.id,
             title: book.title,
+            cover_path: book.cover_path,
             randoku_imgs_count: book.randoku_imgs.count,
             randoku_memos_count: book.randoku_memos.count,
             reading_state: case book.reading_state

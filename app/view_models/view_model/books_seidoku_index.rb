@@ -25,6 +25,7 @@ module ViewModel
         { 
           id: seidoku_history.id, 
           title: seidoku_history.title,
+          cover_path: seidoku_history.cover_path,
           randoku_imgs_count: seidoku_history.randoku_imgs.count,
           randoku_memos_count: seidoku_history.randoku_memos.count,
           seidoku_memos_count: seidoku_history.seidoku_memos.count,
