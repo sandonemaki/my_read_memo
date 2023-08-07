@@ -124,7 +124,7 @@ const judge_popup_message = (responseData) => {
       case '精読':
         seidokuJudgePopupMessage.classList.remove('judge-popup__hidden');
         break;
-      case '通常':
+      case '通読':
         tudokuJudgePopupMessage.classList.remove('judge-popup__hidden');
         break;
       case '乱読':
