@@ -19,10 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const isEditPage = document.querySelector('.edit') ? true : false;
 
   // 初期状態で編集ページならボタンを無効化
-  if (isEditPage) {
-    bookInfoSubmit.disabled = true;
-  } else {
-    bookInfoSubmit.disabled = false;
+  if (bookInfoSubmit) {
+    if (isEditPage) {
+      bookInfoSubmit.disabled = true;
+    } else {
+      bookInfoSubmit.disabled = false;
+    }
   }
 
   if (
