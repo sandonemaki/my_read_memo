@@ -27,10 +27,12 @@
   opacity: 0;
 }
 
-#judged-seidoku {
+#judged-seidoku,
+#judged-tudoku,
+#judged-randoku {
   border-left: 8px solid #30c8d6;
   border-radius: 3px;
-  z-index: 80;
+  z-index: 100000;
 }
 
 .judge-popup__close {
