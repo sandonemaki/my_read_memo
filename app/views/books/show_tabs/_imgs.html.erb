@@ -4,9 +4,8 @@
       <%= book.remaining %>
     </p>
     <p id="img_read_status_count font-small-12">
-      乱読画像メモ：未読
-      <span class="randoku_imgs_unread_count"><%= book.randoku_imgs_unread_count %></span>枚 （精読基準：総画像メモ
-      <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読画像メモ
+      （精読基準：乱読画像メモ
+      <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読の乱読画像メモ
       <span class="book_seidoku_line_2"><%= book.seidoku_line_2 %></span>枚未満）
     </p>
     <% if book.first_post_img_path.present? %>
