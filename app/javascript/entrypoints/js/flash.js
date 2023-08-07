@@ -42,7 +42,7 @@ const hideFlashMessage = ({ flashElement }) => {
 };
 
 /// メッセージを即座に非表示にする関数
-const closeFlash = () => {
+export const closeFlash = () => {
   const closeFlashElement = document.querySelector('#close-flash');
   closeFlashElement.addEventListener('click', (event) => {
     flashMessage_alert.style.right = '-1000px';

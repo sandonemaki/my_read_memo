@@ -1,6 +1,6 @@
 import Swiper from 'swiper/bundle';
 import { hideJudgePopupMessages } from './randoku_slide_is_alreadyread.js';
-import { js_flash, js_flash_alert } from './flash.js';
+import { js_flash, js_flash_alert, closeFlash } from './flash.js';
 import { initializePanzoom, zoomInOut, setupZoomEvents, outputZoomString } from './panzoom.js';
 
 document.addEventListener('DOMContentLoaded', function () {
