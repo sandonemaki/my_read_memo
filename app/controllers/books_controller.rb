@@ -344,12 +344,12 @@ class BooksController < ApplicationController
   def cover_update
     book = Book.find_by(id: params[:id])
     book_view_model = ViewModel::BooksEdit.new(book: book)
-    unless book_params[:book_cover].present?
+    unless book_cover_params[:book_cover].present?
       render('edit', locals: { book: book_view_model })
       return
     end
 
-    uploaded_file = book_params[:book_cover]
+    uploaded_file = book_cover_params[:book_cover]
     content_type = Marcel::MimeType.for(uploaded_file)
 
     unless content_type.in? %w[image/jpeg image/jpg image/png image/gif image/heic]
@@ -462,6 +462,9 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.permit(:input_total_page, :title, :author, :publisher, :total_page, :book_cover)
+    params.permit(:input_total_page, :title, :author_1, :publisher, :total_page)
+  end
+  def book_cover_params
+    params.permit(:book_cover)
   end
 end
