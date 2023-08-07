@@ -58,7 +58,7 @@ class Book < ApplicationRecord
   # 精読まで未読をあと何枚
   def countdown_remaining_seidoku
     img_unread_count = self.randoku_imgs.where(reading_state: '0').count # 未読の数
-    already_read_count = self.randoku_imgs.where(reading_state: '1').count # 未読の数
+    already_read_count = self.randoku_imgs.where(reading_state: '1').count # 既読の数
 
     seidoku_line_1 = (self.total_page * (1.0 / 8.0)).ceil
     randoku_imgs_count = img_unread_count + already_read_count
@@ -69,7 +69,7 @@ class Book < ApplicationRecord
       remaining_to_seidoku = seidoku_line_1 - randoku_imgs_count
       "精読まで乱読メモがあと#{remaining_to_seidoku == 0 ? sprintf('%.1f', remaining_to_seidoku) : remaining_to_seidoku.to_i}枚"
     when State::READING_STATE.key('精読')
-      '精読突破!'
+      '精読基準突破!（乱読メモを読んで精読に進もう）'
     when State::READING_STATE.key('通読')
       seidoku_line_2 = (self.total_page * (1.0 / 4.0)).floor
       remaining_to_unread = (seidoku_line_2 - 1) - img_unread_count
