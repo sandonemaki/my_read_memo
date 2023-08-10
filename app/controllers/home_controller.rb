@@ -11,6 +11,9 @@ class HomeController < ApplicationController
   end
 
   def memo_search_result
+    # "0" が選択された場合の処理
+    return redirect_to memo_search_path if params[:selected_search_value].first == '0'
+
     # TODO: 1の部分に文字列"乱読"を入れる。text -> int に詰め替えるメソッド呼び出しにする
     all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
