@@ -80,6 +80,5 @@ RUN npm install
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.3.21 && \
     bundle config set --local path 'vendor/bundle' && \
-    bundle install && \
-    RAILS_ENV=production bundle exec rails assets:precompile
+    bundle install
 COPY . .

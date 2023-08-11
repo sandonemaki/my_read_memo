@@ -6,6 +6,7 @@ services:
     command: |
       bash -c "
         rm -f tmp/pids/server.pid && 
+        bundle exec rails assets:precompile && 
         bundle exec rails s -p 3000 -b '0.0.0.0' -e production
       "
     # 上記のdbイメージで指定したユーザー名とパスワードをrails側でも指定するため環境変数に設定。
