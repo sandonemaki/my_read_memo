@@ -8,16 +8,15 @@ services:
       - postgres_volume:/var/lib/postgresql/data
 
   my_read_memo_web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle install && npm install && bundle exec rails s -p 3000 -b '0.0.0.0' && bin/vite dev"
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0' && bin/vite dev"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - .:/myapp
-    ports:
-      - '3000:3000' # rails用
-      - '3036:3036' # vite-rails用
     tty: true # 疑似ターミナル (pseudo-TTY) を割り当て。https://docs.docker.jp/compose/compose-file/index.html#tty
     stdin_open: true # サービス コンテナに標準入力を割り当てて実行するよう設定(https://docs.docker.jp/compose/compose-file/index.html#stdin-open)。
     depends_on:

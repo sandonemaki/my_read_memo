@@ -58,10 +58,11 @@ RUN wget https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.1-9.ta
 
 # 必要なライブラリのインストール
 RUN set -x && apt-get update -qq && \
-    apt-get update && apt-get install -y libpq-dev npm && \
+    apt-get install -y libpq-dev npm && \
     curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs && \
     curl -L https://install.meilisearch.com | sh && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # npmを使ってyarnをインストール
@@ -78,5 +79,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler:2.3.21 && bundle config set --local path 'vendor/bundle' && bundle install
+RUN gem install bundler:2.3.21 && \
+    bundle config set --local path 'vendor/bundle' && \
+    bundle install
 COPY . .
