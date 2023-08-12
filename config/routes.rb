@@ -44,5 +44,10 @@ Rails
     get 'memo_search' => 'home#memo_search'
     post 'memo_search_result' => 'home#memo_search_result'
 
+    # auth0
+    get '/auth/auth0/callback' => 'auth0#callback'
+    get '/auth/failure' => 'auth0#failure'
+    get '/auth/logout' => 'auth0#logout'
+
     root to: 'books#index_tabs'
   end
