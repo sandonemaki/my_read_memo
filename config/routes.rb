@@ -43,6 +43,7 @@ Rails
     # search
     get 'memo_search' => 'home#memo_search'
     post 'memo_search_result' => 'home#memo_search_result'
+    get '/400.html', to: redirect('books#index_tabs')
 
     root to: 'books#index_tabs'
   end
