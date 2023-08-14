@@ -1,5 +1,8 @@
 <main>
   <%= render partial: 'layouts/header' %>
+  <%= button_to 'Login', '/auth/auth0', method: :post %>
+  <%= button_to 'Logout', 'auth/logout', method: :get %>
+
   <div class="main-content-js">
     <div class="inner book-index">
       <!-- randoku_indexの共通ヘッダー -->
