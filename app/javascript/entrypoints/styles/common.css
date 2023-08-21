@@ -158,7 +158,8 @@ li {
   display: block;
 }
 
-.user-menu:hover {
+.user-menu:hover,
+.user-menu .button.is_active {
   background-color: #f3f4f5;
 }
 

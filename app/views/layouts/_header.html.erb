@@ -9,12 +9,12 @@
     </li>
   </ul>
   <ul class="global-sidebar__menu">
-    <li><a>本の一覧</a></li>
-    <li><a>本を登録する</a></li>
-    <li><a>絞り込み検索</a></li>
-    <li><a>推しの設定</a></li>
-    <li><a>ヘルプ</a></li>
-    <li><a>ログアウト</a></li>
+    <li><%= link_to '本の一覧', '/books/randoku_index' %></li>
+    <li><%= link_to '本を登録する', '/books/new' %></li>
+    <li><%= link_to '絞り込み検索', '/memo_search' %></li>
+    <li><%= link_to '推しの設定', '#' %></li>
+    <li><%= link_to 'ヘルプ', '#' %></li>
+    <li><%= link_to 'ログアウト', 'auth/logout', method: :get %></li>
   </ul>
 </div>
 <header id="header-content-js" class="header-wrapper">
@@ -69,7 +69,14 @@
           <%= link_to('ヘルプ', '#', class: 'button') %>
         </li>
         <li class="user-menu">
-          <%= link_to('ログアウト', '#', class: 'button') %>
+          <%=
+            link_to(
+              'ログアウト',
+              '/auth/logout',
+              method: :get,
+              class: "button #{'is_active' if current_page?('/auth/logout')}",
+            )
+          %>
         </li>
       </ul>
     </div>
