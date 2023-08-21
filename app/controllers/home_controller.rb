@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   require_relative '../modules/state'
+  def top; end
 
   def memo_search
     memo_search_menu =
