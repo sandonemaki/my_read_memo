@@ -22,7 +22,11 @@
   <div class="header-menus-wrapper">
     <ul class="header-menus">
       <li class="link">
-        <%= link_to '本の一覧', '/', class: "link-text #{'is_active' if current_page?('/')}" %>
+        <%=
+          link_to '本の一覧',
+                  '/books/randoku_index',
+                  class: "link-text #{'is_active' if current_page?('/books/randoku_index')}"
+        %>
       </li>
       <li class="link">
         <%= link_to '本を登録する', '/books/new', class: "link-text #{'is_active' if current_page?('/books/new')}" %>
