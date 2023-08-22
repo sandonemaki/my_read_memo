@@ -146,12 +146,19 @@ class BooksController < ApplicationController
 
   # ランキング：randoku_indexの乱読本の投稿順
   def randoku_rank_created_books
-    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
-    all_books_count = Book.all.count
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+
+    user_books = user.books
+    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
+    all_books_count = user_books.all.count
 
     randoku_index_common_view_models =
       ViewModel::BooksRandokuIndexCommon.new(
+        books_user: user,
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
@@ -179,12 +186,19 @@ class BooksController < ApplicationController
 
   # ランキング：randoku_indexの乱読画像の投稿順
   def randoku_rank_created_randoku_imgs
-    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
-    all_books_count = Book.all.count
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+
+    user_books = user.books
+    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
+    all_books_count = user_books.all.count
 
     randoku_index_common_view_models =
       ViewModel::BooksRandokuIndexCommon.new(
+        books_user: user,
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
@@ -213,13 +227,20 @@ class BooksController < ApplicationController
 
   # 精読メモの多い順
   def seidoku_index
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user_books = user.books
+
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
-    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
-    all_books_count = Book.all.count
+    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
+    all_books_count = user_books.all.count
 
     randoku_index_common_view_models =
       ViewModel::BooksRandokuIndexCommon.new(
+        books_user: user,
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
@@ -247,13 +268,20 @@ class BooksController < ApplicationController
 
   # 精読本の投稿順
   def seidoku_rank_created_books
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user_books = user.books
+
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
-    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
-    all_books_count = Book.all.count
+    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
+    all_books_count = user_books.all.count
 
     randoku_index_common_view_models =
       ViewModel::BooksRandokuIndexCommon.new(
+        books_user: user,
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
@@ -282,13 +310,20 @@ class BooksController < ApplicationController
 
   # 乱読メモの多い順
   def seidoku_rank_most_randoku_imgs
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user_books = user.books
+
     # TODO: 1の部分をString"乱読"にして数字に変換するメソッドを使う
-    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
-    all_books_count = Book.all.count
+    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
+    all_books_count = user_books.all.count
 
     randoku_index_common_view_models =
       ViewModel::BooksRandokuIndexCommon.new(
+        books_user: user,
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
