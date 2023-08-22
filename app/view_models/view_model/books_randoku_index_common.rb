@@ -1,11 +1,12 @@
 module ViewModel
 
   class BooksRandokuIndexCommon
-    attr_reader :all_count,
-      :all_randoku_state_count, :all_seidoku_state_count, :all_randoku_imgs_count,
+    attr_reader :user_nickname, 
+      :all_count, :all_randoku_state_count, :all_seidoku_state_count, :all_randoku_imgs_count,
       :randoku_history
 
-    def initialize(all_randoku_state_books:, all_seidoku_state_books:, all_books_count:)
+    def initialize(books_user:, all_randoku_state_books:, all_seidoku_state_books:, all_books_count:)
+      @user_nickname = books_user.nickname
       # 全ての乱読画像合計数
       @all_randoku_imgs_count =
       Book.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")

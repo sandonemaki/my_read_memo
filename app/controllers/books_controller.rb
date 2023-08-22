@@ -78,12 +78,21 @@ class BooksController < ApplicationController
 
   # ランキング：randoku_indexの乱読画像の多い順
   def index_tabs
-    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
-    all_books_count = Book.all.count
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user.nickname = user_info['nickname'].slice(0, 13) if user_info['nickname']
+    user.save
+
+    user_books = user.books
+    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
+    all_books_count = user_books.all.count
 
     randoku_index_common_view_models =
       ViewModel::BooksRandokuIndexCommon.new(
+        books_user: user,
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
