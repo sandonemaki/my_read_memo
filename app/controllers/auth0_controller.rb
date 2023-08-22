@@ -8,6 +8,7 @@ class Auth0Controller < ApplicationController
     # for complete information on 'omniauth.auth' contents.
     auth_info = request.env['omniauth.auth']
     session[:userinfo] = auth_info['extra']['raw_info']
+    User.find_or_create_by(auth0_id: session[:userinfo][:sub]) { |u| u.nickname = session[:userinfo][:nickname] }
 
     # Redirect to the URL you want after successful auth
     redirect_to '/books/randoku_index'
