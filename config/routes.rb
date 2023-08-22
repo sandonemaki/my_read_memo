@@ -45,5 +45,12 @@ Rails
     post 'memo_search_result' => 'home#memo_search_result'
     get '/400.html', to: redirect('books#index_tabs')
 
-    root to: 'books#index_tabs'
+    # auth0
+    get '/auth/auth0/callback' => 'auth0#callback'
+
+    #post '/auth/auth0/callback' => 'auth0#callback'
+    get '/auth/failure' => 'auth0#failure'
+    get '/auth/logout' => 'auth0#logout'
+
+    root to: 'home#top'
   end

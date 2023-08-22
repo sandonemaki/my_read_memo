@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_04_132409) do
+ActiveRecord::Schema.define(version: 2023_08_22_073405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2023_08_04_132409) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "seidoku_memo_key", default: true
     t.string "cover_path", default: "/default_book.png"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "randoku_histories", force: :cascade do |t|
@@ -70,6 +72,15 @@ ActiveRecord::Schema.define(version: 2023_08_04_132409) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "nickname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "auth0_id", null: false
+    t.index ["auth0_id"], name: "index_users_on_auth0_id", unique: true
+  end
+
+  add_foreign_key "books", "users"
   add_foreign_key "randoku_imgs", "books"
   add_foreign_key "randoku_memos", "books"
   add_foreign_key "seidoku_memos", "books"

@@ -1,5 +1,6 @@
 <main>
   <%= render partial: 'layouts/header' %>
+
   <div class="main-content-js">
     <div class="inner book-index">
       <!-- randoku_indexの共通ヘッダー -->
@@ -68,7 +69,7 @@
                   <div class="ranking-sort-navi navi-panel-js">
                     <ul class="ranking-menus">
                       <li class="ranking-menu">
-                        <%= link_to('精読メモの多い順', :root, class: 'button') %>
+                        <%= link_to('精読メモの多い順', '/books/seidoku_index', class: 'button') %>
                       </li>
                       <li class="ranking-menu">
                         <%= link_to('精読本の投稿順', '/books/seidoku_rank_created_books', class: 'button') %>
@@ -137,7 +138,7 @@
                   <div class="ranking-sort-navi navi-panel-js">
                     <ul class="ranking-menus">
                       <li class="ranking-menu">
-                        <%= link_to('精読メモの多い順', :root, class: 'button') %>
+                        <%= link_to('精読メモの多い順', '/books/seidoku_index', class: 'button') %>
                       </li>
                       <li class="ranking-menu">
                         <%= link_to('精読本の投稿順', '/books/seidoku_rank_created_books', class: 'button') %>

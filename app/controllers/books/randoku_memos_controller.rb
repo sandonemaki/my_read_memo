@@ -1,4 +1,6 @@
 class Books::RandokuMemosController < ApplicationController
+  include Secured
+
   #def index
   #  book = Book.find_by(id: params[:book_id])
   #  new_path = "books/#{book.id}/randoku_memos/index"

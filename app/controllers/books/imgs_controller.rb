@@ -1,4 +1,5 @@
 class Books::ImgsController < ApplicationController
+  include Secured
   require 'tmpdir'
   require 'fileutils'
 
