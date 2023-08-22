@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  include Secured
+  skip_before_action :logged_in_using_omniauth?, only: [:top]
   require_relative '../modules/state'
   def top; end
 

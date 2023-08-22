@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  include Secured
   require_relative '../modules/state'
 
   def update_total_page
