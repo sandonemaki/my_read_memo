@@ -23,12 +23,19 @@ class HomeController < ApplicationController
     # "0" が選択された場合の処理
     return redirect_to memo_search_path if params[:selected_search_value].first == '0'
 
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+
+    user_books = user.books
+
     # TODO: 1の部分に文字列"乱読"を入れる。text -> int に詰め替えるメソッド呼び出しにする
-    all_randoku_state_books = Book.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = Book.where(reading_state: 1) # 1 == 精読
+    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
+    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
     book_view_models =
       ViewModel::HomeMemoSearchResult.new(
-        all_books: Book.all,
+        all_books: user_books.all,
         # key1-4
         randoku_memo_type: State::RANDOKU_MEMO_TYPE,
         # key1-5
