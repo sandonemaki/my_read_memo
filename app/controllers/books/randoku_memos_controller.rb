@@ -35,7 +35,12 @@ class Books::RandokuMemosController < ApplicationController
   end
 
   def create
-    book = Book.find_by(id: params[:book_id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user_books = user.books
+    book = user_books.find_by(id: params[:book_id])
     randoku_memos =
       book.randoku_memos.new(content_state: params[:selectbox_value].first.to_i, content: params[:randoku_memo_content])
     if randoku_memos.save
