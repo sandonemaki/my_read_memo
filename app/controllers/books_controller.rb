@@ -3,7 +3,13 @@ class BooksController < ApplicationController
   require_relative '../modules/state'
 
   def update_total_page
-    book = Book.find_by(id: params[:id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+
+    user_books = user.books
+    book = user_books.find_by(id: params[:id])
     book.total_page = book_params[:input_total_page]
     if !book.save
       render json: { status: 500, message: '情報が更新されませんでした。もう一度お試しください' }
@@ -384,31 +390,52 @@ class BooksController < ApplicationController
   end
 
   def edit
-    book = Book.find_by(id: params[:id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+
+    user_books = user.books
+    book = user_books.find_by(id: params[:id])
     unless book
       flash[:error] = 'ページが見つかりませんでした'
       redirect_to '/books/randoku_index'
       return
     end
     book_view_model = ViewModel::BooksEdit.new(book: book)
-    render('edit', locals: { book: book_view_model })
+    user_view_model = ViewModel::UserName.new(user: user)
+    render('edit', locals: { book: book_view_model, user: user_view_model })
   end
 
   def update
-    book = Book.find_by(id: params[:id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+
+    user_books = user.books
+    book = user_books.find_by(id: params[:id])
     if book.update(book_params)
       redirect_to("/books/#{book.id}")
     else
       book_view_model = ViewModel::BooksEdit.new(book: book)
-      render('edit', locals: { book: book_view_model })
+      user_view_model = ViewModel::UserName.new(user: user)
+      render('edit', locals: { book: book_view_model, user: user_view_model })
     end
   end
 
   def cover_update
-    book = Book.find_by(id: params[:id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+
+    user_books = user.books
+    book = user_books.find_by(id: params[:id])
     book_view_model = ViewModel::BooksEdit.new(book: book)
+    user_view_model = ViewModel::UserName.new(user: user)
     unless book_cover_params[:book_cover].present?
-      render('edit', locals: { book: book_view_model })
+      render('edit', locals: { book: book_view_model, user: user_view_model })
       return
     end
 
@@ -417,7 +444,7 @@ class BooksController < ApplicationController
 
     unless content_type.in? %w[image/jpeg image/jpg image/png image/gif image/heic]
       flash[:error] = 'jpeg, jpg, png, gif形式のファイルを選択してください'
-      render('edit', locals: { book: book_view_model })
+      render('edit', locals: { book: book_view_model, user: user_view_model })
       return
     end
 
