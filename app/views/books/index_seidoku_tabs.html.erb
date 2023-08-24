@@ -1,8 +1,8 @@
-<%= render partial: 'layouts/header' %>
+<%= render partial: 'layouts/header', locals: { user: user } %>
 <div class="main-content-js">
   <div class="inner book-index">
     <!-- randoku_indexの共通ヘッダー -->
-    <%= render partial: 'books/index_tabs/randoku_index_common', locals: { books: randoku_books } %>
+    <%= render partial: 'books/index_tabs/randoku_index_common', locals: { books: randoku_books, user: user } %>
 
     <!-- indexの共通タブ -->
     <div class="tab tabbled-book-index">

@@ -5,7 +5,7 @@
       <div class="global-sidebar__user-image">
         <div class="profile-image" style="background-image: url('/default_user_image.jpg')"></div>
       </div>
-      <a>maki</a>
+      <%= link_to user.nickname, '#' %>
     </li>
   </ul>
   <ul class="global-sidebar__menu">
@@ -53,7 +53,7 @@
           alt="ユーザーアイコン"
           class="default-user-icon-img"
         />
-        <div class="user-name-dropdown">maki</div>
+        <div class="user-name-dropdown"><%= user.nickname %></div>
         <i class="fa-solid fa-sort-down dropdown"></i>
       </div>
     </button>

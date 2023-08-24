@@ -5,12 +5,18 @@ class HomeController < ApplicationController
   def top; end
 
   def memo_search
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+
+    user_view_model = ViewModel::UserName.new(user: user)
     memo_search_menu =
       ViewModel::HomeMemoSearch.new(
         randoku_memo_type: State::RANDOKU_MEMO_Q.merge(State::RANDOKU_MEMO_BKG),
         seidoku_memo_type: State::SEIDOKU_MEMO_TYPE,
       )
-    render('memo_search', locals: { search: memo_search_menu })
+    render('memo_search', locals: { search: memo_search_menu, user: user_view_model })
   end
 
   def memo_search_result

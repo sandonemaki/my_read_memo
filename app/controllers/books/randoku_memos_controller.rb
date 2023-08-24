@@ -18,14 +18,20 @@ class Books::RandokuMemosController < ApplicationController
   #end
 
   def new
-    book = Book.find_by(id: params[:book_id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user_books = user.books
+    book = user_books.find_by(id: params[:book_id])
     unless book
       flash[:error] = 'ページが見つかりませんでした'
       redirect_to '/books/randoku_index'
       return
     end
+    user_view_model = ViewModel::UserName.new(user: user)
     book_view_model = ViewModel::BooksRandokuMemosNew.new(book: book)
-    render('new', locals: { book: book_view_model })
+    render('new', locals: { book: book_view_model, user: user_view_model })
   end
 
   def create
