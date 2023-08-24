@@ -4,7 +4,12 @@ class Books::ImgsController < ApplicationController
   require 'fileutils'
 
   def toggle_bookmark
-    book = Book.find_by(id: params[:book_id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user_books = user.books
+    book = user_books.find_by(id: params[:book_id])
     randoku_img = book.randoku_imgs.find_by(id: params[:id])
     randoku_img.bookmark_flag = (img_params[:bookmark_toggle] == 0 ? 1 : 0)
     render json: { status: 500, message: '情報が更新されませんでした。もう一度お試しください' } if !randoku_img.save
@@ -16,7 +21,13 @@ class Books::ImgsController < ApplicationController
   end
 
   def toggle_already_read
-    book = Book.find_by(id: params[:book_id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
+
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user_books = user.books
+
+    book = user_books.find_by(id: params[:book_id])
 
     # randoku_imgsのカラム、reading_state はis_already_readに変更予定
     randoku_img = book.randoku_imgs.find_by(id: params[:id])
@@ -94,9 +105,14 @@ class Books::ImgsController < ApplicationController
   # TODO:フロント_jsでの制御
   # TODO:createアクションから呼び出すメソッド定義を新しいクラスに配置する
   def create
-    page_imgs = params[:page_imgs]
-    book = Book.find_by(id: params[:book_id])
+    user_info = session[:userinfo]
+    return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
 
+    user = User.find_or_initialize_by(auth0_id: user_info['sub'])
+    user_books = user.books
+
+    book = user_books.find_by(id: params[:book_id])
+    page_imgs = params[:page_imgs]
     begin
       FileUtils.mkdir_p("public/#{book.id}/")
       FileUtils.mkdir_p("public/#{book.id}/thumb/")
