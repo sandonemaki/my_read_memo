@@ -1,0 +1,20 @@
+.user-profile-img-setting {
+  width: fit-content;
+  margin: 0px auto;
+  position: relative;
+}
+
+.user-profile-img.account-setting {
+  border: 0px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 10px;
+}
+
+.submit-button.account-setting-submit-js {
+  margin: auto;
+  width: 70%;
+}

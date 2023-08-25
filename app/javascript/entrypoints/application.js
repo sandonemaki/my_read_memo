@@ -20,6 +20,7 @@ import '@/entrypoints/js/navigation.js';
 import '@/entrypoints/js/tabbed_show.js';
 import '@/entrypoints/js/tabbed_index.js';
 import '@/entrypoints/js/sp_side_menu.js';
+import '@/entrypoints/js/account_edit_input_validation.js';
 
 // ランキングをfetchで取得したくなった時に改良して使用する
 // import '@/entrypoints/js/ranking_randoku_index.js';
