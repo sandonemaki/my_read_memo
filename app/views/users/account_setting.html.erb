@@ -17,7 +17,7 @@
       <h1 class="font-large">プロフィール</h1>
 
       <div class="book-cover-img user-profile-img-setting">
-        <img src="/default_user_image.jpg" alt="ユーザーアイコン" class="user-profile-img edit" />
+        <img src="/default_user_image.jpg" alt="ユーザーアイコン" class="user-profile-img account-setting" />
       </div>
 
       <%= form_tag("/users/account_update", method: :put) do %>
@@ -26,7 +26,7 @@
             <p class="input-book-label font-small-12">ニックネーム</p>
             <input
               id="input_nickname"
-              class="form-oneline edit"
+              class="form-oneline account-setting"
               type="text"
               name="nickname"
               placeholder="ヴァージニア・ウルフ"
@@ -38,18 +38,18 @@
           <div class="input-book-info">
             <p class="input-book-label font-small-12">メールアドレス</p>
             <input
-              id="input_author"
-              class="form-oneline edit"
+              id="input_email"
+              class="form-oneline account-setting"
               type="text"
               name="email"
-              placeholder="e-mail"
+              placeholder="urufu@gmail.com"
               value="<%= user.email %>"
             />
             <p id="email_valid_error" class="valid_error"></p>
           </div>
         </div>
 
-        <input class="submit-button book-info-submit-js" type="submit" value="更新" disabled />
+        <input class="submit-button account-setting-submit-js" type="submit" value="更新" disabled />
       <% end %>
     </div>
   </div>
