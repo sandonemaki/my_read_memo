@@ -6,7 +6,7 @@ module ViewModel
     def initialize(user:, user_email:)
       @nickname = user.nickname
       @email = user_email
-      @errors = book.errors
+      @errors = user.errors
     end
   end
 end
