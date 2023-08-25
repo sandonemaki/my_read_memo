@@ -3,7 +3,7 @@ Rails
   .routes
   .draw do
     get 'users/account_setting' => 'users#account_setting'
-    post 'users/account_update' => 'users#account_update'
+    put 'users/account_update' => 'users#account_update'
 
     get 'books/new' => 'books#new' # new_book_page_path
     post 'books/create' => 'books#create' # book_pages_path
