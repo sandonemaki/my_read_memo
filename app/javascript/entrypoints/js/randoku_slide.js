@@ -21,12 +21,18 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
+  // これを追加: 初期ロード時に最初のスライドのセットアップを行う
+  setupSlide(swiper, 0);
+
   swiper.on('slideChange', function () {
-    // 現在のスライドを取得
-    const currentSlide = this.slides[this.activeIndex];
-    const panzoomEl = currentSlide.querySelector('.panzoom');
+    setupSlide(this, this.activeIndex);
+  });
+
+  function setupSlide(swiperInstance, slideIndex) {
+    const slide = swiperInstance.slides[slideIndex];
+    const panzoomEl = slide.querySelector('.panzoom');
     const imgEl = panzoomEl.querySelector('.panzoom-img');
-    const printZoomEl = currentSlide.querySelector('.print-zoom');
+    const printZoomEl = slide.querySelector('.print-zoom');
 
     // zoomの操作ボタンを取得
     const zoomInEl = document.querySelector('.zoomIn');
@@ -36,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const instance = initializePanzoom(panzoomEl);
     setupZoomEvents(panzoomEl, instance, zoomInEl, zoomOutEl, zoomResetEl);
     outputZoomString(instance, printZoomEl);
-  });
+  }
 
   // モーダルを開く。クリックされた画像からスライドを始める
   const modalTriggers = document.querySelectorAll('.sw_modal_trigger') || [];
