@@ -51,8 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // update される -> 乱読画像の未読・既読の数が変わる -> 精読なら精読メモタブの鍵を外す
 export const book_seidoku_memo_key = (responseData) => {
   const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
-  if (responseData.book_seidoku_memo_key === 'key_false' && seidokuMemoKeyWord) {
+  const seidokuMemoTab = document.querySelector('[data-tab="03"]');
+  if (responseData.book_seidoku_memo_key === 'key_false' && seidokuMemoKeyWord && seidokuMemoTab) {
     seidokuMemoKeyWord.remove();
+    seidokuMemoTab.classList.remove('tab-disabled');
   }
 };
 
