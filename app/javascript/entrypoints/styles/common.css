@@ -211,7 +211,7 @@ li {
   font-size: 0.875rem;
   display: flex;
   padding: 0px 16px;
-  background-color: #30c8d6;
+  background-color: #ffb551;
   color: #fff;
   text-align: center;
   cursor: pointer;
@@ -331,15 +331,15 @@ li {
 .form-oneline {
   width: 100%;
   padding: 0px 16px;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(186, 198, 211);
+  background-color: #f9f5f1;
+  border: 1px solid #b69b83;
   border-radius: 3px;
-  color: rgb(22, 50, 92);
+  color: #403f3d;
   font-size: 0.75rem;
   height: 48px;
 }
 .form-oneline::placeholder {
-  color: lightgray;
+  color: #d0b6a0;
 }
 .memo-input-textarea {
   width: 100%;

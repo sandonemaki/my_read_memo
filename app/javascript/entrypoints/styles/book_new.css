@@ -36,13 +36,13 @@
   margin-top: 24px;
 }
 .input-book-label {
-  color: rgb(132, 145, 165);
+  color: #907660;
   font-size: 0.75rem;
   margin-bottom: 8px;
 }
 
 .book-profile-totalpage {
-  background-color: #d4dce4;
+  background-color: #f0e2d6;
   border-radius: 20px;
   width: 70%;
   /*width: 380px;*/
@@ -58,9 +58,8 @@
   text-align: center;
   vertical-align: middle;
   padding: 0px 10px 0 24px;
-  border: 1px solid #d0d5d8;
+  border: 1px solid #f9f5f1;
   height: 70px;
-  color: #555;
   font-size: 32px;
   cursor: pointer;
 }
