@@ -2,10 +2,12 @@
 <div id="global-sidebar" class="global-sidebar sb-right">
   <ul class="global-sidebar__user-info">
     <li>
-      <div class="global-sidebar__user-image">
-        <div class="profile-image" style="background-image: url('/default_user_image.jpg')"></div>
-      </div>
-      <%= link_to user.nickname, '#' %>
+      <%= link_to '/users/account_setting' do %>
+        <div class="global-sidebar__user-image">
+          <div class="profile-image" style="background-image: url('/default_user_image.jpg')"></div>
+        </div>
+        <%= link_to user.nickname, '/users/account_setting' %>
+      <% end %>
     </li>
   </ul>
   <ul class="global-sidebar__menu">
@@ -60,7 +62,7 @@
     <div class="user-navi navi-panel-js">
       <ul class="user-menus">
         <li class="user-menu">
-          <%= link_to('アカウントの設定', '#', class: 'button') %>
+          <%= link_to('アカウントの設定', '/users/account_setting', class: 'button') %>
         </li>
         <li class="user-menu">
           <%= link_to('推しの設定', '#', class: 'button') %>
