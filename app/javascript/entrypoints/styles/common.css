@@ -3,6 +3,28 @@
   letter-spacing: 0.04em;
   font: 100%/1.5 'Lato', 'Hiragino Maru Gothic Pro', 'Meiryo UI', Meiryo, 'MS PGothic', sans-serif;
 }
+.col-white {
+  color: #fff;
+}
+.col-offwhite {
+  color: #f9f5f1;
+}
+.col-brown {
+  color: rgb(144, 118, 96);
+}
+.col-dark-brown {
+  color: #634d3a;
+}
+.col-orange {
+  color: #ffb551;
+}
+.col-dark-orange {
+  color: #ffa935;
+}
+.col-ivory {
+  color: #f0e2d6;
+}
+
 a {
   text-decoration: none;
 }
