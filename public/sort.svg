@@ -1,7 +1,11 @@
 <svg width="34" height="25" viewBox="0 0 34 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="0.666504" width="33.3333" height="25" rx="12.5" fill="#2B546A"/>
-<path d="M18.7222 16.0368H12.4722" stroke="#ECEDF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15.9442 9.37502L21.4998 9.37502" stroke="#ECEDF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M15.7542 9.26824C15.7542 8.36848 15.0194 7.6389 14.1131 7.6389C13.2069 7.6389 12.472 8.36848 12.472 9.26824C12.472 10.168 13.2069 10.8976 14.1131 10.8976C15.0194 10.8976 15.7542 10.168 15.7542 9.26824Z" stroke="#ECEDF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M22.1943 16.0096C22.1943 15.1098 21.46 14.3802 20.5537 14.3802C19.6469 14.3802 18.9121 15.1098 18.9121 16.0096C18.9121 16.9093 19.6469 17.6389 20.5537 17.6389C21.46 17.6389 22.1943 16.9093 22.1943 16.0096Z" stroke="#ECEDF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<rect width="33.3333" height="25" rx="12.5" fill="#D9D9D9"/>
+<rect width="33.3333" height="25" rx="12.5" fill="#886249"/>
+<rect width="33.3333" height="25" rx="12.5" fill="#F9F5F1"/>
+<rect width="33.3333" height="25" rx="12.5" fill="white"/>
+<rect width="33.3333" height="25" rx="12.5" fill="#634D3A"/>
+<path d="M17.5835 15.2587H12.7085" stroke="#ECEDF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.4167 10.0625L19.7501 10.0625" stroke="#ECEDF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.2684 9.97926C15.2684 9.27745 14.6953 8.70837 13.9884 8.70837C13.2815 8.70837 12.7084 9.27745 12.7084 9.97926C12.7084 10.6811 13.2815 11.2501 13.9884 11.2501C14.6953 11.2501 15.2684 10.6811 15.2684 9.97926Z" stroke="#ECEDF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20.2918 15.2374C20.2918 14.5356 19.719 13.9666 19.0122 13.9666C18.3049 13.9666 17.7317 14.5356 17.7317 15.2374C17.7317 15.9393 18.3049 16.5083 19.0122 16.5083C19.719 16.5083 20.2918 15.9393 20.2918 15.2374Z" stroke="#ECEDF3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

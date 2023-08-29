@@ -73,7 +73,7 @@
 }
 .user-profile__separator {
   margin: 0 40px;
-  background-color: #e9edf4;
+  background-color: #e4e4e4;
   width: 1px;
   height: 96px;
   display: flex;
@@ -96,7 +96,7 @@
   justify-content: space-between;
   list-style: none;
   padding: 0;
-  border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
+  border-bottom: 2px solid #e3e1e1; /*タブが移動する薄いライン*/
   position: relative;
 }
 .tab__panel.index-page {
@@ -139,7 +139,6 @@
   z-index: 4;
 }
 .ranking-menu .button {
-  color: rgb(43, 84, 106);
   font-size: 14px;
   line-height: 1.7;
   text-decoration: none;
@@ -151,7 +150,7 @@
   display: block;
 }
 .ranking-menu:hover {
-  background-color: #f3f4f5;
+  background-color: #f9f5f1;
 }
 .fa-image,
 .fa-book,

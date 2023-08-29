@@ -178,18 +178,6 @@ h1 .fa-pen-to-square {
   margin-bottom: 4px;
 }
 
-#underline {
-  position: absolute;
-  left: 0;
-  bottom: 0px;
-  height: 2px;
-  background: rgb(48, 200, 214);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-#underline.show-page {
-  width: 33.33%;
-}
-
 /*1*/
 .tabbled-book-show {
   width: 100%;
@@ -214,22 +202,9 @@ h1 .fa-pen-to-square {
 .tabbled-book-show .tabbed-show-work-area {
   width: 100%;
 }
-.tab__menu-item {
-  transition: all 0.3s; /* アニメーション */
-  text-align: center;
-  cursor: pointer;
-  /*activeラインとタブ文字の距離*/
-  padding-bottom: 10px;
-}
-.tab__menu-item p {
-  color: rgb(166, 177, 190);
-}
+
 .tab__menu-item.show-page {
   width: 33.33%;
-}
-
-.tab__menu-item.is-active p {
-  color: rgb(48, 200, 214);
 }
 
 /* is-activeがついている時のスタイル */
@@ -307,9 +282,6 @@ h1 .fa-pen-to-square {
     width: 100%;
     overflow-x: scroll;
     padding: 0px;
-  }
-  .tab__menu-item {
-    /*width: 240px;0706*/
   }
   .tab__menu-item.show-page p {
     font-size: 4vw;

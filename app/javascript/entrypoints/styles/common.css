@@ -3,6 +3,9 @@
   letter-spacing: 0.04em;
   font: 100%/1.5 'Lato', 'Hiragino Maru Gothic Pro', 'Meiryo UI', Meiryo, 'MS PGothic', sans-serif;
 }
+body {
+  background-color: #faf7f4;
+}
 
 a {
   text-decoration: none;
@@ -49,7 +52,7 @@ li {
   padding: 0px 15px;
 }
 .user-menu-navigation:hover {
-  background-color: rgb(240, 244, 249);
+  background-color: #f0e2d6;
 }
 .user-dropdown {
   display: flex;
@@ -78,7 +81,7 @@ li {
 .header-wrapper {
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 1px 3px rgba(160, 166, 179, 0.3);
+  box-shadow: 0 1px 3px #e3e1e1;
   font-size: 0.75rem;
   position: relative; /* ポジションをrelativeまたはabsoluteに設定 */
   /*z-index: 1000; */ /* z-indexを高い値に設定 */
@@ -96,8 +99,8 @@ li {
 }
 .link-text:hover,
 .link-text.is_active {
-  box-shadow: inset 0 -3px 0 0 #30c8d6;
-  color: #1c3746;
+  box-shadow: inset 0 -3px 0 0 #ffa935;
+  color: #634d3a;
 }
 /****　ヘッダー　****/
 .randoku-logo {
@@ -135,9 +138,9 @@ li {
 /****ユーザーアイコンプルダウン****/
 .user-navi {
   position: absolute;
-  background-color: white;
+  background-color: #fbf8f6;
   right: 0;
-  top: 87%;
+  top: 102%;
   width: 180px;
   border-radius: 2px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px;
@@ -153,7 +156,6 @@ li {
   z-index: 4;
 }
 .user-navi .button {
-  color: rgb(43, 84, 106);
   font-size: 14px;
   line-height: 1.7;
   text-decoration: none;
@@ -168,7 +170,7 @@ li {
 
 .user-menu:hover,
 .user-menu .button.is_active {
-  background-color: #f3f4f5;
+  background-color: #f9f5f1;
 }
 
 /***** 共通ボタン *****/
@@ -221,15 +223,15 @@ li {
   height: 45px;
 }
 .line-button-detail {
-  color: #4ccfc9;
-  border-color: #4ccfc9;
+  color: #ffb551;
+  border-color: #ffb551;
 }
 .line-button-detail:hover {
-  color: #31b7b1;
-  border-color: #31b7b1;
+  color: #ffa935;
+  border-color: #ffa935;
 }
 .submit-button:hover {
-  background-color: rgb(35, 164, 176);
+  background-color: #ffa935;
 }
 .submit-button:disabled {
   transition: all 0.3s ease-in-out 0s;
@@ -270,7 +272,33 @@ li {
   color: #fff;
   background: #35b7e4;
 }
+/* タブのアンダーライン */
+#underline {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 2px;
+  background: #ffa935;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#underline.show-page {
+  width: 33.33%;
+}
 
+.tab__menu-item p {
+  color: #b4aca9;
+}
+
+.tab__menu-item.is-active p {
+  color: #ffa935;
+}
+.tab__menu-item {
+  transition: all 0.3s; /* アニメーション */
+  text-align: center;
+  cursor: pointer;
+  /*activeラインとタブ文字の距離*/
+  padding-bottom: 10px;
+}
 /**** 円のボタン ****/
 .circle-btn {
   position: absolute;

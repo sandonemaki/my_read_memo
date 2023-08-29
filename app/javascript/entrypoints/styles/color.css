@@ -1,11 +1,17 @@
 .col-white {
   color: #fff;
 }
+.col-bk-white {
+  color: #fbf8f6;
+}
 .col-offwhite {
   color: #f9f5f1;
 }
 .col-ivory {
   color: #f0e2d6;
+}
+.col-thin-gray {
+  color: #e3e1e1;
 }
 .col-light-gray {
   color: #d5d1d0;
