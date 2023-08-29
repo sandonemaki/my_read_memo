@@ -15,6 +15,7 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
       AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET}
     volumes:
       - .:/myapp
