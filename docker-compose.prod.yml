@@ -19,8 +19,6 @@ services:
       RAILS_ENV: production
       RAILS_LOG_TO_STDOUT: 'true'
       AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET}
-      AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID}
-      AUTH0_DOMAIN: ${AUTH0_DOMAIN}
 
   my_read_memo_webserver:
     image: nginx:latest
