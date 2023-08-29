@@ -16,8 +16,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET}
-      AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID}
-      AUTH0_DOMAIN: ${AUTH0_DOMAIN}
     volumes:
       - .:/myapp
     tty: true # 疑似ターミナル (pseudo-TTY) を割り当て。https://docs.docker.jp/compose/compose-file/index.html#tty
