@@ -1,5 +1,10 @@
 <main>
   <%= render partial: 'layouts/header', locals: { user: user } %>
+  <!-- フラッシュアラートを表示 -->
+  <div class="c-flash c-flash--alert">
+    <div class="c-flash-text"></div>
+    <i class="fa-solid fa-xmark c-flash-close" id="close-flash"></i>
+  </div>
 
   <div class="main-content-js">
     <div class="inner book-index">
