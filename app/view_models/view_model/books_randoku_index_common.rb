@@ -4,10 +4,10 @@ module ViewModel
     attr_reader :all_count, :all_randoku_state_count, :all_seidoku_state_count, :all_randoku_imgs_count,
       :randoku_history
 
-    def initialize(all_randoku_state_books:, all_seidoku_state_books:, all_books_count:)
+    def initialize(all_randoku_state_books:, all_seidoku_state_books:, all_books_count:, user_books:)
       # 全ての乱読画像合計数
       @all_randoku_imgs_count =
-      Book.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
+      user_books.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
 
       @all_count = all_books_count
       @all_seidoku_state_count = all_seidoku_state_books.count
@@ -21,7 +21,7 @@ module ViewModel
         .order('COUNT(randoku_imgs.id) DESC').limit(3).pluck(:id)
 
 
-      randoku_history = Book.find_by(id: RandokuHistory.last.book_id) if RandokuHistory.last.present?
+      randoku_history = user_books.find_by(id: RandokuHistory.last.book_id) if RandokuHistory.last.present?
       #img_unread_count = randoku_history.randoku_imgs.where(reading_state: '0').count # 未読の数
       #seidoku_line_1 = (randoku_history.total_page * (1.0 / 8.0)).ceil # 切り上げ
       #seidoku_line_2 = (randoku_history.total_page * (1.0 / 4.0)).floor # 切り捨て

@@ -1,22 +1,6 @@
 class Books::SeidokuMemosController < ApplicationController
   include Secured
 
-  #def index
-  #  book = Book.find_by(id: params[:book_id])
-  #  new_path = "books/#{book.id}/seidoku_memos/index"
-
-  #  # 学習履歴を保存
-  #  if %w[0 2].include?(book.reading_state.to_s)
-  #    RandokuHistory.set(new_path, book.id)
-  #  else
-  #    SeidokuHistory.set(new_path, book.id)
-  #  end
-
-  #  # todo: view_modelを作成する
-  #  book_view_model = ViewModel::BooksSeidokuMemosIndex.new(book: book)
-  #  render('books/seidoku_memos/index', locals: { book: book_view_model })
-  #end
-
   def new
     user_info = session[:userinfo]
     return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info

@@ -146,7 +146,7 @@ class Books::ImgsController < ApplicationController
         if img_ext.match('.HEIC$|.heic$')
           jpg_imgname = filename.sub(/.HEIC$|.heic$/, '.jpg')
           filenames_save_db << jpg_imgname
-          save_image_entity_after_convert_from_hiec_to_jpg(page_img, jpg_imgname) #メソッド呼び出し
+          save_image_entity_after_convert_from_hiec_to_jpg(book, page_img, jpg_imgname) #メソッド呼び出し
 
           # 用途
           # -ファイル名の取得
@@ -186,7 +186,7 @@ class Books::ImgsController < ApplicationController
   # -thumb の実体を保存 public/book.id/thumb/
   # -本画像を移動 temp/ -> public/book.id
   # -temp/ 消去
-  def save_image_entity_after_convert_from_hiec_to_jpg(boook, page_img, jpg_imgname)
+  def save_image_entity_after_convert_from_hiec_to_jpg(book, page_img, jpg_imgname)
     size = '220x150'
     Dir.mktmpdir do |tmpdir|
       File.binwrite("#{tmpdir}/#{jpg_imgname}", page_img.read)

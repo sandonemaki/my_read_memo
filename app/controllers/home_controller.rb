@@ -36,6 +36,7 @@ class HomeController < ApplicationController
     book_view_models =
       ViewModel::HomeMemoSearchResult.new(
         all_books: user_books.all,
+        user_books: user_books,
         # key1-4
         randoku_memo_type: State::RANDOKU_MEMO_TYPE,
         # key1-5

@@ -102,6 +102,7 @@ class BooksController < ApplicationController
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
 
     seidoku_index_common_view_models =
@@ -109,6 +110,7 @@ class BooksController < ApplicationController
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
 
     randoku_index_rank_view_models =
@@ -128,28 +130,6 @@ class BooksController < ApplicationController
       },
     )
   end
-
-  # ランキング：randoku_indexの乱読画像の多い順
-  # fetchでランキングを取得する時に利用する
-  # def randoku_index
-  #   all_randoku_state_books = Book.where.not(reading_state: '1') # 0 == 乱読, 2 == 通読
-  #   all_seidoku_state_books = Book.where(reading_state: '1') # 1 == 精読
-  #   all_books_count = Book.all.count
-
-  #   randoku_index_common_view_models =
-  #     ViewModel::BooksRandokuIndexCommon.new(
-  #       all_randoku_state_books: all_randoku_state_books,
-  #       all_seidoku_state_books: all_seidoku_state_books,
-  #       all_books_count: all_books_count,
-  #     )
-  #   randoku_index_rank_view_models =
-  #     ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
-  #   render json: {
-  #            status: :ok,
-  #            randoku_books: randoku_index_common_view_models,
-  #            randoku_rank: randoku_index_rank_view_models,
-  #          }
-  # end
 
   # ランキング：randoku_indexの乱読本の投稿順
   def randoku_rank_created_books
@@ -500,26 +480,6 @@ class BooksController < ApplicationController
       content_type.split('/').last
     end
   end
-
-  # 用途
-  # 乱読画像の状態を表示
-  # - 状態：また読みたい、読了
-
-  #def show
-  #  book = Book.find_by(id: params[:id])
-  #  new_path = "books/#{book.id}"
-
-  #  # 学習履歴を保存
-  #  # TODO: 数字ではなくモデリング名を使用する
-  #  if %w[0 2].include?(book.reading_state.to_s)
-  #    RandokuHistory.set(new_path, book.id)
-  #  else
-  #    SeidokuHistory.set(new_path, book.id)
-  #  end
-
-  #  book_view_model = ViewModel::BooksShow.new(book: book)
-  #  render('show', locals: { book: book_view_model })
-  #end
 
   def show_tabs
     user_info = session[:userinfo]

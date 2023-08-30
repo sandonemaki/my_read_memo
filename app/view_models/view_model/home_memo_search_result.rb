@@ -3,7 +3,7 @@ module ViewModel
     attr_reader :selected_search_value, :randoku_memo_type, :seidoku_memo_type,
       :selected_memos_count, :selected_memos, :selected_search_memo_type
 
-    def initialize(all_books:, randoku_memo_type:, seidoku_memo_type:, selected_search_value:)
+    def initialize(all_books:, randoku_memo_type:, seidoku_memo_type:, selected_search_value:, user_books:)
 
       @selected_search_value = selected_search_value
       @randoku_memo_type = randoku_memo_type
@@ -35,7 +35,7 @@ module ViewModel
       @selected_memos =
         if selected_memos.present?
           selected_memos.map { |memo|
-            book = Book.find_by(id: memo.book_id)
+            book = user_books.find_by(id: memo.book_id)
             ViewModel::SelectedMemo.new(memo: memo, book: book)
           }
         end
