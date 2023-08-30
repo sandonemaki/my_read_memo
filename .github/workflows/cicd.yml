@@ -33,6 +33,7 @@ jobs:
           POSTGRES_HOST: localhost
           POSTGRES_USER: ${{ secrets.DB_USER }}
           POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
         run: |
           bundle install
           bundle exec rake db:schema:load
