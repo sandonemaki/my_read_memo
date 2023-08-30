@@ -177,7 +177,7 @@ RSpec.describe Book, type: :model do
       end
 
       it 'detaermine_stateの戻り値が存在しない型のためエラーが出ること' do
-        expect { book.try_update_reading_state }.to raise_error
+        expect { book.try_update_reading_state }.to raise_error(TypeError)
         expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
     end
