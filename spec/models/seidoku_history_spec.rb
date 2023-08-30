@@ -2,7 +2,18 @@ require 'rails_helper'
 
 RSpec.describe SeidokuHistory, type: :model do
   describe '.set' do
-    let(:book) { Book.create(title: 'ダイニングタイトル', author_1: '東野智子', total_page: 100, reading_state: 1) }
+    # テスト用のUserオブジェクトを作成
+    before { @user = User.create!(auth0_id: 'auth0|1234', nickname: 'TestUser') }
+
+    let(:book) do
+      Book.create(
+        title: 'ダイニングタイトル',
+        author_1: '東野智子',
+        total_page: 100,
+        reading_state: 1,
+        user_id: @user.id,
+      )
+    end
 
     let(:new_path) { "books/#{book.id}" }
 
