@@ -28,7 +28,7 @@ RSpec.describe SeidokuHistory, type: :model do
     end
 
     context '精読ヒストリーのレコードが存在する場合' do
-      before { seidoku_history = SeidokuHistory.create(path: 'old_path', book_id: 1) }
+      before { SeidokuHistory.create(path: 'old_path', book_id: 1) }
 
       it '精読ヒストリーのレコードの数が変わらないこと' do
         expect { SeidokuHistory.set(new_path, book.id) }.not_to change { SeidokuHistory.count }
