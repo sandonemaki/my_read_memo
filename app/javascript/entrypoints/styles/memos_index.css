@@ -82,7 +82,7 @@
 .tabbed-memos-content {
   padding-bottom: 60px;
 }
-.tabbed-memos-content p {
+.tabbed-memo-no-content {
   text-align: center;
   margin-top: 32px;
   font-size: 20px;
@@ -165,8 +165,9 @@
     margin-bottom: 8px;
     font-size: 16px;
   }
-  .tabbed-memos-content p {
+  .tabbed-memo-no-content {
     margin-top: 52px;
+    font-size: 16px;
   }
   #img_read_status_count {
     font-size: 12px;
@@ -203,9 +204,7 @@
   .tabbed-memo-content {
     margin-top: 12px;
   }
-  .tabbed-memos-content p {
-    font-size: 16px;
-  }
+
   /******* ナビゲーション ********/
   .memo-edit-navi {
     right: 0px;
