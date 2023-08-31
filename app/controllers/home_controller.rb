@@ -33,6 +33,7 @@ class HomeController < ApplicationController
     # TODO: 1の部分に文字列"乱読"を入れる。text -> int に詰め替えるメソッド呼び出しにする
     all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
     all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
+    user_view_model = ViewModel::UserName.new(user: user)
     book_view_models =
       ViewModel::HomeMemoSearchResult.new(
         all_books: user_books.all,
@@ -46,6 +47,6 @@ class HomeController < ApplicationController
         # "seidoku[1-5]" 1-5:seidoku_memo_type
         selected_search_value: params[:selected_search_value].first,
       )
-    render('memo_search', locals: { search: book_view_models })
+    render('memo_search', locals: { search: book_view_models, user: user_view_model })
   end
 end
