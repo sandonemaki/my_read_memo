@@ -26,11 +26,11 @@
   text-decoration: none;
 }
 .book-input-info h1:hover {
-  color: #30c8d6;
+  color: #ffa935;
 }
 
 .book-input-info h1:hover .fa-pen-to-square {
-  color: #30c8d6;
+  color: #ffa935;
 }
 
 h1 .fa-pen-to-square {
@@ -77,28 +77,32 @@ h1 .fa-pen-to-square {
   align-items: center;
 }
 .book-progress-icon.show-tabs i {
-  font-size: 32px;
+  font-size: 28px;
   line-height: 1.5;
 }
 .book_reading_progress.show-tabs {
   margin-left: 12px;
   letter-spacing: 3.4px;
-  margin-left: 12px;
 }
 .fa-circle-question.show-tabs {
-  font-size: 20px;
-  margin-left: 6px;
+  font-size: 16px;
+  margin-left: 12px;
 }
 .seidoku-remaining-js {
   letter-spacing: 2px;
+  font-size: 18px;
+  color: #634d3a;
 }
 .seidoku-remaining-js.show-tab {
-  margin-bottom: 16px;
+  margin-bottom: 4px;
 }
 
 .sw_modal_trigger {
-  color: gray;
+  color: #ffa42d;
   font-size: 12px;
+}
+.sw_modal_trigger:hover {
+  color: #eb8d13;
 }
 .tabbed-content {
   padding-top: 24px;
@@ -108,7 +112,7 @@ h1 .fa-pen-to-square {
   z-index: 2;
 }
 .upload-file-form {
-  margin-top: 24px;
+  margin-top: 12px;
 }
 
 #upload-form {
@@ -116,18 +120,19 @@ h1 .fa-pen-to-square {
 }
 .upload-description {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 12px;
   font-size: 12px;
-  color: gray;
   line-height: 2;
 }
 .imgs-count {
   text-align: right;
+  margin-top: 12px;
 }
 .img-thumbnails {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 10px;
   padding-bottom: 60px;
 }
 .img-thumbnail {
@@ -184,7 +189,7 @@ h1 .fa-pen-to-square {
   /* 3つめはimgsエリアからの距離 */
   margin: 20px 0px 0px;
   position: relative;
-  margin-top: 80px;
+  margin-top: 68px;
 }
 
 .tab__underline {
@@ -196,7 +201,7 @@ h1 .fa-pen-to-square {
   justify-content: space-between;
   list-style: none;
   padding: 0;
-  border-bottom: 2px solid rgb(240, 244, 249); /*タブが移動する薄いライン*/
+  border-bottom: 2px solid #f0e2d6; /*タブが移動する薄いライン*/
   position: relative;
 }
 .tabbled-book-show .tabbed-show-work-area {
@@ -215,8 +220,8 @@ h1 .fa-pen-to-square {
   opacity: 1;
 }
 .seidoku_memo_key .lock-key {
-  color: #bac6d3;
   padding-right: 6px;
+  color: #b4aca9;
 }
 .seidoku-key-wrapper {
   display: flex;
@@ -225,7 +230,7 @@ h1 .fa-pen-to-square {
 /* タブパネル */
 .tab__panel {
   width: 100%;
-  background-color: #f2f4f7;
+  background-color: #f5f0ea;
 }
 
 .tab__panel-box {
@@ -255,6 +260,16 @@ h1 .fa-pen-to-square {
   .tabbled-book-show {
     margin-top: 60px;
   }
+
+  .fa-circle-question.show-tabs {
+    margin-left: 6px;
+  }
+  .book_reading_progress.show-tabs {
+    margin-left: 10px;
+  }
+  .book-progress-icon.show-tabs i {
+    font-size: 22px;
+  }
   .book-info-detail {
     width: 60%;
     margin-left: 0px;
@@ -274,7 +289,7 @@ h1 .fa-pen-to-square {
     width: 30%;
   }
   .seidoku-remaining-js.show-tab {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
   }
   /****タブ****/
   .tabbed-show-work-area {
@@ -299,7 +314,6 @@ h1 .fa-pen-to-square {
   }
   .tab-disabled {
     pointer-events: none;
-    opacity: 0.5;
   }
   /****アップロードボタンの下****/
   .upload-description {
@@ -318,17 +332,20 @@ h1 .fa-pen-to-square {
     width: 100%;
     margin-top: 0px;
   }
+  .img-info {
+    margin: 0px 18px 0px;
+  }
   .img-item-name {
     margin-top: 12px 0 8px 0;
   }
   .img-name {
-    font-size: 4.5vw;
+    font-size: 3.5vw;
   }
   .is_already_read_check {
     margin-right: 14px;
-    font-size: 7.5vw;
+    font-size: 6vw;
   }
   .img_bookmark_check {
-    font-size: 7.5vw;
+    font-size: 6vw;
   }
 }

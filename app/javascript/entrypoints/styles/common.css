@@ -27,11 +27,15 @@ h1 {
 .font-large {
   font-size: 32px;
 }
+
 .font-small-12 {
   font-size: 12px;
 }
 .font-small-14 {
   font-size: 14px;
+}
+.font-small-18 {
+  font-size: 18px;
 }
 .font-small-10 {
   font-size: 10px;
@@ -242,17 +246,17 @@ li {
 .upload-button {
   font-size: 0.875rem;
   display: inline-block;
-  padding: 10px 16px;
-  background-color: #30c8d6;
+  padding: 18px 90px;
+  background-color: #ffb551;
   color: #fff;
   text-align: center;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 6px;
   text-decoration: none;
   margin: auto;
 }
 .upload-button:hover {
-  background-color: rgb(35, 164, 176);
+  background-color: #ffa935;
 }
 .submit-button-radius {
   width: 120px;
@@ -386,6 +390,9 @@ li {
   .upload-button {
     padding: 20px 20px;
     width: 100%;
+  }
+  .font-large {
+    font-size: 24px;
   }
 
   /* グローバルスライドメニュー */

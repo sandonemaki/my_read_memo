@@ -3,10 +3,10 @@
     <p class="seidoku-remaining-js show-tab">
       <%= book.remaining %>
     </p>
-    <p id="img_read_status_count font-small-12">
-      （精読基準：乱読画像メモ
-      <span class="book_seidoku_line_1"><%= book.seidoku_line_1 %></span>枚以上、未読の乱読画像メモ
-      <span class="book_seidoku_line_2"><%= book.seidoku_line_2 %></span>枚未満）
+    <p id="img_read_status_count" class="font-small-12">
+      精読基準：乱読画像メモ
+      <span class="book_seidoku_line_1 font-small-12"><%= book.seidoku_line_1 %></span>枚以上、未読の乱読画像メモ
+      <span class="book_seidoku_line_2 font-small-12"><%= book.seidoku_line_2 %></span>枚未満
     </p>
     <% if book.first_post_img_path.present? %>
       <%=
@@ -73,7 +73,7 @@
                 <p class="is_already_read_check" data-img-id="<%= img.id %>">
                   <%=
                     if img.alreadyread == 0
-                      '<i class="fa-regular fa-square-check thumb-nocheck"></i>'.html_safe
+                      '<i class="fa-regular fa-square thumb-nocheck"></i>'.html_safe
                     else
                       '<i class="fa-solid fa-square-check  thumb-check"></i>'.html_safe
                     end

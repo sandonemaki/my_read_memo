@@ -1,29 +1,31 @@
 <div class="main-content-js inner tabbed-content tabbed-content-memos-inner">
-  <div>
-    <p class="seidoku_status_count">
-      精読メモ：著者の意見<span><%= book.seidoku_memo_author_opinion_count %></span> 自分の意見<span><%=
-          book.seidoku_memo_my_opinion_count
-        %></span>
-      <i class="fa-solid fa-circle-info fa-lg"></i>
-    </p>
-  </div>
+  <div class="seidoku-tabbed-inner-header">
+    <div>
+      <p class="seidoku_status_count">
+        著者の意見<span><%= book.seidoku_memo_author_opinion_count %></span> 自分の意見<span><%=
+            book.seidoku_memo_my_opinion_count
+          %></span>
+        <i class="fa-solid fa-circle-info fa-lg"></i>
+      </p>
+    </div>
 
-  <!--<div class="memo-count-info">-->
-  <div class="show-memo-plus-count">
-    <p>Total <%= book.seidoku_memos_all_count %>枚</p>
-    <div class="show-memo-plus-btn color-darkgray">
-      <%=
-        link_to(
-          '<i class="fa-solid fa-circle-plus fa-2xl memo-plus-btn"></i>'.html_safe,
-          "/books/#{book.id}/seidoku_memos/new",
-        )
-      %>
+    <!--<div class="memo-count-info">-->
+    <div class="show-memo-plus-count">
+      <p>Total <%= book.seidoku_memos_all_count %>枚</p>
+      <div class="show-memo-plus-btn">
+        <%= link_to "/books/#{book.id}/seidoku_memos/new" do %>
+          <div class="icon-container">
+            <i class="fa-solid fa-circle memo-plus-btn"></i>
+            <i class="fa-solid fa-feather-pointed memo-plus-btn overlay"></i>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
   <div class="tabbed-memos-content">
     <% if !book.seidoku_memos.present? %>
-      <p>"まだ精読メモがありません"</p>
+      <p>まだ精読メモがありません</p>
     <% else %>
       <% book.seidoku_memos.each_with_index do |memo| %>
         <div class="tabbed-memo-content">

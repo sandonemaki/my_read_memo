@@ -5,18 +5,30 @@
   background-color: white;
 }*/
 .book-show-upper-inner {
-  padding-top: 40px;
+  padding-top: 48px;
   margin: 0 auto;
 }
 #img_read_status_count span {
-  border-radius: 50%;
-  background-color: white;
-  padding: 4px 6.75px;
+  padding: 0px 6px 0px 3px;
+}
+#img_read_status_count {
+  margin-bottom: 20px;
+}
+.seidoku-tabbed-inner-header {
+  display: flex;
+  justify-content: space-between;
+}
+.seidoku_status_count {
+  letter-spacing: 2px;
+  font-size: 18px;
+  color: #634d3a;
 }
 .seidoku_status_count span {
-  border-radius: 50%;
-  background-color: white;
-  padding: 4px 6.75px;
+  padding: 0px 6px;
+}
+.seidoku_status_count i {
+  font-size: 16px;
+  vertical-align: inherit;
 }
 .show-memo-plus-count {
   display: flex;
@@ -26,22 +38,42 @@
 .show-memo-plus-btn {
   position: relative;
   cursor: pointer;
-  margin-left: 12px;
+  margin-left: 20px;
   vertical-align: middle;
+  font-size: 58px;
 }
+.memo-plus-btn:hover {
+  color: #634d3a;
+}
+.memo-plus-btn.overlay {
+  font-size: 20px;
+  color: white;
+}
+.icon-container {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .memo-plus-btn {
-  vertical-align: middle;
+  text-align: center;
 }
 
 .tabbed-content {
   padding-top: 24px;
   /*background-color: #fff;*/
-  background-color: #f2f4f7;
+  /*background-color: #f2f4f7;*/
   z-index: 1;
   position: relative;
   /*border-top: 2px solid #e9edf1;*/
   z-index: 2;
 }
+
 .tabbed-content-bk {
   background-color: #f2f4f7;
 }
@@ -50,6 +82,12 @@
 .tabbed-memos-content {
   padding-bottom: 60px;
 }
+.tabbed-memos-content p {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 20px;
+}
+
 .tabbed-memo-content {
   /*border: 1px solid gray;*/
   border-radius: 8px;
@@ -120,28 +158,53 @@
 /**** モバイル版 *****/
 /***** memos-new ****/
 @media screen and (max-width: 600px) {
+  .seidoku-tabbed-inner-header {
+    display: inherit;
+  }
+  .seidoku_status_count {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+  .tabbed-memos-content p {
+    margin-top: 52px;
+  }
   #img_read_status_count {
     font-size: 12px;
+    margin-bottom: 12px;
   }
   .show-memo-plus-count {
-    margin-top: 20px;
+    margin-top: 0px;
     text-align: right;
+  }
+  .show-memo-plus-count p {
+    padding-top: 0px;
   }
   .sw_modal_trigger {
     /*margin-top: 12px;*/
     display: inline-block;
+    margin-bottom: 24px;
   }
+  .fa-circle.memo-plus-btn {
+    font-size: 60px;
+  }
+  .overlay {
+    top: 50%;
+  }
+
   .show-memo-plus-btn {
     position: fixed;
     right: 18px;
-    bottom: 32px;
+    bottom: 20px;
     z-index: 1;
     font-size: 1.75em;
     justify-content: end;
-    text-shadow: 0px 1px 20px rgba(0, 0, 0, 0.15);
+    text-shadow: 0px 1px 20px rgba(219, 193, 171, 0.5);
   }
   .tabbed-memo-content {
     margin-top: 12px;
+  }
+  .tabbed-memos-content p {
+    font-size: 16px;
   }
   /******* ナビゲーション ********/
   .memo-edit-navi {
