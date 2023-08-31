@@ -170,6 +170,7 @@ li {
 .user-menu {
   /*margin-bottom: 14px;*/
   display: block;
+  background-color: #faf7f4;
 }
 
 .user-menu:hover,

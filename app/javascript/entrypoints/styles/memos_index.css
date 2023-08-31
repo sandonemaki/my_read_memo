@@ -93,7 +93,7 @@
   border-radius: 8px;
   padding: 24px 28px;
   margin-top: 16px;
-  background-color: #fff;
+  background-color: #faf7f4;
   position: relative;
 }
 .memo-content-header {
@@ -141,7 +141,6 @@
   opacity: 1;
 }
 .edit-menu .button {
-  color: rgb(43, 84, 106);
   font-size: 14px;
   line-height: 1.7;
   text-decoration: none;
@@ -151,9 +150,10 @@
 }
 .edit-menu {
   display: block;
+  background-color: #faf7f4;
 }
 .edit-menu:hover {
-  background-color: #f3f4f5;
+  background-color: #f9f5f1;
 }
 /**** モバイル版 *****/
 /***** memos-new ****/
