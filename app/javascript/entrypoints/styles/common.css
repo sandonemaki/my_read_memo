@@ -85,7 +85,7 @@ li {
 .header-wrapper {
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 1px 3px #e3e1e1;
+  box-shadow: 0 1px 3px #ede1d7;
   font-size: 0.75rem;
   position: relative; /* ポジションをrelativeまたはabsoluteに設定 */
   /*z-index: 1000; */ /* z-indexを高い値に設定 */
@@ -239,8 +239,8 @@ li {
 }
 .submit-button:disabled {
   transition: all 0.3s ease-in-out 0s;
-  color: rgba(186, 198, 211, 0.6);
-  background-color: rgb(240, 244, 249);
+  color: rgba(180, 172, 169, 0.6);
+  background-color: rgb(245, 240, 234);
 }
 
 .upload-button {
@@ -336,7 +336,7 @@ li {
   width: 100%;
   padding: 0px 16px;
   background-color: #f9f5f1;
-  border: 1px solid #b69b83;
+  border: 1px solid #dbc1ab;
   border-radius: 3px;
   color: #403f3d;
   font-size: 0.75rem;
@@ -348,11 +348,11 @@ li {
 .memo-input-textarea {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid #d0d5d8;
+  border: 1px solid #dbc1ab;
   padding: 24px 20px;
 }
 .memo-input-textarea::placeholder {
-  color: lightgray;
+  color: #d0b6a0;
 }
 
 /**** 画面の横幅 ****/
