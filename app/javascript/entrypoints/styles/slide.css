@@ -402,7 +402,7 @@
   left: 50%;
   margin-left: -18px;
   border: 17px solid transparent;
-  border-top: 15px solid #373737;
+  border-top: 15px solid #634d3a;
 }
 
 .balloon p {
@@ -412,8 +412,8 @@
 }
 
 .totalpage-btn {
-  background-color: #35b7e4;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  background-color: #907660;
+  text-shadow: 0 1px 1px #634d3a;
   color: #fff;
   font-size: 0.75rem;
   letter-spacing: 0.04em;
@@ -427,14 +427,18 @@
   border: none;
   border-radius: 3px 3px 0 0;
 }
+.totalpage-btn:hover {
+  background-color: #634d3a;
+}
 .totalpage-btn > span {
   color: #fff;
   padding-left: 4px;
 }
-.totalpage-btn img {
-  width: 20px;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+.fa-book-open-reader.slide {
+  font-size: 14px;
+  filter: drop-shadow(0 1px 1px #634d3a);
   margin-right: 4px;
+  color: white;
 }
 
 /****モーダルのトータルページ更新****/
