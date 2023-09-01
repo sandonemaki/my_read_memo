@@ -90,7 +90,7 @@ h1 .fa-pen-to-square {
 }
 .seidoku-remaining-js {
   letter-spacing: 2px;
-  font-size: 18px;
+  font-size: 14px;
   color: #634d3a;
 }
 .seidoku-remaining-js.show-tab {
@@ -161,7 +161,7 @@ h1 .fa-pen-to-square {
 .img-info {
   display: flex;
   justify-content: space-between;
-  margin: 4px 18px 18px 18px;
+  margin: 12px 18px 18px 18px;
 }
 
 .img-item-name {
@@ -181,6 +181,7 @@ h1 .fa-pen-to-square {
 }
 .img-name {
   margin-bottom: 4px;
+  font-size: 14px;
 }
 
 /*1*/
