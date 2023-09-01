@@ -1,6 +1,9 @@
 .memo-search-bk {
   background-color: #f0e2d6;
 }
+.search-result-bk {
+  min-height: calc(100vh - 48px);
+}
 .memo-search-result-white {
   background-color: #faf7f4;
 }
@@ -89,11 +92,12 @@
   background-color: #faf7f4;
 }
 .memo-search-bk {
-  flex: 1;
+  /*flex: 1;*/
 }
 @media screen and (max-width: 600px) {
   .memo-search-bk {
     width: 100%;
+    flex: 1;
   }
   #search-select {
     width: 100%;
