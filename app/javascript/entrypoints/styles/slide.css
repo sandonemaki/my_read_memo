@@ -1,6 +1,3 @@
-.sw-modal {
-  color: #35b7e4;
-}
 /**** seidoku-tab ****/
 /* hiddenクラスで鍵が表示されないようにする */
 .fa-lock.memo_key_hidden {
@@ -125,11 +122,12 @@
   top: inherit;
   bottom: inherit;
   z-index: inherit;
-  color: #35b7e4;
-  font-size: 25px;
+  color: #907660;
+  font-size: 20px;
 }
 .swiper-pagination-current {
   margin-right: -4px;
+  color: #907660;
 }
 
 .swiper-pagination-total {
@@ -151,19 +149,19 @@
   margin-left: 50px;
 }
 .book-progress.slide .book-progress-icon i {
-  font-size: 35px;
+  font-size: 20px;
   line-height: 1.5;
 }
 
 .book_reading_progress.slide {
-  font-size: 34px;
+  font-size: 28px;
   margin-left: 12px;
   letter-spacing: 4px;
 }
 
 .sw_book_title {
   font-size: 14px;
-  color: #35b7e4;
+  color: #907660;
   font-weight: bold;
   position: absolute;
   top: 50%;
@@ -182,10 +180,10 @@
 /**** bookmark ****/
 .sw_bookmark_btn {
   display: flex;
-  color: #35b7e4;
+  color: #907660;
   transition: 0.5s;
   margin: 0 20px;
-  font-size: 38px;
+  font-size: 30px;
   justify-content: flex-end;
 }
 
@@ -200,10 +198,16 @@
 .zoom-controls {
   margin-right: 16px;
   display: flex;
-  color: #35b7e4;
+  color: #907660;
   height: 100%;
   align-items: center;
-  font-size: 34px;
+  font-size: 30px;
+}
+.download-btn .slide-while {
+  font-size: 30px;
+}
+.img_delete_btn .slide-while {
+  font-size: 30px;
 }
 
 /**** モーダル *** */
@@ -217,8 +221,8 @@
 }
 .sw-reveal-wrapper {
   /* 全面モーダルの内側 */
-  background: -moz-radial-gradient(center, circle cover, #f2fcff 0%, #b5dbe4 100%);
-  background: -webkit-radial-gradient(center, circle cover, #f2fcff 0%, #b5dbe4 100%);
+  background: -moz-radial-gradient(center, circle cover, #f9f5f1 0%, #f5f0ea 100%);
+  background: -webkit-radial-gradient(center, circle cover, #f9f5f1 0%, #f5f0ea 100%);
   /*background: -o-radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
   /*background: -ms-radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
   /*background: radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
@@ -254,7 +258,6 @@
   text-align: center;
   width: 48px;
   height: 48px;
-  color: #35b7e4;
   font-size: 34px;
   margin-right: 14px;
   margin-top: -29px;
@@ -273,7 +276,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(99, 77, 58, 0.8);
   z-index: 0;
   opacity: 0;
   visibility: hidden;
@@ -484,6 +487,7 @@
 }
 .seidoku-remaining-js.slide {
   margin-left: 50px;
+  margin-top: 8px;
 }
 .seidoku-remaining-js.total-modal {
   margin-bottom: 12px;
@@ -534,10 +538,10 @@
   cursor: pointer;
 }
 .print {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   letter-spacing: 0.4px;
-  color: #35b7e4;
+  color: #907660;
   margin-left: 10px;
 }
 
@@ -553,7 +557,7 @@
 .sw_bookmark_btn,
 .sw-read-btn,
 .totalpage-btn {
-  color: #35b7e4;
+  color: #907660;
 }
 
 .download-btn:hover > .fa-regular:hover,
@@ -563,13 +567,14 @@
 .zoomReset > .fa-solid:hover,
 .swiper-button-prev:hover,
 .swiper-button-next:hover,
-.sw-close-button > .fa-solid:hover,
-.sw_bookmark_btn > .fa-regular:hover {
-  color: #2090b6 !important;
+.sw-close-button > .fas:hover,
+.sw_bookmark_btn > .fa-regular:hover,
+.fa-bookmark.bookmark-icon.fa-solid:hover {
+  color: #634d3a !important;
 }
 
 .totalpage-btn:hover {
-  background-color: #2090b6;
+  background-color: #634d3a;
 }
 
 .slide-while {
@@ -794,8 +799,6 @@
   .submit-button-radius {
     width: 110px;
     height: 38px;
-    border: 2px solid #35b7e4;
-    color: #35b7e4;
   }
   /****ブックマーク****/
   .sp_sw_img_footer_1 {

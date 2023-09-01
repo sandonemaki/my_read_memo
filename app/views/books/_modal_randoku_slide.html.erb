@@ -108,13 +108,15 @@
               <!-- jsで利用 -->
               <div class="book_reading_progress slide"><%= book.reading_progress %></div>
             </div>
+            <!--<p class="sw_book_title">[object Object]</p>-->
             <p class="seidoku-remaining-js slide">
               <%= book.remaining %>
             </p>
           </div>
-          <p class="sw_book_title"><%= book.title %></p>
+
           <button id="sw-close-btn" class="sw-close-button sw-close-btn-js">
-            <i class="fa-solid fa-circle-xmark color-darkgreen"></i>
+            <i class="fas fa-times-circle"></i>
+            <!--<i class="fa-solid fa-circle-xmark color-darkgreen"></i>-->
           </button>
         </div>
 
@@ -122,7 +124,7 @@
         <div class="sp_modal_header">
           <div>
             <div class="book-progress slide">
-              <p class="sw_book_title tap-none-js tap-none-js"><%= book.title %></p>
+              <!--<p class="sw_book_title tap-none-js tap-none-js">[object Object]</p>-->
               <!-- jsで利用 -->
               <div class="book_reading_progress slide tap-none-js"><%= book.reading_progress %></div>
               <p class="seidoku-remaining-js slide tap-none-js">
@@ -131,7 +133,7 @@
             </div>
           </div>
           <button id="sw-close-btn" class="sw-close-button sw-close-btn-js tap-none-js">
-            <i class="fa-solid fa-circle-xmark color-darkgreen"></i>
+            <i class="fa-solid fa-circle-xmark"></i>
           </button>
         </div>
 

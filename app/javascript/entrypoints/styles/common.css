@@ -261,22 +261,27 @@ li {
   background-color: #ffa935;
 }
 .submit-button-radius {
-  width: 120px;
+  width: 112px;
   height: 40px;
-  border: 3px solid #35b7e4;
-  color: #35b7e4;
+  border: 2px solid #907660;
+  color: #907660;
   border-radius: 100vh;
   transition: 0.5s;
   margin: 0 20px;
   letter-spacing: 1px;
 }
 .submit-button-radius:hover {
-  border: 3px solid #2090b6;
-  color: #2090b6;
+  border: 2px solid #634d3a;
+  color: #634d3a;
 }
 .submit-button-radius.completion {
   color: #fff;
-  background: #35b7e4;
+  background: #907660;
+  border: 2px solid #907660;
+}
+.submit-button-radius.completion:hover {
+  background: #634d3a;
+  border: 2px solid #634d3a;
 }
 /* タブのアンダーライン */
 #underline {
