@@ -8,7 +8,7 @@
     <p class="no-rank-book">乱読中の本がありません</p>
   <% end %>
 
-  <% books_rank.books_index_rank.each_with_index do |book, i| %>
+  <% books_rank.books_index_rank.each do |book| %>
     <div class="index-user-book-info">
       <div class="index-user-book">
         <%= link_to "/books/#{book[:id]}" do %>

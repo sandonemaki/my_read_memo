@@ -186,6 +186,16 @@
   font-size: 16px;
   margin-left: 8px;
 }
+.no-rank-book {
+  margin-top: 32px;
+  margin-bottom: 60px;
+  font-size: 20px;
+}
+.no-history {
+  margin-top: 32px;
+  margin-bottom: 60px;
+  font-size: 20px;
+}
 .index-user-book-info {
   display: flex;
   justify-content: space-between;
@@ -319,7 +329,13 @@
   }
   /* ランキングボタン */
   .rank-title {
-    font-size: 16px;
+    font-size: 18px;
+  }
+  .no-rank-book {
+    font-size: 18px;
+  }
+  .no-history {
+    font-size: 18px;
   }
   .SP-index-ranking-btn {
     display: flex;

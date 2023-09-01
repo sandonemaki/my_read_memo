@@ -5,9 +5,7 @@
   </div>
 
   <% if books_rank.books_index_rank.empty? %>
-    <p>乱読本がありません</p>
-  <% elsif books_rank.books_index_rank.empty? %>
-    <p>乱読画像が投稿されていません</p>
+    <p class="no-rank-book">精読中の本がありません</p>
   <% end %>
 
   <% books_rank.books_index_rank.each do |book| %>
