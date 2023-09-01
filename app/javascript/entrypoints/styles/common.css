@@ -15,7 +15,7 @@ main {
   padding-bottom: 60px;
 }
 .common-footer {
-  border-top: 1px solid #eee;
+  /*border-top: 1px solid #eee;*/
   padding: 12px 0 40px 0;
   font-size: 0.625rem;
   text-align: center;
@@ -88,6 +88,7 @@ li {
   box-shadow: 0 1px 3px #ede1d7;
   font-size: 0.75rem;
   position: relative; /* ポジションをrelativeまたはabsoluteに設定 */
+  z-index: 3;
   /*z-index: 1000; */ /* z-indexを高い値に設定 */
 }
 .header-menus {
@@ -368,15 +369,19 @@ li {
 .global-sidebar {
   display: none;
 }
-.main-content-js {
+.main-content-js.tabbed-content {
   min-height: calc(100vh - 48px);
+  background-color: #f5f0ea;
+}
+.main-content-js.book-show-upper-inner {
+  background-color: #faf7f4;
 }
 @media screen and (max-width: 600px) {
   main {
-    background-color: #fff;
+    background-color: #faf7f4;
   }
   .common-footer {
-    background-color: #fff;
+    background-color: #faf7f4;
   }
   .header-menus-wrapper {
     display: none;
@@ -441,12 +446,11 @@ li {
   /* メニューバーを出すためにheadrとmainコンテンツに背景色をつけてjsで左に動かす*/
   .main-content-js {
     transition: transform 400ms ease;
-    background-color: #fff; /* 背景色を指定 */
     min-height: calc(100vh - 48px);
   }
   #header-content-js {
     transition: transform 400ms ease;
-    background-color: #fff; /* 背景色を指定 */
+    background-color: #faf7f4; /* 背景色を指定 */
   }
   /* グローバルメニュー */
   .global-sidebar__user-info li {

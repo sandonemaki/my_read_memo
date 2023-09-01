@@ -307,7 +307,6 @@ h1 .fa-pen-to-square {
     margin: 0 auto;
   }
   .tab__panel {
-    background-color: inherit;
   }
   .seidoku_memo_key .lock-key {
     padding-right: 4px;
@@ -334,6 +333,7 @@ h1 .fa-pen-to-square {
   }
   .img-info {
     margin: 0px 18px 0px;
+    padding-bottom: 18px;
   }
   .img-item-name {
     margin-top: 12px 0 8px 0;
