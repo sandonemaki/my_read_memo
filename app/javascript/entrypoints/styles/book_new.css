@@ -52,16 +52,19 @@
   margin-bottom: 30px;
 }
 .input-total-page {
-  background-color: white;
+  background-color: #faf7f4;
   width: 40%;
-  border-radius: 12px;
+  border-radius: 20px;
   text-align: center;
   vertical-align: middle;
   padding: 0px 10px 0 24px;
-  border: 1px solid #f9f5f1;
+  border: 1px solid white;
   height: 70px;
   font-size: 32px;
   cursor: pointer;
+}
+.input-total-page.slide {
+  border: 1px solid #907660;
 }
 .submit-button.book-info-submit-js {
   margin: auto;

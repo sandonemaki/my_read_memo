@@ -333,7 +333,7 @@
   width: 100%;
   max-width: 600px;
   padding: 16px;
-  background-color: white;
+  background-color: #faf7f4;
   border-radius: 3px;
   /*transform: scale(0.9);*/
   transform: translateY(40px);
@@ -346,7 +346,7 @@
   top: 24px;
   right: 24px;
   font-size: 1.5em;
-  color: rgb(132, 145, 165);
+  color: #907660;
   cursor: pointer;
   font-style: normal;
 }
@@ -445,7 +445,7 @@
 .ModalContent.slide {
   padding: 50px 0px;
   width: 88%;
-  padding: 60px 0;
+  padding: 64px 32px;
   text-align: center;
 }
 .modal-total-page.slide {
@@ -468,7 +468,7 @@
 
 .submit-button.slide {
   margin: auto;
-  width: 40%;
+  width: 60%;
   align-items: center;
   height: 60px;
 }
@@ -495,7 +495,8 @@
 }
 .seidoku-remaining-js.total-modal {
   margin-bottom: 12px;
-  font-size: 20px;
+  font-size: 16px;
+  color: #907660;
 }
 
 /**** panzoomで使う枠 ****/
@@ -836,7 +837,7 @@
   .ModalCloseButton {
     top: 16px;
     right: 16px;
-    font-size: 1em;
+    font-size: 24px;
   }
   .total-page-title.slide {
     font-size: 6vw;
@@ -859,7 +860,7 @@
     font-size: 3vw;
   }
   .submit-button.slide {
-    width: 60%;
+    width: 100%;
   }
   .sp-touchpoint-js {
     width: 100%;
