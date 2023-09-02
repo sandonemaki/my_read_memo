@@ -308,6 +308,7 @@ h1 .fa-pen-to-square {
     margin: 0 auto;
   }
   .tab__panel {
+    background-color: rgb(255, 255, 255, 0);
   }
   .seidoku_memo_key .lock-key {
     padding-right: 4px;
