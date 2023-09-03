@@ -43,3 +43,13 @@
 .col-dark-orange {
   color: #ffa935;
 }
+/* popup ベースはcol-offwhite */
+.col-pop-pink {
+  color: #fdc0be;
+}
+.col-pop-orange {
+  color: #ffb551;
+}
+.col-pop-yellow {
+  color: #f5d872;
+}

@@ -3,19 +3,20 @@
 .fa-lock.memo_key_hidden {
   display: none;
 }
-/**** popup_seidoku ****/
+
+/****精読乱読のジャッジpopup ****/
 .judge-popup {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   position: fixed;
-  width: 600px;
+  width: 780px;
   bottom: 8px;
   right: 8px;
   padding: 32px;
   box-sizing: border-box;
-  background-color: #f9fbfe;
+  background-color: #faf7f4;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  border-left: 8px solid #30c8d6;
-  border-radius: 3px;
+  border-left: 20px solid #ffb551;
+  border-radius: 20px;
   z-index: 80;
 }
 
@@ -27,31 +28,59 @@
 #judged-seidoku,
 #judged-tudoku,
 #judged-randoku {
-  border-left: 8px solid #30c8d6;
-  border-radius: 3px;
+  border-radius: 20px;
   z-index: 100000;
 }
-
+/**** popupのコンテンツ ****/
+.judge-popup-content {
+  display: flex;
+  padding-left: 8px;
+}
+.judge-pupup-illust {
+  width: 17%;
+  height: auto;
+  margin-right: 20px;
+}
 .judge-popup__close {
   transition: opacity 0.2s;
   position: absolute;
-  top: 16px;
+  font-size: 22px;
+  top: 10px;
   right: 16px;
-  color: #647288;
   cursor: pointer;
 }
-
 .judge-popup__title {
-  font-size: 2rem;
-  color: #ff708f;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
+  font-size: 24px;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+/* popupの色を状態によって変更 */
+#judged-seidoku {
+  border-left: 20px solid #ffb551;
+}
+#judged-seidoku .judge-popup__title {
+  color: #ffb551;
+}
+#judged-randoku {
+  border-left: 20px solid #fec4c2;
+}
+#judged-randoku .judge-popup__title {
+  color: #907660;
+}
+#judged-randoku .judge-pupup-illust {
+  padding-bottom: 12px;
+}
+#judged-tudoku {
+  border-left: 20px solid #f5e072;
+}
+#judged-tudoku .judge-popup__title {
+  color: #907660;
 }
 
 .judge-popup__message {
-  color: #647288;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.75;
+  letter-spacing: 1px;
 }
 
 /**** swiper ****/
@@ -221,8 +250,8 @@
 }
 .sw-reveal-wrapper {
   /* 全面モーダルの内側 */
-  background: -moz-radial-gradient(center, circle cover, #f9f5f1 0%, #f5f0ea 100%);
-  background: -webkit-radial-gradient(center, circle cover, #f9f5f1 0%, #f5f0ea 100%);
+  background: -moz-radial-gradient(center, circle cover, #fff 0%, #f5f0ea 100%);
+  background: -webkit-radial-gradient(center, circle cover, #fff 0%, #f5f0ea 100%);
   /*background: -o-radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
   /*background: -ms-radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
   /*background: radial-gradient(center, circle cover, #f2fcff 0%, #add9e4 100%);*/
@@ -258,7 +287,7 @@
   text-align: center;
   width: 48px;
   height: 48px;
-  font-size: 34px;
+  font-size: 32px;
   margin-right: 14px;
   margin-top: -29px;
 }
@@ -276,7 +305,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(99, 77, 58, 0.8);
+  background-color: rgba(168, 155, 146, 0.9);
   z-index: 0;
   opacity: 0;
   visibility: hidden;
@@ -641,16 +670,6 @@
     display: none;
   }
 
-  /****精読乱読のジャッジpopup ****/
-  .judge-popup {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-    position: fixed;
-    bottom: 8px;
-    left: 8px;
-    right: 8px;
-    width: auto;
-  }
-
   /**** スライドの水色背景 ****/
   .sw-reveal-wrapper {
     top: 0px;
@@ -868,5 +887,21 @@
     position: absolute;
     top: 0;
     left: 0;
+  }
+  /* judge-popup */
+  .judge-popup {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    width: auto;
+  }
+  .judge-popup-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0px;
+  }
+  .judge-pupup-illust {
+    width: 38%;
   }
 }
