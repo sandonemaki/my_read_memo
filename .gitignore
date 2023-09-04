@@ -58,12 +58,8 @@ app/ID
 tags
 
 # 230226一旦git管理からはずした
-public/
-!/public/illust/*
-!public/default_user_image.jpg
-!public/default_book.png
-!public/key-lock.svg
-!public/sort.svg
+# 全ての数字で始まるディレクトリを無視
+public/[0-9]*
 app/views/tmp
 app/controllers/test_controller.rb
 app/controllers/tmp_controller.rb
