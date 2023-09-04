@@ -149,12 +149,14 @@ class BooksController < ApplicationController
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
     seidoku_index_common_view_models =
       ViewModel::BooksSeidokuIndexCommon.new(
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankCreatedBooks.new(all_randoku_state_books: all_randoku_state_books)
@@ -190,12 +192,14 @@ class BooksController < ApplicationController
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
     seidoku_index_common_view_models =
       ViewModel::BooksSeidokuIndexCommon.new(
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
 
     randoku_index_rank_view_models =
@@ -233,12 +237,14 @@ class BooksController < ApplicationController
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
     seidoku_index_common_view_models =
       ViewModel::BooksSeidokuIndexCommon.new(
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
@@ -275,6 +281,7 @@ class BooksController < ApplicationController
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
 
     seidoku_index_common_view_models =
@@ -282,6 +289,7 @@ class BooksController < ApplicationController
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
@@ -318,12 +326,14 @@ class BooksController < ApplicationController
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
     seidoku_index_common_view_models =
       ViewModel::BooksSeidokuIndexCommon.new(
         all_randoku_state_books: all_randoku_state_books,
         all_seidoku_state_books: all_seidoku_state_books,
         all_books_count: all_books_count,
+        user_books: user_books,
       )
     randoku_index_rank_view_models =
       ViewModel::BooksRandokuIndexRankMostImgs.new(all_randoku_state_books: all_randoku_state_books)
