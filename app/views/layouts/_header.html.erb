@@ -4,9 +4,10 @@
     <li>
       <%= link_to '/users/account_setting' do %>
         <div class="global-sidebar__user-image">
-          <div class="profile-image" style="background-image: url('/default_user_image.jpg')"></div>
+          <div class="profile-image" style="background-image: url('/illust/profile_owl.png')"></div>
         </div>
-        <%= link_to user.nickname, '/users/account_setting' %>
+        <%= link_to user.nickname, '/users/account_setting', class: "sm-slide-nickname" %>
+
       <% end %>
     </li>
   </ul>
@@ -51,9 +52,9 @@
     <button class="pc-user-info-btn navi-trigger-btn-js">
       <div class="user-dropdown">
         <img
-          src="/default_user_image.jpg"
+          src="/illust/profile_owl.png"
           width="33"
-          height="33"
+          height="auto"
           alt="ユーザーアイコン"
           class="default-user-icon-img"
         />

@@ -487,13 +487,14 @@ li {
   .profile-image {
     display: inline-block;
     vertical-align: middle;
-    width: 33px;
-    height: 33px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: 1px solid rgba(209, 211, 223, 0.44);
     background-size: cover;
     background-position: center;
   }
+
   .global-sidebar__user-info a {
     display: inline-block;
     padding: 0;
@@ -505,5 +506,8 @@ li {
     padding: 10px;
     line-height: 30px;
     letter-spacing: 0.1em;
+  }
+  .sm-slide-nickname {
+    padding-left: 0px;
   }
 }
