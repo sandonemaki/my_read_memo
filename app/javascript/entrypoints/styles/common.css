@@ -331,10 +331,13 @@ li {
   border-radius: 50%;
   bottom: -5px;
   right: -13px;
-  background-color: rgb(48, 200, 214);
+  background-color: #ffb551;
   width: 38px;
   height: 38px;
   cursor: pointer;
+}
+.circle-btn:hover {
+  background-color: #ffa935;
 }
 
 /**** 背景色 *****/
