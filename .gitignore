@@ -59,7 +59,7 @@ tags
 
 # 230226一旦git管理からはずした
 public/
-!public/illust
+!public/illust/*
 !public/default_user_image.jpg
 !public/default_book.png
 !public/key-lock.svg
