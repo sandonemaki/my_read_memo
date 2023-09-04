@@ -22,7 +22,7 @@
           <div class="ModalContent slide">
             <i class="ModalCloseButton fa-solid fa-xmark" aria-hidden="true"></i>
             <div class="modal-total-page slide">
-              <p class="total-page-title slide">読書する本のページ数</p>
+              <p class="total-page-title slide">読書する本のページ数の更新</p>
               <p class="total-page-description slide">
                 これから読む本のページ数を入力してください。<br />
                 「さらさら読書」「じっくり読書」をジャッジします。<br />
@@ -40,7 +40,7 @@
               />
               <p id="total_page_valid_error_slide"></p>
               <div class="cirremt-total-page-wrap">
-                <p class="current-total-page-text">現在読む予定</p>
+                <p class="current-total-page-text">読書ページ数</p>
                 <p class="current-total-page">
                   <span class="js-update-current-total-page"><%= book.total_page %></span>
                   <span class="total-page-unit">P</span>
@@ -50,9 +50,9 @@
                 <%= book.remaining %>
               </p>
               <p id="img_read_status_count" class="font-small-12">
-                精読基準：乱読画像メモ
+                じっくり読書の基準：画像メモが
                 <span class="book_seidoku_line_1 font-small-12"><%= book.seidoku_line_1 %></span
-                >枚以上、未読の乱読画像メモ
+                >枚以上、未読の画像メモが
                 <span class="book_seidoku_line_2 font-small-12"><%= book.seidoku_line_2 %></span>枚未満
               </p>
             </div>
