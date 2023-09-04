@@ -37,11 +37,11 @@ RSpec.describe Book, type: :model do
       end
     end
 
-    context '読む予定のページ数が存在しないとき' do
+    context '読書する本のページ数が存在しないとき' do
       let(:total_page) { nil }
       it 'バリデーションエラーが発生すること' do
         valid?
-        expect(book.errors[:total_page]).to include('読む予定のページ数を入力してください')
+        expect(book.errors[:total_page]).to include('読書する本のページ数を入力してください')
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Book, type: :model do
       end
     end
 
-    context '読む予定のページ数は1000ページであるとき' do
+    context '読書する本のページ数は1000ページであるとき' do
       let(:total_page) { 1000 }
       it 'バリデーションエラーが発生すること' do
         valid?
@@ -76,7 +76,7 @@ RSpec.describe Book, type: :model do
   # テスト用のUserオブジェクトを作成
   before { @user = User.create!(auth0_id: 'auth0|1234', nickname: 'TestUser') }
 
-  it 'タイトル、著者、読む予定のページ数があれば有効な状態であること' do
+  it 'タイトル、著者、読書する本のページ数があれば有効な状態であること' do
     book = Book.new(title: 'ダイニングタイトル', author_1: '東野智子', total_page: 100, user_id: @user.id)
     expect(book).to be_valid
   end
@@ -91,7 +91,7 @@ RSpec.describe Book, type: :model do
     expect(book.valid?).to eq false
   end
 
-  it '読む予定のページ数が存在しなければ無効な状態であること' do
+  it '読書する本のページ数が存在しなければ無効な状態であること' do
     book = Book.new(total_page: nil, user_id: @user.id)
     expect(book.valid?).to eq false
   end
@@ -106,7 +106,7 @@ RSpec.describe Book, type: :model do
     expect(book.valid?).to eq false
   end
 
-  it '読む予定のページ数は1-999ページまでであること' do
+  it '読書する本のページ数は1-999ページまでであること' do
     book = Book.new(total_page: 1000, user_id: @user.id)
     expect(book.valid?).to eq false
   end

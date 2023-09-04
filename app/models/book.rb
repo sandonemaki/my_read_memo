@@ -10,7 +10,7 @@ class Book < ApplicationRecord
   validates :author_1, length: { maximum: 30, message: '30文字以内で入力してください' }
   validates :total_page,
             presence: {
-              message: '読む予定のページ数を入力してください',
+              message: '読書する本のページ数を入力してください',
             },
             inclusion: {
               in: 20..999,
