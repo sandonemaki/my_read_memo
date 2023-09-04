@@ -27,7 +27,12 @@ h1 {
 .font-large {
   font-size: 32px;
 }
-
+.font-small-10 {
+  font-size: 10px;
+}
+.font-small-11 {
+  font-size: 11px;
+}
 .font-small-12 {
   font-size: 12px;
 }
@@ -36,9 +41,6 @@ h1 {
 }
 .font-small-18 {
   font-size: 18px;
-}
-.font-small-10 {
-  font-size: 10px;
 }
 
 li {

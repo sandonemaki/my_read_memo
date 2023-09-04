@@ -15,8 +15,10 @@
       <div class="tab tabbled-book-index">
         <div class="tab__underline">
           <ul class="tab__menu tabbed-index-work-area">
-            <li class="tab__menu-item index-page is-active" data-tab="1"><p class="tab-width">乱読中の本</p></li>
-            <li class="tab__menu-item index-page" data-tab="2"><p class="tab-width">精読中の本</p></li>
+            <li class="tab__menu-item index-page is-active" data-tab="1">
+              <p class="tab-width">さらさら読書中の本</p>
+            </li>
+            <li class="tab__menu-item index-page" data-tab="2"><p class="tab-width">じっくり読書中の本</p></li>
           </ul>
           <div id="underline" class="index-page"></div>
           <!-- 追加 -->
@@ -27,7 +29,10 @@
           <!---PC_タブを切り替えた時に変わる---->
           <div class="index_tab__panel-btn-js tab__panel-btn001 is-show" data-btn="1">
             <div class="index__btn-around">
-              <p class="rank-title col-dark-brown"><%= randoku_rank.rank_title %></p>
+              <div>
+                <p class="rank-sub-title font-small-12 col-dark-brown">さらさら読みランキングの絞り込み</p>
+                <p class="rank-title col-dark-brown"><%= randoku_rank.rank_title %></p>
+              </div>
               <div class="index-book-ranking">
                 <p>Total <%= randoku_books.all_randoku_state_count %>冊</p>
                 <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
@@ -42,13 +47,19 @@
                   <div class="ranking-sort-navi navi-panel-js">
                     <ul class="ranking-menus">
                       <li class="ranking-menu randoku_rank_01">
-                        <%= link_to('乱読画像の多い順', '/books/randoku_index', class: 'button') %>
+                        <%= link_to('さらさら画像読みメモの多い順', '/books/randoku_index', class: 'button') %>
                       </li>
                       <li class="ranking-menu randoku_rank_02">
-                        <%= link_to('乱読本の投稿順', '/books/randoku_rank_created_books', class: 'button') %>
+                        <%= link_to('さらさら読書本の投稿順', '/books/randoku_rank_created_books', class: 'button') %>
                       </li>
                       <li class="ranking-menu randoku_rank_03">
-                        <%= link_to('乱読画像の投稿順', '/books/randoku_rank_created_randoku_imgs', class: 'button') %>
+                        <%=
+                          link_to(
+                            'さらさら画像メモの投稿順',
+                            '/books/randoku_rank_created_randoku_imgs',
+                            class: 'button',
+                          )
+                        %>
                       </li>
                     </ul>
                   </div>
@@ -59,7 +70,10 @@
           <!---PC_タブを切り替えた時に変わる---->
           <div class="index_tab__panel-btn-js tab__panel-btn002" data-btn="2">
             <div class="index__btn-around">
-              <p class="rank-title col-dark-brown"><%= seidoku_rank.rank_title %></p>
+              <div>
+                <p class="rank-sub-title font-small-12 col-dark-brown">じっくり読みランキングの絞り込み</p>
+                <p class="rank-title col-dark-brown"><%= seidoku_rank.rank_title %></p>
+              </div>
               <div class="index-book-ranking">
                 <p>Total <%= seidoku_books.all_seidoku_state_count %>冊</p>
                 <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
@@ -74,13 +88,15 @@
                   <div class="ranking-sort-navi navi-panel-js">
                     <ul class="ranking-menus">
                       <li class="ranking-menu">
-                        <%= link_to('精読メモの多い順', '/books/seidoku_index', class: 'button') %>
+                        <%= link_to('じっくり読みメモの多い順', '/books/seidoku_index', class: 'button') %>
                       </li>
                       <li class="ranking-menu">
-                        <%= link_to('精読本の投稿順', '/books/seidoku_rank_created_books', class: 'button') %>
+                        <%= link_to('じっくり読書本の投稿順', '/books/seidoku_rank_created_books', class: 'button') %>
                       </li>
                       <li class="ranking-menu">
-                        <%= link_to('乱読メモの多い順', '/books/seidoku_rank_most_randoku_imgs', class: 'button') %>
+                        <%=
+                          link_to('さらさら画像メモの多い順', '/books/seidoku_rank_most_randoku_imgs', class: 'button')
+                        %>
                       </li>
                     </ul>
                   </div>
@@ -95,7 +111,10 @@
           <!---SP_タブを切り替えた時に変わる---->
           <div class="index_tab__panel-btn-js tab__panel-btn001 is-show" data-btn="1">
             <div class="index__btn-around">
-              <p class="rank-title col-dark-brown"><%= randoku_rank.rank_title %></p>
+              <div>
+                <p class="rank-sub-title font-small-11 col-dark-brown">さらさら読みランキングの絞り込み</p>
+                <p class="rank-title col-dark-brown"><%= randoku_rank.rank_title %></p>
+              </div>
               <div class="index-book-ranking">
                 <p><%= randoku_books.all_randoku_state_count %>冊</p>
                 <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
@@ -110,13 +129,19 @@
                   <div class="ranking-sort-navi navi-panel-js">
                     <ul class="ranking-menus">
                       <li class="ranking-menu randoku_rank_01">
-                        <%= link_to('乱読画像の多い順', '/books/randoku_index', class: 'button') %>
+                        <%= link_to('さらさら画像読みメモの多い順', '/books/randoku_index', class: 'button') %>
                       </li>
                       <li class="ranking-menu randoku_rank_02">
-                        <%= link_to('乱読本の投稿順', '/books/randoku_rank_created_books', class: 'button') %>
+                        <%= link_to('さらさら読書本の投稿順', '/books/randoku_rank_created_books', class: 'button') %>
                       </li>
                       <li class="ranking-menu randoku_rank_03">
-                        <%= link_to('乱読画像の投稿順', '/books/randoku_rank_created_randoku_imgs', class: 'button') %>
+                        <%=
+                          link_to(
+                            'さらさら画像メモの投稿順',
+                            '/books/randoku_rank_created_randoku_imgs',
+                            class: 'button',
+                          )
+                        %>
                       </li>
                     </ul>
                   </div>
@@ -128,7 +153,10 @@
           <!---SP_タブを切り替えた時に変わる---->
           <div class="index_tab__panel-btn-js tab__panel-btn002" data-btn="2">
             <div class="index__btn-around">
-              <p class="rank-title col-dark-brown"><%= randoku_rank.rank_title %></p>
+              <div>
+                <p class="rank-sub-title font-small-11 col-dark-brown">じっくり読みランキングの絞り込み</p>
+                <p class="rank-title col-dark-brown"><%= seidoku_rank.rank_title %></p>
+              </div>
               <div class="index-book-ranking">
                 <p><%= seidoku_books.all_seidoku_state_count %>冊</p>
                 <%#= raw File.read(Rails.root.join('public', 'sort.svg')) %>
@@ -143,13 +171,15 @@
                   <div class="ranking-sort-navi navi-panel-js">
                     <ul class="ranking-menus">
                       <li class="ranking-menu">
-                        <%= link_to('精読メモの多い順', '/books/seidoku_index', class: 'button') %>
+                        <%= link_to('じっくり読みメモの多い順', '/books/seidoku_index', class: 'button') %>
                       </li>
                       <li class="ranking-menu">
-                        <%= link_to('精読本の投稿順', '/books/seidoku_rank_created_books', class: 'button') %>
+                        <%= link_to('じっくり読書本の投稿順', '/books/seidoku_rank_created_books', class: 'button') %>
                       </li>
                       <li class="ranking-menu">
-                        <%= link_to('乱読メモの多い順', '/books/seidoku_rank_most_randoku_imgs', class: 'button') %>
+                        <%=
+                          link_to('さらさら画像メモの多い順', '/books/seidoku_rank_most_randoku_imgs', class: 'button')
+                        %>
                       </li>
                     </ul>
                   </div>
@@ -161,12 +191,12 @@
 
         <div class="tab__panel index-page">
           <div class="tab__panel-box index-page tab__panel-box001 is-show" data-panel="1">
-            <!-- タブの下 乱読index -->
+            <!-- タブの下 さらさら読みindex -->
             <%= render partial: 'books/index_tabs/randoku_index_pre_lesson_common', locals: { books: randoku_books } %>
             <%= render partial: 'books/index_tabs/randoku_index_rank_common', locals: { books_rank: randoku_rank } %>
           </div>
           <div class="tab__panel-box index-page tab__panel-box002" data-panel="2">
-            <!-- タブの下 精読index -->
+            <!-- タブの下 じっくり読みindex -->
             <%= render partial: 'books/index_tabs/seidoku_index_pre_lesson_common', locals: { books: seidoku_books } %>
             <%= render partial: 'books/index_tabs/seidoku_index_rank_common', locals: { books_rank: seidoku_rank } %>
           </div>

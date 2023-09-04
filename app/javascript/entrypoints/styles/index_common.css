@@ -107,12 +107,12 @@
 .index-book-ranking {
   display: flex;
   align-items: center;
-  justify-content: end;
-  margin-top: 32px;
+  justify-content: flex-end;
 }
 .ranking-sort-btn {
   position: relative;
   cursor: pointer;
+  padding-top: 6px;
 }
 .ranking-sort {
   width: 44px;
@@ -124,7 +124,7 @@
   background-color: white;
   right: 0;
   top: 87%;
-  width: 180px;
+  width: 250px;
   border-radius: 2px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px;
   letter-spacing: 1px;
@@ -181,6 +181,7 @@
 }
 .rank-title {
   font-size: 20px;
+  margin-top: 4px;
 }
 .index-lesson-label {
   font-size: 16px;
@@ -279,7 +280,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  align-items: baseline;
+  align-items: center;
+  margin-top: 32px;
 }
 .SP-index-ranking-btn {
   display: none;

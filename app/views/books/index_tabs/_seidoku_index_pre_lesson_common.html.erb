@@ -4,7 +4,7 @@
     <p class="index-lesson-label col-dark-brown">前回の続き</p>
   </div>
   <% if books.seidoku_history.empty? %>
-    <p class="no-history pre">前回の履歴がありません</p>
+    <p class="no-history pre">前回の本がありません</p>
   <% end %>
 
   <% if !books.seidoku_history.empty? %>
@@ -31,7 +31,7 @@
       <div class="index-user-book-memo-wrapper">
         <div class="index-user-book-memo">
           <div class="index-user-book-memo-count">
-            <p><span class="index-book-label font-small-12">乱読画像数</span></p>
+            <p><span class="index-book-label font-small-12">画像のメモ数</span></p>
             <div class="index-book-memo">
               <i class="fa-regular fa-image index-memo-icon"></i>
               <p>
@@ -42,7 +42,7 @@
           </div>
           <div class="index_memo__separator"></div>
           <div class="index-user-book-memo-count">
-            <p><span class="index-book-label font-small-12">精読メモ数</span></p>
+            <p><span class="index-book-label font-small-12">じっくり読みメモ数</span></p>
             <div class="index-book-memo">
               <i class="fa-regular fa-note-sticky index-memo-icon"></i>
               <p>
