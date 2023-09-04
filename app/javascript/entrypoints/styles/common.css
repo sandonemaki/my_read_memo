@@ -219,14 +219,14 @@ li {
   height: 45px;
   line-height: 45px;
   cursor: pointer;
-  color: #4ccfc9;
+  color: #ffb551;
   text-decoration: none;
   display: block;
   margin: 0 auto;
   margin-top: 12px;
 }
 .link-text-button:hover {
-  color: #31b7b1;
+  color: #ffa935;
 }
 .submit-button {
   font-size: 0.875rem;
