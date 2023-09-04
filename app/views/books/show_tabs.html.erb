@@ -26,7 +26,7 @@
 
         <p>著者：<%= book.author %></p>
         <p>出版社：<%= book.publisher %></p>
-        <p>読むページ数：<%= book.total_page %></p>
+        <p>読書する本のページ数：<%= book.total_page %></p>
       </div>
     </div>
     <div class="book-cover">
@@ -42,8 +42,8 @@
   <div class="tab tabbled-book-show">
     <div class="tab__underline">
       <ul class="tab__menu tabbed-show-work-area">
-        <li class="tab__menu-item show-page is-active" data-tab="01"><p class="tab-width">乱読画像メモ</p></li>
-        <li class="tab__menu-item show-page" data-tab="02"><p class="tab-width">乱読メモ</p></li>
+        <li class="tab__menu-item show-page is-active" data-tab="01"><p class="tab-width">さらさら画像メモ</p></li>
+        <li class="tab__menu-item show-page" data-tab="02"><p class="tab-width">さらさら読書メモ</p></li>
         <!-- 鍵の設定 -->
         <% if book.seidoku_memo_key == true %>
           <li class="tab__menu-item show-page tab-disabled" data-tab="03">
@@ -51,11 +51,11 @@
               <p class="seidoku_memo_key">
                 <i class="fa-solid fa-lock lock-key"></i>
               </p>
-              <p>精読メモ</p>
+              <p>じっくり読書メモ</p>
             </div>
           </li>
         <% else %>
-          <li class="tab__menu-item show-page" data-tab="03"><p class="tab-width">精読メモ</p></li>
+          <li class="tab__menu-item show-page" data-tab="03"><p class="tab-width">じっくり読書メモ</p></li>
         <% end %>
       </ul>
       <div id="underline" class="show-page"></div>
@@ -65,15 +65,15 @@
 </div>
 <div class="tab__panel">
   <div class="tab__panel-box show-page tab__panel-box001 is-show" data-panel="01">
-    <!-- 乱読画像メモのパーシャル -->
+    <!-- さらさら画像メモのパーシャル -->
     <%= render partial: 'books/show_tabs/imgs', locals: { book: book } %>
   </div>
   <div class="tab__panel-box show-page tab__panel-box002" data-panel="02">
-    <!-- 乱読画像メモのパーシャル -->
+    <!-- さらさら読書メモのパーシャル -->
     <%= render partial: 'books/show_tabs/randoku_memos', locals: { book: book_randoku_memos } %>
   </div>
   <div class="tab__panel-box show-page tab__panel-box003" data-panel="03">
-    <!-- 精読メモのパーシャル -->
+    <!-- じっくり読書メモのパーシャル -->
     <%= render partial: 'books/show_tabs/seidoku_memos', locals: { book: book_seidoku_memos } %>
   </div>
 </div>
