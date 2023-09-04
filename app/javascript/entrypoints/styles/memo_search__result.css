@@ -23,11 +23,16 @@
   background: #ffa935;
 }
 .search-result-text {
-  margin-top: 24px;
+  margin-top: 20px;
   letter-spacing: 2.5px;
 }
 .search-result-text span {
   line-height: 1.75; /* 1.5倍の行間にする */
+}
+.search-illust {
+  margin-top: 24px;
+  width: 28%;
+  height: auto;
 }
 .search-result-item {
   text-align: center;
