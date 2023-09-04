@@ -108,10 +108,25 @@ li {
   color: #634d3a;
 }
 /****　ヘッダー　****/
-.randoku-logo {
-  background-color: gray;
+/****　ヘッダーロゴ　****/
+.yondeco-logo {
+  background-color: #ffb551;
   width: 48px;
   height: 48px;
+  position: relative;
+}
+
+.yondeco-logo:hover {
+  background-color: #907660;
+}
+
+.yondeco-logo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 70%;
+  transform: translate(-50%, -50%);
 }
 /**** サーチアイコン ****/
 .search-icon {
