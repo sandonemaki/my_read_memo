@@ -4,13 +4,13 @@
       <%= book.remaining %>
     </p>
     <p id="img_read_status_count" class="font-small-12">
-      精読基準：乱読画像メモ
-      <span class="book_seidoku_line_1 font-small-12"><%= book.seidoku_line_1 %></span>枚以上、未読の乱読画像メモ
+      じっくり読書の基準：画像メモが
+      <span class="book_seidoku_line_1 font-small-12"><%= book.seidoku_line_1 %></span>枚以上、未読の画像メモが
       <span class="book_seidoku_line_2 font-small-12"><%= book.seidoku_line_2 %></span>枚未満
     </p>
     <% if book.first_post_img_path.present? %>
       <%=
-        link_to '初めての乱読画像',
+        link_to '初めての投稿画像',
                 'javascript:void(0)',
                 class: 'sw_modal_trigger',
                 'data-slide-index': 0,
@@ -35,7 +35,7 @@
     <% end %>
 
     <p class="upload-description">
-      jpg/jpeg/png/heic/1pageのpdfが投稿できます。<br />
+      jpg/jpeg/png/heic/pdf（1枚のみ）拡張子を投稿できます。<br />
       同じ名前の画像は上書きされます。複数枚投稿できます。
     </p>
   </div>
