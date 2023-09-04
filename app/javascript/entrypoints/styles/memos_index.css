@@ -79,13 +79,20 @@
 }
 
 /******* メモ ********/
+.no-content {
+  text-align: center;
+}
 .tabbed-memos-content {
   padding-bottom: 60px;
 }
 .tabbed-memo-no-content {
-  text-align: center;
   margin-top: 32px;
   font-size: 20px;
+  margin-bottom: 16px;
+}
+.show-no-img-illust {
+  width: 20%;
+  height: auto;
 }
 
 .tabbed-memo-content {
@@ -168,6 +175,7 @@
   .tabbed-memo-no-content {
     margin-top: 52px;
     font-size: 16px;
+    margin-bottom: 8px;
   }
   #img_read_status_count {
     font-size: 12px;
@@ -203,6 +211,9 @@
   }
   .tabbed-memo-content {
     margin-top: 12px;
+  }
+  .show-no-img-illust {
+    width: 28%;
   }
 
   /******* ナビゲーション ********/

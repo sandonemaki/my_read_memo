@@ -14,7 +14,10 @@
 
   <div class="tabbed-memos-content">
     <% if !book.randoku_memos.present? %>
-      <p class="tabbed-memo-no-content">まだ乱読メモがありません</p>
+      <div class="no-content">
+        <p class="tabbed-memo-no-content">まだ乱読メモがありません</p>
+        <img src="/illust/squirrel.png" width="100%" alt="イラスト" class="show-no-img-illust" />
+      </div>
     <% else %>
       <% book.randoku_memos.each_with_index do |memo| %>
         <div class="tabbed-memo-content">

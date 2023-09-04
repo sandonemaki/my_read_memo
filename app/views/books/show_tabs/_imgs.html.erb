@@ -44,7 +44,10 @@
     <p class="imgs-count">Total <%= book.randoku_imgs_all_count %>枚</p>
     <!--画像メモ一覧を表示-->
     <% if book.randoku_imgs_all.empty? %>
-      <p class="tabbed-memo-no-content">まだ画像メモがありません</p>
+      <div class="no-content">
+        <p class="tabbed-memo-no-content">まだ画像メモがありません</p>
+        <img src="/illust/octopus.png" width="100%" alt="イラスト" class="show-no-img-illust" />
+      </div>
     <% else %>
       <ul class="img-thumbnails">
         <% book.randoku_imgs_all.each_with_index do |img, i| %>
