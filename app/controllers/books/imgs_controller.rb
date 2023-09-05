@@ -46,7 +46,7 @@ class Books::ImgsController < ApplicationController
     #seidoku_line_1 = (book.total_page * (1.0 / 8.0)).ceil # 切り上げ
     #seidoku_line_2 = (book.total_page * (1.0 / 4.0)).floor # 切り捨て
 
-    # 精読まで未読をあと何枚
+    # 「じっくり読書」までにあと何枚画像メモを読む/足す
     remaining = book.countdown_remaining_seidoku
 
     # 本の状態の更新があった場合

@@ -47,7 +47,7 @@ module ViewModel
             path: RandokuHistory.last.path,
             randoku_history_ranking: randoku_img_ranking.include?(randoku_history.id) ?
             randoku_img_ranking.index(randoku_history.id)+1 : "",
-            # 精読まで未読をあと何枚
+            # 「じっくり読書」までにあと何枚画像メモを読む/足す
             remaining: randoku_history.countdown_remaining_seidoku
           }
         else

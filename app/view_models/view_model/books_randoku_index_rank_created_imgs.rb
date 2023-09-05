@@ -41,7 +41,7 @@ module ViewModel
             end,
             randoku_ranking: randoku_img_ranking.include?(book.id) ?
             randoku_img_ranking.index(book.id)+1 : "",
-            # 精読まで未読をあと何枚
+            # 「じっくり読書」までにあと何枚画像メモを読む/足す
             remaining: book.countdown_remaining_seidoku
           }
         end

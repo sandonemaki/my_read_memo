@@ -42,7 +42,7 @@ module ViewModel
                 ""
               end
 
-      # 精読まで未読をあと何枚       
+      # 「じっくり読書」までにあと何枚画像メモを読む/足す      
       @remaining = book.countdown_remaining_seidoku
     end #initialize
   end

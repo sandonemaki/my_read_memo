@@ -42,7 +42,7 @@ module ViewModel
       @randoku_imgs_unread_count = randoku_imgs_group_count[0] ||= 0 # 未読の数
       @randoku_imgs_alreadyread_count = randoku_imgs_group_count[1] ||= 0 # 既読の数
 
-      # 精読まで未読をあと何枚       
+      # 「じっくり読書」までにあと何枚画像メモを読む/足す       
       @remaining = book.countdown_remaining_seidoku
       
       # モーダル上で乱読画像を読むためのデータ
