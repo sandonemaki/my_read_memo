@@ -93,9 +93,9 @@ const img_read_status_count_update = (responseData) => {
 const img_already_read_check_update = (imgId, responseData) => {
   const is_already_read_check = document.querySelector(`.is_already_read_check[data-img-id="${imgId}"]`);
   if (responseData.img_reading_state_result === 0) {
-    is_already_read_check.textContent = '未読';
+    is_already_read_check.innerHTML = '<i class="fa-regular fa-square thumb-nocheck"></i>';
   } else {
-    is_already_read_check.textContent = '既読';
+    is_already_read_check.innerHTML = '<i class="fa-solid fa-square-check thumb-check"></i>';
   }
 };
 
