@@ -26,7 +26,9 @@
 
         <p>著者：<%= book.author %></p>
         <p>出版社：<%= book.publisher %></p>
-        <p>読書する本のページ数：<%= book.total_page %></p>
+        <p>
+          読書する本のページ数：<span class="js-update-current-total-page"><%= book.total_page %></span>
+        </p>
       </div>
     </div>
     <div class="book-cover">
