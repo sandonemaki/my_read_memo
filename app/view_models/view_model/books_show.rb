@@ -16,14 +16,14 @@ module ViewModel
       @cover_path = book.cover_path
       @reading_progress =
         case book.reading_state
-        when State::READING_STATE.key("乱読")
-          "乱読"
-        when State::READING_STATE.key("精読")
-          "精読"
+        when State::READING_STATE.key("さらさら読書：乱読")
+          "さらさら読書"
+        when State::READING_STATE.key("じっくり読書：精読")
+          "じっくり読書"
         else
-          "通読"
+          "さらさら読書"
         end
-      (book.seidoku_memo_key = false) if @reading_progress == "精読"
+      (book.seidoku_memo_key = false) if @reading_progress == "じっくり読書：精読"
       @seidoku_memo_key = book.seidoku_memo_key
       @publisher = book.publisher
       @errors = book.errors
@@ -45,7 +45,7 @@ module ViewModel
       # 「じっくり読書」までにあと何枚画像メモを読む/足す       
       @remaining = book.countdown_remaining_seidoku
       
-      # モーダル上で乱読画像を読むためのデータ
+      # モーダル上でさらさら読書画像メモを読むためのデータ
       @randoku_imgs_all_count = book.randoku_imgs.all.size
       @randoku_imgs_all =
         book.randoku_imgs.all.order(created_at: :desc).to_a.map { |img|

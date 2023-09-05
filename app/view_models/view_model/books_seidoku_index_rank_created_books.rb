@@ -4,12 +4,12 @@ module ViewModel
     attr_reader :books_index_rank, :rank_title
 
     def initialize(all_seidoku_state_books:)
-      @rank_title = "精読本の投稿順"
-      # 精読本の投稿順
+      @rank_title = "じっくり読書本の投稿順"
+      # じっくり読書本の投稿順
       created_books_desc_of_seidoku_state_books =
         all_seidoku_state_books.order(created_at: :desc)
       
-      # 現在乱読中の本の中から乱読画像が多い順のbook_id。1-3位まで
+      # 現在さらさら読書中の本の中からさらさら読書画像メモが多い順のbook_id。1-3位まで
       randoku_img_ranking = all_seidoku_state_books.joins(:randoku_imgs)
       .group('books.id')
       .select('books.id, COUNT(randoku_imgs.id) as count')

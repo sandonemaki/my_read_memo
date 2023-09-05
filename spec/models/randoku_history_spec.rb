@@ -16,8 +16,8 @@ RSpec.describe RandokuHistory, type: :model do
 
     let(:new_path) { "books/#{book.id}" }
 
-    context '乱読ヒストリーのレコードが存在しない場合' do
-      it '乱読ヒストリーのレコードの数が1件増える' do
+    context 'さらさら読書の前回の本のレコードが存在しない場合' do
+      it 'さらさら読書の前回の本のレコードの数が1件増える' do
         expect { RandokuHistory.set(new_path, book.id) }.to change { RandokuHistory.count }.by(1)
 
         randoku_history = RandokuHistory.last
@@ -26,10 +26,10 @@ RSpec.describe RandokuHistory, type: :model do
       end
     end
 
-    context '乱読ヒストリーのレコードが存在する場合' do
+    context 'さらさら読書の前回の本のレコードが存在する場合' do
       before { RandokuHistory.create(path: 'old_path', book_id: 1) }
 
-      it '乱読ヒストリーのレコードの数が変わらないこと' do
+      it 'さらさら読書の前回の本のレコードの数が変わらないこと' do
         expect { RandokuHistory.set(new_path, book.id) }.not_to change { RandokuHistory.count }
 
         randoku_history = RandokuHistory.last

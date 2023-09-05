@@ -14,7 +14,7 @@ module ViewModel
 
       seidoku_history = Book.find_by(id: SeidokuHistory.last.book_id) if SeidokuHistory.last.present?
 
-      # 精読中の本の中から精読メモが多い順のbook_id。1-3位まで
+      # じっくり読書中の本の中からじっくり読書メモが多い順のbook_id。1-3位まで
       seidoku_memo_ranking = all_seidoku_state_books.joins(:seidoku_memos)
         .group('books.id')
         .select('books.id, COUNT(seidoku_memos.id) as count')
@@ -30,23 +30,23 @@ module ViewModel
           randoku_memos_count: seidoku_history.randoku_memos.count,
           seidoku_memos_count: seidoku_history.seidoku_memos.count,
           reading_state: case seidoku_history.reading_state
-          when State::READING_STATE.key("乱読")
-            "乱読"
-          when State::READING_STATE.key("精読")
-            "精読"
+          when State::READING_STATE.key("さらさら読書：乱読")
+            "さらさら読書"
+          when State::READING_STATE.key("じっくり読書：精読")
+            "じっくり読書"
           else
-            "通読"
+            "さらさら読書"
           end,
           path: SeidokuHistory.last.path,
           seidoku_history_ranking: seidoku_memo_ranking.include?(seidoku_history.id) ?
           seidoku_memo_ranking.index(seidoku_history.id)+1 : ""
         }
 
-      # 全ての乱読画像合計数
+      # 全てのさらさら読書画像メモ合計数
       @all_randoku_imgs_count =
         Book.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
 
-      # 現在精読ステータス中の本の中から精読メモの数が多い順に並べる
+      # 現在じっくり読書ステータス中の本の中からじっくり読書メモの数が多い順に並べる
       seidoku_memos_desc_of_seidoku_state_books =
         all_seidoku_state_books.joins(:seidoku_memos)
         .group('books.id')
@@ -64,7 +64,7 @@ module ViewModel
           }
         end
 
-      # 精読メモの投稿順
+      # じっくり読書メモの投稿順
       created_seidoku_memos_desc_of_seidoku_state_books =
         all_seidoku_state_books.joins(:seidoku_memos)
         .select('books.*, MAX(seidoku_memos.created_at) as latest_seidoku_memo_time')
@@ -81,7 +81,7 @@ module ViewModel
           }
         end
 
-      # 精読本の投稿順
+      # じっくり読書本の投稿順
       created_books_desc_of_seidoku_state_books =
         all_seidoku_state_books.order(created_at: :desc)
 

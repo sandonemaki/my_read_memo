@@ -4,15 +4,15 @@ module ViewModel
     attr_reader :books_index_rank, :rank_title
 
     def initialize(all_seidoku_state_books:)
-      @rank_title = "精読メモの多い順"
-      # 現在精読ステータス中の本の中から精読メモの数が多い順に並べる
+      @rank_title = "じっくり読書メモの多い順"
+      # 現在じっくり読書ステータス中の本の中からじっくり読書メモの数が多い順に並べる
       most_seidoku_memos_desc_of_seidoku_state_books =
         all_seidoku_state_books.left_joins(:seidoku_memos)
         .group('books.id')
         .select('books.*, COUNT(seidoku_memos.id) as seidoku_memos_count')
         .order('seidoku_memos_count DESC')
 
-      # 現在精読中の本の中から乱読画像が多い順のbook_id。1-3位まで
+      # 現在じっくり読書中の本の中からさらさら読書画像メモが多い順のbook_id。1-3位まで
       randoku_img_ranking = all_seidoku_state_books.joins(:randoku_imgs)
         .group('books.id')
         .select('books.id, COUNT(randoku_imgs.id) as count')

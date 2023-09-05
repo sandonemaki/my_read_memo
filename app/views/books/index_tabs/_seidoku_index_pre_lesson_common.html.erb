@@ -16,18 +16,22 @@
               <!--<%= books.seidoku_history[:seidoku_history_ranking] %>位</p>-->
               <i class="fa-solid fa-crown index-crown"></i>
             <% end %>
-            <img src="<%= books.seidoku_history[:cover_path] %>" width="100%" alt="ブックカバー" class="index-book-cover-img" />
+            <img
+              src="<%= books.seidoku_history[:cover_path] %>"
+              width="100%"
+              alt="ブックカバー"
+              class="index-book-cover-img"
+            />
           </div>
           <div class="index-user-book-title">
             <p>
-              <p class="index-book-title-label">タイトル</p>
               <span class="index-book-title"><%= books.seidoku_history[:title] %></span>
             </p>
             <span class="index-book-progress font-small-12"><%= books.seidoku_history[:reading_state] %></span>
           </div>
         <% end %>
       </div>
-      
+
       <div class="index-user-book-memo-wrapper">
         <div class="index-user-book-memo">
           <div class="index-user-book-memo-count">
@@ -53,9 +57,10 @@
           </div>
         </div>
         <%=
-          link_to '本の詳細へ', "/books/#{books.seidoku_history[:id]}", class: 'link-button line-button-detail index-user-book-memo-btn'
+          link_to '本の詳細へ',
+                  "/books/#{books.seidoku_history[:id]}",
+                  class: 'link-button line-button-detail index-user-book-memo-btn'
         %>
-
       </div>
     </div>
   <% end %>

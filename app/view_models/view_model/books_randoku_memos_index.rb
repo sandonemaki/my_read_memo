@@ -13,14 +13,14 @@ module ViewModel
       @total_page = book.total_page
       @reading_progress =
         case book.reading_state
-        when State::READING_STATE.key("乱読")
-          "乱読"
-        when State::READING_STATE.key("精読")
-          "精読"
+        when State::READING_STATE.key("さらさら読書：乱読")
+          "さらさら読書"
+        when State::READING_STATE.key("じっくり読書：精読")
+          "じっくり読書"
         else
-          "通読"
-        end
-      (book.seidoku_memo_key = false) if @reading_progress == "精読"
+          "さらさら読書"
+        end,
+      (book.seidoku_memo_key = false) if @reading_progress == "じっくり読書：精読"
       @seidoku_memo_key = book.seidoku_memo_key
       @publisher = book.publisher
       @randoku_memos_all_count = book.randoku_memos.count
@@ -30,7 +30,7 @@ module ViewModel
             ViewModel::RandokuMemo.new(memo: memo, book: book)
           }
         end
-      # 精読基準に必要な変数
+      # じっくり読書基準に必要な変数
       randoku_imgs_group_count = book.randoku_imgs.group('reading_state').size
       @randoku_imgs_unread_count = randoku_imgs_group_count[0] ||= 0 # 未読の数
       @seidoku_line_1 = (book.total_page * (1.0 / 8.0)).ceil # 切り上げ

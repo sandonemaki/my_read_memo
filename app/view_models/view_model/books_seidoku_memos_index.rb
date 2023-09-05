@@ -12,14 +12,14 @@ module ViewModel
       @total_page = book.total_page
       @reading_progress =
         case book.reading_state
-        when State::READING_STATE.key("乱読")
-          "乱読"
-        when State::READING_STATE.key("精読")
-          "精読"
+        when State::READING_STATE.key("さらさら読書：乱読")
+          "さらさら読書"
+        when State::READING_STATE.key("じっくり読書：精読")
+          "じっくり読書"
         else
-          "通読"
-        end
-      (book.seidoku_memo_key = false) if @reading_progress == "精読"
+          "さらさら読書"
+        end,
+      (book.seidoku_memo_key = false) if @reading_progress == "じっっくり読書：精読"
       @seidoku_memo_key = book.seidoku_memo_key
       @publisher = book.publisher
 

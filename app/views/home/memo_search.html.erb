@@ -5,7 +5,7 @@
       <div class="search-selectbox">
         <select id="search-select" name="selected_search_value[]">
           <option value="0">- メモの種類で検索をする -</option>
-          <optgroup label="乱読メモ">
+          <optgroup label="さらさら読書メモ">
             <% search.randoku_memo_type.each_with_index do | (k, value), i | %>
               <% if search.selected_search_value == "randoku[#{k}]" %>
                 <option value="<%= "randoku[#{k}]" %>" selected>
@@ -16,7 +16,7 @@
             <% end %>
           </optgroup>
 
-          <optgroup label="精読メモ">
+          <optgroup label="じっくり読書メモ">
             <% search.seidoku_memo_type.each_with_index do | (k, value), i | %>
               <% if search.selected_search_value == "seidoku[#{k}]" %>
                 <option value="<%= "seidoku[#{k}]" %>" selected>

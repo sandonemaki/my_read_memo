@@ -130,7 +130,7 @@ RSpec.describe Book, type: :model do
       )
     end
 
-    context 'determine_stateの戻り値が乱読型のとき' do
+    context 'determine_stateの戻り値がさらさら読書_乱読型のとき' do
       before do
         allow(ReadingStateUtils::StateTypeJudge).to receive(:determine_state).and_return(
           ReadingStateUtils::StateTypeJudge::Randoku.new,
@@ -143,33 +143,33 @@ RSpec.describe Book, type: :model do
       end
     end
 
-    context 'determine_stateの戻り値が精読型のとき' do
+    context 'determine_stateの戻り値がじっくり読書_精読型のとき' do
       before do
         allow(ReadingStateUtils::StateTypeJudge).to receive(:determine_state).and_return(
           ReadingStateUtils::StateTypeJudge::Seidoku.new,
         )
       end
 
-      it '乱読から精読に状態が変化するのでdbに保存されること' do
+      it '「さらさら読書_乱読」から「じっくり読書_精読」に状態が変化するのでdbに保存されること' do
         expect { book.try_update_reading_state }.to change { book.reading_state }
         expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
     end
 
-    context 'determine_stateの戻り値が精読型のとき' do
+    context 'determine_stateの戻り値がじっくり読書_精読型のとき' do
       before do
         allow(ReadingStateUtils::StateTypeJudge).to receive(:determine_state).and_return(
           ReadingStateUtils::StateTypeJudge::Tudoku.new,
         )
       end
 
-      it '乱読から通読に状態が変化するのでdbに保存されること' do
+      it '「さらさら読書_乱読」から「さらさら読書_通読」に状態が変化するのでdbに保存されること' do
         expect { book.try_update_reading_state }.to change { book.reading_state }
         expect(ReadingStateUtils::StateTypeJudge).to have_received(:determine_state)
       end
     end
 
-    context 'determine_stateの戻り値が精読型のとき' do
+    context 'determine_stateの戻り値がじっくり読書_精読型のとき' do
       before do
         allow(ReadingStateUtils::StateTypeJudge).to receive(:determine_state).and_return(
           ReadingStateUtils::StateTypeJudge,

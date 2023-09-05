@@ -17,8 +17,8 @@ RSpec.describe SeidokuHistory, type: :model do
 
     let(:new_path) { "books/#{book.id}" }
 
-    context '精読ヒストリーのレコードが存在しない場合' do
-      it '精読ヒストリーのレコードの数が1件増える' do
+    context 'じっくり読書の前回の本のレコードが存在しない場合' do
+      it 'じっくり読書の前回の本のレコードの数が1件増える' do
         expect { SeidokuHistory.set(new_path, book.id) }.to change { SeidokuHistory.count }.by(1)
 
         seidoku_history = SeidokuHistory.last
@@ -27,10 +27,10 @@ RSpec.describe SeidokuHistory, type: :model do
       end
     end
 
-    context '精読ヒストリーのレコードが存在する場合' do
+    context 'じっくり読書の前回の本のレコードが存在する場合' do
       before { SeidokuHistory.create(path: 'old_path', book_id: 1) }
 
-      it '精読ヒストリーのレコードの数が変わらないこと' do
+      it 'じっくり読書の前回の本のレコードの数が変わらないこと' do
         expect { SeidokuHistory.set(new_path, book.id) }.not_to change { SeidokuHistory.count }
 
         seidoku_history = SeidokuHistory.last

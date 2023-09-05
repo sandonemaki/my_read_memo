@@ -51,12 +51,12 @@ module ViewModel
       @memo_created_at = I18n.l(memo.created_at, format: :short)
       @book_reading_progress =
         case book.reading_state
-        when State::READING_STATE.key("乱読")
-          "乱読"
-        when State::READING_STATE.key("精読")
-          "精読"
+        when State::READING_STATE.key("さらさら読書：乱読")
+          "さらさら読書"
+        when State::READING_STATE.key("じっくり読書：精読")
+          "じっくり読書"
         else
-          "通読"
+          "さらさら読書"
         end
 
       @book_title = book.title
