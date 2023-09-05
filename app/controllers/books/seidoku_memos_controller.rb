@@ -28,7 +28,7 @@ class Books::SeidokuMemosController < ApplicationController
     seidoku_memos =
       book.seidoku_memos.new(content_state: params[:selectbox_value].first.to_i, content: params[:seidoku_memo_content])
     if seidoku_memos.save
-      flash[:notice] = '精読メモを保存しました'
+      flash[:notice] = 'じっくり読書メモを保存しました'
       redirect_to "/books/#{book.id}"
     else
       flash.now[:error] = randoku_memos.errors.messages[:content].join(',')

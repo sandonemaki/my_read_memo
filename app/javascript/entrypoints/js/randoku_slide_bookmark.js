@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  // 乱読画像のbookmarkのflagが update されたら乱読画像の bookmark の check を更新
+  // さらさら読書画像メモのbookmarkのflagが update されたら さらさら読書画像メモの bookmark の check を更新
   const img_bookmark_flag_check_update = (imgId, responseData) => {
     const img_bookmark_check = document.querySelector(`.img_bookmark_check[data-img-id="${imgId}"]`);
     if (responseData.img_bookmark_flag_result === 0) {

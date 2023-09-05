@@ -18,9 +18,9 @@ class Book < ApplicationRecord
             }
 
   # bookオブジェクトを引数にとる
-  # トータルページ、乱読画像の未読・既読の数によって状態を判定し、
+  # トータルページ、さらさら読書画像メモの未読・既読の数によって状態を判定し、
   # その状態がdbと差異があれば更新するかどうかを判定するメソッド
-  # totalpage、乱読画像の数、未読既読の数に変更があった時に呼び出される
+  # totalpage、さらさら読書画像メモの数、未読既読の数に変更があった時に呼び出される
   def try_update_reading_state
     judgement_reading_state_type =
       ReadingStateUtils::StateTypeJudge.determine_state(
@@ -69,13 +69,13 @@ class Book < ApplicationRecord
     case current_state
     when State::READING_STATE.key('さらさら読書：乱読')
       remaining_to_seidoku = seidoku_line_1 - randoku_imgs_count
-      "「じっくり読書」まで「さらさら画像メモ」をあと#{remaining_to_seidoku == 0 ? sprintf('%.1f', remaining_to_seidoku) : remaining_to_seidoku.to_i}枚追加"
+      "「じっくり読書」まで「さらさら画像メモ」をあと #{remaining_to_seidoku == 0 ? sprintf('%.1f', remaining_to_seidoku) : remaining_to_seidoku.to_i} 枚追加"
     when State::READING_STATE.key('じっくり読書：精読')
       '「さらさら読書」完了！ 残りのメモを読んで「じっくり読書」へ'
     when State::READING_STATE.key('さらさら読書：通読')
       seidoku_line_2 = (self.total_page * (1.0 / 4.0)).floor
       remaining_to_unread = (seidoku_line_2 - 1) - img_unread_count
-      "「じっくり読書」まで「さらさら画像メモ」をあと#{remaining_to_unread == 0 ? sprintf('%.1f', remaining_to_unread) : remaining_to_unread.to_i}枚読む"
+      "「じっくり読書」まで「さらさら画像メモ」をあと #{remaining_to_unread == 0 ? sprintf('%.1f', remaining_to_unread) : remaining_to_unread.to_i} 枚読む"
     end
   end
 end

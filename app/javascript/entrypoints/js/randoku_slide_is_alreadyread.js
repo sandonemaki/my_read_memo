@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 });
 
-// 乱読画像の状態が / トータルページが
-// update される -> 乱読画像の未読・既読の数が変わる -> 精読なら精読メモタブの鍵を外す
+// さらさら読書画像メモの状態が / トータルページが
+// update される -> さらさら読書画像メモの未読・既読の数が変わる -> じっくり読書ならじっくり読書メモタブの鍵を外す
 export const book_seidoku_memo_key = (responseData) => {
   const seidokuMemoKeyWord = document.querySelector('.seidoku_memo_key');
   const seidokuMemoTab = document.querySelector('[data-tab="03"]');
@@ -58,8 +58,8 @@ export const book_seidoku_memo_key = (responseData) => {
   }
 };
 
-// 乱読画像の状態が / トータルページが
-// update される -> 乱読画像の未読・既読の数が変わる -> 本の状態を更新
+// さらさら読書画像メモの状態が / トータルページが
+// update される -> さらさら読書画像メモの未読・既読の数が変わる -> 本の状態を更新
 export const book_reading_progress_update = (responseData) => {
   const book_reading_progress_list = document.querySelectorAll('.book_reading_progress');
   book_reading_progress_list.forEach((book_reading_progress) => {
@@ -69,8 +69,8 @@ export const book_reading_progress_update = (responseData) => {
   });
 };
 
-// 乱読画像の状態が / トータルページが
-// update される -> 精読までの枚数を更新
+// さらさら読書画像メモの状態が / トータルページが
+// update される -> じっくり読書までの枚数を更新
 export const book_seidoku_remaining = (responseData) => {
   const seidoku_remainings = document.querySelectorAll('.seidoku-remaining-js');
   seidoku_remainings.forEach((seidoku_remaining) => {
@@ -78,7 +78,7 @@ export const book_seidoku_remaining = (responseData) => {
   });
 };
 
-// 乱読画像の状態が update される -> 乱読画像の未読/既読の数を更新
+// さらさら読書画像メモの状態が update される -> さらさら読書画像メモの未読/既読の数を更新
 const img_read_status_count_update = (responseData) => {
   const img_read_status_count = document.querySelector('.randoku_imgs_unread_count');
   // responseDataから変数を取り出す
@@ -89,7 +89,7 @@ const img_read_status_count_update = (responseData) => {
   }
 };
 
-// 乱読画像の状態が update される -> 乱読画像の未読/既読 check を更新
+// さらさら読書画像メモの状態が update される -> さらさら読書画像メモの未読/既読 check を更新
 const img_already_read_check_update = (imgId, responseData) => {
   const is_already_read_check = document.querySelector(`.is_already_read_check[data-img-id="${imgId}"]`);
   if (responseData.img_reading_state_result === 0) {
@@ -123,13 +123,13 @@ const judge_popup_message = (responseData) => {
   if (responseData.book_state_updated_info) {
     hideJudgePopupMessages(); // 一度すべての judge_popup_message を非表示にする
     switch (responseData.book_state_updated_info) {
-      case '精読':
+      case 'じっくり読書：精読':
         seidokuJudgePopupMessage.classList.remove('judge-popup__hidden');
         break;
-      case '通読':
+      case 'さらさら読書：通読':
         tudokuJudgePopupMessage.classList.remove('judge-popup__hidden');
         break;
-      case '乱読':
+      case 'さらさら読書：乱読':
         randokuJudgePopupMessage.classList.remove('judge-popup__hidden');
         break;
     }

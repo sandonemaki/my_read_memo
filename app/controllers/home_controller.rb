@@ -30,9 +30,9 @@ class HomeController < ApplicationController
 
     user_books = user.books
 
-    # TODO: 1の部分に文字列"乱読"を入れる。text -> int に詰め替えるメソッド呼び出しにする
-    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == 乱読, 2 == 通読
-    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == 精読
+    # TODO: 1の部分に文字列"さらさら読書"を入れる。text -> int に詰め替えるメソッド呼び出しにする
+    all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == さらさら読書：乱読, 2 == さらさら読書：通読
+    all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == じっくり読書：精読
     user_view_model = ViewModel::UserName.new(user: user)
     book_view_models =
       ViewModel::HomeMemoSearchResult.new(

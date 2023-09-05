@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// 乱読画像の状態が / トータルページが
-// update される -> 精読までの枚数を更新
+// さらさら読書画像メモの状態が / トータルページが
+// update される ->　じっくり読書までの枚数を更新
 export const book_seidoku_remaining = (responseData) => {
   const seidoku_remainings = document.querySelectorAll('.seidoku-remaining-js');
   seidoku_remainings.forEach((seidoku_remaining) => {

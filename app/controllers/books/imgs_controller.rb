@@ -61,9 +61,9 @@ class Books::ImgsController < ApplicationController
         remaining: remaining,
       }
 
-      # 更新された本の状態が"精読"であれば精読メモのタブの鍵を外す
+      # 更新された本の状態が"じっくり読書：精読"であればじっくり読書メモのタブの鍵を外す
       # 一度falseになると変更されない
-      if book_state_updated_info == '精読'
+      if book_state_updated_info == 'じっくり読書：精読'
         book.seidoku_memo_key = false
         unless book.save
           render json: {

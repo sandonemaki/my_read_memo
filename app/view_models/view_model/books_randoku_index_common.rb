@@ -5,7 +5,7 @@ module ViewModel
       :randoku_history
 
     def initialize(all_randoku_state_books:, all_seidoku_state_books:, all_books_count:, user_books:)
-      # 全ての乱読画像合計数
+      # 全てのさらさら読書画像メモの合計数
       @all_randoku_imgs_count =
       user_books.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
 
@@ -14,7 +14,7 @@ module ViewModel
 
 
       @all_randoku_state_count = all_randoku_state_books.count
-      # 現在乱読中の本の中から乱読画像が多い順のbook_id。1-3位まで
+      # 現在さらさら読書中の本の中からさらさら読書画像メモが多い順のbook_id。1-3位まで
       randoku_img_ranking = all_randoku_state_books.joins(:randoku_imgs)
         .group('books.id')
         .select('books.id, COUNT(randoku_imgs.id) as count')
@@ -37,12 +37,12 @@ module ViewModel
             randoku_memos_count: randoku_history.randoku_memos.count,
             seidoku_memos_count: randoku_history.seidoku_memos.count,
             reading_state: case randoku_history.reading_state
-            when State::READING_STATE.key("乱読")
-              "乱読"
-            when State::READING_STATE.key("精読")
-              "精読"
+            when State::READING_STATE.key("さらさら読書：乱読")
+              "さらさら読書"
+            when State::READING_STATE.key("じっくり読書：精読")
+              "じっくり読書"
             else
-              "通読"
+              "さらさら読書"
             end,
             path: RandokuHistory.last.path,
             randoku_history_ranking: randoku_img_ranking.include?(randoku_history.id) ?
