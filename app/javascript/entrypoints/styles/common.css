@@ -10,7 +10,9 @@ body {
 a {
   text-decoration: none;
 }
-
+.with-quote {
+  padding-left: 0.5em; /* 「」の幅に相当するスペースを追加 */
+}
 main {
   padding-bottom: 60px;
 }

@@ -3,7 +3,7 @@
     <p class="seidoku-remaining-js show-tab">
       <%= book.remaining %>
     </p>
-    <p id="img_read_status_count" class="font-small-12">
+    <p id="img_read_status_count" class="font-small-12 with-quote">
       じっくり読書の基準：画像メモが
       <span class="book_seidoku_line_1 font-small-12"><%= book.seidoku_line_1 %></span>枚以上、未読の画像メモが
       <span class="book_seidoku_line_2 font-small-12"><%= book.seidoku_line_2 %></span>枚未満
@@ -12,7 +12,7 @@
       <%=
         link_to '初めての投稿画像',
                 'javascript:void(0)',
-                class: 'sw_modal_trigger',
+                class: 'sw_modal_trigger with-quote',
                 'data-slide-index': 0,
                 'data-src': "#{book.first_post_img_path}"
       %>
