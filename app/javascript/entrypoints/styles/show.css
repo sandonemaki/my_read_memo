@@ -81,7 +81,7 @@ h1 .fa-pen-to-square {
   font-size: 28px;
   line-height: 1.5;
 }
-.book_reading_progress.show-tabs {
+.book_reading_progress_js.show-tabs {
   margin-left: 12px;
   letter-spacing: 3.4px;
 }
@@ -266,7 +266,7 @@ h1 .fa-pen-to-square {
   .fa-circle-question.show-tabs {
     margin-left: 6px;
   }
-  .book_reading_progress.show-tabs {
+  .book_reading_progress_js.show-tabs {
     margin-left: 10px;
   }
   .book-progress-icon.show-tabs i {

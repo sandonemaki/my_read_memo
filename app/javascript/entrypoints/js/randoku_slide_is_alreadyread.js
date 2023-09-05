@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       toggleImgAlreadyReadStateBtn(readBtn);
       judge_popup_message(responseData);
       img_already_read_check_update(imgId, responseData);
-      img_read_status_count_update(responseData);
+      //img_read_status_count_update(responseData);
       book_reading_progress_update(responseData);
       book_seidoku_memo_key(responseData);
       book_seidoku_remaining(responseData);
@@ -61,10 +61,10 @@ export const book_seidoku_memo_key = (responseData) => {
 // さらさら読書画像メモの状態が / トータルページが
 // update される -> さらさら読書画像メモの未読・既読の数が変わる -> 本の状態を更新
 export const book_reading_progress_update = (responseData) => {
-  const book_reading_progress_list = document.querySelectorAll('.book_reading_progress');
+  const book_reading_progress_list = document.querySelectorAll('.book_reading_progress_js');
   book_reading_progress_list.forEach((book_reading_progress) => {
     if (responseData.book_state_updated_info) {
-      book_reading_progress.textContent = responseData.book_state_updated_info;
+      book_reading_progress.textContent = responseData.book_state_updated_info.split('：')[0];
     }
   });
 };
@@ -79,15 +79,15 @@ export const book_seidoku_remaining = (responseData) => {
 };
 
 // さらさら読書画像メモの状態が update される -> さらさら読書画像メモの未読/既読の数を更新
-const img_read_status_count_update = (responseData) => {
-  const img_read_status_count = document.querySelector('.randoku_imgs_unread_count');
-  // responseDataから変数を取り出す
-  const img_unread_count = responseData.img_unread_count;
-  // const img_already_read_count = responseData.img_already_read_count;
-  if (img_unread_count !== undefined) {
-    img_read_status_count.textContent = `${img_unread_count}`;
-  }
-};
+//const img_read_status_count_update = (responseData) => {
+//  const img_read_status_count = document.querySelector('.randoku_imgs_unread_count');
+//  // responseDataから変数を取り出img_read_status_count_update
+//  const img_unread_count = responseData.img_unread_count;
+//  // const img_already_read_count = responseData.img_already_read_count;
+//  if (img_unread_count !== undefined) {
+//    img_read_status_count.textContent = `${img_unread_count}`;
+//  }
+//};
 
 // さらさら読書画像メモの状態が update される -> さらさら読書画像メモの未読/既読 check を更新
 const img_already_read_check_update = (imgId, responseData) => {
@@ -100,7 +100,7 @@ const img_already_read_check_update = (imgId, responseData) => {
 };
 
 //// 本の状態が変更されたことを知らせるpopup関数 ////
-// judge_popup_message を表示するためのセレクターを取得
+// judge_popup_message を表示img_read_status_count_updateするためのセレクターを取得
 const seidokuJudgePopupMessage = document.querySelector('#judged-seidoku');
 const tudokuJudgePopupMessage = document.querySelector('#judged-tudoku');
 const randokuJudgePopupMessage = document.querySelector('#judged-randoku');

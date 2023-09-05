@@ -182,7 +182,7 @@
   line-height: 1.5;
 }
 
-.book_reading_progress.slide {
+.book_reading_progress_js.slide {
   font-size: 28px;
   margin-left: 12px;
   letter-spacing: 4px;
@@ -700,7 +700,7 @@
     left: 100%;
     transform: inherit;
   }
-  .book_reading_progress.slide {
+  .book_reading_progress_js.slide {
     margin-left: 0px;
     letter-spacing: 4px;
     font-size: 4vw;
