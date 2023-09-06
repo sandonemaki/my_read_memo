@@ -3,21 +3,21 @@
     <p><i class="fa-solid fa-book index-lesson-label-icon"></i></p>
     <p class="index-lesson-label col-dark-brown">前回の続き</p>
   </div>
-  <% if books.randoku_history.empty? %>
+  <% if skim_books.randoku_history.empty? %>
     <p class="no-history pre">前回の本がありません</p>
   <% end %>
 
-  <% if !books.randoku_history.empty? %>
+  <% if !skim_books.randoku_history.empty? %>
     <div class="index-user-book-info">
       <div class="index-user-book">
-        <%= link_to "/books/#{books.randoku_history[:id]}" do %>
+        <%= link_to "/books/#{skim_books.randoku_history[:id]}" do %>
           <div class="index-user-book-cover">
-            <% if books.randoku_history[:randoku_history_ranking].present? %>
-              <!--<%= books.randoku_history[:randoku_history_ranking] %>位</p>-->
+            <% if skim_books.randoku_history[:randoku_history_ranking].present? %>
+              <!--<%= skim_books.randoku_history[:randoku_history_ranking] %>位</p>-->
               <i class="fa-solid fa-crown index-crown pre"></i>
             <% end %>
             <img
-              src="<%= books.randoku_history[:cover_path] %>"
+              src="<%= skim_books.randoku_history[:cover_path] %>"
               width="100%"
               alt="ブックカバー"
               class="index-book-cover-img"
@@ -25,11 +25,10 @@
           </div>
           <div class="index-user-book-title">
             <p>
-              <span class="index-book-title pre"><%= books.randoku_history[:title] %></span>
+              <span class="index-book-title pre"><%= skim_books.randoku_history[:title] %></span>
             </p>
-            <span class="index-book-progress pre font-small-12"><%= books.randoku_history[:reading_state] %></span>
             <p>
-              <span class="index-book-remaining font-small-12"><%= books.randoku_history[:remaining] %></span>
+              <span class="index-book-remaining font-small-12"><%= skim_books.randoku_history[:remaining] %></span>
             </p>
           </div>
         <% end %>
@@ -42,7 +41,7 @@
               <i class="fa-regular fa-image index-memo-icon"></i>
               <p>
                 <span class="index-book-memo-count imgs pre font-large"><%=
-                    books.randoku_history[:randoku_imgs_count]
+                    skim_books.randoku_history[:randoku_imgs_count]
                   %></span>
                 <span class="index-book-memo-unit">枚</span>
               </p>
@@ -55,7 +54,7 @@
               <i class="fa-regular fa-note-sticky index-memo-icon"></i>
               <p>
                 <span class="index-book-memo-count memos pre font-large"><%=
-                    books.randoku_history[:randoku_memos_count]
+                    skim_books.randoku_history[:randoku_memos_count]
                   %></span>
                 <span class="index-book-memo-unit">枚</span>
               </p>
@@ -64,7 +63,7 @@
         </div>
         <%=
           link_to '本の詳細へ',
-                  "/books/#{books.randoku_history[:id]}",
+                  "/books/#{skim_books.randoku_history[:id]}",
                   class: 'link-button line-button-detail index-user-book-memo-btn'
         %>
       </div>

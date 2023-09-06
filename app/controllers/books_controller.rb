@@ -506,11 +506,7 @@ class BooksController < ApplicationController
     new_path = "books/#{book.id}"
 
     # 学習履歴を保存
-    if %w[0 2].include?(book.reading_state.to_s)
-      RandokuHistory.set(new_path, book.id)
-    else
-      SeidokuHistory.set(new_path, book.id)
-    end
+    1 != book.reading_state ? RandokuHistory.set(new_path, book.id) : SeidokuHistory.set(new_path, book.id)
 
     user_view_model = ViewModel::UserName.new(user: user)
     book_imgs_view_model = ViewModel::BooksShow.new(book: book)

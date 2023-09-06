@@ -13,7 +13,15 @@ module ViewModel
       # 全てのさらさら読書画像メモ合計数
       @all_randoku_imgs_count =
         user_books.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
-      seidoku_history = user_books.find_by(id: SeidokuHistory.last.book_id) if SeidokuHistory.last.present?
+      # 現在精読状態の本のidを集めて、SeidokuHistoryから最新のidを探す
+      seidoku_state_books = user_books.where(reading_state: "1").pluck(:id)
+      seidoku_history_latest = SeidokuHistory.where(book_id: seidoku_state_books).order(created_at: :desc).first
+      if seidoku_history_latest
+        seidoku_latest_book_id = seidoku_history_latest.book_id
+        seidoku_history = user_books.find_by(
+          id: seidoku_state_books.include?(seidoku_latest_book_id) ? seidoku_latest_book_id : nil
+        ) 
+      end
 
       # じっくり読書中の本の中からじっくり読書メモが多い順のbook_id。1-3位まで
       seidoku_memo_ranking = all_seidoku_state_books.joins(:seidoku_memos)

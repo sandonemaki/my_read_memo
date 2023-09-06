@@ -12,19 +12,21 @@ module ViewModel
       @all_count = all_books_count
       @all_seidoku_state_count = all_seidoku_state_books.count
 
+      # 現在乱読状態の本のidを集めて、RandokuHistoryから最新のidを探す
+      randoku_state_books = user_books.where.not(reading_state: "1").pluck(:id)
+      randoku_history_latest = RandokuHistory.where(book_id: randoku_state_books).order(created_at: :desc).first
+      if randoku_history_latest
+        randoku_latest_book_id = randoku_history_latest.book_id
+        randoku_history = user_books.find_by(
+          id: randoku_state_books.include?(randoku_latest_book_id) ? randoku_latest_book_id : nil
+        ) 
+      end
 
-      @all_randoku_state_count = all_randoku_state_books.count
       # 現在さらさら読書中の本の中からさらさら読書画像メモが多い順のbook_id。1-3位まで
       randoku_img_ranking = all_randoku_state_books.joins(:randoku_imgs)
         .group('books.id')
         .select('books.id, COUNT(randoku_imgs.id) as count')
         .order('COUNT(randoku_imgs.id) DESC').limit(3).pluck(:id)
-
-
-      randoku_history = user_books.find_by(id: RandokuHistory.last.book_id) if RandokuHistory.last.present?
-      #img_unread_count = randoku_history.randoku_imgs.where(reading_state: '0').count # 未読の数
-      #seidoku_line_1 = (randoku_history.total_page * (1.0 / 8.0)).ceil # 切り上げ
-      #seidoku_line_2 = (randoku_history.total_page * (1.0 / 4.0)).floor # 切り捨て
 
       # 「前回の続き」用
       # TODO: ハッシュをクラスにする

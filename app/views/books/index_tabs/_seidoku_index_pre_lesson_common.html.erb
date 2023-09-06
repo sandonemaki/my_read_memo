@@ -3,21 +3,21 @@
     <p><i class="fa-solid fa-book index-lesson-label-icon"></i></p>
     <p class="index-lesson-label col-dark-brown">前回の続き</p>
   </div>
-  <% if books.seidoku_history.empty? %>
+  <% if deep_books.seidoku_history.empty? %>
     <p class="no-history pre">前回の本がありません</p>
   <% end %>
 
-  <% if !books.seidoku_history.empty? %>
+  <% if !deep_books.seidoku_history.empty? %>
     <div class="index-user-book-info">
       <div class="index-user-book">
-        <%= link_to "/books/#{books.seidoku_history[:id]}" do %>
+        <%= link_to "/books/#{deep_books.seidoku_history[:id]}" do %>
           <div class="index-user-book-cover">
-            <% if books.seidoku_history[:seidoku_history_ranking].present? %>
-              <!--<%= books.seidoku_history[:seidoku_history_ranking] %>位</p>-->
+            <% if deep_books.seidoku_history[:seidoku_history_ranking].present? %>
+              <!--<%= deep_books.seidoku_history[:seidoku_history_ranking] %>位</p>-->
               <i class="fa-solid fa-crown index-crown"></i>
             <% end %>
             <img
-              src="<%= books.seidoku_history[:cover_path] %>"
+              src="<%= deep_books.seidoku_history[:cover_path] %>"
               width="100%"
               alt="ブックカバー"
               class="index-book-cover-img"
@@ -25,9 +25,8 @@
           </div>
           <div class="index-user-book-title">
             <p>
-              <span class="index-book-title"><%= books.seidoku_history[:title] %></span>
+              <span class="index-book-title"><%= deep_books.seidoku_history[:title] %></span>
             </p>
-            <span class="index-book-progress font-small-12"><%= books.seidoku_history[:reading_state] %></span>
           </div>
         <% end %>
       </div>
@@ -39,7 +38,9 @@
             <div class="index-book-memo">
               <i class="fa-regular fa-image index-memo-icon"></i>
               <p>
-                <span class="index-book-memo-count font-large"><%= books.seidoku_history[:randoku_imgs_count] %></span>
+                <span class="index-book-memo-count font-large"><%=
+                    deep_books.seidoku_history[:randoku_imgs_count]
+                  %></span>
                 <span class="index-book-memo-unit">枚</span>
               </p>
             </div>
@@ -50,7 +51,9 @@
             <div class="index-book-memo">
               <i class="fa-regular fa-note-sticky index-memo-icon"></i>
               <p>
-                <span class="index-book-memo-count font-large"><%= books.seidoku_history[:seidoku_memos_count] %></span>
+                <span class="index-book-memo-count font-large"><%=
+                    deep_books.seidoku_history[:seidoku_memos_count]
+                  %></span>
                 <span class="index-book-memo-unit">枚</span>
               </p>
             </div>
@@ -58,7 +61,7 @@
         </div>
         <%=
           link_to '本の詳細へ',
-                  "/books/#{books.seidoku_history[:id]}",
+                  "/books/#{deep_books.seidoku_history[:id]}",
                   class: 'link-button line-button-detail index-user-book-memo-btn'
         %>
       </div>
