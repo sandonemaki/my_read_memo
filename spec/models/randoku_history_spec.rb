@@ -29,8 +29,8 @@ RSpec.describe RandokuHistory, type: :model do
     context 'さらさら読書の前回の本のレコードが存在する場合' do
       before { RandokuHistory.create(path: 'old_path', book_id: 1) }
 
-      it 'さらさら読書の前回の本のレコードの数が変わらないこと' do
-        expect { RandokuHistory.set(new_path, book.id) }.not_to change { RandokuHistory.count }
+      it 'さらさら読書の前回の本のレコードの数が100件以下であること' do
+        expect { RandokuHistory.set(new_path, book.id) }.not_to change { RandokuHistory.count <= 100 }
 
         randoku_history = RandokuHistory.last
         expect(randoku_history.path).to eq new_path

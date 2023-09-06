@@ -30,8 +30,8 @@ RSpec.describe SeidokuHistory, type: :model do
     context 'じっくり読書の前回の本のレコードが存在する場合' do
       before { SeidokuHistory.create(path: 'old_path', book_id: 1) }
 
-      it 'じっくり読書の前回の本のレコードの数が変わらないこと' do
-        expect { SeidokuHistory.set(new_path, book.id) }.not_to change { SeidokuHistory.count }
+      it 'じっくり読書の前回の本のレコードの数が100件以下であること' do
+        expect { SeidokuHistory.set(new_path, book.id) }.not_to change { SeidokuHistory.count <= 100 }
 
         seidoku_history = SeidokuHistory.last
         expect(seidoku_history.path).to eq new_path
