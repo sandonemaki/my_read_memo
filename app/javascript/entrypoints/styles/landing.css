@@ -29,19 +29,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 .landing-intoroduction_title {
   font-weight: bold;
   font-size: 44px;
   line-height: 1.5;
   letter-spacing: 0.03em;
+  text-align: center;
 }
 .landing-intoroduction_lead {
   margin-top: 16px;
   line-height: 2;
   margin-bottom: 48px;
+  text-align: center;
 }
+
 .submit-button.landing-intoroduction {
   min-width: 200px;
   line-height: 48px;
@@ -65,13 +67,63 @@
   vertical-align: middle;
 }
 
+/* 楽しみ方 */
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 96px 4.16%;
+}
+.landing-small-section-title {
+  text-align: center;
+}
+
+.landing-intoroduction_lead.landing-how-to-enjoy {
+  margin-bottom: 70px;
+}
+.landing-small-section-lead {
+  margin: 16px auto 0px;
+  text-align: center;
+  line-height: 2;
+}
+.landing-small-section-point {
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Hirago KakuGothic ProN';
+  font-weight: bold;
+  line-height: 2.5;
+  text-decoration: underline;
+  text-underline-offset: 9px;
+  text-decoration-style: wavy;
+  text-decoration-color: #ffd966;
+  margin-top: 16px;
+}
+.landing-small-section > picture > img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  max-width: 1000px;
+  width: 100%;
+  margin: 60px 0px;
+}
+/* アプリの取説 */
+.landing-big-section {
+  width: 100%;
+  padding-top: 36px;
+}
+
 @media screen and (max-width: 600px) {
   .landing-header-main {
-    padding: 12px 6%;
+    display: flex;
   }
   .landing-intoroduction_title {
-    font-size: 5.5vw;
+    font-size: 6.5vw;
     width: 80%;
+  }
+  .landing-intoroduction_title.big-section-title {
+    font-size: 7vw;
+    margin: auto;
   }
   .landing-intoroduction_lead {
     font-size: 3vw;
@@ -95,5 +147,26 @@
     display: inherit;
     justify-content: inherit;
     margin-top: 40px;
+  }
+  /* 楽しみ方 */
+  .landing-container {
+    padding: 40px 4.16%;
+  }
+  .landing-intoroduction_lead.landing-how-to-enjoy {
+    text-align: inherit;
+  }
+  .landing-small-section-lead {
+    font-size: 3vw;
+    width: 80%;
+    margin: 12px auto 0;
+  }
+  .landing-small-section-point {
+    font-size: 3.5vw;
+  }
+  .landing-small-section > picture > img {
+    margin: 40px 0;
+  }
+  /* アプリの取説 */
+  .landing-big-section {
   }
 }
