@@ -115,6 +115,7 @@
   width: 100%;
   padding-top: 36px;
   width: 90%;
+  margin-bottom: 60px;
 }
 /****/
 /* 使い方 */
@@ -177,6 +178,26 @@
   text-align: center;
   letter-spacing: 1px;
 }
+/* キャラクター３体 */
+.chara3-illust {
+  width: 23%;
+}
+.landing-container-satart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 94px 0;
+}
+.landing-small-section-title.landing-satart {
+  margin-bottom: 16px;
+}
+.landing-container-logo {
+  padding: 70px 0;
+}
+.landing-start-logo {
+  width: 112px;
+}
 
 @media screen and (max-width: 600px) {
   .landing-header-main {
@@ -200,7 +221,7 @@
     padding: 100px 0 0;
   }
   .landing-small-section-title {
-    font-size: 6.5vw;
+    font-size: 6.3vw;
   }
 
   .landing-introduction_img-container {
@@ -279,5 +300,9 @@
     font-size: 3.7vw;
     margin-bottom: 70px;
     line-height: 2.3;
+  }
+  /* キャラクター３体 */
+  .chara3-illust {
+    width: 54%;
   }
 }
