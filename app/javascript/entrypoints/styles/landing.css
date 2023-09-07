@@ -42,6 +42,7 @@
   line-height: 2;
   margin-bottom: 48px;
   text-align: center;
+  letter-spacing: 1px;
 }
 
 .submit-button.landing-intoroduction {
@@ -81,11 +82,13 @@
 
 .landing-intoroduction_lead.landing-how-to-enjoy {
   margin-bottom: 70px;
+  letter-spacing: 1px;
 }
 .landing-small-section-lead {
   margin: 16px auto 0px;
   text-align: center;
   line-height: 2;
+  letter-spacing: 1px;
 }
 .landing-small-section-point {
   text-align: center;
@@ -111,6 +114,68 @@
 .landing-big-section {
   width: 100%;
   padding-top: 36px;
+  width: 90%;
+}
+/****/
+/* 使い方 */
+.manual-use {
+  margin-top: 32px;
+}
+.manual-title {
+  font-size: 36px;
+  font-family: 'Gill Sans';
+  font-weight: bold;
+  text-align: center;
+}
+.manual-sub-title {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 32px;
+  font-family: 'Hirago KakuGothic ProN';
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.manual-sub-title::after {
+  position: absolute;
+  content: '';
+  width: 25px;
+  height: 3px;
+  left: 50%;
+  margin: 16px 0 0 -12px;
+  display: block;
+  background: #ffa935;
+}
+/* グリッド */
+.manual-use_inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 60px;
+  margin-bottom: 94px;
+}
+.manual-use-lead {
+  line-height: 2;
+  letter-spacing: 1px;
+}
+.manual-use-description {
+  display: flex;
+}
+.namual-number {
+  font-size: 32px;
+  font-family: 'Gill Sans';
+  font-weight: bold;
+  padding-top: 4px;
+  margin-right: 16px;
+}
+.manual-use-illust {
+  margin-bottom: 20px;
+}
+/* How to Fun */
+.manual-description {
+  line-height: 2;
+  width: 80%;
+  margin: 0 auto 94px;
+  text-align: center;
+  letter-spacing: 1px;
 }
 
 @media screen and (max-width: 600px) {
@@ -118,21 +183,26 @@
     display: flex;
   }
   .landing-intoroduction_title {
-    font-size: 6.5vw;
-    width: 80%;
+    font-size: 7vw;
+    width: 84%;
+    line-height: 1.6;
   }
   .landing-intoroduction_title.big-section-title {
     font-size: 7vw;
     margin: auto;
   }
   .landing-intoroduction_lead {
-    font-size: 3vw;
-    width: 80%;
+    font-size: 3.7vw;
     margin-bottom: 24px;
+    width: 80%;
   }
   .landing-introduction-main {
     padding: 100px 0 0;
   }
+  .landing-small-section-title {
+    font-size: 6.5vw;
+  }
+
   .landing-introduction_img-container {
     background-color: #faf7f4;
   }
@@ -154,20 +224,62 @@
   }
   .landing-intoroduction_lead.landing-how-to-enjoy {
     text-align: inherit;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
+    line-height: 2.3;
+    width: 90%;
   }
   .landing-small-section-lead {
-    font-size: 3vw;
+    font-size: 3.7vw;
     width: 80%;
     margin: 12px auto 0;
   }
   .landing-small-section-point {
-    font-size: 3.5vw;
+    font-size: 3.6vw;
   }
   .landing-small-section > picture > img {
     margin: 40px 0;
   }
   /* アプリの取説 */
   .landing-big-section {
+    width: 90%;
+  }
+  /****/
+  /* 使い方 */
+  .manual-use {
+    margin-top: 20px;
+  }
+  .manual-title {
+    font-size: 32px;
+  }
+  .manual-sub-title {
+    line-height: 2;
+    margin-bottom: 42px;
+  }
+  .manual-sub-title::after {
+    margin: 20px 0 0 -12px;
+  }
+  /* グリッド */
+  .manual-use_inner {
+    grid-template-columns: 1fr;
+    grid-gap: 6vw;
+    margin-bottom: 70px;
+  }
+  .manual-use-lead {
+    font-size: 3.7vw;
+    line-height: 2.3;
+  }
+  .namual-number {
+    font-size: 28px;
+  }
+  .manual-use-illust {
+    margin: 20px 0 12px 0;
+  }
+  /* How to Fun */
+  .manual-description {
+    width: 100%;
+    text-align: inherit;
+    font-size: 3.7vw;
+    margin-bottom: 70px;
+    line-height: 2.3;
   }
 }
