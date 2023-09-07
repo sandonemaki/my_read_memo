@@ -1,7 +1,23 @@
-トップページ
-<header class="landing-header-main">
-  <div class="yondeco-landing-logo">
-    <img src="/yondeco_logo.svg" />
+<div class="landing">
+  <header class="landing-header-main">
+    <div class="yondeco-landing-logo">
+      <img src="/yondeco_logo.svg" />
+    </div>
+    <%= button_to 'ログイン', '/auth/auth0', method: :post, class: 'submit-button landing' %>
+  </header>
+
+  <div class="landing-introduction-main">
+    <h2 class="landing-intoroduction_title">
+      <span>いま読んでいる本が<br />「自分にとってどのぐらい大切な一冊」なのか、<br />「見える化」するアプリ</span>
+    </h2>
+    <p class="landing-intoroduction_lead">
+      yondecoアプリをあなたの相棒にし、<br />自分だけのレビューを書ける「新しい読書体験」をはじめてみてください。
+    </p>
+    <%= button_to '今すぐはじめる', '/auth/auth0', method: :post, class: 'submit-button landing-intoroduction' %>
+    <div class="landing-introduction_img-container">
+      <picture>
+        <img src="/illust/top72.png" class="landing-top-img" />
+      </picture>
+    </div>
   </div>
-  <%= button_to 'ログイン', '/auth/auth0', method: :post %>
-</header>
+</div>
