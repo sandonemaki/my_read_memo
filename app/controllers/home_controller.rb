@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   include Secured
-  skip_before_action :logged_in_using_omniauth?, only: [:top]
+  skip_before_action :logged_in_using_omniauth?, only: [:landing]
   require_relative '../modules/state'
-  def top; end
+  def landing; end
 
   def memo_search
     user_info = session[:userinfo]

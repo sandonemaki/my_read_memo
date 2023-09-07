@@ -55,5 +55,5 @@ Rails
     get '/auth/failure' => 'auth0#failure'
     get '/auth/logout' => 'auth0#logout'
 
-    root to: 'home#top'
+    root to: 'home#landing'
   end
