@@ -220,7 +220,7 @@
   }
   /* 楽しみ方 */
   .landing-container {
-    padding: 40px 4.16%;
+    padding: 40px 6%;
   }
   .landing-intoroduction_lead.landing-how-to-enjoy {
     text-align: inherit;
@@ -234,15 +234,13 @@
     margin: 12px auto 0;
   }
   .landing-small-section-point {
-    font-size: 3.6vw;
+    font-size: 3.5vw;
   }
   .landing-small-section > picture > img {
     margin: 40px 0;
   }
   /* アプリの取説 */
-  .landing-big-section {
-    width: 90%;
-  }
+
   /****/
   /* 使い方 */
   .manual-use {
