@@ -23,6 +23,7 @@
 .submit-button.landing {
   height: 40px;
   font-size: 0.75rem;
+  border-radius: 8px;
 }
 .landing-introduction-main {
   padding: 136px 0 0;
@@ -48,6 +49,7 @@
 .submit-button.landing-intoroduction {
   min-width: 200px;
   line-height: 48px;
+  border-radius: 8px;
 }
 .landing-introduction_img-container {
   padding: 0px 4.16% 0;
