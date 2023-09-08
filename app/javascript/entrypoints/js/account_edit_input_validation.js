@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     };
 
-    const isInputNicknameValid = (inputNickname, minLength = 0, maxLength = 13) => {
+    const isInputNicknameValid = (inputNickname, minLength = 1, maxLength = 13) => {
       return inputNickname.value.length >= minLength && inputNickname.value.length <= maxLength;
     };
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (input === inputNickname) {
           nicknameValidError.textContent = isInputNicknameValid(inputNickname)
             ? ''
-            : 'ニックネームは13文字以内で入力してください';
+            : 'ニックネームは1〜13文字以内で入力してください';
         }
 
         // 入力が変更されたかどうか
