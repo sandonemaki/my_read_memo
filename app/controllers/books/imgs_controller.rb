@@ -134,7 +134,7 @@ class Books::ImgsController < ApplicationController
         # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
         filename = ActiveSupport::Inflector.transliterate(page_img.original_filename).gsub(' ', '').gsub(/[^\w.]+/, '_')
 
-        filename = convert_check_ext(filename, error_messages)
+        filename = convert_check_ext(page_img, filename, error_messages)
         img_ext = File.extname(filename)
 
         # 用途
@@ -171,8 +171,8 @@ class Books::ImgsController < ApplicationController
   end # def create
 
   # 拡張子をチェックして正しいものに変更
-  def convert_check_ext(filename, error_messages)
-    content_type = Marcel::MimeType.for(filename)
+  def convert_check_ext(page_img, filename, error_messages)
+    content_type = Marcel::MimeType.for(page_img)
 
     # 拡張子をMIMEタイプから判定
     ext_mapping = { 'image/jpeg' => '.jpg', 'image/png' => '.png', 'image/gif' => '.gif', 'image/heic' => '.heic' }
