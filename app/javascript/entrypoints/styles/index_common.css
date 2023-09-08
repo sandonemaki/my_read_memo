@@ -169,11 +169,12 @@
   vertical-align: baseline;
 }
 .index-user-book-table {
-  margin-top: 56px;
+  padding-top: 56px;
+  background-color: #faf7f4;
 }
 .index-user-last-time-book-table {
   padding-top: 36px;
-  background-color: white;
+  background-color: #faf7f4;
   z-index: 1;
   position: relative;
   /*border-top: 2px solid #e9edf1;*/
@@ -200,7 +201,7 @@
 .index-user-book-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
+  padding-bottom: 24px;
 }
 .index-user-book {
   width: 70%;
