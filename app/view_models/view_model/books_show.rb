@@ -23,7 +23,7 @@ module ViewModel
         else
           "さらさら読書"
         end
-      (book.seidoku_memo_key = false) if @reading_progress == "じっくり読書：精読"
+      (book.seidoku_memo_key = false) if @reading_progress == "じっくり読書"
       @seidoku_memo_key = book.seidoku_memo_key
       @publisher = book.publisher
       @errors = book.errors
