@@ -137,7 +137,7 @@ class Books::ImgsController < ApplicationController
         img_ext = File.extname(filename)
 
         if img_ext.empty? || !%w[.jpg .jpeg .png .pdf .heic].include?(img_ext.downcase)
-          filename = convert_missing_ext_to_png(filename)
+          filename = convert_missing_ext_to_png(filename) # 拡張子がわからないときはpngに
           img_ext = File.extname(filename)
         end
 
@@ -217,7 +217,8 @@ class Books::ImgsController < ApplicationController
     size = '220x150'
     Dir.mktmpdir do |tmpdir|
       File.binwrite("#{tmpdir}/#{filename}", page_img.read)
-      system('mogrify -format jpg *.png')
+
+      #system("magick mogrify -format jpg #{tmpdir}/*.png")
       system('mogrify -strip ' + tmpdir + '/*')
       system(
         #'convert ' + tmpdir + '/* -thumbnail ' + size +
@@ -226,7 +227,7 @@ class Books::ImgsController < ApplicationController
           -extent ' + size + ' public/' + book.id.to_s + '/thumb/sm_' + filename,
       )
       begin
-        FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
+        FileUtils.mv(Dir.glob("#{tmpdir}/*"), "public/#{book.id}/")
       rescue StandardError => e
         error_messages << "#{filename}が保存に失敗しました"
         raise StandardError.new("原因：#{e.class}, #{e.message}")
