@@ -8,6 +8,7 @@ module ViewModel
       # 全てのさらさら読書画像メモの合計数
       @all_randoku_imgs_count =
       user_books.joins(:randoku_imgs).where.not(reading_state: "1").count("randoku_imgs.id")
+      @all_randoku_state_count = all_randoku_state_books.count
 
       @all_count = all_books_count
       @all_seidoku_state_count = all_seidoku_state_books.count
