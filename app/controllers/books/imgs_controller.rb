@@ -176,7 +176,16 @@ class Books::ImgsController < ApplicationController
 
   # 拡張子を".png"に変更する
   def convert_missing_ext_to_png(filename)
-    File.basename(filename, '.*') + '.png'
+    content_type = Marcel::MimeType.for(filename)
+
+    # 拡張子をMIMEタイプから判定
+    ext_mapping = { 'image/jpeg' => '.jpg', 'image/png' => '.png', 'image/gif' => '.gif', 'image/heic' => '.heic' }
+
+    unless ext_mapping.key?(content_type)
+      error_messages << "#{filename}の拡張子が不正です"
+      return
+    end
+    File.basename(filename, '.*') + ext_mapping[content_type]
   end
 
   # 用途
