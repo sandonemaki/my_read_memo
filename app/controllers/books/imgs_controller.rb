@@ -117,10 +117,10 @@ class Books::ImgsController < ApplicationController
       FileUtils.mkdir_p("public/#{book.id}/")
       FileUtils.mkdir_p("public/#{book.id}/thumb/")
     rescue StandardError => e
-      flash[:danger] = 'ファイルの処理に失敗しました'
-      book_view_model = ViewModel::BooksShow.new(book: book)
-      render 'books/show', locals: { book: book_view_model }
-      raise StandardError.new("原因：#{e.class}, #{e.message}")
+      flash[:error] = 'ファイルの処理に失敗しました'
+      redirect_to("/books/#{book.id}")
+      Rails.logger.error("原因：#{e.class}, #{e.message}")
+      return
     end
 
     # DBに保存するためのファイル名を追加
@@ -164,9 +164,8 @@ class Books::ImgsController < ApplicationController
     if error_messages.empty?
       redirect_to("/books/#{book.id}")
     else
-      flash.now[:danger] = "アップロードに失敗：\n#{error_messages.join('\n')}"
-      book_view_model = ViewModel::BooksShow.new(book: book)
-      render 'books/show', locals: { book: book_view_model }
+      flash[:error] = "アップロードに失敗：\n#{error_messages.join('\n')}"
+      redirect_to("/books/#{book.id}")
     end
   end # def create
 
