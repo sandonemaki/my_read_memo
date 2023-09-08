@@ -146,7 +146,7 @@ class Books::ImgsController < ApplicationController
 
           # 用途
           # -ファイル名の取得
-        elsif img_ext.match(/\.(jpg|jpeg|png|pdf)$/)
+        elsif img_ext.match(/\.(jpg|jpeg|png)$/)
           filenames_save_db << filename
           save_image_entity_after_convert_to_jpg(book, page_img, filename, error_messages) #メソッド呼び出し1
         else
@@ -175,7 +175,7 @@ class Books::ImgsController < ApplicationController
     content_type = Marcel::MimeType.for(page_img)
 
     # 拡張子をMIMEタイプから判定
-    ext_mapping = { 'image/jpeg' => '.jpg', 'image/png' => '.png', 'image/gif' => '.gif', 'image/heic' => '.heic' }
+    ext_mapping = { 'image/jpeg' => '.jpg', 'image/png' => '.png', 'image/heic' => '.heic' }
 
     unless ext_mapping.key?(content_type)
       error_messages << "#{filename}の拡張子が不正です"
@@ -221,7 +221,8 @@ class Books::ImgsController < ApplicationController
   def save_image_entity_after_convert_to_jpg(book, page_img, filename, error_messages)
     size = '220x150'
     Dir.mktmpdir do |tmpdir|
-      File.binwrite("#{tmpdir}/#{filename}", page_img.read)
+      temp_file_path = "#{tmpdir}/#{filename}"
+      File.binwrite(temp_file_path, page_img.read)
 
       #system("magick mogrify -format jpg #{tmpdir}/*.png")
       system('mogrify -strip ' + tmpdir + '/*')
