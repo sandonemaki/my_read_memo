@@ -88,9 +88,10 @@ class BooksController < ApplicationController
     return redirect_to root_path, alert: 'ユーザーが存在しないか、セッションが無効です。' unless user_info
 
     user = User.find_or_initialize_by(auth0_id: user_info['sub'])
-    user.nickname = user_info['nickname'].slice(0, 13) if user_info['nickname']
-    user.save
-
+    if user.new_record? && user.nickname.blank?
+      user.nickname = user_info['nickname'].slice(0, 13) if user_info['nickname']
+      user.save
+    end
     user_books = user.books
     all_randoku_state_books = user_books.where.not(reading_state: 1) # 0 == さらさら読書：乱読, 2 == さらさら読書：通読
     all_seidoku_state_books = user_books.where(reading_state: 1) # 1 == じっくり読書：精読
