@@ -134,30 +134,26 @@ class Books::ImgsController < ApplicationController
         # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
         filename = ActiveSupport::Inflector.transliterate(page_img.original_filename).gsub(' ', '').gsub(/[^\w.]+/, '_')
 
+        filename = convert_check_ext(filename, error_messages)
         img_ext = File.extname(filename)
-
-        if img_ext.empty? || !%w[.jpg .jpeg .png .pdf .heic].include?(img_ext.downcase)
-          filename = convert_missing_ext_to_png(filename) # 拡張子がわからないときはpngに
-          img_ext = File.extname(filename)
-        end
 
         # 用途
         # -ファイル名の取得
-        if img_ext.match('.HEIC$|.heic$')
-          jpg_imgname = filename.sub(/.HEIC$|.heic$/, '.jpg')
+        if img_ext.match(/\.heic$/)
+          jpg_imgname = filename.sub(/\.heic$/, '.jpg')
           filenames_save_db << jpg_imgname
-          save_image_entity_after_convert_from_hiec_to_jpg(book, page_img, jpg_imgname) #メソッド呼び出し
+          save_image_entity_after_convert_from_hiec_to_jpg(book, page_img, jpg_imgname, error_messages) #メソッド呼び出し
 
           # 用途
           # -ファイル名の取得
-        elsif img_ext.downcase.match(/.jpg$|.jpeg$|.png$|.pdf$/)
+        elsif img_ext.match(/\.(jpg|jpeg|png|pdf)$/)
           filenames_save_db << filename
-          save_image_entity_after_convert_to_jpg(book, page_img, filename) #メソッド呼び出し1
+          save_image_entity_after_convert_to_jpg(book, page_img, filename, error_messages) #メソッド呼び出し1
         else
           error_messages << "#{filename}の拡張子が不正です"
         end
       end
-      db_save_randoku_imgs(book, filenames_save_db)
+      db_save_randoku_imgs(book, filenames_save_db, error_messages)
 
       result = book.try_update_reading_state
       flash[:notice] = '本のステータスが更新されました!' if result[:updated] == true
@@ -174,8 +170,8 @@ class Books::ImgsController < ApplicationController
     end
   end # def create
 
-  # 拡張子を".png"に変更する
-  def convert_missing_ext_to_png(filename)
+  # 拡張子をチェックして正しいものに変更
+  def convert_check_ext(filename, error_messages)
     content_type = Marcel::MimeType.for(filename)
 
     # 拡張子をMIMEタイプから判定
@@ -195,7 +191,7 @@ class Books::ImgsController < ApplicationController
   # -thumb の実体を保存 public/book.id/thumb/
   # -本画像を移動 temp/ -> public/book.id
   # -temp/ 消去
-  def save_image_entity_after_convert_from_hiec_to_jpg(book, page_img, jpg_imgname)
+  def save_image_entity_after_convert_from_hiec_to_jpg(book, page_img, jpg_imgname, error_messages)
     size = '220x150'
     Dir.mktmpdir do |tmpdir|
       File.binwrite("#{tmpdir}/#{jpg_imgname}", page_img.read)
@@ -222,7 +218,7 @@ class Books::ImgsController < ApplicationController
   # -サイズを変更してthumbnailとして実体の保存 public/book.id/thumb/
   # -本画像を移動 temp/ -> public/book.id
   # -temp/ 消去
-  def save_image_entity_after_convert_to_jpg(book, page_img, filename)
+  def save_image_entity_after_convert_to_jpg(book, page_img, filename, error_messages)
     size = '220x150'
     Dir.mktmpdir do |tmpdir|
       File.binwrite("#{tmpdir}/#{filename}", page_img.read)
@@ -244,7 +240,7 @@ class Books::ImgsController < ApplicationController
     end
   end
 
-  def db_save_randoku_imgs(book, filenames_save_db)
+  def db_save_randoku_imgs(book, filenames_save_db, error_messages)
     # 用途
     # dbに同じ画像名が存在するかを確認
     # 存在しない場合にパスと画像名を保存
