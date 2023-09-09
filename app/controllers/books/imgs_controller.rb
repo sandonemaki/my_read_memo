@@ -129,12 +129,16 @@ class Books::ImgsController < ApplicationController
     # 最後にerror_messageをまとめて表示
     error_messages = []
 
+    # 複数の画像の実態を加工/保存/db保存するeach内でエラーが増えていたらdbに保存しない
+    latest_upload_error_count = 0
+    current_upload_error_count = 0
+
     ActiveRecord::Base.transaction do
       page_imgs.each do |page_img|
         # オリジナルファイル名を非ASCII文字をASCII近似値で置き換え
         filename = ActiveSupport::Inflector.transliterate(page_img.original_filename).gsub(' ', '').gsub(/[^\w.]+/, '_')
 
-        filename = convert_check_ext(page_img, filename, error_messages)
+        filename = convert_check_ext(page_img, filename, error_messages, latest_upload_error_count)
         img_ext = File.extname(filename)
 
         # 用途
@@ -142,18 +146,30 @@ class Books::ImgsController < ApplicationController
         if img_ext.match(/\.heic$/)
           jpg_imgname = filename.sub(/\.heic$/, '.jpg')
           filenames_save_db << jpg_imgname
-          save_image_entity_after_convert_from_hiec_to_jpg(book, page_img, jpg_imgname, error_messages) #メソッド呼び出し
+          save_image_entity_after_convert_from_hiec_to_jpg(
+            book,
+            page_img,
+            jpg_imgname,
+            error_messages,
+            latest_upload_error_count,
+          ) #メソッド呼び出し
 
           # 用途
           # -ファイル名の取得
         elsif img_ext.match(/\.(jpg|jpeg|png)$/)
           filenames_save_db << filename
-          save_image_entity_after_convert_to_jpg(book, page_img, filename, error_messages) #メソッド呼び出し1
+          save_image_entity_after_convert_to_jpg(book, page_img, filename, error_messages, latest_upload_error_count) #メソッド呼び出し1
         else
           error_messages << "#{filename}の拡張子が不正です"
+          latest_upload_error_count += 1
         end
       end
-      db_save_randoku_imgs(book, filenames_save_db, error_messages)
+
+      # dbに保存するかどうかを判定する
+      if current_upload_error_count == latest_upload_error_count
+        db_save_randoku_imgs(book, filenames_save_db, error_messages)
+      end
+      current_upload_error_count = latest_upload_error_count
 
       result = book.try_update_reading_state
       flash[:notice] = '本のステータスが更新されました!' if result[:updated] == true
@@ -170,7 +186,7 @@ class Books::ImgsController < ApplicationController
   end # def create
 
   # 拡張子をチェックして正しいものに変更
-  def convert_check_ext(page_img, filename, error_messages)
+  def convert_check_ext(page_img, filename, error_messages, latest_upload_error_count)
     content_type = Marcel::MimeType.for(page_img)
 
     # 拡張子をMIMEタイプから判定
@@ -178,6 +194,7 @@ class Books::ImgsController < ApplicationController
 
     unless ext_mapping.key?(content_type)
       error_messages << "#{filename}の拡張子が不正です"
+      latest_upload_error_count += 1
       return
     end
     File.basename(filename, '.*') + ext_mapping[content_type]
@@ -190,7 +207,13 @@ class Books::ImgsController < ApplicationController
   # -thumb の実体を保存 public/book.id/thumb/
   # -本画像を移動 temp/ -> public/book.id
   # -temp/ 消去
-  def save_image_entity_after_convert_from_hiec_to_jpg(book, page_img, jpg_imgname, error_messages)
+  def save_image_entity_after_convert_from_hiec_to_jpg(
+    book,
+    page_img,
+    jpg_imgname,
+    error_messages,
+    latest_upload_error_count
+  )
     size = '220x150'
     Dir.mktmpdir do |tmpdir|
       File.binwrite("#{tmpdir}/#{jpg_imgname}", page_img.read)
@@ -218,6 +241,7 @@ class Books::ImgsController < ApplicationController
         FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
       rescue StandardError => e
         error_messages << "#{jpg_imgname}が保存されませんでした"
+        latest_upload_error_count += 1
         raise StandardError.new("原因：#{e.class}, #{e.message}")
       end
     end
@@ -229,7 +253,7 @@ class Books::ImgsController < ApplicationController
   # -サイズを変更してthumbnailとして実体の保存 public/book.id/thumb/
   # -本画像を移動 temp/ -> public/book.id
   # -temp/ 消去
-  def save_image_entity_after_convert_to_jpg(book, page_img, filename, error_messages)
+  def save_image_entity_after_convert_to_jpg(book, page_img, filename, error_message, latest_upload_error_count)
     size = '220x150'
     Dir.mktmpdir do |tmpdir|
       temp_file_path = "#{tmpdir}/#{filename}"
@@ -252,6 +276,7 @@ class Books::ImgsController < ApplicationController
         FileUtils.mv(Dir.glob("#{tmpdir}/*"), "public/#{book.id}/")
       rescue StandardError => e
         error_messages << "#{filename}が保存に失敗しました"
+        latest_upload_error_count += 1
         raise StandardError.new("原因：#{e.class}, #{e.message}")
       end
     end
@@ -265,18 +290,17 @@ class Books::ImgsController < ApplicationController
       max_length = 20
       img_name = (page_img_name.length > max_length) ? page_img_name.slice(0, 20) + '…' : page_img_name
 
-      error_messages = []
       randoku_img_record = book.randoku_imgs.find_or_initialize_by(name: page_img_name)
       if randoku_img_record.new_record?
         randoku_img_record.path = "/#{book.id}/#{page_img_name}"
         randoku_img_record.thumbnail_path = "/#{book.id}/thumb/sm_#{page_img_name}"
-        error_messages << img_name unless randoku_img_record.save
+        error_messages << "#{img_name}の保存に失敗しました" unless randoku_img_record.save
 
-        flash.now[:notice] = "#{img_name}のアップロード完了"
+        flash[:notice] = "#{img_name}のアップロード完了"
       else
         # すでに同じ名前の画像がdbに存在する場合
         randoku_img_record.update(updated_at: Time.current)
-        flash.now[:notice] = "#{img_name}の上書きアップロード完了"
+        flash[:notice] = "#{img_name}の上書きアップロード完了"
       end
     end
   end
