@@ -186,7 +186,7 @@ class Books::ImgsController < ApplicationController
       redirect_to("/books/#{book.id}")
     end
 
-    flash[:notice] = 'アップロード完了' unless notice_messages.empty?
+    flash[:notice] = "#{notice_messages.length}ファイルのアップロード完了" unless notice_messages.empty?
   end # def create
 
   # 拡張子をチェックして正しいものに変更
