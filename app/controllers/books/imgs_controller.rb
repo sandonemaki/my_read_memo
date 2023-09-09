@@ -194,14 +194,23 @@ class Books::ImgsController < ApplicationController
     size = '220x150'
     Dir.mktmpdir do |tmpdir|
       File.binwrite("#{tmpdir}/#{jpg_imgname}", page_img.read)
-      system('mogrify -strip ' + tmpdir + '/"*"')
-      system('magick mogrify -format jpg ' + tmpdir + '/*.HEIC')
+
+      system('mogrify', '-strip', "#{tmpdir}/*")
+
+      system('magick', 'mogrify', '-format', 'jpg', "#{tmpdir}/*.HEIC")
+
       system(
-        #'convert ' + tmpdir + '/*.jpg -thumbnail ' + size +
-        'convert ' + tmpdir + '/* -resize ' + size + '^' +
-          ' -gravity North \
-          -extent ' + size + ' public/' + book.id.to_s + '/thumb/sm_' + jpg_imgname,
+        'convert',
+        "#{tmpdir}/*",
+        '-resize',
+        "#{size}^",
+        '-gravity',
+        'North',
+        '-extent',
+        "#{size}",
+        "public/#{book.id}/thumb/sm_#{jpg_imgname}",
       )
+
       begin
         FileUtils.mv(Dir.glob("#{tmpdir}/*jpg"), "public/#{book.id}/")
       rescue StandardError => e
@@ -223,13 +232,18 @@ class Books::ImgsController < ApplicationController
       temp_file_path = "#{tmpdir}/#{filename}"
       File.binwrite(temp_file_path, page_img.read)
 
-      #system("magick mogrify -format jpg #{tmpdir}/*.png")
-      system('mogrify -strip ' + tmpdir + '/*')
+      system('mogrify', '-strip', "#{tmpdir}/*")
+
       system(
-        #'convert ' + tmpdir + '/* -thumbnail ' + size +
-        'convert ' + tmpdir + '/* -resize ' + size + '^' +
-          ' -gravity North \
-          -extent ' + size + ' public/' + book.id.to_s + '/thumb/sm_' + filename,
+        'convert',
+        "#{tmpdir}/*",
+        '-resize',
+        "#{size}^",
+        '-gravity',
+        'North',
+        '-extent',
+        "#{size}",
+        "public/#{book.id}/thumb/sm_#{filename}",
       )
       begin
         FileUtils.mv(Dir.glob("#{tmpdir}/*"), "public/#{book.id}/")
