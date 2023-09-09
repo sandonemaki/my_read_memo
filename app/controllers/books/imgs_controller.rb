@@ -129,6 +129,9 @@ class Books::ImgsController < ApplicationController
     # 最後にerror_messageをまとめて表示
     error_messages = []
 
+    # 最後にnotice_messageをまとめて表示
+    notice_messages = []
+
     # 複数の画像の実態を加工/保存/db保存するeach内でエラーが増えていたらdbに保存しない
     latest_upload_error_count = 0
     current_upload_error_count = 0
@@ -167,12 +170,11 @@ class Books::ImgsController < ApplicationController
 
       # dbに保存するかどうかを判定する
       if current_upload_error_count == latest_upload_error_count
-        db_save_randoku_imgs(book, filenames_save_db, error_messages)
+        db_save_randoku_imgs(book, filenames_save_db, error_messages, notice_messages)
       end
       current_upload_error_count = latest_upload_error_count
 
       result = book.try_update_reading_state
-      flash[:notice] = '本のステータスが更新されました!' if result[:updated] == true
 
       save_first_post_flag(book)
     end # transaction
@@ -180,9 +182,11 @@ class Books::ImgsController < ApplicationController
     if error_messages.empty?
       redirect_to("/books/#{book.id}")
     else
-      flash[:error] = "アップロードに失敗：\n#{error_messages.join('\n')}"
+      flash[:error] = "アップロードに失敗：<br />#{error_messages.join('<br />')}"
       redirect_to("/books/#{book.id}")
     end
+
+    flash[:notice] = 'アップロード完了' unless notice_messages.empty?
   end # def create
 
   # 拡張子をチェックして正しいものに変更
@@ -282,7 +286,7 @@ class Books::ImgsController < ApplicationController
     end
   end
 
-  def db_save_randoku_imgs(book, filenames_save_db, error_messages)
+  def db_save_randoku_imgs(book, filenames_save_db, error_messages, notice_messages)
     # 用途
     # dbに同じ画像名が存在するかを確認
     # 存在しない場合にパスと画像名を保存
@@ -296,11 +300,11 @@ class Books::ImgsController < ApplicationController
         randoku_img_record.thumbnail_path = "/#{book.id}/thumb/sm_#{page_img_name}"
         error_messages << "#{img_name}の保存に失敗しました" unless randoku_img_record.save
 
-        flash[:notice] = "#{img_name}のアップロード完了"
+        notice_messages << 'アップロード完了'
       else
         # すでに同じ名前の画像がdbに存在する場合
         randoku_img_record.update(updated_at: Time.current)
-        flash[:notice] = "#{img_name}の上書きアップロード完了"
+        notice_messages << 'アップロード完了'
       end
     end
   end
