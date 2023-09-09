@@ -196,8 +196,11 @@ class Books::ImgsController < ApplicationController
       File.binwrite("#{tmpdir}/#{jpg_imgname}", page_img.read)
 
       system('mogrify', '-strip', "#{tmpdir}/*")
-
       system('magick', 'mogrify', '-format', 'jpg', "#{tmpdir}/*.HEIC")
+
+      # 次に、変換されたJPGの品質を調整
+      # 先にHEICをjpg化しないと品質を下げれなかった
+      system('mogrify', '-quality', '60', "#{tmpdir}/*.jpg")
 
       system(
         'convert',
