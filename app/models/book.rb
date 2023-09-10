@@ -74,7 +74,7 @@ class Book < ApplicationRecord
       '「さらさら読書」完了！ 残りのメモを読んで「じっくり読書」へ'
     when State::READING_STATE.key('さらさら読書：通読')
       seidoku_line_2 = (self.total_page * (1.0 / 4.0)).floor
-      remaining_to_unread = (seidoku_line_2 - 1) - img_unread_count
+      remaining_to_unread = img_unread_count - (seidoku_line_2 - 1)
       "「じっくり読書」まで「さらさら画像メモ」をあと #{remaining_to_unread == 0 ? sprintf('%.1f', remaining_to_unread) : remaining_to_unread.to_i} 枚読む"
     end
   end
