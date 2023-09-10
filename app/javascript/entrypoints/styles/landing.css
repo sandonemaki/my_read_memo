@@ -57,7 +57,7 @@
   background: #ffd966;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* 横方向に中央揃え */
   margin-top: 64px;
 }
 .landing-top-img {
@@ -69,6 +69,19 @@
   min-height: 450px;
   vertical-align: middle;
 }
+.flex-img {
+  display: flex;
+  justify-content: center; /* 左右センター */
+}
+.flex-img.column {
+  flex-direction: column;
+}
+.web-img.m-bottom0 {
+  margin-bottom: 0px;
+}
+.web-img.m-top0 {
+  margin-top: 0px;
+}
 
 /* 楽しみ方 */
 .landing-container {
@@ -76,7 +89,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 96px 4.16%;
+  padding: 96px 4.16% 0px;
 }
 .landing-small-section-title {
   text-align: center;
@@ -114,15 +127,16 @@
 }
 /* アプリの取説 */
 .landing-big-section {
+  width: 70%;
+  padding-top: 100px;
   width: 100%;
-  padding-top: 36px;
-  width: 90%;
   margin-bottom: 60px;
 }
 /****/
 /* 使い方 */
 .manual-use {
-  margin-top: 32px;
+  width: 40%;
+  margin: 0 auto;
 }
 .manual-title {
   font-size: 36px;
@@ -182,16 +196,16 @@
 }
 /* キャラクター３体 */
 .chara3-illust {
-  width: 23%;
+  width: 20%;
 }
-.landing-container-satart {
+.landing-container-start {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 94px 0;
 }
-.landing-small-section-title.landing-satart {
+.landing-small-section-title.landing-start {
   margin-bottom: 16px;
 }
 .landing-container-logo {
@@ -223,7 +237,11 @@
     padding: 100px 0 0;
   }
   .landing-small-section-title {
-    font-size: 6.3vw;
+    font-size: 5.5vw;
+  }
+  .landing-big-section {
+    width: 100%;
+    margin-bottom: 0px;
   }
 
   .landing-introduction_img-container {
@@ -243,18 +261,19 @@
   }
   /* 楽しみ方 */
   .landing-container {
-    padding: 40px 6%;
+    padding: 40px 6% 0;
   }
   .landing-intoroduction_lead.landing-how-to-enjoy {
     text-align: inherit;
     margin-bottom: 80px;
     line-height: 2.3;
-    width: 90%;
+    width: 100%;
   }
   .landing-small-section-lead {
     font-size: 3.7vw;
-    width: 80%;
+    width: 100%;
     margin: 12px auto 0;
+    text-align: inherit;
   }
   .landing-small-section-point {
     font-size: 3.5vw;
@@ -267,8 +286,11 @@
   /****/
   /* 使い方 */
   .manual-use {
-    margin-top: 20px;
+    margin-top: 0px;
+    width: 100%;
+    text-align: center;
   }
+
   .manual-title {
     font-size: 32px;
   }
@@ -288,12 +310,14 @@
   .manual-use-lead {
     font-size: 3.7vw;
     line-height: 2.3;
+    text-align: left;
   }
   .namual-number {
     font-size: 28px;
   }
   .manual-use-illust {
     margin: 20px 0 12px 0;
+    width: 70%;
   }
   /* How to Fun */
   .manual-description {
@@ -306,5 +330,11 @@
   /* キャラクター３体 */
   .chara3-illust {
     width: 54%;
+  }
+  .landing-container-start {
+    padding: 70px 0 0;
+  }
+  .landing-container-logo {
+    padding: 88px 0;
   }
 }
