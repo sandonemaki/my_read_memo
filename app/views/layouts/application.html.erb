@@ -33,15 +33,14 @@
       // flash[:error] = object.errors.messages[:column].join(',')
       // render :new
       document.addEventListener('DOMContentLoaded', (event) => {
-        const flash = <%= flash[:error].blank? ? 'null' : flash[:error].to_json.html_safe %>;
-        if (flash) {
-          js_flash_alert(flash);
+        const flashError = <%= flash[:error].blank? ? 'null' : flash[:error].to_json.html_safe %>;
+        if (flashError) {
+          js_flash_alert(flashError);
         }
-      });
-      document.addEventListener('DOMContentLoaded', (event) => {
-        const flash = <%= flash[:notice].blank? ? 'null' : flash[:notice].to_json.html_safe %>;
-        if (flash) {
-          js_flash(flash);
+
+        const flashNotice = <%= flash[:notice].blank? ? 'null' : flash[:notice].to_json.html_safe %>;
+        if (flashNotice) {
+          js_flash(flashNotice);
         }
       });
     </script>

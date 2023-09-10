@@ -26,7 +26,8 @@ window.js_flash = js_flash;
 
 // メッセージを設定する関数
 const setFlashMessage = ({ flashElement, message }) => {
-  flashElement.querySelector('.c-flash-text').innerHTML = message;
+  const new_message = message.replace(/\n/g, '<br />');
+  flashElement.querySelector('.c-flash-text').innerHTML = new_message;
 };
 
 // メッセージを表示する関数

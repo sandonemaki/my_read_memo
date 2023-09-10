@@ -182,7 +182,7 @@ class Books::ImgsController < ApplicationController
     if error_messages.empty?
       redirect_to("/books/#{book.id}")
     else
-      flash[:error] = "アップロードに失敗：<br />#{error_messages.join('<br />')}"
+      flash[:error] = "アップロードに失敗：\n#{error_messages.join('\n')}"
       redirect_to("/books/#{book.id}")
     end
 
