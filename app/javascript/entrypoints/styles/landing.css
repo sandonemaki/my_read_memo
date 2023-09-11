@@ -128,14 +128,14 @@
 /* アプリの取説 */
 .landing-big-section {
   width: 70%;
-  padding-top: 100px;
+  padding-top: 160px;
   width: 100%;
   margin-bottom: 60px;
 }
 /****/
 /* 使い方 */
 .manual-use {
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
 }
 .manual-title {
@@ -241,6 +241,7 @@
   }
   .landing-big-section {
     width: 100%;
+    padding-top: 100px;
     margin-bottom: 0px;
   }
 
