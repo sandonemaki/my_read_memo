@@ -212,7 +212,8 @@
   padding: 70px 0;
 }
 .landing-start-logo {
-  width: 112px;
+  width: 43px;
+  color: #ffb551;
 }
 
 @media screen and (max-width: 600px) {
