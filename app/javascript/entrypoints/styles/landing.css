@@ -123,7 +123,7 @@
   background-position: center;
   max-width: 1000px;
   width: 100%;
-  margin: 60px 0px;
+  margin: 60px auto;
 }
 /* アプリの取説 */
 .landing-big-section {
