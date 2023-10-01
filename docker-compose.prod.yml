@@ -19,6 +19,11 @@ services:
       RAILS_ENV: production
       RAILS_LOG_TO_STDOUT: 'true'
       AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET}
+    volumes:
+      - ./public/:/myapp/public/
+      # 以下はprodd環境でdebugする場合にコメントイン
+      # - .:/myapp/
+      # - /myapp/vendor
 
   my_read_memo_webserver:
     image: nginx:latest
