@@ -3,34 +3,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-    build-essential \
-    autoconf \
-    libtool \
-    libde265-dev \
-    libdjvulibre-dev \
-    libfftw3-dev \
-    libghc-bzlib-dev \
-    libgraphviz-dev \
-    libgs-dev \
-    libheif-dev \
-    libmagickcore-dev \
-    libjbig-dev \
-    libjemalloc-dev \
-    libjpeg-dev \
-    libturbojpeg0-dev \
-    liblcms2-dev \
-    liblqr-1-0-dev \
-    liblzma-dev \
-    libopenexr-dev \
-    libpng-dev \
-    libraqm-dev \
-    libtiff-dev \
-    libwebp-dev \
-    libwmf-dev \
-    libzstd-dev \
-    wget \
-    less \
-    && rm -rf /var/lib/apt/lists/*
+  build-essential \
+  autoconf \
+  libtool \
+  libde265-dev \
+  libheif-dev \
+  libmagickcore-dev \
+  libjpeg-dev \
+  libpng-dev \
+  wget \
+  less \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/
 # ImageMagick 7 のインストール
@@ -41,29 +24,41 @@ WORKDIR /usr/src/
 # - heic対応: https://www.joelotz.com/blog/2022/building-imagemagick-71-with-heic-support-from-source.html
 
 RUN wget https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.1-9.tar.gz && \
-    tar xzf 7.1.1-9.tar.gz && \
-    cd ImageMagick-7.1.1-9 && \
-    ./configure \
-      --with-heic=yes \
-      --with-jpeg=yes \
-      --with-png=yes \
-      --with-tiff=yes \
-      --with-openjp2=yes && \
-    make && \
-    make install && \
-    ldconfig /usr/local/lib/ && \
-    convert -version && \
-    cd .. && \
-    rm -rf ImageMagick-7.1.1-9 7.1.1-9.tar.gz
+  tar xzf 7.1.1-9.tar.gz && \
+  cd ImageMagick-7.1.1-9 && \
+  ./configure \
+  --with-heic=yes \
+  --with-jpeg=yes \
+  --with-png=yes \
+  --without-djvu \
+  --without-fftw \
+  --without-freetype \
+  --without-jbig \
+  --without-lcms \
+  --without-openexr \
+  --without-pango \
+  --without-raqm \
+  --without-tiff \
+  --without-webp \
+  --without-wmf \
+  --without-x \
+  --without-xml \
+  --without-zlib && \
+  make && \
+  make install && \
+  ldconfig /usr/local/lib/ && \
+  convert -version && \
+  cd .. && \
+  rm -rf ImageMagick-7.1.1-9 7.1.1-9.tar.gz
 
 # 必要なライブラリのインストール
 RUN set -x && apt-get update -qq && \
-    apt-get install -y libpq-dev npm && \
-    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
-    apt-get install -y nodejs && \
-    curl -L https://install.meilisearch.com | sh && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+  apt-get install -y libpq-dev npm && \
+  curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+  apt-get install -y nodejs && \
+  curl -L https://install.meilisearch.com | sh && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
 # npmを使ってyarnをインストール
 RUN npm install -g yarn
@@ -80,6 +75,6 @@ RUN npm install
 
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.3.21 && \
-    bundle config set --local path 'vendor/bundle' && \
-    bundle install
+  bundle config set --local path 'vendor/bundle' && \
+  bundle install
 COPY . .
