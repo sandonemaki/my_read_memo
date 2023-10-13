@@ -120,4 +120,5 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   # 自分で追加 230727
   config.hosts << 'yondeco.site'
+  config.hosts << '18.177.243.103'
 end
