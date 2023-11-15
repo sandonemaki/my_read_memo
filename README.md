@@ -50,6 +50,7 @@ Swiper、Panzoom、ImageMagick、Makefile
 ![architect](/readme/architect.png)
 
 ### ▼ ER図
+![db_design](/readme/db_design.jpg)
 
 ### ▼ 画面構成図
 ![screen_configuration](/readme/screen_configuration.png)
