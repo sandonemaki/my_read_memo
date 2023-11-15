@@ -15,8 +15,7 @@ yondecoアプリは、いま読んでいる本が自分にとってどのぐら�
 </br>
 
 ### ▼ サービスURL
-
-### https://www.yondeco.site</br>
+## https://www.yondeco.site
 レスポンシブ対応済のため、PCでもスマートフォンでも快適にご利用いただけます。
 </br>
 </br>
