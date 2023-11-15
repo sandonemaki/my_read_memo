@@ -5,21 +5,29 @@
 yondecoアプリは、いま読んでいる本が自分にとってどのぐらい大切な本なのか、見える化できる読書アプリです。 </br>
 アプリの機能に沿って読書メモをとることで、書評家のように自分だけの本のレビューが完成していきます。 </br>
 詳細は[トップページ](https://www.yondeco.site)をご確認ください。
+</br>
+</br>
 
 ### ▼ yondecoアプリの取扱読書範囲
 
 <img src="/public/readme/reading_flow.png" width="50%" />
+</br>
+</br>
 
 ### ▼ サービスURL
 
 **https://www.yondeco.site**</br>
 レスポンシブ対応済のため、PCでもスマートフォンでも快適にご利用いただけます。
+</br>
+</br>
 
 ### ▼ 紹介記事(はてなブログ)
 
 [いま読んでいる本が「自分にとってどのぐらい大切な一冊」なのか、「見える化」するアプリを作りながら考えたこと](https://maki-ooo.hatenablog.com/entry/yondeco_new_release)</br>
 開発背景や、サービスのリリースまでに勉強したことなどをまとめています。</br>
 初学者の私が開発を通じて、さまざまな技術的な選択や学習のアプローチを経験してきたので、その経験と学びを共有し、今後の展望についても触れています。
+</br>
+</br>
 
 ### ▼ 上記ブログのサマリー
 
@@ -40,6 +48,8 @@ yondecoアプリは、いま読んでいる本が自分にとってどのぐら�
 
 [技術詳細](https://maki-ooo.hatenablog.com/entry/yondeco_new_release#%E6%8A%80%E8%A1%93%E8%A9%B3%E7%B4%B0)：</br>
 使用技術、バックエンド、フロントエンド、インフラの技術的工夫を書きました。あえて ActiveStrage や miniMagic などの Gem を使わずにアップロード機能を作成した理由、 Vanilla.js を採用した理由、選択したアーキテクトについて書いています。
+</br>
+</br>
 
 ### ▼ 使用技術一覧
 
@@ -47,18 +57,26 @@ yondecoアプリは、いま読んでいる本が自分にとってどのぐら�
 
 **その他お世話になったツール・サービスなど**</br>
 Swiper、Panzoom、ImageMagick、Makefile
+</br>
+</br>
 
 ### ▼ インフラ構成図
 
 <img src="/public/readme/infra.png" width="50%" />
+</br>
+</br>
 
 ### ▼ アーキテクト
 
 <img src="/public/readme/architect.png" width="50%" />
+</br>
+</br>
 
 ### ▼ ER図
 
 <img src="/public/readme/db_design.jpg" width="50%" />
+</br>
+</br>
 
 ### ▼ 画面構成図
 
