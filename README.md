@@ -30,7 +30,7 @@ yondecoアプリは、いま読んでいる本が自分にとってどのぐら�
 
 ### ▼ 上記ブログのサマリー
 
-[サービスの概要](https://maki-ooo.hatenablog.com/entry/yondeco_new_release#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%A6%82%E8%A6%81)：</br>
+[サービスの概要](https://maki-ooo.hatenablog.com/entry/yondeco_new_release#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%A6%82%E8%A6%81)</br>
 アプリの対象ユーザー、アプリを作ろうと思った背景
 
 [機能仕様](https://maki-ooo.hatenablog.com/entry/yondeco_new_release#%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B%E4%B8%8A%E3%81%A7%E6%B1%BA%E3%82%81%E3%81%9F%E3%81%93%E3%81%A8)</br>
