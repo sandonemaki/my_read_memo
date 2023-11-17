@@ -47,6 +47,9 @@ yondecoアプリは、いま読んでいる本が自分にとってどのぐら�
 
 [技術詳細](https://maki-ooo.hatenablog.com/entry/yondeco_new_release#%E6%8A%80%E8%A1%93%E8%A9%B3%E7%B4%B0)</br>
 使用技術、バックエンド、フロントエンド、インフラの技術的工夫を書きました。あえて ActiveStrage や miniMagic などの Gem を使わずにアップロード機能を作成した理由、 Vanilla.js を採用した理由、選択したアーキテクトについて書いています。
+
+[学習の工夫](https://peat-ounce-20c.notion.site/a5a44409ed104289bac85cad71f2aa88?pvs=4)</br>
+学習方法を工夫することもエンジニアに必要なスキルと考え、さまざまな工夫をしながら学習を進めてきました。
 </br>
 </br>
 
