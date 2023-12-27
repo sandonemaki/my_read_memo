@@ -15,7 +15,7 @@ yondecoアプリは、いま読んでいる本が自分にとってどのぐら�
 </br>
 
 ### ▼ サービスURL
-## https://www.yondeco.site
+## https://yondeco.site
 レスポンシブ対応済のため、PCでもスマートフォンでも快適にご利用いただけます。
 </br>
 </br>
@@ -36,7 +36,7 @@ yondecoアプリは、いま読んでいる本が自分にとってどのぐら�
 [機能仕様](https://maki-ooo.hatenablog.com/entry/yondeco_new_release#%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B%E4%B8%8A%E3%81%A7%E6%B1%BA%E3%82%81%E3%81%9F%E3%81%93%E3%81%A8)</br>
 アプリの機能仕様、画面設計、キャラクターを作成しました。
 
-[ユーザー体験設計書](/readme/user_experience_des_doc.pdf)</br>
+[ユーザー体験設計書](/public/readme/user_experience_des_doc.pdf)</br>
 サービスの定義、ターゲット、課題、ユーザーの感情ゴールや機能ゴール、ユーザーの問題を解決する機能一覧を作成しました。
 
 [詳細体験設計書](/public/readme/detailed_experience_design.pdf)</br>
